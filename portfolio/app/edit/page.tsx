@@ -67,7 +67,7 @@ export default function EditPage() {
     }
   }, []);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const saveData = {
       heroContent: data.hero,
       aboutContent: data.about,
@@ -80,11 +80,21 @@ export default function EditPage() {
     localStorage.setItem('portfolio-content', jsonStr);
     setHasChanges(false);
 
-    navigator.clipboard.writeText(jsonStr).then(() => {
-      alert('保存成功！\n\n✅ 内容已保存到浏览器本地\n✅ JSON已复制到剪贴板\n\n如需发布：\n1. 将剪贴板内容粘贴为 public/content.json\n2. npm run build → git push');
-    }).catch(() => {
-      alert('保存成功！内容已保存到浏览器本地。');
-    });
+    try {
+      const res = await fetch('/api/save-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: saveData }),
+      });
+      const result = await res.json();
+      if (result.success) {
+        alert(`保存成功！\n\n✅ 已写入 public/content.json (${result.size} bytes)\n\n下一步：git add . && git commit -m "更新内容" && git push`);
+      } else {
+        alert('文件写入失败：' + (result.error || '未知错误'));
+      }
+    } catch (err: any) {
+      alert('保存成功（本地模式）。\n\n⚠️ 服务端写入失败，内容仅保存在浏览器本地。\n错误：' + err.message);
+    }
   };
 
   return (
