@@ -74,6 +74,12 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
     loadContent();
   }, []);
 
+  if (!loaded) {
+    return (
+      <div style={{ width: '100%', minHeight: '100vh', backgroundColor: '#0a0a0f' }} />
+    );
+  }
+
   return (
     <ContentContext.Provider value={content}>
       {children}
