@@ -14,15 +14,17 @@ interface DynamicFormProps {
 }
 
 export default function DynamicForm({ schema, data, onChange, nested }: DynamicFormProps) {
+  const safeData = data || {};
+
   const handleFieldChange = (key: string, value: any) => {
     onChange({
-      ...data,
+      ...safeData,
       [key]: value
     });
   };
 
   const renderField = (key: string, fieldSchema: SectionSchema['fields'][string]) => {
-    const value = data[key];
+    const value = safeData[key];
 
     switch (fieldSchema.type) {
       case 'string':

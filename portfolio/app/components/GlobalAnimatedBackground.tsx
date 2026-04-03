@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useProjectHover, themeColors } from '../context/ProjectHoverContext';
+import { useState, useEffect } from 'react';
 
-// Animated grid lines
+const DEFAULT_COLOR = '#00d4aa';
+
 function AnimatedGrid({ isActive, color }: { isActive: boolean; color: string }) {
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -21,8 +22,7 @@ function AnimatedGrid({ isActive, color }: { isActive: boolean; color: string })
         </defs>
         <rect width="100%" height="100%" fill="url(#globalGrid)" />
       </svg>
-      
-      {/* Animated horizontal lines */}
+
       {[...Array(5)].map((_, i) => (
         <motion.div
           key={`h-${i}`}
@@ -45,7 +45,6 @@ function AnimatedGrid({ isActive, color }: { isActive: boolean; color: string })
         />
       ))}
 
-      {/* Animated vertical lines */}
       {[...Array(5)].map((_, i) => (
         <motion.div
           key={`v-${i}`}
@@ -71,7 +70,6 @@ function AnimatedGrid({ isActive, color }: { isActive: boolean; color: string })
   );
 }
 
-// Floating particles
 function FloatingParticles({ isActive, color }: { isActive: boolean; color: string }) {
   const particles = [...Array(isActive ? 30 : 15)].map((_, i) => ({
     id: i,
@@ -114,7 +112,6 @@ function FloatingParticles({ isActive, color }: { isActive: boolean; color: stri
   );
 }
 
-// Radial glow orbs
 function GlowOrbs({ isActive, color }: { isActive: boolean; color: string }) {
   const orbs = [
     { x: '20%', y: '30%', size: 300, delay: 0 },
@@ -152,7 +149,6 @@ function GlowOrbs({ isActive, color }: { isActive: boolean; color: string }) {
   );
 }
 
-// Connection lines between abstract nodes
 function ConnectionLines({ isActive, color }: { isActive: boolean; color: string }) {
   const nodes = [
     { x: 10, y: 20 },
@@ -173,7 +169,7 @@ function ConnectionLines({ isActive, color }: { isActive: boolean; color: string
             Math.pow(targetNode.x - node.x, 2) + Math.pow(targetNode.y - node.y, 2)
           );
           if (distance > 40) return null;
-          
+
           return (
             <motion.line
               key={`${i}-${j}`}
@@ -196,7 +192,7 @@ function ConnectionLines({ isActive, color }: { isActive: boolean; color: string
           );
         })
       ))}
-      
+
       {nodes.map((node, i) => (
         <motion.circle
           key={`node-${i}`}
@@ -221,45 +217,41 @@ function ConnectionLines({ isActive, color }: { isActive: boolean; color: string
 }
 
 export default function GlobalAnimatedBackground() {
-  const { hoveredId, themeColor } = useProjectHover();
-  const isActive = hoveredId !== null;
-  const activeColor = themeColor || '#00d4aa';
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <div className="fixed inset-0 -z-10 bg-[#0d0d0d]" />
+    );
+  }
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0d0d0d]">
-      {/* Base gradient that changes with hover */}
       <motion.div
         className="absolute inset-0"
         animate={{
-          background: isActive
-            ? `radial-gradient(ellipse at center, ${activeColor}08 0%, #0d0d0d 60%)`
-            : 'radial-gradient(ellipse at center, transparent 0%, #0d0d0d 60%)',
+          background: 'radial-gradient(ellipse at center, #00d4aa08 0%, #0d0d0d 60%)',
         }}
-        transition={{ duration: 0.8, ease: 'easeInOut' }}
+        transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
       />
 
-      {/* Animated grid */}
-      <AnimatedGrid isActive={isActive} color={activeColor} />
+      <AnimatedGrid isActive={true} color={DEFAULT_COLOR} />
+      <FloatingParticles isActive={true} color={DEFAULT_COLOR} />
+      <GlowOrbs isActive={true} color={DEFAULT_COLOR} />
+      <ConnectionLines isActive={true} color={DEFAULT_COLOR} />
 
-      {/* Floating particles */}
-      <FloatingParticles isActive={isActive} color={activeColor} />
-
-      {/* Glow orbs */}
-      <GlowOrbs isActive={isActive} color={activeColor} />
-
-      {/* Connection lines */}
-      <ConnectionLines isActive={isActive} color={activeColor} />
-
-      {/* Noise texture overlay for depth */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      {/* Bottom gradient for depth */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 h-64"
         style={{
           background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)',

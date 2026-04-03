@@ -21,33 +21,56 @@ interface EditedContent {
 
 const ContentContext = createContext<EditedContent | null>(null);
 
+const defaultContent: EditedContent = {
+  hero: defaultHero,
+  about: defaultAbout,
+  projects: defaultProjects,
+  skills: defaultSkills,
+  contact: defaultContact,
+  footer: defaultFooter
+};
+
 export function ContentProvider({ children }: { children: React.ReactNode }) {
-  const [content, setContent] = useState<EditedContent>({
-    hero: defaultHero,
-    about: defaultAbout,
-    projects: defaultProjects,
-    skills: defaultSkills,
-    contact: defaultContact,
-    footer: defaultFooter
-  });
+  const [content, setContent] = useState<EditedContent>(defaultContent);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('portfolio-content');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        setContent({
-          hero: parsed.heroContent || defaultHero,
-          about: parsed.aboutContent || defaultAbout,
-          projects: parsed.projectsContent || defaultProjects,
-          skills: parsed.skillsContent || defaultSkills,
-          contact: parsed.contactContent || defaultContact,
-          footer: defaultFooter
-        });
+    async function loadContent() {
+      let result = { ...defaultContent };
+
+      try {
+        const res = await fetch('/content.json');
+        if (res.ok) {
+          const json = await res.json();
+          if (json.heroContent) result.hero = { ...defaultContent.hero, ...json.heroContent };
+          if (json.aboutContent) result.about = { ...defaultContent.about, ...json.aboutContent };
+          if (json.projectsContent) result.projects = { ...defaultContent.projects, ...json.projectsContent };
+          if (json.skillsContent) result.skills = { ...defaultContent.skills, ...json.skillsContent };
+          if (json.contactContent) result.contact = { ...defaultContent.contact, ...json.contactContent };
+        }
+      } catch (e) {
+        console.info('content.json not found, using defaults');
       }
-    } catch (e) {
-      console.error('读取编辑内容失败:', e);
+
+      try {
+        const stored = localStorage.getItem('portfolio-content');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed.heroContent) result.hero = { ...result.hero, ...parsed.heroContent };
+          if (parsed.aboutContent) result.about = { ...result.about, ...parsed.aboutContent };
+          if (parsed.projectsContent) result.projects = { ...result.projects, ...parsed.projectsContent };
+          if (parsed.skillsContent) result.skills = { ...result.skills, ...parsed.skillsContent };
+          if (parsed.contactContent) result.contact = { ...result.contact, ...parsed.contactContent };
+        }
+      } catch (e) {
+        console.error('读取localStorage失败:', e);
+      }
+
+      setContent(result);
+      setLoaded(true);
     }
+
+    loadContent();
   }, []);
 
   return (

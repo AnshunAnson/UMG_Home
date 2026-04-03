@@ -2,23 +2,23 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Save, RotateCcw, ChevronRight } from 'lucide-react';
+import { Save, RotateCcw, ChevronRight } from 'lucide-react';
 import { allSchemas } from './schema';
 import DynamicForm from './components/DynamicForm';
-import {
-  heroContent,
-  aboutContent,
-  projectsContent,
-  skillsContent,
-  contactContent
+import { 
+  heroContent, 
+  aboutContent, 
+  projectsContent, 
+  skillsContent, 
+  contactContent 
 } from '../config/content';
 
 const initialData = {
-  heroContent,
-  aboutContent,
-  projectsContent,
-  skillsContent,
-  contactContent,
+  hero: heroContent,
+  about: aboutContent,
+  projects: projectsContent,
+  skills: skillsContent,
+  contact: contactContent,
 };
 
 export default function EditPage() {
@@ -26,65 +26,14 @@ export default function EditPage() {
   const [activeSection, setActiveSection] = useState('hero');
   const [hasChanges, setHasChanges] = useState(false);
 
-  // 处理数据变更
-  const sectionKeyMap: Record<string, string> = {
-  hero: 'heroContent',
-  about: 'aboutContent',
-  projects: 'projectsContent',
-  skills: 'skillsContent',
-  contact: 'contactContent',
-};
-
-const reverseKeyMap: Record<string, string> = {
-  heroContent: 'hero',
-  aboutContent: 'about',
-  projectsContent: 'projects',
-  skillsContent: 'skills',
-  contactContent: 'contact',
-};
-
-const handleSectionChange = (section: string, newData: any) => {
-  const contentKey = sectionKeyMap[section] || section;
-  setData(prev => ({
-    ...prev,
-    [contentKey]: newData
-  }));
-  setHasChanges(true);
-};
-
-  // 生成TypeScript代码
-  const generateCode = () => {
-    const code = `// 内容配置文件
-// 由Edit页面自动生成
-
-export const heroContent = ${JSON.stringify(data.heroContent, null, 2)};
-
-export const aboutContent = ${JSON.stringify(data.aboutContent, null, 2)};
-
-export const projectsContent = ${JSON.stringify(data.projectsContent, null, 2)};
-
-export const skillsContent = ${JSON.stringify(data.skillsContent, null, 2)};
-
-export const contactContent = ${JSON.stringify(data.contactContent, null, 2)};
-`;
-    return code;
+  const handleSectionChange = (section: string, newData: any) => {
+    setData(prev => ({
+      ...prev,
+      [section]: newData
+    }));
+    setHasChanges(true);
   };
 
-  // 下载配置文件
-  const handleDownload = () => {
-    const code = generateCode();
-    const blob = new Blob([code], { type: 'text/typescript' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'content.ts';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  // 重置数据
   const handleReset = () => {
     if (confirm('确定要重置所有更改吗？')) {
       setData(initialData);
@@ -92,12 +41,26 @@ export const contactContent = ${JSON.stringify(data.contactContent, null, 2)};
     }
   };
 
-  // 保存到localStorage
   useEffect(() => {
     const saved = localStorage.getItem('portfolio-content');
     if (saved) {
       try {
-        setData(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === 'object') {
+          setData(prev => ({
+            ...prev,
+            ...(parsed.hero && { hero: parsed.hero }),
+            ...(parsed.about && { about: parsed.about }),
+            ...(parsed.projects && { projects: parsed.projects }),
+            ...(parsed.skills && { skills: parsed.skills }),
+            ...(parsed.contact && { contact: parsed.contact }),
+            ...(parsed.heroContent && { hero: parsed.heroContent }),
+            ...(parsed.aboutContent && { about: parsed.aboutContent }),
+            ...(parsed.projectsContent && { projects: parsed.projectsContent }),
+            ...(parsed.skillsContent && { skills: parsed.skillsContent }),
+            ...(parsed.contactContent && { contact: parsed.contactContent }),
+          }));
+        }
       } catch (e) {
         console.error('Failed to load saved content:', e);
       }
@@ -105,9 +68,23 @@ export const contactContent = ${JSON.stringify(data.contactContent, null, 2)};
   }, []);
 
   const handleSave = () => {
-    localStorage.setItem('portfolio-content', JSON.stringify(data));
+    const saveData = {
+      heroContent: data.hero,
+      aboutContent: data.about,
+      projectsContent: data.projects,
+      skillsContent: data.skills,
+      contactContent: data.contact,
+    };
+    const jsonStr = JSON.stringify(saveData, null, 2);
+
+    localStorage.setItem('portfolio-content', jsonStr);
     setHasChanges(false);
-    alert('保存成功！');
+
+    navigator.clipboard.writeText(jsonStr).then(() => {
+      alert('保存成功！\n\n✅ 内容已保存到浏览器本地\n✅ JSON已复制到剪贴板\n\n如需发布：\n1. 将剪贴板内容粘贴为 public/content.json\n2. npm run build → git push');
+    }).catch(() => {
+      alert('保存成功！内容已保存到浏览器本地。');
+    });
   };
 
   return (
@@ -117,7 +94,7 @@ export const contactContent = ${JSON.stringify(data.contactContent, null, 2)};
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold">内容编辑器</h1>
-            <p className="text-sm text-white/50">修改配置后保存并下载 content.ts 文件</p>
+            <p className="text-sm text-white/50">修改配置后点击保存</p>
           </div>
           <div className="flex items-center gap-3">
             {hasChanges && (
@@ -133,19 +110,11 @@ export const contactContent = ${JSON.stringify(data.contactContent, null, 2)};
             </button>
             <button
               onClick={handleSave}
-              className="flex items-center gap-2 px-4 py-2 text-sm bg-[#00d4aa]/20 text-[#00d4aa] 
-                       border border-[#00d4aa]/30 rounded-lg hover:bg-[#00d4aa]/30 transition-colors"
-            >
-              <Save className="w-4 h-4" />
-              保存
-            </button>
-            <button
-              onClick={handleDownload}
               className="flex items-center gap-2 px-4 py-2 text-sm bg-[#00d4aa] text-black 
                        rounded-lg hover:bg-[#00d4aa]/90 transition-colors font-medium"
             >
-              <Download className="w-4 h-4" />
-              下载配置
+              <Save className="w-4 h-4" />
+              保存
             </button>
           </div>
         </div>
@@ -186,7 +155,7 @@ export const contactContent = ${JSON.stringify(data.contactContent, null, 2)};
             >
               <DynamicForm
                 schema={allSchemas[activeSection]}
-                data={data[sectionKeyMap[activeSection] as keyof typeof data]}
+                data={data[activeSection as keyof typeof data] || {}}
                 onChange={(newData) => handleSectionChange(activeSection, newData)}
               />
             </motion.div>

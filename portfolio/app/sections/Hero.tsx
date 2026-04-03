@@ -57,7 +57,7 @@ export default function Hero() {
 
   const content = useContent();
   const heroContent = content?.hero || defaultHeroContent;
-  const { name, nameHighlightLength, badge, subtitle, stats, cornerLeft, cornerRight } = heroContent;
+  const { name = '', nameHighlightLength = 0, badge = '', subtitle = '', stats = [], cornerLeft = '', cornerRight = '' } = heroContent;
 
   return (
     <section
