@@ -5,21 +5,20 @@ import { motion } from 'framer-motion';
 import { Download, Save, RotateCcw, ChevronRight } from 'lucide-react';
 import { allSchemas } from './schema';
 import DynamicForm from './components/DynamicForm';
-import { 
-  heroContent, 
-  aboutContent, 
-  projectsContent, 
-  skillsContent, 
-  contactContent 
+import {
+  heroContent,
+  aboutContent,
+  projectsContent,
+  skillsContent,
+  contactContent
 } from '../config/content';
 
-// 初始数据
 const initialData = {
-  hero: heroContent,
-  about: aboutContent,
-  projects: projectsContent,
-  skills: skillsContent,
-  contact: contactContent,
+  heroContent,
+  aboutContent,
+  projectsContent,
+  skillsContent,
+  contactContent,
 };
 
 export default function EditPage() {
@@ -28,28 +27,45 @@ export default function EditPage() {
   const [hasChanges, setHasChanges] = useState(false);
 
   // 处理数据变更
-  const handleSectionChange = (section: string, newData: any) => {
-    setData(prev => ({
-      ...prev,
-      [section]: newData
-    }));
-    setHasChanges(true);
-  };
+  const sectionKeyMap: Record<string, string> = {
+  hero: 'heroContent',
+  about: 'aboutContent',
+  projects: 'projectsContent',
+  skills: 'skillsContent',
+  contact: 'contactContent',
+};
+
+const reverseKeyMap: Record<string, string> = {
+  heroContent: 'hero',
+  aboutContent: 'about',
+  projectsContent: 'projects',
+  skillsContent: 'skills',
+  contactContent: 'contact',
+};
+
+const handleSectionChange = (section: string, newData: any) => {
+  const contentKey = sectionKeyMap[section] || section;
+  setData(prev => ({
+    ...prev,
+    [contentKey]: newData
+  }));
+  setHasChanges(true);
+};
 
   // 生成TypeScript代码
   const generateCode = () => {
     const code = `// 内容配置文件
 // 由Edit页面自动生成
 
-export const heroContent = ${JSON.stringify(data.hero, null, 2)};
+export const heroContent = ${JSON.stringify(data.heroContent, null, 2)};
 
-export const aboutContent = ${JSON.stringify(data.about, null, 2)};
+export const aboutContent = ${JSON.stringify(data.aboutContent, null, 2)};
 
-export const projectsContent = ${JSON.stringify(data.projects, null, 2)};
+export const projectsContent = ${JSON.stringify(data.projectsContent, null, 2)};
 
-export const skillsContent = ${JSON.stringify(data.skills, null, 2)};
+export const skillsContent = ${JSON.stringify(data.skillsContent, null, 2)};
 
-export const contactContent = ${JSON.stringify(data.contact, null, 2)};
+export const contactContent = ${JSON.stringify(data.contactContent, null, 2)};
 `;
     return code;
   };
@@ -170,7 +186,7 @@ export const contactContent = ${JSON.stringify(data.contact, null, 2)};
             >
               <DynamicForm
                 schema={allSchemas[activeSection]}
-                data={data[activeSection as keyof typeof data]}
+                data={data[sectionKeyMap[activeSection] as keyof typeof data]}
                 onChange={(newData) => handleSectionChange(activeSection, newData)}
               />
             </motion.div>

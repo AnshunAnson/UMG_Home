@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
+import { ReactNode, useState, useCallback } from 'react';
 
 interface NeonCardProps {
   children: ReactNode;
@@ -38,7 +38,13 @@ export default function NeonCard({
         scale: hoverScale,
         boxShadow: `0 0 30px ${glowColors[glowColor]}, 0 0 60px ${glowColors[glowColor]}`,
       }}
+      whileFocus={{
+        scale: hoverScale,
+        boxShadow: `0 0 30px ${glowColors[glowColor]}, 0 0 60px ${glowColors[glowColor]}`,
+      }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
+      tabIndex={0}
+      role="button"
     >
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"

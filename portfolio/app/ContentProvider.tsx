@@ -37,11 +37,11 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       if (stored) {
         const parsed = JSON.parse(stored);
         setContent({
-          hero: parsed.hero || defaultHero,
-          about: parsed.about || defaultAbout,
-          projects: parsed.projects || defaultProjects,
-          skills: parsed.skills || defaultSkills,
-          contact: parsed.contact || defaultContact,
+          hero: parsed.heroContent || defaultHero,
+          about: parsed.aboutContent || defaultAbout,
+          projects: parsed.projectsContent || defaultProjects,
+          skills: parsed.skillsContent || defaultSkills,
+          contact: parsed.contactContent || defaultContact,
           footer: defaultFooter
         });
       }

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { ExternalLink, X, Award, Car, Sparkles, Zap, Monitor, Gamepad2 } from 'lucide-react';
 import { projectsContent as defaultProjectsContent } from '../config/content';
 import { useContent } from '../ContentProvider';
@@ -563,6 +563,22 @@ interface ProjectModalProps {
 function ProjectModal({ project, onClose }: ProjectModalProps) {
   const IconComponent = iconMap[project.icon] || Car;
 
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -570,6 +586,9 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0a0a0f]/95 backdrop-blur-sm"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
     >
       <motion.div
         initial={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -588,9 +607,9 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="p-8 pb-0">
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center gap-4">
-              <div 
+              <div
                 className="w-14 h-14 rounded-xl flex items-center justify-center"
-                style={{ 
+                style={{
                   background: `${project.color}15`,
                   border: `1px solid ${project.color}40`,
                 }}
@@ -598,7 +617,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <IconComponent className="w-7 h-7" style={{ color: project.color }} />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white mb-1">{project.title}</h3>
+                <h3 id="project-modal-title" className="text-2xl font-bold text-white mb-1">{project.title}</h3>
                 <span className="text-[#8a8a8a] text-sm font-mono">
                   {project.period}
                 </span>

@@ -53,6 +53,13 @@ export default function ProjectCard({
     setMousePosition({ x: 0, y: 0 });
   }, []);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onSelect(project);
+    }
+  }, [onSelect, project]);
+
   const IconComponent = iconMap[project.icon];
 
   // 根据变体设置样式
@@ -78,6 +85,9 @@ export default function ProjectCard({
       className={getVariantStyles()}
     >
       <motion.div
+        role="button"
+        tabIndex={0}
+        aria-label={`查看项目: ${project.title}`}
         className="relative h-full bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-6 
                    cursor-pointer overflow-hidden group"
         style={{
@@ -91,6 +101,7 @@ export default function ProjectCard({
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={() => onSelect(project)}
+        onKeyDown={handleKeyDown}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >

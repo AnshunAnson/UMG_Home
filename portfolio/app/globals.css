@@ -426,4 +426,9 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* 禁用背景动画 */
+  .ue5-grid-animated {
+    animation: none !important;
+  }
 }

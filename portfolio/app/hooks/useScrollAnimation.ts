@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 interface ScrollAnimationOptions {
   threshold?: number;
@@ -32,9 +32,11 @@ export default function useScrollAnimation(options: ScrollAnimationOptions = {})
 
     observer.observe(element);
 
-    return () => {
+    const cleanup = useCallback(() => {
       observer.disconnect();
-    };
+    }, []);
+
+    return cleanup;
   }, [threshold, triggerOnce]);
 
   return { ref, isVisible };

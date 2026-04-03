@@ -6,6 +6,8 @@ import { ChevronDown } from 'lucide-react';
 export default function ScrollIndicator() {
   return (
     <motion.div
+      role="status"
+      aria-label="向下滚动查看更多内容"
       className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
