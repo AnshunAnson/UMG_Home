@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'export',
   distDir: 'dist',
-  basePath: '/UMG_Home',
+  basePath: process.env.NODE_ENV === 'production' ? '/UMG_Home' : '',
   images: {
     unoptimized: true,
   },
