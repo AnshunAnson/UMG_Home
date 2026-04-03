@@ -65,7 +65,7 @@ function StatCard({
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="group relative bg-[#13131a] border border-[#1f1f2e] rounded-xl p-6 overflow-hidden
+      className="group relative bg-[#13131a] border border-[#1f1f2e] rounded-xl p-8 lg:p-10 overflow-hidden
                  hover:border-[#00d4aa]/50 transition-colors duration-300"
     >
       {/* 背景光效 */}
@@ -76,10 +76,10 @@ function StatCard({
                       scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
       
       <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/20 
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-14 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/20 
                           flex items-center justify-center group-hover:bg-[#00d4aa]/20 transition-colors duration-300">
-            <Icon className="w-5 h-5 text-[#00d4aa]" />
+            <Icon className="w-6 h-6 text-[#00d4aa]" />
           </div>
           <span className="text-[#6b7280] text-sm font-medium">{label}</span>
         </div>
@@ -153,7 +153,7 @@ export default function About() {
     <section 
       id="about" 
       ref={sectionRef}
-      className="relative py-32 bg-[#0a0a0f] overflow-hidden"
+      className="relative py-32 lg:py-40 bg-[#0a0a0f] overflow-hidden"
     >
       {/* 背景装饰 */}
       <div className="absolute inset-0">
@@ -170,8 +170,8 @@ export default function About() {
         />
         
         {/* 渐变光晕 */}
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#00d4aa]/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#00d4aa]/3 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#00d4aa]/5 rounded-full blur-[180px]" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-[#00d4aa]/3 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 lg:px-12">
@@ -180,15 +180,15 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-24 lg:mb-32"
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-[2px] bg-[#00d4aa]" />
+          <div className="flex items-center gap-6 mb-8">
+            <div className="w-16 h-[2px] bg-[#00d4aa]" />
             <span className="text-[#00d4aa] text-sm font-mono uppercase tracking-widest">
               {sectionSubtitle}
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white">
             {sectionTitle.split('').map((char, index) => (
               <span key={index} className={char === '我' ? 'text-[#00d4aa]' : ''}>
                 {char}
@@ -198,13 +198,13 @@ export default function About() {
         </motion.div>
 
         {/* 主要内容区域 */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-32">
           {/* 左侧：文字介绍 */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-10"
           >
             {/* 问候语 */}
             <div className="space-y-4">
@@ -212,7 +212,7 @@ export default function About() {
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-xl text-[#6b7280] font-light"
+                className="text-2xl text-[#6b7280] font-light"
               >
                 你好，我是
               </motion.p>
@@ -220,14 +220,14 @@ export default function About() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-3xl md:text-4xl font-bold text-white"
+                className="text-4xl md:text-5xl font-bold text-white"
               >
                 {jobTitle}
               </motion.h3>
             </div>
 
             {/* 自我介绍 */}
-            <div className="space-y-6 text-[#9ca3af] leading-relaxed text-lg">
+            <div className="space-y-8 text-[#9ca3af] leading-relaxed text-xl">
               {bio.map((paragraph, index) => (
                 <motion.p
                   key={index}
@@ -270,7 +270,7 @@ export default function About() {
             className="space-y-6"
           >
             {/* 大数字展示 */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-8">
               <StatCard 
                 icon={Calendar}
                 value={age}
