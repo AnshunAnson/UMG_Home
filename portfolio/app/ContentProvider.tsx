@@ -1,11 +1,11 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { 
   heroContent as defaultHero, 
   aboutContent as defaultAbout, 
   projectsContent as defaultProjects, 
-  skillsContent as defaultSkills, 
+  skillsContent as defaultSkills,
   contactContent as defaultContact,
   footerContent as defaultFooter 
 } from './config/content';
@@ -32,53 +32,43 @@ const defaultContent: EditedContent = {
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   const [content, setContent] = useState<EditedContent>(defaultContent);
-  const [loaded, setLoaded] = useState(false);
+  const initialized = useRef(false);
 
   useEffect(() => {
-    async function loadContent() {
-      let result = { ...defaultContent };
-      const basePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/UMG_Home') ? '/UMG_Home' : '';
+    if (initialized.current) return;
+    initialized.current = true;
 
-      try {
-        const res = await fetch(`${basePath}/content.json`);
-        if (res.ok) {
-          const json = await res.json();
-          if (json.heroContent) result.hero = { ...defaultContent.hero, ...json.heroContent };
-          if (json.aboutContent) result.about = { ...defaultContent.about, ...json.aboutContent };
-          if (json.projectsContent) result.projects = { ...defaultContent.projects, ...json.projectsContent };
-          if (json.skillsContent) result.skills = { ...defaultContent.skills, ...json.skillsContent };
-          if (json.contactContent) result.contact = { ...defaultContent.contact, ...json.contactContent };
-        }
-      } catch (e) {
-        console.info('content.json not found, using defaults');
+    const basePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/UMG_Home') ? '/UMG_Home' : '';
+
+    fetch(`${basePath}/content.json`)
+      .then(res => res.json())
+      .then(json => {
+        setContent(prev => ({
+          hero: json.heroContent ? { ...prev.hero, ...json.heroContent } : prev.hero,
+          about: json.aboutContent ? { ...prev.about, ...json.aboutContent } : prev.about,
+          projects: json.projectsContent ? { ...prev.projects, ...json.projectsContent } : prev.projects,
+          skills: json.skillsContent ? { ...prev.skills, ...json.skillsContent } : prev.skills,
+          contact: json.contactContent ? { ...prev.contact, ...json.contactContent } : prev.contact,
+          footer: prev.footer,
+        }));
+      })
+      .catch(() => {});
+
+    try {
+      const stored = localStorage.getItem('portfolio-content');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        setContent(prev => ({
+          hero: parsed.heroContent ? { ...prev.hero, ...parsed.heroContent } : prev.hero,
+          about: parsed.aboutContent ? { ...prev.about, ...parsed.aboutContent } : prev.about,
+          projects: parsed.projectsContent ? { ...prev.projects, ...parsed.projectsContent } : prev.projects,
+          skills: parsed.skillsContent ? { ...prev.skills, ...parsed.skillsContent } : prev.skills,
+          contact: parsed.contactContent ? { ...prev.contact, ...parsed.contactContent } : prev.contact,
+          footer: prev.footer,
+        }));
       }
-
-      try {
-        const stored = localStorage.getItem('portfolio-content');
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          if (parsed.heroContent) result.hero = { ...result.hero, ...parsed.heroContent };
-          if (parsed.aboutContent) result.about = { ...result.about, ...parsed.aboutContent };
-          if (parsed.projectsContent) result.projects = { ...result.projects, ...parsed.projectsContent };
-          if (parsed.skillsContent) result.skills = { ...result.skills, ...parsed.skillsContent };
-          if (parsed.contactContent) result.contact = { ...result.contact, ...parsed.contactContent };
-        }
-      } catch (e) {
-        console.error('读取localStorage失败:', e);
-      }
-
-      setContent(result);
-      setLoaded(true);
-    }
-
-    loadContent();
+    } catch {}
   }, []);
-
-  if (!loaded) {
-    return (
-      <div style={{ width: '100%', minHeight: '100vh', backgroundColor: '#0a0a0f' }} />
-    );
-  }
 
   return (
     <ContentContext.Provider value={content}>
