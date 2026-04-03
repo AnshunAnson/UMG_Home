@@ -3,7 +3,8 @@
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Mail, MapPin, Phone, GitBranch, Link2, Send, ArrowUpRight } from 'lucide-react';
-import { contactContent } from '../config/content';
+import { contactContent as defaultContactContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 
 // 磁吸按钮组件
 interface MagneticButtonProps {
@@ -218,6 +219,8 @@ export default function Contact() {
     }
   }, []);
 
+  const content = useContent();
+  const contactContent = content?.contact || defaultContactContent;
   const { sectionTitle, sectionSubtitle, description, email, phone, location, jobTitle, salary } = contactContent;
 
   const contactInfo = [

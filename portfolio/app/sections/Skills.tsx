@@ -2,7 +2,8 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { skillsContent } from '../config/content';
+import { skillsContent as defaultSkillsContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 
 // 技能数据配置 - 基于真实简历
 const skillsData = [
@@ -396,12 +397,12 @@ export default function Skills() {
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="w-8 h-[2px] bg-[#00d4aa]" />
             <span className="text-[#8a8a8a] text-sm uppercase tracking-wider font-mono">
-              {skillsContent.sectionSubtitle}
+              {(defaultSkillsContent as typeof defaultSkillsContent).sectionSubtitle}
             </span>
             <div className="w-8 h-[2px] bg-[#00d4aa]" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {skillsContent.sectionTitle}
+            {(defaultSkillsContent as typeof defaultSkillsContent).sectionTitle}
           </h2>
           <p className="text-[#8a8a8a] max-w-2xl mx-auto">
             精通虚幻引擎开发，专注于UMG界面设计、材质系统与视觉特效
@@ -470,7 +471,7 @@ export default function Skills() {
             技术栈标签
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {skillsContent.techStack.map((tech, index) => (
+            {(defaultSkillsContent as typeof defaultSkillsContent).techStack.map((tech, index) => (
               <motion.span
                 key={tech}
                 className="px-4 py-2 rounded-full bg-[#0f0f14] border border-[#1a1a1f] text-[#8a8a8a] text-sm hover:border-[#00d4aa]/50 hover:text-[#00d4aa] transition-all duration-300 cursor-default"

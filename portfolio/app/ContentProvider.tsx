@@ -33,9 +33,17 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('editedContent');
+      const stored = localStorage.getItem('portfolio-content');
       if (stored) {
-        setContent(JSON.parse(stored));
+        const parsed = JSON.parse(stored);
+        setContent({
+          hero: parsed.hero || defaultHero,
+          about: parsed.about || defaultAbout,
+          projects: parsed.projects || defaultProjects,
+          skills: parsed.skills || defaultSkills,
+          contact: parsed.contact || defaultContact,
+          footer: defaultFooter
+        });
       }
     } catch (e) {
       console.error('读取编辑内容失败:', e);

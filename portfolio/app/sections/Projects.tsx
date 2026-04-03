@@ -3,7 +3,8 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useCallback } from 'react';
 import { ExternalLink, X, Award, Car, Sparkles, Zap, Monitor, Gamepad2 } from 'lucide-react';
-import { projectsContent } from '../config/content';
+import { projectsContent as defaultProjectsContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   'Car': Car,
@@ -17,7 +18,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
 export default function Projects() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const [selectedProject, setSelectedProject] = useState<typeof projectsContent.projects[0] | null>(null);
+  const content = useContent();
+  const projectsContent = content?.projects || defaultProjectsContent;
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   const { sectionTitle, sectionSubtitle, projects } = projectsContent;
@@ -121,9 +124,24 @@ export default function Projects() {
   );
 }
 
+// Project type
+interface Project {
+  id: number;
+  icon: string;
+  title: string;
+  company: string;
+  period: string;
+  category: string;
+  description: string;
+  details: string[];
+  achievements: string[];
+  tech: string[];
+  color: string;
+}
+
 // Featured Project Card (Large)
 interface FeaturedProjectCardProps {
-  project: typeof projectsContent.projects[0];
+  project: Project;
   isInView: boolean;
   index: number;
   isHovered: boolean;
@@ -304,7 +322,7 @@ function FeaturedProjectCard({
 
 // Side Project Card (Compact)
 interface SideProjectCardProps {
-  project: typeof projectsContent.projects[0];
+  project: Project;
   isInView: boolean;
   index: number;
   isHovered: boolean;
@@ -412,7 +430,7 @@ function SideProjectCard({
 
 // Bottom Project Card (Wide)
 interface BottomProjectCardProps {
-  project: typeof projectsContent.projects[0];
+  project: Project;
   isInView: boolean;
   index: number;
   isHovered: boolean;
@@ -538,7 +556,7 @@ function BottomProjectCard({
 
 // Project Modal
 interface ProjectModalProps {
-  project: typeof projectsContent.projects[0];
+  project: Project;
   onClose: () => void;
 }
 

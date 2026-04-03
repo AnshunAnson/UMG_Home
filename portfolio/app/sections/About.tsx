@@ -3,7 +3,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { MapPin, Briefcase, Calendar } from 'lucide-react';
-import { aboutContent } from '../config/content';
+import { aboutContent as defaultAboutContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 
 // 动画计数器组件
 function AnimatedCounter({ value, suffix = '', duration = 2000 }: { value: number; suffix?: string; duration?: number }) {
@@ -134,6 +135,8 @@ export default function About() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   
+  const content = useContent();
+  const aboutContent = content?.about || defaultAboutContent;
   const { 
     sectionTitle, 
     sectionSubtitle, 

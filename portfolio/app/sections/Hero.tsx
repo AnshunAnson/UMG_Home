@@ -4,7 +4,8 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useMousePosition } from '../hooks/useMousePosition';
-import { heroContent } from '../config/content';
+import { heroContent as defaultHeroContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 import dynamic from 'next/dynamic';
 
 // Dynamic import for 3D scene to avoid SSR issues
@@ -54,6 +55,8 @@ export default function Hero() {
     },
   };
 
+  const content = useContent();
+  const heroContent = content?.hero || defaultHeroContent;
   const { name, nameHighlightLength, badge, subtitle, stats, cornerLeft, cornerRight } = heroContent;
 
   return (
