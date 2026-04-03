@@ -37,9 +37,10 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function loadContent() {
       let result = { ...defaultContent };
+      const basePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/UMG_Home') ? '/UMG_Home' : '';
 
       try {
-        const res = await fetch('/content.json');
+        const res = await fetch(`${basePath}/content.json`);
         if (res.ok) {
           const json = await res.json();
           if (json.heroContent) result.hero = { ...defaultContent.hero, ...json.heroContent };
