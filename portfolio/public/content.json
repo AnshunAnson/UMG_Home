@@ -176,7 +176,16 @@
           "距离场",
           "UI动效"
         ],
-        "color": "#9b59b6"
+        "color": "#9b59b6",
+        "images": [
+          { "src": "/gifs/niagara/IP台开机动效.gif", "alt": "IP台开机动效" },
+          { "src": "/gifs/niagara/IP台来电.gif", "alt": "IP台来电动效" },
+          { "src": "/gifs/niagara/SEQ_Loading6.gif", "alt": "Loading序列帧" },
+          { "src": "/gifs/niagara/SEQ_Mind.gif", "alt": "Mind状态动画" },
+          { "src": "/gifs/niagara/SEQ_Music.gif", "alt": "Music播放动画" },
+          { "src": "/gifs/niagara/SEQ_Scene_Switching.gif", "alt": "场景切换动效" },
+          { "src": "/gifs/niagara/入场_爆破,溅射.gif", "alt": "入场爆破溅射效果" }
+        ]
       },
       {
         "id": 4,
@@ -204,7 +213,10 @@
           "材质系统",
           "UI动效"
         ],
-        "color": "#e74c3c"
+        "color": "#e74c3c",
+        "images": [
+          { "src": "/gifs/hmi/比亚迪入场动画.gif", "alt": "HMI概念入场动画" }
+        ]
       },
       {
         "id": 5,
