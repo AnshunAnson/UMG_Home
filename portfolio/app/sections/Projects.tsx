@@ -2,8 +2,10 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useCallback } from 'react';
-import { ExternalLink, X, Award, Car, Sparkles, Zap, Monitor, Gamepad2 } from 'lucide-react';
-import { projectsContent } from '../config/content';
+import { ExternalLink, Award, Car, Sparkles, Zap, Monitor, Gamepad2 } from 'lucide-react';
+import { projectsContent as defaultProjectsContent } from '../config/content';
+import { useContent } from '../ContentProvider';
+import { ProjectModal } from '../components/project-modal';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   'Car': Car,
@@ -17,10 +19,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
 export default function Projects() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const [selectedProject, setSelectedProject] = useState<typeof projectsContent.projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<typeof defaultProjectsContent.projects[0] | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  const { sectionTitle, sectionSubtitle, projects } = projectsContent;
+  const { projects: dynamicProjects } = useContent();
+  const { sectionTitle, sectionSubtitle, projects } = dynamicProjects || defaultProjectsContent;
 
   return (
     <section id="projects" className="py-32 lg:py-40 relative bg-[#0a0a0f]" ref={sectionRef}>
@@ -114,7 +117,7 @@ export default function Projects() {
 }
 
 interface FeaturedProjectCardProps {
-  project: typeof projectsContent.projects[0];
+  project: typeof defaultProjectsContent.projects[0];
   isInView: boolean;
   index: number;
   isHovered: boolean;
@@ -285,7 +288,7 @@ function FeaturedProjectCard({
 }
 
 interface SideProjectCardProps {
-  project: typeof projectsContent.projects[0];
+  project: typeof defaultProjectsContent.projects[0];
   isInView: boolean;
   index: number;
   isHovered: boolean;
@@ -388,7 +391,7 @@ function SideProjectCard({
 }
 
 interface BottomProjectCardProps {
-  project: typeof projectsContent.projects[0];
+  project: typeof defaultProjectsContent.projects[0];
   isInView: boolean;
   index: number;
   isHovered: boolean;
@@ -507,150 +510,4 @@ function BottomProjectCard({
   );
 }
 
-interface ProjectModalProps {
-  project: typeof projectsContent.projects[0];
-  onClose: () => void;
-}
 
-function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const IconComponent = iconMap[project.icon] || Car;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0a0a0f]/95 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ scale: 0.95, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.95, opacity: 0, y: 20 }}
-        transition={{ duration: 0.3 }}
-        className="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl"
-        style={{
-          background: 'linear-gradient(145deg, rgba(20,20,25,0.98) 0%, rgba(10,10,15,0.99) 100%)',
-          border: `1px solid ${project.color}40`,
-          boxShadow: `0 25px 50px -12px ${project.color}20`,
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="p-10 pb-0">
-          <div className="flex items-start justify-between mb-8">
-            <div className="flex items-center gap-5">
-              <div 
-                className="w-16 h-16 rounded-xl flex items-center justify-center"
-                style={{ 
-                  background: `${project.color}15`,
-                  border: `1px solid ${project.color}40`,
-                }}
-              >
-                <IconComponent className="w-8 h-8" style={{ color: project.color }} />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-1">{project.title}</h3>
-                <span className="text-[#8a8a8a] text-sm font-mono">
-                  {project.period}
-                </span>
-              </div>
-            </div>
-            <button
-              onClick={onClose}
-              className="w-11 h-11 rounded-xl flex items-center justify-center text-[#8a8a8a]
-                       hover:text-white hover:bg-white/10 transition-all"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          <span 
-            className="inline-block text-sm font-mono px-4 py-1.5 rounded-full border mb-8"
-            style={{ 
-              color: project.color,
-              borderColor: `${project.color}40`,
-              background: `${project.color}10`,
-            }}
-          >
-            {project.category}
-          </span>
-
-          <p className="text-[#a0a0a0] mb-10 text-lg leading-relaxed">{project.description}</p>
-
-          {(project as any).images && (project as any).images.length > 0 && (
-            <div className="mb-10">
-              <h4 className="text-white font-semibold mb-5 flex items-center gap-2.5 text-sm">
-                <span className="w-1.5 h-1.5 rounded-full" style={{ background: project.color }} />
-                效果展示
-              </h4>
-              <div className={(project as any).images.length > 1 ? 'grid grid-cols-2 gap-4' : ''}>
-                {(project as any).images.map((img: { src: string; alt: string }, i: number) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: i * 0.08 }}
-                    className="relative rounded-xl overflow-hidden border border-[#1f1f2e] group cursor-pointer"
-                    whileHover={{ borderColor: `${project.color}80` }}
-                  >
-                    <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                      <span className="text-white/90 text-xs">{img.alt}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="px-10 pb-10 space-y-10">
-          <div>
-            <h4 className="text-white font-semibold mb-5 flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: project.color }} />
-              工作内容
-            </h4>
-            <ul className="space-y-4">
-              {project.details.map((detail, i) => (
-                <li key={i} className="flex items-start gap-3 text-[#8a8a8a] leading-relaxed">
-                  <span className="text-[#00d4aa] mt-1">›</span>
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-5 flex items-center gap-2.5">
-              <Award className="w-4 h-4" style={{ color: project.color }} />
-              项目业绩
-            </h4>
-            <ul className="space-y-4">
-              {project.achievements.map((achievement, i) => (
-                <li key={i} className="flex items-start gap-3 text-[#8a8a8a] leading-relaxed">
-                  <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: project.color }} />
-                  <span>{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-5">技术栈</h4>
-            <div className="flex flex-wrap gap-2.5">
-              {project.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-sm px-5 py-2.5 rounded-xl bg-white/5 text-[#8a8a8a] border border-white/10
-                           hover:border-[#00d4aa]/50 hover:text-white transition-colors"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}

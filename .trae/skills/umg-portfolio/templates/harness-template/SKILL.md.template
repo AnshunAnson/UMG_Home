@@ -1,0 +1,36 @@
+---
+name: "your-project-harness"
+description: "Your Project Taste Harness — 自动推断开发者品味、约束行为边界、积累工作经验、持续进化。"
+---
+
+# [Your Project] Taste Harness
+
+> 不是 Skill 文档, 不是项目说明书。是 **Taste Harness** — 开发者的数字工作风格指纹。
+>
+> 项目事实 → **ProjectDoc** (自动从代码生成)
+> 用户品味 → **这里** (从代码推断 + 记忆积累)
+>
+> **ProjectDoc**: `../../../ProjectDoc/`
+
+## Pipeline
+
+`用户任务 → [L1 品味+约束] → [L4 分类] → [L4 路由] → [L2 方法论] → [L3 记忆] → [ProjectDoc 事实查询] → 执行 → [L4 评估] → [L4 进化]`
+
+## ProjectDoc Integration
+
+当需要项目事实时, AI 应读取 `../../../ProjectDoc/` 下的对应文件。
+
+## 6 轴任务分类
+
+| 轴 | 值 |
+|----|-----|
+| type | fix / feature / refactor / review / debug / test / deploy |
+| uncertainty | low / medium / high |
+| scope | single-file / multi-file / repo-wide |
+| domain | visual / animation / data / architecture / style / config |
+| blast_radius | component / section / system |
+| verifiability | easy / medium / hard |
+
+## 最后一条规则
+
+> 先读再改，不准盲改。能 inline 就 inline。每一行代码都要有存在理由。

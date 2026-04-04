@@ -1,0 +1,23 @@
+# Decision Log
+
+> Append-only JSONL format. 每条决策一行。
+> 由 AI 在执行任务后追加, 由 inject-memory.mjs 整理为 patterns-discovered.md。
+
+{"ts":"2026-04-04T12:00:00Z","task":"Initial Harness v4.1 setup","decision":"Adopt ProjectDoc+Harness separation model","reason":"User feedback: project facts belong in ProjectDoc, only taste belongs in Harness","outcome":"success","module":"harness-setup"}
+{"ts":"2026-04-04T00:35:57.571Z","task":"post-task-auto: visual/repo-wide (31 files changed)","decision":"Sync docs after detecting changes in: app\\sections\\Projects.tsx, app\\sections\\Skills.tsx, app\\sections\\Experience.tsx, app\\sections\\About.tsx, app\\ContentProvider.tsx + 26 more","reason":"auto-detected by post-task.mjs change scanner","outcome":"synced","module":"post-task:visual"}
+{"ts":"2026-04-04T00:37:00.953Z","task":"post-task-auto: visual/repo-wide (25 files changed)","decision":"Sync docs after detecting changes in: app\\sections\\Projects.tsx, app\\sections\\Skills.tsx, app\\sections\\Experience.tsx, app\\sections\\About.tsx, app\\ContentProvider.tsx + 20 more","reason":"auto-detected by post-task.mjs change scanner","outcome":"synced","module":"post-task:visual"}
+{"ts":"2026-01-10T08:00:00Z","task":"初始化项目基础架构","decision":"采用 Next.js SSG export + basePath=/UMG_Home 部署到 GitHub Pages","reason":"静态站点托管需求，避免 SSR 成本","outcome":"success","module":"hard-rules","_seed":true}
+{"ts":"2026-01-12T10:30:00Z","task":"Hero 区域字母入场动画实现","decision":"使用 variants+staggerChildren 模式而非 whileInView","reason":"Hero 是首屏焦点，需要更有冲击力的入场效果；其他 Section 用 whileInView 即可","outcome":"success","module":"animation-patterns","_seed":true}
+{"ts":"2026-01-13T14:00:00Z","task":"ContentProvider 数据加载重构","decision":"采用 useState(defaultContent) 乐观渲染替代 useState(null)+await","reason":"符合 hard-rules #8 不阻塞渲染原则，用户无需看到空白 Loading 页面","outcome":"success","module":"anti-patterns","_seed":true}
+{"ts":"2026-01-14T09:15:00Z","task":"统一所有 Section 背景色","decision":"硬编码 bg-[#0a0a0f] 而非 CSS 变量 var(--bg-primary)","reason":"Tailwind v4 内联 style 不解析 CSS 变量（见 anti-patterns #5），直接用色值确保一致性","outcome":"success","module":"code-principles","_seed":true}
+{"ts":"2026-01-15T11:00:00Z","task":"Projects 卡片 3D tilt 交互","decision":"使用 rotateX/Y ±8° + ease-out 0.15s 实现","reason":"轻量感知反馈，不干扰阅读；spring 参数过重会拖累滚动性能","outcome":"success","module":"animation-patterns","_seed":true}
+{"ts":"2026-01-16T16:00:00Z","task":"Contact CTA 磁吸按钮效果","decision":"useSpring(damping:15, stiffness:150) + offset*0.4","reason":"快速响应的磁吸感，damping 15 提供适度阻尼避免飘忽","outcome":"success","module":"animation-patterns","_seed":true}
+{"ts":"2026-01-17T10:45:00Z","task":"粒子背景性能优化","decision":"限制粒子数量 + requestAnimationFrame + 可见区域检测","reason":"Three.js 粒子在移动端容易掉帧，需做性能预算控制","outcome":"success","module":"anti-patterns","_seed":true}
+{"ts":"2026-01-18T13:20:00Z","task":"Skills 六边形网格布局","decision":"CSS grid + clip-path hexagon 而非 SVG 或 Canvas","reason":"纯 CSS 方案最轻量，且响应式适配简单","outcome":"success","module":"modification-playbook","_seed":true}
+{"ts":"2026-01-19T09:00:00Z","task":"内容编辑器 DynamicForm 组件","decision":"schema-driven 动态表单 + FieldSchema 类型注册","reason":"新增字段只需改 schema.tsx 和 content.ts 两处，符合最小修改原则","outcome":"success","module":"modification-playbook","_seed":true}
+{"ts":"2026-01-20T15:30:00Z","task":"全局光晕跟随效果","decision":"spring(damping:30, stiffness:50) + blur-[120px] opacity-20","reason":"慵懒跟随感，高模糊低透明度不抢内容焦点","outcome":"success","module":"animation-patterns","_seed":true}
+{"ts":"2026-01-21T11:00:00Z","task":"NeonCard 边框 hover 高亮","decision":"border-color transition 0.3s + internal radial-gradient on hover","reason":"所有卡片统一交互语言，从 patterns-discovered 归纳出的标准模式","outcome":"success","module":"patterns-discovered","_seed":true}
+{"ts":"2026-01-22T14:00:00Z","task":"数据安全访问策略落地","decision":"全面采用 ?. 和 ?? + 数组长度检查","reason":"content.json 可能缺失任意字段，必须防御性访问（anti-patterns #1）","outcome":"success","module":"anti-patterns","_seed":true}
+{"ts":"2026-01-23T10:00:00Z","task":"GlitchText 组件实现","decision":"AnimatePresence + opacity/scale/y 三维过渡 0.3s","reason":"轻量文字故障效果，不影响周围布局","outcome":"success","module":"animation-patterns","_seed":true}
+{"ts":"2026-01-24T16:45:00Z","task":"Footer 固定底部布局","decision":"相对定位 + 标准容器 + 最小化视觉权重","reason":"Footer 不应是视觉焦点，保持暗色调与页面融合","outcome":"success","module":"code-principles","_seed":true}
+{"ts":"2026-01-25T09:30:00Z","task":"建立 Harness 约束体系 v1","decision":"将 hard-rules / anti-patterns / identity-boundary 分层管理","reason":"不同类型的约束需要不同的违反后果认知（炸/错/丑）","outcome":"success","module":"harness-setup","_seed":true}
