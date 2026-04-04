@@ -1,7 +1,12 @@
 'use client';
 
 import { Clock, Tag, Briefcase } from 'lucide-react';
-import { CardProps } from '@/app/types/project';
+import type { Project } from '@/app/types/content';
+
+interface CardProps {
+  project: Project;
+  className?: string;
+}
 
 export function QuickInfoCard({ project, className }: CardProps) {
   const infoItems = [

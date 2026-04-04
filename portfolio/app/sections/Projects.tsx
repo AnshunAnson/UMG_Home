@@ -6,6 +6,7 @@ import { ExternalLink, Award, Car, Sparkles, Zap, Monitor, Gamepad2 } from 'luci
 import { projectsContent as defaultProjectsContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 import { ProjectModal } from '../components/project-modal';
+import type { Project } from '../types/content';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   'Car': Car,
@@ -19,7 +20,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
 export default function Projects() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const [selectedProject, setSelectedProject] = useState<typeof defaultProjectsContent.projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   const { projects: dynamicProjects } = useContent();
@@ -166,12 +167,12 @@ function FeaturedProjectCard({
       onClick={onClick}
     >
       <motion.div
-        className="relative h-full min-h-[480px] rounded-2xl overflow-hidden cursor-pointer group"
+        className="relative h-full min-h-[480px] rounded-2xl overflow-hidden cursor-pointer group select-text"
         style={{
           background: 'linear-gradient(145deg, rgba(20,20,25,0.9) 0%, rgba(10,10,15,0.95) 100%)',
           border: `1px solid ${isHovered ? project.color : 'rgba(255,255,255,0.08)'}`,
           transformStyle: 'preserve-3d',
-          transform: isHovered 
+          transform: isHovered
             ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`
             : 'rotateX(0deg) rotateY(0deg) translateZ(0)',
           transition: 'transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease',
@@ -334,12 +335,12 @@ function SideProjectCard({
       onClick={onClick}
     >
       <motion.div
-        className="relative rounded-xl overflow-hidden cursor-pointer group h-full"
+        className="relative rounded-xl overflow-hidden cursor-pointer group h-full select-text"
         style={{
           background: 'linear-gradient(145deg, rgba(20,20,25,0.9) 0%, rgba(10,10,15,0.95) 100%)',
           border: `1px solid ${isHovered ? project.color : 'rgba(255,255,255,0.08)'}`,
           transformStyle: 'preserve-3d',
-          transform: isHovered 
+          transform: isHovered
             ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`
             : 'rotateX(0deg) rotateY(0deg) translateZ(0)',
           transition: 'transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease',
@@ -437,12 +438,12 @@ function BottomProjectCard({
       onClick={onClick}
     >
       <motion.div
-        className="relative rounded-xl overflow-hidden cursor-pointer group"
+        className="relative rounded-xl overflow-hidden cursor-pointer group select-text"
         style={{
           background: 'linear-gradient(145deg, rgba(20,20,25,0.9) 0%, rgba(10,10,15,0.95) 100%)',
           border: `1px solid ${isHovered ? project.color : 'rgba(255,255,255,0.08)'}`,
           transformStyle: 'preserve-3d',
-          transform: isHovered 
+          transform: isHovered
             ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`
             : 'rotateX(0deg) rotateY(0deg) translateZ(0)',
           transition: 'transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease',

@@ -1,5 +1,14 @@
 // Edit页面表单Schema定义
 // 描述每个配置项的数据结构，用于动态生成表单
+// 基于 app/types/content.ts 中的类型定义
+
+import type {
+  HeroContent,
+  AboutContent,
+  ProjectsContent,
+  SkillsContent,
+  ContactContent,
+} from '../types/content';
 
 export type FieldType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'text';
 
@@ -16,14 +25,17 @@ export interface FieldSchema {
   properties?: Record<string, FieldSchema>;
 }
 
-export interface SectionSchema {
+export interface SectionSchema<T = unknown> {
   title: string;
   description?: string;
   fields: Record<string, FieldSchema>;
+  // 类型引用标记，用于类型检查和IDE提示
+  _type?: T;
 }
 
 // Hero区域Schema
-export const heroSchema: SectionSchema = {
+// 对应类型: HeroContent
+export const heroSchema: SectionSchema<HeroContent> = {
   title: '首页 Hero',
   description: '配置首屏展示内容',
   fields: {
@@ -75,7 +87,8 @@ export const heroSchema: SectionSchema = {
 };
 
 // About区域Schema
-export const aboutSchema: SectionSchema = {
+// 对应类型: AboutContent
+export const aboutSchema: SectionSchema<AboutContent> = {
   title: '关于 About',
   description: '配置个人介绍内容',
   fields: {
@@ -119,12 +132,34 @@ export const aboutSchema: SectionSchema = {
       type: 'string',
       label: '职位',
       placeholder: 'UE4开发'
+    },
+    stats: {
+      type: 'array',
+      label: '统计数据',
+      description: '关于区域显示的统计数据',
+      itemType: 'object',
+      itemSchema: {
+        label: { type: 'string', label: '标签', placeholder: 'Years' },
+        value: { type: 'number', label: '数值', placeholder: '3' },
+        suffix: { type: 'string', label: '后缀', placeholder: '+' }
+      }
+    },
+    coreSkills: {
+      type: 'array',
+      label: '核心技能',
+      description: '核心技能卡片列表',
+      itemType: 'object',
+      itemSchema: {
+        title: { type: 'string', label: '技能标题', placeholder: 'UMG开发' },
+        description: { type: 'string', label: '技能描述', placeholder: '复杂的UI系统实现' }
+      }
     }
   }
 };
 
 // Projects区域Schema
-export const projectsSchema: SectionSchema = {
+// 对应类型: ProjectsContent
+export const projectsSchema: SectionSchema<ProjectsContent> = {
   title: '项目 Projects',
   description: '配置项目经历',
   fields: {
@@ -153,14 +188,25 @@ export const projectsSchema: SectionSchema = {
         details: { type: 'array', label: '详细内容', itemType: 'string' },
         achievements: { type: 'array', label: '业绩成果', itemType: 'string' },
         tech: { type: 'array', label: '技术栈', itemType: 'string' },
-        color: { type: 'string', label: '主题色', placeholder: '#00d4aa' }
+        color: { type: 'string', label: '主题色', placeholder: '#00d4aa' },
+        images: {
+          type: 'array',
+          label: 'GIF图片',
+          description: '项目展示GIF图片列表，支持多个图片轮播',
+          itemType: 'object',
+          itemSchema: {
+            src: { type: 'string', label: '图片路径', placeholder: '/gifs/project/animation.gif', description: 'GIF文件路径，如 /gifs/niagara/demo.gif' },
+            alt: { type: 'string', label: '图片描述', placeholder: '动画效果展示', description: '图片的替代文字描述' }
+          }
+        }
       }
     }
   }
 };
 
 // Skills区域Schema
-export const skillsSchema: SectionSchema = {
+// 对应类型: SkillsContent
+export const skillsSchema: SectionSchema<SkillsContent> = {
   title: '技能 Skills',
   description: '配置技能展示',
   fields: {
@@ -174,21 +220,36 @@ export const skillsSchema: SectionSchema = {
       label: '区域副标题',
       placeholder: 'Skills'
     },
-    skills: {
+    categories: {
       type: 'array',
-      label: '技能列表',
+      label: '技能分类',
+      description: '技能分类列表，每个分类包含多个技能',
       itemType: 'object',
       itemSchema: {
-        name: { type: 'string', label: '技能名称', placeholder: 'Unreal Engine 4/5' },
-        level: { type: 'number', label: '熟练度 (0-100)', placeholder: '95' },
-        category: { type: 'string', label: '分类', placeholder: 'engine' }
+        title: { type: 'string', label: '分类标题', placeholder: '引擎与蓝图' },
+        skills: {
+          type: 'array',
+          label: '技能列表',
+          itemType: 'object',
+          itemSchema: {
+            name: { type: 'string', label: '技能名称', placeholder: 'Unreal Engine 4/5' },
+            level: { type: 'number', label: '熟练度 (0-100)', placeholder: '95' }
+          }
+        }
       }
+    },
+    techStack: {
+      type: 'array',
+      label: '技术栈标签',
+      description: '底部技术栈标签列表',
+      itemType: 'string'
     }
   }
 };
 
 // Contact区域Schema
-export const contactSchema: SectionSchema = {
+// 对应类型: ContactContent
+export const contactSchema: SectionSchema<ContactContent> = {
   title: '联系 Contact',
   description: '配置联系方式',
   fields: {
@@ -196,6 +257,11 @@ export const contactSchema: SectionSchema = {
       type: 'string',
       label: '区域标题',
       placeholder: '开始合作'
+    },
+    sectionSubtitle: {
+      type: 'string',
+      label: '区域副标题',
+      placeholder: 'Contact'
     },
     description: {
       type: 'text',

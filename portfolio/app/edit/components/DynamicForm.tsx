@@ -5,6 +5,7 @@ import TextInput from './FormFields/TextInput';
 import NumberInput from './FormFields/NumberInput';
 import TextArea from './FormFields/TextArea';
 import ArrayInput from './FormFields/ArrayInput';
+import ObjectInput from './FormFields/ObjectInput';
 
 interface DynamicFormProps {
   schema: SectionSchema;
@@ -64,6 +65,19 @@ export default function DynamicForm({ schema, data, onChange, nested }: DynamicF
             schema={fieldSchema}
             value={value || []}
             onChange={(v) => handleFieldChange(key, v)}
+          />
+        );
+
+      case 'object':
+        return (
+          <ObjectInput
+            key={key}
+            label={fieldSchema.label || key}
+            value={value || {}}
+            onChange={(v) => handleFieldChange(key, v)}
+            description={fieldSchema.description}
+            required={fieldSchema.required}
+            properties={fieldSchema.properties}
           />
         );
 

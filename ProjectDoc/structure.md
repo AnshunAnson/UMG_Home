@@ -1,79 +1,88 @@
-# structure
+# Project Structure
 
-<!-- AUTO-START:structure -->
-``
-portfolio/
-├── **app/**
-│   ├── **api/**
-│   │   └── **save-content/**
-│   │       └── app/api/save-content/route.ts
-│   ├── **components/**
-│   │   ├── **animations/**
-│   │   ├── **project-modal/**
-│   │   │   ├── app/components/project-modal/HeroCard.tsx
-│   │   │   └── app/components/project-modal/ModalHeader.tsx
-│   │   ├── app/components/GlitchText.tsx
-│   │   ├── app/components/GlobalAnimatedBackground.tsx
-│   │   ├── app/components/NeonCard.tsx
-│   │   ├── app/components/ParticleBackground.tsx
-│   │   ├── app/components/ParticleField.tsx
-│   │   ├── app/components/ProjectCard.tsx
-│   │   └── app/components/ScrollIndicator.tsx
-│   ├── **config/**
-│   │   └── app/config/content.ts
-│   ├── **edit/**
-│   │   ├── **components/**
-│   │   │   ├── **FormFields/**
-│   │   │   │   ├── app/edit/components/FormFields/ArrayInput.tsx
-│   │   │   │   ├── app/edit/components/FormFields/index.ts
-│   │   │   │   ├── app/edit/components/FormFields/NumberInput.tsx
-│   │   │   │   ├── app/edit/components/FormFields/ObjectInput.tsx
-│   │   │   │   ├── app/edit/components/FormFields/TextArea.tsx
-│   │   │   │   └── app/edit/components/FormFields/TextInput.tsx
-│   │   │   └── app/edit/components/DynamicForm.tsx
-│   │   ├── app/edit/page.tsx
-│   │   └── app/edit/schema.tsx
-│   ├── **hooks/**
-│   │   ├── app/hooks/useMousePosition.ts
-│   │   └── app/hooks/useSmoothScroll.ts
-│   ├── **sections/**
-│   │   ├── app/sections/About.tsx
-│   │   ├── app/sections/Contact.tsx
-│   │   ├── app/sections/Experience.tsx
-│   │   ├── app/sections/Footer.tsx
-│   │   ├── app/sections/Hero.tsx
-│   │   ├── app/sections/Projects.tsx
-│   │   └── app/sections/Skills.tsx
-│   ├── **types/**
-│   │   └── app/types/project.ts
-│   ├── app/ContentProvider.tsx
-│   ├── app/globals.css
-│   ├── app/layout.tsx
-│   └── app/page.tsx
-├── **public/**
-│   ├── **gifs/**
-│   │   ├── **hmi/**
-│   │   │   └── public/gifs/hmi/比亚迪入场动画.gif
-│   │   └── **niagara/**
-│   │       ├── public/gifs/niagara/入场_爆破,溅射.gif
-│   │       ├── public/gifs/niagara/IP台开机动效.gif
-│   │       ├── public/gifs/niagara/IP台来电.gif
-│   │       ├── public/gifs/niagara/SEQ_Loading6.gif
-│   │       ├── public/gifs/niagara/SEQ_Mind.gif
-│   │       ├── public/gifs/niagara/SEQ_Music.gif
-│   │       └── public/gifs/niagara/SEQ_Scene_Switching.gif
-│   ├── public/content.json
-│   ├── public/next.svg
-│   └── public/vercel.svg
+Generated: 2026-04-04T11:44:32
+
+```
+
+├── app
+│   ├── api
+│   │   └── save-content
+│   │       └── route.ts
+│   ├── components
+│   │   ├── animations
+│   │   ├── project-modal
+│   │   │   ├── AchievementsCard.tsx
+│   │   │   ├── BentoGrid.tsx
+│   │   │   ├── DescriptionCard.tsx
+│   │   │   ├── DetailsCard.tsx
+│   │   │   ├── HeroCard.tsx
+│   │   │   ├── ModalHeader.tsx
+│   │   │   ├── QuickInfoCard.tsx
+│   │   │   ├── TechStackCard.tsx
+│   │   │   ├── TitleInfoCard.tsx
+│   │   │   ├── iconMap.ts
+│   │   │   └── index.tsx
+│   │   ├── GlitchText.tsx
+│   │   ├── GlobalAnimatedBackground.tsx
+│   │   ├── NeonCard.tsx
+│   │   ├── ParticleBackground.tsx
+│   │   ├── ParticleField.tsx
+│   │   ├── ProjectCard.tsx
+│   │   └── ScrollIndicator.tsx
+│   ├── config
+│   │   └── content.ts
+│   ├── edit
+│   │   ├── components
+│   │   │   ├── FormFields
+│   │   │   │   ├── ArrayInput.tsx
+│   │   │   │   ├── NumberInput.tsx
+│   │   │   │   ├── ObjectInput.tsx
+│   │   │   │   ├── TextArea.tsx
+│   │   │   │   ├── TextInput.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── DynamicForm.tsx
+│   │   ├── page.tsx
+│   │   └── schema.tsx
+│   ├── hooks
+│   │   ├── useMousePosition.ts
+│   │   └── useSmoothScroll.ts
+│   ├── sections
+│   │   ├── About.tsx
+│   │   ├── Contact.tsx
+│   │   ├── Experience.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Projects.tsx
+│   │   └── Skills.tsx
+│   ├── types
+│   │   └── content.ts
+│   ├── ContentProvider.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── public
+│   ├── gifs
+│   │   ├── hmi
+│   │   │   └── 比亚迪入场动画.gif
+│   │   └── niagara
+│   │       ├── IP台开机动效.gif
+│   │       ├── IP台来电.gif
+│   │       ├── SEQ_Loading6.gif
+│   │       ├── SEQ_Mind.gif
+│   │       ├── SEQ_Music.gif
+│   │       ├── SEQ_Scene_Switching.gif
+│   │       └── 入场_爆破,溅射.gif
+│   ├── content.json
+│   ├── next.svg
+│   └── vercel.svg
 ├── AGENTS.md
+├── README.md
 ├── eslint.config.mjs
 ├── next-env.d.ts
 ├── next.config.ts
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.mjs
-├── README.md
 ├── tsconfig.json
 └── tsconfig.tsbuildinfo
-``
-<!-- AUTO-END:structure -->
+```

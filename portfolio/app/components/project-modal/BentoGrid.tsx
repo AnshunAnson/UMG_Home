@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Project } from '@/app/types/project';
+import type { Project } from '@/app/types/content';
 import { HeroCard } from './HeroCard';
 import { TitleInfoCard } from './TitleInfoCard';
 import { TechStackCard } from './TechStackCard';

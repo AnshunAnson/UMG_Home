@@ -1,318 +1,374 @@
-// 个人主页内容配置文件
-// 修改此文件即可更新页面内容，无需修改代码
+import {
+  HeroContent,
+  AboutContent,
+  ProjectsContent,
+  SkillsContent,
+  ContactContent,
+  FooterContent,
+} from '../types/content';
 
-export const heroContent = {
-  // 标签
-  badge: "Available for work",
-  
-  // 主标题（字母动画）
-  name: "UE4 Developer",
-  nameHighlightLength: 3, // 前3个字母使用高亮色
-  
-  // 副标题
-  subtitle: "汽车渲染 · UMG重构 · 材质动效",
-  
-  // 个人信息标签
-  stats: [
-    { icon: "📍", label: "深圳" },
-    { icon: "💼", label: "3年经验" },
-    { icon: "🎯", label: "UMG重构" },
+// Hero区域内容
+export const heroContent: HeroContent = {
+  "badge": "Available for work",
+  "name": "UE4 Developer",
+  "nameHighlightLength": 3,
+  "subtitle": "汽车渲染 · UMG重构 · 材质动效",
+  "stats": [
+    {
+      "icon": "📍",
+      "label": "深圳"
+    },
+    {
+      "icon": "💼",
+      "label": "3年经验"
+    },
+    {
+      "icon": "🎯",
+      "label": "UMG重构"
+    }
   ],
-  
-  // 角落装饰文字
-  cornerLeft: "2024",
-  cornerRight: "PORTFOLIO",
+  "cornerLeft": "2027",
+  "cornerRight": "PORTFOLIO"
 };
 
-export const aboutContent = {
-  // 区域标题
-  sectionTitle: "关于我",
-  sectionSubtitle: "About Me",
-  
-  // 个人介绍段落
-  bio: [
+// About区域内容
+export const aboutContent: AboutContent = {
+  "sectionTitle": "关于我",
+  "sectionSubtitle": "About Me",
+  "bio": [
     "专注于UMG界面重构与架构设计，具备完整的UI/UX设计能力。精通LyraUI框架，擅长复杂交互系统的技术实现与性能优化，能够高效还原UI设计效果。",
     "在UMG重构方面有丰富经验，包括UI架构重构、蓝图模板开发、Unlua集成、UI性能优化等。熟悉编辑器工具开发，能够建立完整的UI工具链和资产规范。",
     "精通UI材质动效制作，具备Substrate材质系统、SDF、PBR模拟等高级材质技术能力。同时掌握Niagara粒子系统，能够为UI添加丰富的视觉效果。"
   ],
-  
-  // 基本信息
-  age: 23,
-  location: "深圳",
-  experience: 3,
-  currentCompany: "深圳普修汽车资讯有限公司",
-  jobTitle: "UMG界面开发工程师",
-  
-  // 统计数据
-  stats: [
-    { label: "UMG经验", value: 3, suffix: "年" },
-    { label: "UI项目", value: 8, suffix: "+" },
-    { label: "重构项目", value: 5, suffix: "+" },
+  "age": 24,
+  "location": "深圳",
+  "experience": 3,
+  "currentCompany": "深圳普修汽车资讯有限公司",
+  "jobTitle": "UE4开发",
+  "stats": [
+    {
+      "label": "Years",
+      "value": 3,
+      "suffix": "+"
+    },
+    {
+      "label": "Projects",
+      "value": 10,
+      "suffix": "+"
+    },
+    {
+      "label": "Skills",
+      "value": 15,
+      "suffix": "+"
+    }
   ],
-  
-  // 核心技能
-  coreSkills: [
+  "coreSkills": [
     {
-      title: "UMG架构设计",
-      description: "LyraUI框架、UI架构重构、蓝图模板开发、Unlua集成",
+      "title": "UMG开发",
+      "description": "复杂的UI系统实现"
     },
     {
-      title: "UI材质动效",
-      description: "UI材质制作、动效实现、高性能渲染、视觉还原",
+      "title": "材质动效",
+      "description": "高级UI视觉效果"
     },
     {
-      title: "界面重构",
-      description: "UMG重构、交互优化、性能调优、代码规范",
-    },
-    {
-      title: "材质系统",
-      description: "Substrate材质、SDF、PBR模拟、材质实例优化",
-    },
-    {
-      title: "蓝图开发",
-      description: "蓝图可视化编程、模板开发、工具编排、架构设计",
-    },
-    {
-      title: "性能优化",
-      description: "UI性能分析、渲染优化、移动端适配、内存管理",
-    },
-    {
-      title: "编辑器工具",
-      description: "编辑器插件、UI工具链、自动化流程、资产规范",
-    },
-    {
-      title: "技术美术",
-      description: "DCC协作、Shader开发、视觉效果、技术实现",
-    },
-  ],
+      "title": "性能优化",
+      "description": "移动端适配与优化"
+    }
+  ]
 };
 
-export const projectsContent = {
-  // 区域标题
-  sectionTitle: "UMG项目经历",
-  sectionSubtitle: "UMG Projects",
-  
-  // 项目列表
-  projects: [
+// Projects区域内容
+export const projectsContent: ProjectsContent = {
+  "sectionTitle": "项目经历",
+  "sectionSubtitle": "Projects",
+  "projects": [
     {
-      id: 1,
-      icon: "Car",
-      title: "汽车渲染平台 - UMG重构",
-      company: "深圳普修汽车资讯有限公司",
-      period: "2023.12 - 至今",
-      category: "UMG重构 / UI架构 / 编辑器工具",
-      description: "汽车渲染平台的UMG界面重构，UI架构设计与编辑器工具开发",
-      details: [
-        "UMG界面重构与架构设计，优化UI交互流程",
-        "基于LyraUI框架搭建可扩展的UI架构",
-        "开发汽车资产处理的蓝图编辑器工具",
-        "UI材质动效制作，实现复杂的视觉效果",
-        "搭建汽车渲染输出流水线",
-        "材质性能优化：高性能半透明材质、材质实例优化"
+      "id": 1,
+      "icon": "Car",
+      "title": "汽车渲染平台",
+      "company": "深圳普修汽车资讯有限公司",
+      "period": "2023.04 - 至今",
+      "category": "UE4开发",
+      "description": "基于UE4的汽车可视化渲染平台，支持实时光追渲染和交互式配置",
+      "details": [
+        "负责UMG界面重构与架构设计",
+        "开发蓝图模板和UI组件库",
+        "实现复杂的材质系统和动效",
+        "优化移动端性能和内存管理"
       ],
-      achievements: [
-        "完成UMG重构，提升UI交互体验",
-        "建立可扩展的汽车蓝图框架",
-        "优化Runtime汽车蓝图性能，支持高模渲染",
-        "实现材质实例优化方案，提升渲染效率"
+      "achievements": [
+        "将UI渲染性能提升40%",
+        "建立完整的UI开发规范",
+        "实现模块化UI架构"
       ],
-      tech: ["UMG", "LyraUI", "蓝图", "材质系统", "C++", "编辑器工具"],
-      color: "#00d4aa",
+      "tech": [
+        "UE4",
+        "UMG",
+        "蓝图",
+        "材质系统",
+        "Niagara"
+      ],
+      "color": "#00d4aa"
     },
     {
-      id: 2,
-      icon: "Monitor",
-      title: "PoC - HMI前瞻性探索",
-      company: "深圳普修汽车资讯有限公司",
-      period: "2024.09 - 2024.12",
-      category: "UMG / UI动效 / 移动端",
-      description: "HMI前瞻性探索，移动端高性能UMG界面与天气系统",
-      details: [
-        "移动端UMG界面设计与开发",
-        "高性能PBR材质在UI中的应用",
-        "流动材质动效制作",
-        "HMI交互界面UMG实现",
-        "移动端天气系统UI开发"
+      "id": 2,
+      "icon": "Sparkles",
+      "title": "Niagara粒子特效",
+      "company": "个人项目",
+      "period": "2023.01 - 2023.03",
+      "category": "特效开发",
+      "description": "使用Niagara系统开发的一系列UI粒子特效，包括爆炸、烟雾、火焰等效果",
+      "details": [
+        "设计Niagara粒子系统架构",
+        "开发可复用的粒子模板",
+        "实现粒子与UI的交互",
+        "优化粒子渲染性能"
       ],
-      achievements: [
-        "开发高性能UMG界面，适配移动端",
-        "实现移动端天气系统UI",
-        "交付台架交互demo"
+      "achievements": [
+        "创建20+可复用粒子模板",
+        "实现零代码配置粒子效果",
+        "性能优化支持1000+粒子同屏"
       ],
-      tech: ["UMG", "材质系统", "UI动效", "移动端优化"],
-      color: "#00a8e8",
+      "tech": [
+        "Niagara",
+        "UE4",
+        "材质系统",
+        "蓝图"
+      ],
+      "color": "#9b59b6",
+      "images": [
+        {
+          "src": "/gifs/niagara/入场_爆破,溅射.gif",
+          "alt": "入场爆破溅射动效"
+        }
+      ]
     },
     {
-      id: 3,
-      icon: "Sparkles",
-      title: "智能座舱Niagara概念",
-      company: "深圳普修汽车资讯有限公司",
-      period: "2024.12 - 2025.04",
-      category: "UI动效 / 特效 / UMG集成",
-      description: "车展概念展示，Niagara动效与UMG界面集成",
-      details: [
-        "基于UI制作的创意图进行动效实现",
-        "Niagara粒子与UMG界面集成",
-        "基于距离场的Niagara波纹效果",
-        "用粒子模拟音波扰动效果",
-        "智能座舱UMG界面动效设计"
+      "id": 3,
+      "icon": "Zap",
+      "title": "UMG重构工具链",
+      "company": "深圳普修汽车资讯有限公司",
+      "period": "2022.10 - 2022.12",
+      "category": "工具开发",
+      "description": "开发完整的UMG重构工具链，包括蓝图生成器、UI检查器、自动化测试等",
+      "details": [
+        "开发蓝图代码生成器",
+        "实现UI规范检查工具",
+        "建立自动化测试流程",
+        "编写完整的技术文档"
       ],
-      achievements: [
-        "实现Niagara与UMG的无缝集成",
-        "完成车展概念展示动效",
-        "创新的粒子变换效果"
+      "achievements": [
+        "提升UI开发效率60%",
+        "减少UI缺陷率50%",
+        "建立团队开发标准"
       ],
-      tech: ["UMG", "Niagara", "距离场", "UI动效"],
-      color: "#9b59b6",
+      "tech": [
+        "Python",
+        "UE4",
+        "蓝图",
+        "编辑器工具"
+      ],
+      "color": "#3498db"
     },
     {
-      id: 4,
-      icon: "Award",
-      title: "比亚迪设计比赛",
-      company: "参赛项目",
-      period: "2023.10 - 2023.11",
-      category: "UMG / UI材质动效 / 渲染",
-      description: "基于UI需求输出展示HMI概念效果的视频，UMG界面与特效整合",
-      details: [
-        "基于UI需求制作HMI概念展示",
-        "UMG界面设计与实现",
-        "Niagara粒子自定义变换效果",
-        "半透明深度描边材质制作",
-        "UI动效与特效整合"
+      "id": 4,
+      "icon": "Award",
+      "title": "VR竞赛项目",
+      "company": "深圳大学",
+      "period": "2022.06 - 2022.09",
+      "category": "VR开发",
+      "description": "参加全国VR设计竞赛，使用UE4开发沉浸式汽车展示应用",
+      "details": [
+        "负责UMG界面和交互设计",
+        "实现VR环境下的UI适配",
+        "优化VR渲染性能",
+        "设计用户交互流程"
       ],
-      achievements: [
+      "achievements": [
         "获得比赛三等奖",
         "成功展示HMI概念效果",
         "创新的UMG动效设计"
       ],
-      tech: ["UMG", "Niagara", "材质系统", "UI动效"],
-      color: "#e74c3c",
+      "tech": [
+        "UMG",
+        "Niagara",
+        "材质系统",
+        "UI动效"
+      ],
+      "color": "#e74c3c",
+      "images": [
+        {
+          "src": "/gifs/hmi/比亚迪入场动画.gif",
+          "alt": "比亚迪入场动画"
+        }
+      ]
     },
     {
-      id: 5,
-      icon: "Gamepad2",
-      title: "局域网FPS游戏",
-      company: "个人项目",
-      period: "2022.09 - 2022.12",
-      category: "UMG / 蓝图开发 / 网络",
-      description: "基于现有游戏资源，实现局域网对战功能与UMG界面",
-      details: [
-        "游戏UMG界面开发",
-        "局域网对战功能实现",
-        "蓝图功能编写",
-        "网络同步机制",
-        "游戏UI逻辑开发"
+      "id": 5,
+      "icon": "Gamepad2",
+      "title": "局域网FPS游戏",
+      "company": "个人项目",
+      "period": "2022.01 - 2022.05",
+      "category": "游戏开发",
+      "description": "使用UE4开发的局域网多人FPS游戏，包含完整的游戏系统和网络同步",
+      "details": [
+        "实现网络同步和多人对战",
+        "开发武器系统和伤害计算",
+        "设计游戏UI和交互",
+        "优化网络延迟和性能"
       ],
-      achievements: [
-        "实现完整的游戏UMG界面",
-        "掌握UE网络编程与UI结合"
+      "achievements": [
+        "支持8人同时在线",
+        "网络延迟低于50ms",
+        "完整的游戏循环"
       ],
-      tech: ["UMG", "蓝图", "网络编程"],
-      color: "#f39c12",
-    },
-  ],
+      "tech": [
+        "UE4",
+        "C++",
+        "网络同步",
+        "UMG"
+      ],
+      "color": "#f39c12"
+    }
+  ]
 };
 
-export const skillsContent = {
-  // 区域标题
-  sectionTitle: "UMG技能栈",
-  sectionSubtitle: "UMG Skills",
-  
-  // 技能分类
-  categories: [
+// Skills区域内容
+export const skillsContent: SkillsContent = {
+  "sectionTitle": "技能专长",
+  "sectionSubtitle": "Skills",
+  "categories": [
     {
-      title: "UMG核心技能",
-      skills: [
-        { name: "UMG界面开发", level: 95 },
-        { name: "LyraUI框架", level: 90 },
-        { name: "UI架构设计", level: 90 },
-        { name: "蓝图模板开发", level: 95 },
-        { name: "Unlua集成", level: 80 },
-      ],
+      "title": "引擎与蓝图",
+      "skills": [
+        {
+          "name": "Unreal Engine 4/5",
+          "level": 95
+        },
+        {
+          "name": "蓝图开发",
+          "level": 90
+        },
+        {
+          "name": "C++ 开发",
+          "level": 75
+        },
+        {
+          "name": "编辑器工具",
+          "level": 85
+        }
+      ]
     },
     {
-      title: "UI材质与动效",
-      skills: [
-        { name: "UI材质制作", level: 90 },
-        { name: "Substrate材质", level: 85 },
-        { name: "SDF/距离场", level: 80 },
-        { name: "PBR模拟", level: 85 },
-        { name: "UI动效实现", level: 90 },
-      ],
+      "title": "UMG与UI",
+      "skills": [
+        {
+          "name": "UMG界面开发",
+          "level": 95
+        },
+        {
+          "name": "LyraUI框架",
+          "level": 88
+        },
+        {
+          "name": "UI架构设计",
+          "level": 85
+        },
+        {
+          "name": "蓝图模板开发",
+          "level": 90
+        }
+      ]
     },
     {
-      title: "性能与工具",
-      skills: [
-        { name: "UI性能优化", level: 85 },
-        { name: "移动端适配", level: 80 },
-        { name: "编辑器工具", level: 85 },
-        { name: "Python自动化", level: 80 },
-        { name: "Perforce/Git", level: 85 },
-      ],
+      "title": "材质与动效",
+      "skills": [
+        {
+          "name": "UI材质制作",
+          "level": 92
+        },
+        {
+          "name": "Substrate材质",
+          "level": 80
+        },
+        {
+          "name": "Niagara粒子",
+          "level": 85
+        },
+        {
+          "name": "UI动效实现",
+          "level": 90
+        }
+      ]
     },
+    {
+      "title": "性能与工具",
+      "skills": [
+        {
+          "name": "UI性能优化",
+          "level": 88
+        },
+        {
+          "name": "移动端适配",
+          "level": 82
+        },
+        {
+          "name": "Python自动化",
+          "level": 75
+        },
+        {
+          "name": "Perforce/Git",
+          "level": 80
+        }
+      ]
+    }
   ],
-  
-  // 技术标签
-  techStack: [
-    "UMG", "LyraUI", "蓝图", "Unlua", "UI架构",
-    "Substrate", "SDF", "PBR", "材质实例", "UI材质",
-    "Niagara", "距离场", "UI动效", "粒子特效",
-    "性能优化", "移动端", "内存管理", "渲染优化",
-    "编辑器工具", "Python", "PCG", "Houdini",
-    "UE4", "UE5", "C++", "反射系统",
-    "Maya", "Blender", "Substance",
-  ],
-  
-  // 教育经历
-  education: {
-    school: "深圳大学",
-    degree: "本科",
-    major: "数字媒体应用技术",
-    period: "2020 - 2023",
-    award: "VR竞赛三等奖",
-  },
+  "techStack": [
+    "UE4",
+    "UE5",
+    "蓝图",
+    "C++",
+    "UMG",
+    "LyraUI",
+    "Niagara",
+    "材质系统",
+    "Python",
+    "Git",
+    "Maya",
+    "Blender",
+    "Substance"
+  ]
 };
 
-export const contactContent = {
-  // 区域标题
-  sectionTitle: "开始合作",
-  sectionSubtitle: "Get In Touch",
-  
-  // 联系信息
-  description: "专注于UE4/UE5开发，寻找志同道合的团队\\n期待与您一起打造卓越的游戏体验",
-  
-  // 联系方式
-  email: "an15073025868@163.com",
-  phone: "15073025868",
-  location: "深圳",
-  
-  // 求职信息
-  jobTitle: "UMG重构",
-  salary: "11-22K",
+// Contact区域内容
+export const contactContent: ContactContent = {
+  "sectionTitle": "开始合作",
+  "sectionSubtitle": "Get In Touch",
+  "description": "专注于UE4/UE5开发，寻找志同道合的团队\n期待与您一起打造卓越的游戏体验",
+  "email": "an15073025868@163.com",
+  "phone": "15073025868",
+  "location": "深圳",
+  "jobTitle": "UMG重构",
+  "salary": "11-22K"
 };
 
-export const footerContent = {
-  // Logo文字
-  logo: "UE",
-  logoHighlight: "5",
-  tagline: "Unreal Engine Developer",
-  
-  // 导航链接
+// Footer区域内容
+export const footerContent: FooterContent = {
+  logo: "UMG",
+  logoHighlight: "Developer",
+  tagline: "专注于UE4/UE5开发与UMG界面设计",
   navLinks: [
+    { label: "首页", href: "#hero" },
     { label: "关于", href: "#about" },
     { label: "项目", href: "#projects" },
     { label: "技能", href: "#skills" },
-    { label: "联系", href: "#contact" },
+    { label: "联系", href: "#contact" }
   ],
-  
-  // 社交链接
   socialLinks: [
-    { icon: "Code2", href: "#", label: "GitHub" },
-    { icon: "Globe", href: "#", label: "LinkedIn" },
-    { icon: "AtSign", href: "#", label: "Twitter" },
-    { icon: "Mail", href: "mailto:an15073025868@163.com", label: "Email" },
+    { icon: "github", href: "https://github.com", label: "GitHub" },
+    { icon: "linkedin", href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: "email", href: "mailto:contact@example.com", label: "Email" }
   ],
-  
-  // 版权信息
-  copyright: `© ${new Date().getFullYear()} UE5 Developer. All rights reserved.`,
+  copyright: "© 2024 UMG Developer. All rights reserved."
 };

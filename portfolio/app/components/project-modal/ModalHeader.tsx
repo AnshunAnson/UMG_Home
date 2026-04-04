@@ -2,7 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
-import { ModalProps } from '@/app/types/project';
+import type { Project } from '@/app/types/content';
+
+interface ModalProps {
+  project: Project;
+  onClose: () => void;
+}
 
 export function ModalHeader({ project, onClose }: ModalProps) {
   return (

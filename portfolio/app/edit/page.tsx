@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Save, RotateCcw, ChevronRight } from 'lucide-react';
 import { allSchemas } from './schema';
@@ -35,37 +35,11 @@ export default function EditPage() {
   };
 
   const handleReset = () => {
-    if (confirm('确定要重置所有更改吗？')) {
+    if (confirm('确定要重置所有更改吗？这将恢复到代码中的默认配置。')) {
       setData(initialData);
       setHasChanges(false);
     }
   };
-
-  useEffect(() => {
-    const saved = localStorage.getItem('portfolio-content');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (parsed && typeof parsed === 'object') {
-          setData(prev => ({
-            ...prev,
-            ...(parsed.hero && { hero: parsed.hero }),
-            ...(parsed.about && { about: parsed.about }),
-            ...(parsed.projects && { projects: parsed.projects }),
-            ...(parsed.skills && { skills: parsed.skills }),
-            ...(parsed.contact && { contact: parsed.contact }),
-            ...(parsed.heroContent && { hero: parsed.heroContent }),
-            ...(parsed.aboutContent && { about: parsed.aboutContent }),
-            ...(parsed.projectsContent && { projects: parsed.projectsContent }),
-            ...(parsed.skillsContent && { skills: parsed.skillsContent }),
-            ...(parsed.contactContent && { contact: parsed.contactContent }),
-          }));
-        }
-      } catch (e) {
-        console.error('Failed to load saved content:', e);
-      }
-    }
-  }, []);
 
   const handleSave = async () => {
     const saveData = {
@@ -75,25 +49,41 @@ export default function EditPage() {
       skillsContent: data.skills,
       contactContent: data.contact,
     };
-    const jsonStr = JSON.stringify(saveData, null, 2);
-
-    localStorage.setItem('portfolio-content', jsonStr);
-    setHasChanges(false);
 
     try {
-      const res = await fetch('/api/save-content', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: saveData }),
-      });
-      const result = await res.json();
-      if (result.success) {
-        alert(`保存成功！\n\n✅ 已写入 public/content.json (${result.size} bytes)\n\n下一步：git add . && git commit -m "更新内容" && git push`);
+      // 同时保存到 content.ts 和 content.json
+      const [tsResult, jsonResult] = await Promise.all([
+        fetch('/api/save-ts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: saveData }),
+        }),
+        fetch('/api/save-content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: saveData }),
+        }),
+      ]);
+
+      const tsData = await tsResult.json();
+      const jsonData = await jsonResult.json();
+
+      if (tsData.success && jsonData.success) {
+        setHasChanges(false);
+        alert(
+          `保存成功！\n\n` +
+          `✅ app/config/content.ts (${tsData.size} bytes)\n` +
+          `✅ public/content.json (${jsonData.size} bytes)\n\n` +
+          `下一步：git add . && git commit -m "更新内容" && git push`
+        );
       } else {
-        alert('文件写入失败：' + (result.error || '未知错误'));
+        const errors = [];
+        if (!tsData.success) errors.push('content.ts: ' + tsData.error);
+        if (!jsonData.success) errors.push('content.json: ' + jsonData.error);
+        alert('部分保存失败：\n' + errors.join('\n'));
       }
     } catch (err: any) {
-      alert('保存成功（本地模式）。\n\n⚠️ 服务端写入失败，内容仅保存在浏览器本地。\n错误：' + err.message);
+      alert('保存失败：' + err.message);
     }
   };
 
@@ -104,7 +94,7 @@ export default function EditPage() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold">内容编辑器</h1>
-            <p className="text-sm text-white/50">修改配置后点击保存</p>
+            <p className="text-sm text-white/50">修改后保存，同时更新 content.ts 和 content.json</p>
           </div>
           <div className="flex items-center gap-3">
             {hasChanges && (

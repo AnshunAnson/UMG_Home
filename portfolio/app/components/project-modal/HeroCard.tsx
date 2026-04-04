@@ -3,7 +3,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { CardProps } from '@/app/types/project';
+import type { Project } from '@/app/types/content';
+
+interface CardProps {
+  project: Project;
+  className?: string;
+}
 import { iconMap } from './iconMap';
 
 export function HeroCard({ project, className }: CardProps) {

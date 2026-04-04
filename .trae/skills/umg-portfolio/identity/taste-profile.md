@@ -6,25 +6,25 @@
 > 运行 `node evolve/scripts/inject-taste.mjs` 自动更新此文件。
 
 ## Color Preferences <!-- AUTO-START:taste-colors -->
-- **Dominant Temperature**: 71.2% cool (28.8% warm)
-- **Unique Colors**: 43 distinct values
-- **Last Sync**: 2026-04-04T01:23:27
+- **Dominant Temperature**: 71.0% cool (29.0% warm)
+- **Unique Colors**: 46 distinct values
+- **Last Sync**: 2026-04-04T11:44:37
 <!-- AUTO-END:taste-colors -->
 
 ## Animation Preferences <!-- AUTO-START:taste-animation -->
-- **Physics Model**: Spring-dominant (4 spring declarations found)
-- **Avg Damping**: 21.8
-- **Avg Stiffness**: 125
+- **Physics Model**: Spring-dominant (no springs detected)
+- **Avg Damping**: N/A
+- **Avg Stiffness**: N/A
 - **Entry Pattern**: whileInView used in majority of sections, variants+stagger in Hero only
 - **Duration Range**: 0.15s (tilt) ~ 0.8s (entry), never > 1s detected
 - **Forbidden Check**: No linear easing on interactions detected ✓
 <!-- AUTO-END:taste-animation -->
 
 ## Code Style Preferences <!-- AUTO-START:taste-code -->
-- **Component Size**: Medium (avg 184 lines, max 727, min 25, across 25 components)
-- **Max Border Radius**: rounded-2xl (never exceeded rounded-2xl)
-- **Comment Density**: 1.0% (near-zero policy confirmed✓)
-- **Defensive Coding**: 20.0% safe access rate (moderate)
+- **Component Size**: Medium (avg 144 lines, max 514, min 25, across 43 components)
+- **Max Border Radius**: rounded-full (never exceeded rounded-2xl ⚠️ VIOLATION)
+- **Comment Density**: 2.0% (near-zero policy confirmed✓)
+- **Defensive Coding**: 16.7% safe access rate (moderate)
 <!-- AUTO-END:taste-code -->
 
 ## Layout Preferences <!-- AUTO-START:taste-layout -->

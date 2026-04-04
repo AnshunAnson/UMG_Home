@@ -1,7 +1,12 @@
 'use client';
 
 import { Building2, Calendar } from 'lucide-react';
-import { CardProps } from '@/app/types/project';
+import type { Project } from '@/app/types/content';
+
+interface CardProps {
+  project: Project;
+  className?: string;
+}
 import { iconMap } from './iconMap';
 
 export function TitleInfoCard({ project, className }: CardProps) {

@@ -2,7 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { Cpu } from 'lucide-react';
-import { CardProps } from '@/app/types/project';
+import type { Project } from '@/app/types/content';
+
+interface CardProps {
+  project: Project;
+  className?: string;
+}
 
 export function TechStackCard({ project, className }: CardProps) {
   return (

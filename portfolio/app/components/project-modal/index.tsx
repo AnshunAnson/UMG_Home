@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useCallback } from 'react';
-import { Project } from '@/app/types/project';
+import type { Project } from '@/app/types/content';
 import { ModalHeader } from './ModalHeader';
 import { BentoGrid } from './BentoGrid';
 
