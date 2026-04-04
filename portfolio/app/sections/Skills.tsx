@@ -5,17 +5,16 @@ import { useRef, useState } from 'react';
 import { skillsContent } from '../config/content';
 
 const ICON_MAP: Record<string, string> = {
-  'UMG界面开发': 'UI', 'LyraUI框架': 'LY', 'UI架构设计': 'AR',
-  '蓝图模板开发': 'BP', 'Unlua集成': 'UN',
-  'UI材质制作': 'MT', 'Substrate材质': 'SB', 'SDF/距离场': 'SD',
-  'PBR模拟': 'PB', 'UI动效实现': 'AN',
-  'UI性能优化': 'PF', '移动端适配': 'MB', '编辑器工具': 'ED',
-  'Python自动化': 'PY', 'Perforce/Git': 'VC',
+  'Unreal Engine 4/5': 'UE', '蓝图开发': 'BP', 'C++ 开发': 'C+', '编辑器工具': 'ED',
+  'UMG界面开发': 'UI', 'LyraUI框架': 'LY', 'UI架构设计': 'AR', '蓝图模板开发': 'BP',
+  'UI材质制作': 'MT', 'Substrate材质': 'SB', 'Niagara粒子': 'NI', 'UI动效实现': 'AN',
+  'UI性能优化': 'PF', '移动端适配': 'MB', 'Python自动化': 'PY', 'Perforce/Git': 'VC',
 };
 
 const CATEGORY_MAP: Record<string, { id: string; icon: string }> = {
-  'UMG核心技能': { id: 'core', icon: '◆' },
-  'UI材质与动效': { id: 'vfx', icon: '✦' },
+  '引擎与蓝图': { id: 'core', icon: '◆' },
+  'UMG与UI': { id: 'core', icon: '◆' },
+  '材质与动效': { id: 'vfx', icon: '✦' },
   '性能与工具': { id: 'tools', icon: '□' },
 };
 
@@ -311,19 +310,17 @@ function SkillListItem({
   skill: typeof skillsData[0];
   index: number;
 }) {
-  const itemRef = useRef(null);
-  const isInView = useInView(itemRef, { once: true, margin: '-50px' });
   const [isHovered, setIsHovered] = useState(false);
 
   const category = categories.find(c => c.id === skill.category);
 
   return (
     <motion.div
-      ref={itemRef}
+      layout
       className="relative group"
-      initial={{ opacity: 0, x: -20 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: index * 0.05 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -343,8 +340,8 @@ function SkillListItem({
               <motion.div
                 className="h-full bg-gradient-to-r from-[#00d4aa] to-[#00d4aa]/50 rounded-full"
                 initial={{ width: 0 }}
-                animate={isInView ? { width: `${skill.level}%` } : {}}
-                transition={{ duration: 1, delay: index * 0.1 + 0.3 }}
+                animate={{ width: `${skill.level}%` }}
+                transition={{ duration: 0.5, delay: index * 0.05 + 0.1 }}
               />
             </div>
           </div>
@@ -410,18 +407,18 @@ export default function Skills() {
         />
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <SkillCloud />
+          <div className="sticky top-32">
+            <SkillCloud />
+          </div>
 
-          <div className="space-y-4">
-            <AnimatePresence>
-              {filteredSkills.map((skill, index) => (
-                <SkillListItem
-                  key={skill.name}
-                  skill={skill}
-                  index={index}
-                />
-              ))}
-            </AnimatePresence>
+          <div className="space-y-4 min-h-[520px]">
+            {filteredSkills.map((skill, index) => (
+              <SkillListItem
+                key={`${skill.name}-${skill.category}`}
+                skill={skill}
+                index={index}
+              />
+            ))}
 
             <motion.div
               className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-[#1a1a1f]"

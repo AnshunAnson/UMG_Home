@@ -340,10 +340,6 @@ export const skillsContent: SkillsContent = {
         {
           "name": "Python自动化",
           "level": 75
-        },
-        {
-          "name": "Perforce/Git",
-          "level": 80
         }
       ]
     }
