@@ -19,7 +19,7 @@
       }
     ],
     "cornerLeft": "2027",
-    "cornerRight": "PORTFOLIO"
+    "cornerRight": "UnrealEngine"
   },
   "aboutContent": {
     "sectionTitle": "关于我",
@@ -130,27 +130,27 @@
             "alt": "入场爆破溅射动效"
           },
           {
-            "src": "/gifs/uploaded/1775278786468_IP台来电.gif",
+            "src": "/gifs/uploaded/IP台来电.gif",
             "alt": "来电"
           },
           {
-            "src": "/gifs/uploaded/1775278821399_SEQ_Loading01.gif",
+            "src": "/gifs/uploaded/SEQ_Loading01.gif",
             "alt": "Loading"
           },
           {
-            "src": "/gifs/uploaded/1775278852104_SEQ_Mind.gif",
+            "src": "/gifs/uploaded/SEQ_Mind.gif",
             "alt": "Mind"
           },
           {
-            "src": "/gifs/uploaded/1775278861459_SEQ_Music.gif",
+            "src": "/gifs/uploaded/SEQ_Music.gif",
             "alt": "Music"
           },
           {
-            "src": "/gifs/uploaded/1775278871654_SEQ_Scene_Switching.gif",
+            "src": "/gifs/uploaded/SEQ_Scene_Switching.gif",
             "alt": "扫光"
           },
           {
-            "src": "/gifs/uploaded/1775278891045_IP台开机动效.gif",
+            "src": "/gifs/uploaded/IP台开机动效.gif",
             "alt": "开机"
           }
         ]

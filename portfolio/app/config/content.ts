@@ -28,7 +28,7 @@ export const heroContent: HeroContent = {
     }
   ],
   "cornerLeft": "2027",
-  "cornerRight": "PORTFOLIO"
+  "cornerRight": "UnrealEngine"
 };
 
 // About区域内容

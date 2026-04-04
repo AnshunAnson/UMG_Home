@@ -100,6 +100,9 @@ function FileUpload({
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
+            onDragStart={(e) => e.stopPropagation()}
+            onDragOver={(e) => e.stopPropagation()}
+            onDrop={(e) => e.stopPropagation()}
             placeholder={placeholder || '或输入路径 /gifs/...'}
             className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded text-white text-sm
                      placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50"
@@ -164,6 +167,9 @@ function ObjectItemForm({
               type="text"
               value={value}
               onChange={(e) => handleFieldChange(key, e.target.value)}
+              onDragStart={(e) => e.stopPropagation()}
+              onDragOver={(e) => e.stopPropagation()}
+              onDrop={(e) => e.stopPropagation()}
               className="col-span-2 px-3 py-1 bg-white/5 border border-white/10 rounded text-white 
                        placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 text-sm"
               placeholder={fieldSchema.placeholder}
@@ -178,6 +184,9 @@ function ObjectItemForm({
               type="number"
               value={value}
               onChange={(e) => handleFieldChange(key, Number(e.target.value))}
+              onDragStart={(e) => e.stopPropagation()}
+              onDragOver={(e) => e.stopPropagation()}
+              onDrop={(e) => e.stopPropagation()}
               className="col-span-2 px-3 py-1 bg-white/5 border border-white/10 rounded text-white 
                        placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 text-sm"
               placeholder={fieldSchema.placeholder}
@@ -238,6 +247,9 @@ function ObjectItemForm({
                               newArray[subIndex] = { ...subItem, [subKey]: e.target.value };
                               handleFieldChange(key, newArray);
                             }}
+                            onDragStart={(e) => e.stopPropagation()}
+                            onDragOver={(e) => e.stopPropagation()}
+                            onDrop={(e) => e.stopPropagation()}
                             className="col-span-3 px-2 py-1 bg-white/5 border border-white/10 rounded text-white text-sm"
                             placeholder={subFieldSchema.placeholder}
                           />
@@ -254,6 +266,9 @@ function ObjectItemForm({
                       newArray[subIndex] = e.target.value;
                       handleFieldChange(key, newArray);
                     }}
+                    onDragStart={(e) => e.stopPropagation()}
+                    onDragOver={(e) => e.stopPropagation()}
+                    onDrop={(e) => e.stopPropagation()}
                     className="flex-1 px-2 py-1 bg-white/5 border border-white/10 rounded text-white text-sm"
                   />
                 )}
@@ -323,7 +338,12 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
     onChange(newValue);
   };
 
-  const handleDragStart = (index: number) => {
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+      e.preventDefault();
+      return;
+    }
     setDraggedIndex(index);
   };
 
@@ -416,7 +436,7 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
             
             <div
               draggable
-              onDragStart={() => handleDragStart(index)}
+              onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => handleDragOver(e, index)}
               onDragLeave={handleDragLeave}
               onDrop={(e) => handleDrop(e, index)}
@@ -442,6 +462,9 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
                     type="text"
                     value={item || ''}
                     onChange={(e) => handleItemChange(index, e.target.value)}
+                    onDragStart={(e) => e.stopPropagation()}
+                    onDragOver={(e) => e.stopPropagation()}
+                    onDrop={(e) => e.stopPropagation()}
                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-white 
                              placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50"
                     placeholder={`项目 ${index + 1}`}
