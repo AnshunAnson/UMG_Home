@@ -4,6 +4,7 @@ import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Mail, MapPin, Phone, GitBranch, Link2, Send, ArrowUpRight } from 'lucide-react';
 import { contactContent } from '../config/content';
+import Footer from './Footer';
 
 // 磁吸按钮组件
 interface MagneticButtonProps {
@@ -442,70 +443,7 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="relative border-t border-[#1a1a25]">
-        {/* 装饰性渐变 */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00d4aa]/20 to-transparent" />
-
-        <div className="container mx-auto px-6 py-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Logo */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-2"
-            >
-              <span className="text-2xl font-bold text-white">UE</span>
-              <span className="text-2xl font-bold text-[#00d4aa]">5</span>
-              <span className="text-[#5a5a6a] text-sm ml-2">Developer</span>
-            </motion.div>
-
-            {/* 导航链接 */}
-            <motion.nav
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="flex items-center gap-8"
-            >
-              {['关于', '项目', '技能', '联系'].map((item, index) => (
-                <a
-                  key={item}
-                  href={`#${['about', 'projects', 'skills', 'contact'][index]}`}
-                  className="text-[#8a8a9a] text-sm hover:text-[#00d4aa] transition-colors duration-300"
-                >
-                  {item}
-                </a>
-              ))}
-            </motion.nav>
-
-            {/* 版权信息 */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-[#5a5a6a] text-sm"
-            >
-              © {new Date().getFullYear()} UE5 Developer. All rights reserved.
-            </motion.p>
-          </div>
-
-          {/* 底部装饰文字 */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mt-12 text-center"
-          >
-            <p className="text-[#1a1a25] text-[8rem] md:text-[12rem] font-bold leading-none select-none">
-              THANKS
-            </p>
-          </motion.div>
-        </div>
-      </footer>
+      <Footer />
     </section>
   );
 }

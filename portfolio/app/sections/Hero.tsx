@@ -8,7 +8,6 @@ import { heroContent as defaultHeroContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 import dynamic from 'next/dynamic';
 
-// Dynamic import for 3D scene to avoid SSR issues
 const ParticleField = dynamic(() => import('../components/ParticleField'), {
   ssr: false,
 });

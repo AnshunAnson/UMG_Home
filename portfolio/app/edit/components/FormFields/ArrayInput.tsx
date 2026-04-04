@@ -100,10 +100,12 @@ function FileUpload({
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            onDragStart={(e) => e.stopPropagation()}
-            onDragOver={(e) => e.stopPropagation()}
-            onDrop={(e) => e.stopPropagation()}
             placeholder={placeholder || '或输入路径 /gifs/...'}
+            draggable={false}
+            onDragOver={(e) => e.stopPropagation()}
+            onDragStart={(e) => e.stopPropagation()}
+            onDragEnd={(e) => e.stopPropagation()}
+            onDrop={(e) => e.stopPropagation()}
             className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded text-white text-sm
                      placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50"
           />
@@ -167,8 +169,10 @@ function ObjectItemForm({
               type="text"
               value={value}
               onChange={(e) => handleFieldChange(key, e.target.value)}
-              onDragStart={(e) => e.stopPropagation()}
+              draggable={false}
               onDragOver={(e) => e.stopPropagation()}
+              onDragStart={(e) => e.stopPropagation()}
+              onDragEnd={(e) => e.stopPropagation()}
               onDrop={(e) => e.stopPropagation()}
               className="col-span-2 px-3 py-1 bg-white/5 border border-white/10 rounded text-white 
                        placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 text-sm"
@@ -184,8 +188,10 @@ function ObjectItemForm({
               type="number"
               value={value}
               onChange={(e) => handleFieldChange(key, Number(e.target.value))}
-              onDragStart={(e) => e.stopPropagation()}
+              draggable={false}
               onDragOver={(e) => e.stopPropagation()}
+              onDragStart={(e) => e.stopPropagation()}
+              onDragEnd={(e) => e.stopPropagation()}
               onDrop={(e) => e.stopPropagation()}
               className="col-span-2 px-3 py-1 bg-white/5 border border-white/10 rounded text-white 
                        placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 text-sm"
@@ -247,8 +253,10 @@ function ObjectItemForm({
                               newArray[subIndex] = { ...subItem, [subKey]: e.target.value };
                               handleFieldChange(key, newArray);
                             }}
-                            onDragStart={(e) => e.stopPropagation()}
+                            draggable={false}
                             onDragOver={(e) => e.stopPropagation()}
+                            onDragStart={(e) => e.stopPropagation()}
+                            onDragEnd={(e) => e.stopPropagation()}
                             onDrop={(e) => e.stopPropagation()}
                             className="col-span-3 px-2 py-1 bg-white/5 border border-white/10 rounded text-white text-sm"
                             placeholder={subFieldSchema.placeholder}
@@ -266,8 +274,10 @@ function ObjectItemForm({
                       newArray[subIndex] = e.target.value;
                       handleFieldChange(key, newArray);
                     }}
-                    onDragStart={(e) => e.stopPropagation()}
+                    draggable={false}
                     onDragOver={(e) => e.stopPropagation()}
+                    onDragStart={(e) => e.stopPropagation()}
+                    onDragEnd={(e) => e.stopPropagation()}
                     onDrop={(e) => e.stopPropagation()}
                     className="flex-1 px-2 py-1 bg-white/5 border border-white/10 rounded text-white text-sm"
                   />
@@ -342,26 +352,35 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
     const target = e.target as HTMLElement;
     if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
       e.preventDefault();
+      e.stopPropagation();
       return;
     }
     setDraggedIndex(index);
   };
 
   const handleDragOver = (e: React.DragEvent, index: number) => {
-    e.preventDefault();
     if (draggedIndex === null || draggedIndex === index) {
       setDragOverIndex(null);
       setDragOverPosition(null);
       return;
     }
     
-    // 计算鼠标位置，判断是放在目标前还是后
+    if (!e.dataTransfer.types || !e.dataTransfer.types.includes('text/plain')) {
+      return;
+    }
+    
+    if (e.dataTransfer.effectAllowed !== 'move' && e.dataTransfer.effectAllowed !== 'copy') {
+      return;
+    }
+    
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const midY = rect.top + rect.height / 2;
     const position = e.clientY < midY ? 'before' : 'after';
     
     setDragOverIndex(index);
     setDragOverPosition(position);
+    
+    e.preventDefault();
   };
 
   const handleDragLeave = () => {
@@ -435,8 +454,6 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
             )}
             
             <div
-              draggable
-              onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => handleDragOver(e, index)}
               onDragLeave={handleDragLeave}
               onDrop={(e) => handleDrop(e, index)}
@@ -452,7 +469,13 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
                          }`}
             >
               <div className="mt-1 cursor-move text-white/30 hover:text-[#00d4aa] select-none 
-                            transition-colors">
+                            transition-colors"
+                   draggable
+                   onDragStart={(e) => {
+                     e.stopPropagation();
+                     e.dataTransfer.setData('text/plain', index.toString());
+                     setDraggedIndex(index);
+                   }}>
                 <GripVertical className="w-4 h-4" />
               </div>
               
@@ -462,8 +485,10 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
                     type="text"
                     value={item || ''}
                     onChange={(e) => handleItemChange(index, e.target.value)}
-                    onDragStart={(e) => e.stopPropagation()}
+                    draggable={false}
                     onDragOver={(e) => e.stopPropagation()}
+                    onDragStart={(e) => e.stopPropagation()}
+                    onDragEnd={(e) => e.stopPropagation()}
                     onDrop={(e) => e.stopPropagation()}
                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-white 
                              placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50"
