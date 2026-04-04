@@ -576,6 +576,32 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           </span>
 
           <p className="text-[#a0a0a0] mb-10 text-lg leading-relaxed">{project.description}</p>
+
+          {(project as any).images && (project as any).images.length > 0 && (
+            <div className="mb-10">
+              <h4 className="text-white font-semibold mb-5 flex items-center gap-2.5 text-sm">
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: project.color }} />
+                效果展示
+              </h4>
+              <div className={(project as any).images.length > 1 ? 'grid grid-cols-2 gap-4' : ''}>
+                {(project as any).images.map((img: { src: string; alt: string }, i: number) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.08 }}
+                    className="relative rounded-xl overflow-hidden border border-[#1f1f2e] group cursor-pointer"
+                    whileHover={{ borderColor: `${project.color}80` }}
+                  >
+                    <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                      <span className="text-white/90 text-xs">{img.alt}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="px-10 pb-10 space-y-10">
