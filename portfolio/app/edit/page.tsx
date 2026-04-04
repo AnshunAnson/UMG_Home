@@ -41,7 +41,16 @@ export default function EditPage() {
     }
   };
 
-  const handleSave = async () => {
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
+  const [saveMessage, setSaveMessage] = useState('');
+
+  const handleSave = async (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+    
+    setSaveStatus('saving');
+    setSaveMessage('');
+    
     const saveData = {
       heroContent: data.hero,
       aboutContent: data.about,
@@ -70,20 +79,19 @@ export default function EditPage() {
 
       if (tsData.success && jsonData.success) {
         setHasChanges(false);
-        alert(
-          `保存成功！\n\n` +
-          `✅ app/config/content.ts (${tsData.size} bytes)\n` +
-          `✅ public/content.json (${jsonData.size} bytes)\n\n` +
-          `下一步：git add . && git commit -m "更新内容" && git push`
-        );
+        setSaveStatus('success');
+        setSaveMessage(`已保存 (${tsData.size + jsonData.size} bytes)`);
+        setTimeout(() => setSaveStatus('idle'), 3000);
       } else {
         const errors = [];
         if (!tsData.success) errors.push('content.ts: ' + tsData.error);
         if (!jsonData.success) errors.push('content.json: ' + jsonData.error);
-        alert('部分保存失败：\n' + errors.join('\n'));
+        setSaveStatus('error');
+        setSaveMessage(errors.join('; '));
       }
     } catch (err: any) {
-      alert('保存失败：' + err.message);
+      setSaveStatus('error');
+      setSaveMessage(err.message);
     }
   };
 
@@ -97,8 +105,17 @@ export default function EditPage() {
             <p className="text-sm text-white/50">修改后保存，同时更新 content.ts 和 content.json</p>
           </div>
           <div className="flex items-center gap-3">
-            {hasChanges && (
+            {hasChanges && saveStatus === 'idle' && (
               <span className="text-sm text-[#00d4aa]">有未保存的更改</span>
+            )}
+            {saveStatus === 'saving' && (
+              <span className="text-sm text-white/50">保存中...</span>
+            )}
+            {saveStatus === 'success' && (
+              <span className="text-sm text-green-400">{saveMessage}</span>
+            )}
+            {saveStatus === 'error' && (
+              <span className="text-sm text-red-400" title={saveMessage}>保存失败</span>
             )}
             <button
               onClick={handleReset}
@@ -110,11 +127,13 @@ export default function EditPage() {
             </button>
             <button
               onClick={handleSave}
+              disabled={saveStatus === 'saving'}
               className="flex items-center gap-2 px-4 py-2 text-sm bg-[#00d4aa] text-black 
-                       rounded-lg hover:bg-[#00d4aa]/90 transition-colors font-medium"
+                       rounded-lg hover:bg-[#00d4aa]/90 transition-colors font-medium
+                       disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save className="w-4 h-4" />
-              保存
+              {saveStatus === 'saving' ? '保存中...' : '保存'}
             </button>
           </div>
         </div>

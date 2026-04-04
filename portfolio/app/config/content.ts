@@ -141,6 +141,30 @@ export const projectsContent: ProjectsContent = {
         {
           "src": "/gifs/niagara/入场_爆破,溅射.gif",
           "alt": "入场爆破溅射动效"
+        },
+        {
+          "src": "/gifs/uploaded/IP台来电.gif",
+          "alt": "来电"
+        },
+        {
+          "src": "/gifs/uploaded/SEQ_Loading01.gif",
+          "alt": "Loading"
+        },
+        {
+          "src": "/gifs/uploaded/SEQ_Mind.gif",
+          "alt": "Mind"
+        },
+        {
+          "src": "/gifs/uploaded/SEQ_Music.gif",
+          "alt": "Music"
+        },
+        {
+          "src": "/gifs/uploaded/SEQ_Scene_Switching.gif",
+          "alt": "扫光"
+        },
+        {
+          "src": "/gifs/uploaded/IP台开机动效.gif",
+          "alt": "开机"
         }
       ]
     },
