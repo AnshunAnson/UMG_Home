@@ -2,7 +2,8 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { skillsContent } from '../config/content';
+import { skillsContent as defaultSkillsContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 
 const ICON_MAP: Record<string, string> = {
   'Unreal Engine 4/5': 'UE', '蓝图开发': 'BP', 'C++ 开发': 'C+', '编辑器工具': 'ED',
@@ -17,15 +18,6 @@ const CATEGORY_MAP: Record<string, { id: string; icon: string }> = {
   '材质与动效': { id: 'vfx', icon: '✦' },
   '性能与工具': { id: 'tools', icon: '□' },
 };
-
-const skillsData = skillsContent.categories.flatMap(cat =>
-  cat.skills.map(s => ({
-    name: s.name,
-    level: s.level,
-    category: CATEGORY_MAP[cat.title]?.id || 'other',
-    icon: ICON_MAP[s.name] || s.name.slice(0, 2).toUpperCase(),
-  }))
-);
 
 const categories = [
   { id: 'core', name: '核心技能', color: '#00d4aa', icon: '◆' },
@@ -49,7 +41,7 @@ function HexagonSkill({
   onHover,
   onLeave,
 }: {
-  skill: typeof skillsData[0];
+  skill: { name: string; level: number; category: string; icon: string };
   index: number;
   isActive: boolean;
   onHover: () => void;
@@ -187,7 +179,7 @@ function HexagonSkill({
   );
 }
 
-function SkillCloud() {
+function SkillCloud({ skillsData }: { skillsData: { name: string; level: number; category: string; icon: string }[] }) {
   const cloudRef = useRef(null);
   const isInView = useInView(cloudRef, { once: true, margin: '-100px' });
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
@@ -307,7 +299,7 @@ function SkillListItem({
   skill,
   index,
 }: {
-  skill: typeof skillsData[0];
+  skill: { name: string; level: number; category: string; icon: string };
   index: number;
 }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -360,9 +352,20 @@ function SkillListItem({
 }
 
 export default function Skills() {
+  const content = useContent();
+  const skillsContent = content?.skills || defaultSkillsContent;
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const skillsData = skillsContent.categories.flatMap(cat =>
+    cat.skills.map(s => ({
+      name: s.name,
+      level: s.level,
+      category: CATEGORY_MAP[cat.title]?.id || 'other',
+      icon: ICON_MAP[s.name] || s.name.slice(0, 2).toUpperCase(),
+    }))
+  );
 
   const filteredSkills = activeCategory
     ? skillsData.filter(s => s.category === activeCategory)
@@ -408,7 +411,7 @@ export default function Skills() {
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div className="sticky top-32">
-            <SkillCloud />
+            <SkillCloud skillsData={skillsData} />
           </div>
 
           <div className="space-y-4 min-h-[520px]">

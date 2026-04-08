@@ -11,43 +11,53 @@ interface ArrayInputProps {
 }
 
 // 文件上传组件
-function FileUpload({ 
-  value, 
-  onChange, 
-  placeholder 
-}: { 
-  value: string; 
-  onChange: (value: string) => void;
+function FileUpload({
+  value,
+  onChange,
+  placeholder
+}: {
+  value: string;
+  onChange: (value: string | ((prev: string) => string)) => void;
   placeholder?: string;
 }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [preview, setPreview] = useState<string | null>(value && value.startsWith('/') ? value : null);
+  const [uploading, setUploading] = useState(false);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const isDataUrl = value && value.startsWith('data:');
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // 检查文件类型
     if (!file.type.startsWith('image/') && !file.name.endsWith('.gif')) {
       alert('请选择图片文件（支持 GIF、PNG、JPG）');
       return;
     }
 
-    // 创建本地预览
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const result = event.target?.result as string;
-      setPreview(result);
-    };
-    reader.readAsDataURL(file);
-
-    // 生成目标路径（模拟上传到 public/gifs/）
-    const targetPath = `/gifs/uploaded/${Date.now()}_${file.name}`;
-    onChange(targetPath);
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      if (value && value.includes('/')) {
+        const lastSlash = value.lastIndexOf('/');
+        formData.append('targetPath', value.substring(0, lastSlash + 1));
+      }
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.success && data.src) {
+        onChange(data.src);
+      } else {
+        alert(data.error || '上传失败');
+      }
+    } catch (err) {
+      alert('上传出错：' + String(err));
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
   };
 
   const handleClear = () => {
-    setPreview(null);
     onChange('');
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
@@ -63,21 +73,10 @@ function FileUpload({
         onChange={handleFileSelect}
         className="hidden"
       />
-      
-      {preview ? (
+
+      {isDataUrl ? (
         <div className="relative inline-block">
-          {preview.startsWith('data:') ? (
-            <img 
-              src={preview} 
-              alt="Preview" 
-              className="max-h-24 rounded border border-white/10"
-            />
-          ) : (
-            <div className="flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded">
-              <Image className="w-4 h-4 text-[#00d4aa]" />
-              <span className="text-xs text-white/70 truncate max-w-[150px]">{value}</span>
-            </div>
-          )}
+          <img src={value} alt="Preview" className="max-h-24 rounded border border-white/10" />
           <button
             onClick={handleClear}
             className="absolute -top-2 -right-2 w-5 h-5 bg-red-500/80 rounded-full flex items-center justify-center
@@ -90,11 +89,12 @@ function FileUpload({
         <div className="flex gap-2">
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 px-3 py-2 bg-[#00d4aa]/20 text-[#00d4aa] rounded 
-                     hover:bg-[#00d4aa]/30 transition-colors text-sm"
+            disabled={uploading}
+            className="flex items-center gap-2 px-3 py-2 bg-[#00d4aa]/20 text-[#00d4aa] rounded
+                     hover:bg-[#00d4aa]/30 transition-colors text-sm disabled:opacity-50"
           >
             <Image className="w-4 h-4" />
-            选择文件
+            {uploading ? '上传中...' : '选择文件'}
           </button>
           <input
             type="text"
@@ -130,7 +130,13 @@ function ObjectItemForm({
   const [expanded, setExpanded] = useState(true);
   
   const handleFieldChange = (key: string, value: any) => {
-    onChange({ ...item, [key]: value });
+    onChange((prevItem: any) => {
+      const resolvedValue = typeof value === 'function' ? value(prevItem) : value;
+      return {
+        ...prevItem,
+        [key]: resolvedValue
+      };
+    });
   };
 
   // 生成摘要信息
@@ -233,9 +239,12 @@ function ObjectItemForm({
                             <FileUpload
                               value={subValue}
                               onChange={(v) => {
-                                const newArray = [...(item?.[key] || [])];
-                                newArray[subIndex] = { ...subItem, [subKey]: v };
-                                handleFieldChange(key, newArray);
+                                handleFieldChange(key, (prev: any) => {
+                                  const arr = prev?.[key] || [];
+                                  return arr.map((img: any, i: number) =>
+                                    i === subIndex ? { ...img, [subKey]: v } : img
+                                  );
+                                });
                               }}
                               placeholder={subFieldSchema.placeholder}
                             />
@@ -249,9 +258,12 @@ function ObjectItemForm({
                             type="text"
                             value={subValue}
                             onChange={(e) => {
-                              const newArray = [...(item?.[key] || [])];
-                              newArray[subIndex] = { ...subItem, [subKey]: e.target.value };
-                              handleFieldChange(key, newArray);
+                              handleFieldChange(key, (prev: any) => {
+                                const arr = prev?.[key] || [];
+                                return arr.map((img: any, i: number) =>
+                                  i === subIndex ? { ...img, [subKey]: e.target.value } : img
+                                );
+                              });
                             }}
                             draggable={false}
                             onDragOver={(e) => e.stopPropagation()}
@@ -270,9 +282,12 @@ function ObjectItemForm({
                     type="text"
                     value={subItem || ''}
                     onChange={(e) => {
-                      const newArray = [...(item?.[key] || [])];
-                      newArray[subIndex] = e.target.value;
-                      handleFieldChange(key, newArray);
+                      handleFieldChange(key, (prev: any) => {
+                        const arr = prev?.[key] || [];
+                        return arr.map((item: any, i: number) =>
+                          i === subIndex ? e.target.value : item
+                        );
+                      });
                     }}
                     draggable={false}
                     onDragOver={(e) => e.stopPropagation()}
@@ -284,9 +299,10 @@ function ObjectItemForm({
                 )}
                 <button
                   onClick={() => {
-                    const newArray = [...(item?.[key] || [])];
-                    newArray.splice(subIndex, 1);
-                    handleFieldChange(key, newArray);
+                    handleFieldChange(key, (prev: any) => {
+                      const arr = prev?.[key] || [];
+                      return arr.filter((_: any, i: number) => i !== subIndex);
+                    });
                   }}
                   className="text-white/30 hover:text-red-400 text-xs p-1"
                 >
@@ -343,9 +359,15 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
   };
 
   const handleItemChange = (index: number, itemValue: any) => {
-    const newValue = [...value];
-    newValue[index] = itemValue;
-    onChange(newValue);
+    if (typeof itemValue === 'function') {
+      const newValue = [...value];
+      newValue[index] = itemValue(newValue[index]);
+      onChange(newValue);
+    } else {
+      const newValue = [...value];
+      newValue[index] = itemValue;
+      onChange(newValue);
+    }
   };
 
   const handleDragStart = (e: React.DragEvent, index: number) => {

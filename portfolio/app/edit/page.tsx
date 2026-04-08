@@ -10,7 +10,8 @@ import {
   aboutContent, 
   projectsContent, 
   skillsContent, 
-  contactContent 
+  contactContent,
+  footerContent 
 } from '../config/content';
 
 const initialData = {
@@ -19,6 +20,7 @@ const initialData = {
   projects: projectsContent,
   skills: skillsContent,
   contact: contactContent,
+  footer: footerContent,
 };
 
 export default function EditPage() {
@@ -57,6 +59,7 @@ export default function EditPage() {
       projectsContent: data.projects,
       skillsContent: data.skills,
       contactContent: data.contact,
+      footerContent: data.footer,
     };
 
     try {

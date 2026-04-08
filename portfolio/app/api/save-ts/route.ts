@@ -3,7 +3,7 @@ import { writeFile } from 'fs/promises';
 import { join } from 'path';
 
 function generateContentTs(data: any): string {
-  const { heroContent, aboutContent, projectsContent, skillsContent, contactContent } = data;
+  const { heroContent, aboutContent, projectsContent, skillsContent, contactContent, footerContent } = data;
 
   return `import {
   HeroContent,
@@ -30,24 +30,7 @@ export const skillsContent: SkillsContent = ${JSON.stringify(skillsContent, null
 export const contactContent: ContactContent = ${JSON.stringify(contactContent, null, 2)};
 
 // Footer区域内容
-export const footerContent: FooterContent = {
-  logo: "UMG",
-  logoHighlight: "Developer",
-  tagline: "专注于UE4/UE5开发与UMG界面设计",
-  navLinks: [
-    { label: "首页", href: "#hero" },
-    { label: "关于", href: "#about" },
-    { label: "项目", href: "#projects" },
-    { label: "技能", href: "#skills" },
-    { label: "联系", href: "#contact" }
-  ],
-  socialLinks: [
-    { icon: "github", href: "https://github.com", label: "GitHub" },
-    { icon: "linkedin", href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: "email", href: "mailto:contact@example.com", label: "Email" }
-  ],
-  copyright: "© 2024 UMG Developer. All rights reserved."
-};
+export const footerContent: FooterContent = ${JSON.stringify(footerContent, null, 2)};
 `;
 }
 

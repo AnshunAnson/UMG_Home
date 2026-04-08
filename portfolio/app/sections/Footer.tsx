@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Code2, Globe, AtSign, Mail, ArrowUp } from 'lucide-react';
-import { footerContent } from '../config/content';
+import { footerContent as defaultFooterContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 
 // 图标映射
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -13,6 +14,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function Footer() {
+  const content = useContent();
+  const footerContent = content?.footer || defaultFooterContent;
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

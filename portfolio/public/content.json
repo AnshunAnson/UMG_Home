@@ -1,9 +1,9 @@
 {
   "heroContent": {
     "badge": "Available for work",
-    "name": "UE4 Developer",
+    "name": "UE 工程师",
     "nameHighlightLength": 3,
-    "subtitle": "汽车渲染 · UMG重构 · 材质动效",
+    "subtitle": "汽车渲染 · UMG重构 · 材质动效·工作流搭建·前沿技术预研",
     "stats": [
       {
         "icon": "📍",
@@ -12,10 +12,6 @@
       {
         "icon": "💼",
         "label": "3年经验"
-      },
-      {
-        "icon": "🎯",
-        "label": "UMG重构"
       }
     ],
     "cornerLeft": "2027",
@@ -25,15 +21,14 @@
     "sectionTitle": "关于我",
     "sectionSubtitle": "About Me",
     "bio": [
-      "专注于UMG界面重构与架构设计，具备完整的UI/UX设计能力。精通LyraUI框架，擅长复杂交互系统的技术实现与性能优化，能够高效还原UI设计效果。",
-      "在UMG重构方面有丰富经验，包括UI架构重构、蓝图模板开发、Unlua集成、UI性能优化等。熟悉编辑器工具开发，能够建立完整的UI工具链和资产规范。",
-      "精通UI材质动效制作，具备Substrate材质系统、SDF、PBR模拟等高级材质技术能力。同时掌握Niagara粒子系统，能够为UI添加丰富的视觉效果。"
+      "曾主导项目 UMG 系统重构，深度优化 UI 内存管理与渲染响应速度。擅长编写定制化蓝图编辑器工具链，并运用 Harness 工程理念搭建自动化工作流，有效降低技术债务。",
+      "具备比亚迪、广汽丰田、德赛西威等HMI项目实战经验。擅长移动端高性能 PBR 材质与半透明动效优化（可解决摩尔纹等痛点），并能独立开发蓝图编辑器工具链提升团队效率。"
     ],
     "age": 24,
     "location": "深圳",
     "experience": 3,
     "currentCompany": "深圳普修汽车资讯有限公司",
-    "jobTitle": "UE4开发",
+    "jobTitle": "UE工程师",
     "stats": [
       {
         "label": "Years",
@@ -63,6 +58,10 @@
       {
         "title": "性能优化",
         "description": "移动端适配与优化"
+      },
+      {
+        "title": "工具开发",
+        "description": "构建设计师/美术易用的生产工具和流程"
       }
     ]
   },
@@ -130,28 +129,44 @@
             "alt": "入场爆破溅射动效"
           },
           {
-            "src": "/gifs/uploaded/IP台来电.gif",
+            "src": "/gifs/niagara/IP台来电.gif",
             "alt": "来电"
           },
           {
-            "src": "/gifs/uploaded/SEQ_Loading01.gif",
+            "src": "/gifs/niagara/SEQ_Loading01.gif",
             "alt": "Loading"
           },
           {
-            "src": "/gifs/uploaded/SEQ_Mind.gif",
+            "src": "/gifs/niagara/SEQ_Mind.gif",
             "alt": "Mind"
           },
           {
-            "src": "/gifs/uploaded/SEQ_Music.gif",
+            "src": "/gifs/niagara/SEQ_Music.gif",
             "alt": "Music"
           },
           {
-            "src": "/gifs/uploaded/SEQ_Scene_Switching.gif",
+            "src": "/gifs/niagara/SEQ_Scene_Switching.gif",
             "alt": "扫光"
           },
           {
-            "src": "/gifs/uploaded/IP台开机动效.gif",
+            "src": "/gifs/niagara/IP台开机动效.gif",
             "alt": "开机"
+          },
+          {
+            "src": "/gifs/niagara/audio.gif",
+            "alt": "音频可视化"
+          },
+          {
+            "src": "/gifs/niagara/SEQ_Flow7.gif",
+            "alt": "入场"
+          },
+          {
+            "src": "/gifs/niagara/Wellness02.gif",
+            "alt": "粒子烟雾"
+          },
+          {
+            "src": "/gifs/niagara/SEQ_Render_thm2_prob4.gif",
+            "alt": "森林情景"
           }
         ]
       },
@@ -181,39 +196,6 @@
           "编辑器工具"
         ],
         "color": "#3498db"
-      },
-      {
-        "id": 4,
-        "icon": "Award",
-        "title": "VR竞赛项目",
-        "company": "深圳大学",
-        "period": "2022.06 - 2022.09",
-        "category": "VR开发",
-        "description": "参加全国VR设计竞赛，使用UE4开发沉浸式汽车展示应用",
-        "details": [
-          "负责UMG界面和交互设计",
-          "实现VR环境下的UI适配",
-          "优化VR渲染性能",
-          "设计用户交互流程"
-        ],
-        "achievements": [
-          "获得比赛三等奖",
-          "成功展示HMI概念效果",
-          "创新的UMG动效设计"
-        ],
-        "tech": [
-          "UMG",
-          "Niagara",
-          "材质系统",
-          "UI动效"
-        ],
-        "color": "#e74c3c",
-        "images": [
-          {
-            "src": "/gifs/hmi/比亚迪入场动画.gif",
-            "alt": "比亚迪入场动画"
-          }
-        ]
       },
       {
         "id": 5,
@@ -351,8 +333,11 @@
     "description": "专注于UE4/UE5开发，寻找志同道合的团队\n期待与您一起打造卓越的游戏体验",
     "email": "an15073025868@163.com",
     "phone": "15073025868",
-    "location": "深圳",
-    "jobTitle": "UMG重构",
-    "salary": "11-22K"
+    "location": "深圳"
+  },
+  "footerContent": {
+    "logo": "UE",
+    "copyright": "UE",
+    "logoHighlight": "Developer"
   }
 }

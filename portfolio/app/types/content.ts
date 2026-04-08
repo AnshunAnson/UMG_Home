@@ -95,8 +95,6 @@ export interface ContactContent {
   email: string;
   phone: string;
   location: string;
-  jobTitle: string;
-  salary: string;
 }
 
 // Footer 区域

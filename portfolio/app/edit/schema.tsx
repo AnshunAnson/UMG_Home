@@ -8,6 +8,7 @@ import type {
   ProjectsContent,
   SkillsContent,
   ContactContent,
+  FooterContent,
 } from '../types/content';
 
 export type FieldType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'text';
@@ -66,7 +67,7 @@ export const heroSchema: SectionSchema<HeroContent> = {
     stats: {
       type: 'array',
       label: '统计标签',
-      description: '三个标签项，如地点、经验、求职意向',
+      description: '标签项，如地点、经验',
       itemType: 'object',
       itemSchema: {
         icon: { type: 'string', label: '图标', placeholder: '📍' },
@@ -282,16 +283,53 @@ export const contactSchema: SectionSchema<ContactContent> = {
       type: 'string',
       label: '城市',
       placeholder: '深圳'
-    },
-    jobTitle: {
+    }
+  }
+};
+
+// Footer区域Schema
+export const footerSchema: SectionSchema<FooterContent> = {
+  title: '页脚 Footer',
+  description: '配置页脚内容',
+  fields: {
+    logo: {
       type: 'string',
-      label: '求职岗位',
-      placeholder: 'UMG重构'
+      label: 'Logo文字',
+      placeholder: 'UMG'
     },
-    salary: {
+    logoHighlight: {
       type: 'string',
-      label: '期望薪资',
-      placeholder: '11-22K'
+      label: 'Logo高亮文字',
+      placeholder: 'Developer'
+    },
+    tagline: {
+      type: 'string',
+      label: '标语',
+      placeholder: '专注于UE4/UE5开发与UMG界面设计'
+    },
+    navLinks: {
+      type: 'array',
+      label: '导航链接',
+      itemType: 'object',
+      itemSchema: {
+        label: { type: 'string', label: '标签', placeholder: '关于' },
+        href: { type: 'string', label: '链接', placeholder: '#about' }
+      }
+    },
+    socialLinks: {
+      type: 'array',
+      label: '社交链接',
+      itemType: 'object',
+      itemSchema: {
+        icon: { type: 'string', label: '图标', placeholder: 'Code2', description: 'lucide-react图标名' },
+        href: { type: 'string', label: '链接', placeholder: 'https://github.com' },
+        label: { type: 'string', label: '标签', placeholder: 'GitHub' }
+      }
+    },
+    copyright: {
+      type: 'string',
+      label: '版权信息',
+      placeholder: '© 2024 UMG Developer'
     }
   }
 };
@@ -302,5 +340,6 @@ export const allSchemas: Record<string, SectionSchema> = {
   about: aboutSchema,
   projects: projectsSchema,
   skills: skillsSchema,
-  contact: contactSchema
+  contact: contactSchema,
+  footer: footerSchema
 };

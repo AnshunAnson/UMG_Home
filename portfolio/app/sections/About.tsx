@@ -146,7 +146,8 @@ export default function About() {
     experience, 
     currentCompany, 
     jobTitle,
-    stats 
+    stats,
+    coreSkills
   } = aboutContent;
 
   return (
@@ -308,34 +309,29 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* 求职意向 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="relative bg-gradient-to-br from-[#00d4aa]/10 to-transparent border border-[#00d4aa]/20 
-                         rounded-xl p-8 overflow-hidden group hover:border-[#00d4aa]/40 transition-colors duration-300"
-            >
-              {/* 装饰背景 */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00d4aa]/5 rounded-full blur-3xl group-hover:bg-[#00d4aa]/10 transition-colors duration-300" />
-              
-              <div className="relative z-10">
-                <span className="text-[#00d4aa] text-sm font-mono uppercase tracking-wider">求职意向</span>
-                <h4 className="text-3xl font-bold text-white mt-2">UMG重构</h4>
-                <div className="flex flex-wrap gap-3 mt-4">
-                  <span className="px-3 py-1 bg-[#00d4aa]/10 border border-[#00d4aa]/20 rounded-full text-[#00d4aa] text-sm">
-                    UE4/UE5
-                  </span>
-                  <span className="px-3 py-1 bg-[#00d4aa]/10 border border-[#00d4aa]/20 rounded-full text-[#00d4aa] text-sm">
-                    期望薪资 11-22K
-                  </span>
-                  <span className="px-3 py-1 bg-[#00d4aa]/10 border border-[#00d4aa]/20 rounded-full text-[#00d4aa] text-sm">
-                    {location}
-                  </span>
+            {/* 核心技能 */}
+            {coreSkills && coreSkills.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="relative bg-gradient-to-br from-[#00d4aa]/10 to-transparent border border-[#00d4aa]/20 
+                           rounded-xl p-8 overflow-hidden group hover:border-[#00d4aa]/40 transition-colors duration-300"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#00d4aa]/5 rounded-full blur-3xl group-hover:bg-[#00d4aa]/10 transition-colors duration-300" />
+                <div className="relative z-10">
+                  <span className="text-[#00d4aa] text-sm font-mono uppercase tracking-wider">核心技能</span>
+                  <div className="flex flex-wrap gap-3 mt-4">
+                    {coreSkills.map((skill, index) => (
+                      <span key={index} className="px-3 py-1 bg-[#00d4aa]/10 border border-[#00d4aa]/20 rounded-full text-[#00d4aa] text-sm">
+                        {skill.title}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
 
             {/* 当前工作状态 */}
             <motion.div

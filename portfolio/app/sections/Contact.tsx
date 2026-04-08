@@ -3,7 +3,8 @@
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Mail, MapPin, Phone, GitBranch, Link2, Send, ArrowUpRight } from 'lucide-react';
-import { contactContent } from '../config/content';
+import { contactContent as defaultContactContent } from '../config/content';
+import { useContent } from '../ContentProvider';
 import Footer from './Footer';
 
 // 磁吸按钮组件
@@ -219,7 +220,9 @@ export default function Contact() {
     }
   }, []);
 
-  const { sectionTitle, sectionSubtitle, description, email, phone, location, jobTitle, salary } = contactContent;
+  const content = useContent();
+  const contactContent = content?.contact || defaultContactContent;
+  const { sectionTitle, sectionSubtitle, description, email, phone, location } = contactContent;
 
   const contactInfo = [
     {
@@ -320,24 +323,6 @@ export default function Contact() {
           >
             {description}
           </motion.p>
-
-          {/* 求职意向标签 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-4 mb-12"
-          >
-            <span className="px-4 py-2 rounded-full bg-[#00d4aa]/10 border border-[#00d4aa]/30 text-[#00d4aa] text-sm">
-              {jobTitle}
-            </span>
-            <span className="px-4 py-2 rounded-full bg-[#111118] border border-[#2a2a35] text-[#8a8a9a] text-sm">
-              期望薪资: {salary}
-            </span>
-            <span className="px-4 py-2 rounded-full bg-[#111118] border border-[#2a2a35] text-[#8a8a9a] text-sm">
-              {location}
-            </span>
-          </motion.div>
 
           {/* 磁吸CTA按钮 */}
           <motion.div
