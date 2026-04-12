@@ -125,47 +125,47 @@
         "color": "#9b59b6",
         "images": [
           {
-            "src": "/gifs/niagara/入场_爆破,溅射.gif",
+            "src": "/gifs/DesaysvFX/入场_爆破,溅射.gif",
             "alt": "入场爆破溅射动效"
           },
           {
-            "src": "/gifs/niagara/IP台来电.gif",
+            "src": "/gifs/DesaysvFX/IP台来电.gif",
             "alt": "来电"
           },
           {
-            "src": "/gifs/niagara/SEQ_Loading01.gif",
+            "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
             "alt": "Loading"
           },
           {
-            "src": "/gifs/niagara/SEQ_Mind.gif",
+            "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
             "alt": "Mind"
           },
           {
-            "src": "/gifs/niagara/SEQ_Music.gif",
+            "src": "/gifs/DesaysvFX/SEQ_Music.gif",
             "alt": "Music"
           },
           {
-            "src": "/gifs/niagara/SEQ_Scene_Switching.gif",
+            "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
             "alt": "扫光"
           },
           {
-            "src": "/gifs/niagara/IP台开机动效.gif",
+            "src": "/gifs/DesaysvFX/IP台开机动效.gif",
             "alt": "开机"
           },
           {
-            "src": "/gifs/niagara/audio.gif",
+            "src": "/gifs/DesaysvFX/audio.gif",
             "alt": "音频可视化"
           },
           {
-            "src": "/gifs/niagara/SEQ_Flow7.gif",
+            "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
             "alt": "入场"
           },
           {
-            "src": "/gifs/niagara/Wellness02.gif",
+            "src": "/gifs/DesaysvFX/Wellness02.gif",
             "alt": "粒子烟雾"
           },
           {
-            "src": "/gifs/niagara/SEQ_Render_thm2_prob4.gif",
+            "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
             "alt": "森林情景"
           }
         ]
@@ -222,7 +222,12 @@
           "网络同步",
           "UMG"
         ],
-        "color": "#f39c12"
+        "color": "#f39c12",
+        "images": [
+          {
+            "src": "/gifs/FPS.high.gif"
+          }
+        ]
       }
     ]
   },
@@ -336,8 +341,48 @@
     "location": "深圳"
   },
   "footerContent": {
-    "logo": "UE",
-    "copyright": "UE",
-    "logoHighlight": "Developer"
+    "logo": "UMG",
+    "logoHighlight": "Developer",
+    "tagline": "专注于UE4/UE5开发与UMG界面设计",
+    "navLinks": [
+      {
+        "label": "首页",
+        "href": "#hero"
+      },
+      {
+        "label": "关于",
+        "href": "#about"
+      },
+      {
+        "label": "项目",
+        "href": "#projects"
+      },
+      {
+        "label": "技能",
+        "href": "#skills"
+      },
+      {
+        "label": "联系",
+        "href": "#contact"
+      }
+    ],
+    "socialLinks": [
+      {
+        "icon": "github",
+        "href": "https://github.com",
+        "label": "GitHub"
+      },
+      {
+        "icon": "linkedin",
+        "href": "https://linkedin.com",
+        "label": "LinkedIn"
+      },
+      {
+        "icon": "email",
+        "href": "mailto:contact@example.com",
+        "label": "Email"
+      }
+    ],
+    "copyright": "© 2024 UMG Developer. All rights reserved."
   }
 }
