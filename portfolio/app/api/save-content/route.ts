@@ -2,9 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 
+type SaveContentRequest = {
+  content?: string | Record<string, unknown>;
+  filename?: string;
+};
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as SaveContentRequest;
     const { content, filename = 'content.json' } = body;
 
     if (!content) {
@@ -23,10 +28,10 @@ export async function POST(request: NextRequest) {
       message: `已保存到 public/${filename}`,
       size: new TextEncoder().encode(jsonStr).length,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('[save-content API Error]:', error);
     return NextResponse.json(
-      { error: error.message || String(error) },
+      { error: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }

@@ -1,7 +1,3 @@
-// 统一内容类型定义
-// 前端展示和 edit 页面共享此类型定义
-
-// Hero 区域
 export interface HeroStat {
   icon: string;
   label: string;
@@ -17,13 +13,6 @@ export interface HeroContent {
   cornerRight: string;
 }
 
-// About 区域
-export interface AboutStat {
-  label: string;
-  value: number;
-  suffix: string;
-}
-
 export interface CoreSkill {
   title: string;
   description: string;
@@ -36,13 +25,10 @@ export interface AboutContent {
   age: number;
   location: string;
   experience: number;
-  currentCompany: string;
   jobTitle: string;
-  stats: AboutStat[];
   coreSkills: CoreSkill[];
 }
 
-// Projects 区域
 export interface ProjectImage {
   src: string;
   alt: string;
@@ -52,7 +38,6 @@ export interface Project {
   id: number;
   icon: string;
   title: string;
-  company: string;
   period: string;
   category: string;
   description: string;
@@ -69,7 +54,6 @@ export interface ProjectsContent {
   projects: Project[];
 }
 
-// Skills 区域
 export interface Skill {
   name: string;
   level: number;
@@ -87,7 +71,6 @@ export interface SkillsContent {
   techStack: string[];
 }
 
-// Contact 区域
 export interface ContactContent {
   sectionTitle: string;
   sectionSubtitle: string;
@@ -97,7 +80,6 @@ export interface ContactContent {
   location: string;
 }
 
-// Footer 区域
 export interface NavLink {
   label: string;
   href: string;
@@ -118,7 +100,6 @@ export interface FooterContent {
   copyright: string;
 }
 
-// 统一导出
 export interface PortfolioContent {
   heroContent: HeroContent;
   aboutContent: AboutContent;

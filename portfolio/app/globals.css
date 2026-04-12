@@ -1,42 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* UE5 Dark Theme */
-  --background: #0d0d0d;
-  --background-secondary: #1a1a1a;
-  --background-tertiary: #242424;
-  --foreground: #ffffff;
-  --foreground-muted: #8a8a8a;
-  
-  /* UE5 Accent Colors */
+  --background: #06070a;
+  --surface: #0d1016;
+  --surface-secondary: #121722;
+  --foreground: #f5f7fb;
+  --foreground-muted: rgba(245, 247, 251, 0.62);
+  --foreground-subtle: rgba(245, 247, 251, 0.38);
   --accent-primary: #00d4aa;
-  --accent-secondary: #00a8e8;
-  --accent-tertiary: #ff6b35;
-  
-  /* UI Colors */
-  --border: #2a2a2a;
-  --border-hover: #3a3a3a;
-  --glass-bg: rgba(26, 26, 26, 0.85);
-  
-  /* Project Theme Colors */
-  --theme-car: #00d4aa;
-  --theme-hmi: #00a8e8;
-  --theme-niagara: #9d4edd;
-  --theme-design: #ff6b35;
-  --theme-game: #ff006e;
+  --accent-soft: rgba(0, 212, 170, 0.16);
+  --line: rgba(245, 247, 251, 0.08);
+  --line-strong: rgba(245, 247, 251, 0.16);
+  --font-sans: 'Manrope', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-background-secondary: var(--background-secondary);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
   --color-accent-primary: var(--accent-primary);
-  --color-accent-secondary: var(--accent-secondary);
-  --color-accent-tertiary: var(--accent-tertiary);
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 * {
@@ -44,20 +34,50 @@
 }
 
 html {
+  background: var(--background);
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
   overflow-x: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(0, 212, 170, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(80, 109, 255, 0.08), transparent 22%),
+    linear-gradient(180deg, #0a0b0f 0%, #07090d 38%, #050608 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   line-height: 1.6;
 }
 
-/* Custom Scrollbar - UE5 Style */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 1px), rgba(245, 247, 251, 0.028) calc(50% - 1px), rgba(245, 247, 251, 0.028) calc(50% + 1px), transparent calc(50% + 1px), transparent 100%),
+    linear-gradient(180deg, rgba(245, 247, 251, 0.02) 0, transparent 22%);
+  z-index: 0;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+canvas {
+  display: block;
+}
+
+::selection {
+  background: var(--accent-primary);
+  color: var(--background);
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -65,370 +85,40 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-hover);
-  border-radius: 3px;
+  background: rgba(245, 247, 251, 0.18);
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-primary);
+  background: rgba(0, 212, 170, 0.52);
 }
 
-/* Selection */
-::selection {
-  background: var(--accent-primary);
-  color: var(--background);
+.font-display {
+  font-family: var(--font-display);
 }
 
-/* UE5 Card Style */
-.ue5-card {
-  background: var(--background-secondary);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  transition: all 0.2s ease;
+.section-rule {
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 247, 251, 0.12) 12%, rgba(245, 247, 251, 0.12) 88%, transparent 100%);
 }
 
-.ue5-card:hover {
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 1px var(--accent-primary);
+.section-grid {
+  background-image:
+    linear-gradient(rgba(245, 247, 251, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 247, 251, 0.03) 1px, transparent 1px);
+  background-size: 100% 56px, 56px 100%;
 }
 
-/* UE5 Button Style */
-.ue5-button {
-  background: var(--accent-primary);
-  color: var(--background);
-  font-weight: 600;
-  padding: 10px 24px;
-  border-radius: 4px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.2s ease;
-}
-
-.ue5-button:hover {
-  background: #00b894;
-  transform: translateY(-1px);
-}
-
-/* UE5 Outline Button */
-.ue5-button-outline {
-  background: transparent;
-  border: 1px solid var(--border-hover);
-  color: var(--foreground);
-  padding: 10px 24px;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.ue5-button-outline:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-}
-
-/* UE5 Tag Style */
-.ue5-tag {
-  background: var(--background-tertiary);
-  border: 1px solid var(--border);
-  padding: 4px 12px;
-  border-radius: 2px;
-  font-size: 12px;
-  color: var(--foreground-muted);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* Gradient Text - UE5 Style */
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Section Divider */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
-}
-
-/* UE5 Grid Background */
-.ue5-grid {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* UE5 Grid Background with Animation */
-.ue5-grid-animated {
-  background-image: 
-    linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: gridMove 20s linear infinite;
-}
-
-@keyframes gridMove {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 40px 40px;
-  }
-}
-
-/* Typing Cursor */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.typing-cursor::after {
-  content: '_';
-  animation: blink 1s infinite;
-  color: var(--accent-primary);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* Fade In Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-/* UE5 Progress Bar */
-.ue5-progress {
-  height: 4px;
-  background: var(--background-tertiary);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.ue5-progress-bar {
-  height: 100%;
-  background: var(--accent-primary);
-  border-radius: 2px;
-  transition: width 1s ease-out;
-}
-
-/* Project Card Hover Effects */
-.project-card {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-    rgba(0, 212, 170, 0.15) 0%, 
-    transparent 50%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  pointer-events: none;
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-.project-card:hover {
-  transform: scale(1.02);
-  border-color: var(--accent-primary);
-  box-shadow: 
-    0 0 0 1px var(--accent-primary),
-    0 20px 40px rgba(0, 212, 170, 0.1);
-}
-
-/* Light Sweep Effect */
-@keyframes lightSweep {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(200%) rotate(45deg);
-  }
-}
-
-.light-sweep::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: translateX(-100%) rotate(45deg);
-  pointer-events: none;
-}
-
-.light-sweep:hover::after {
-  animation: lightSweep 1s ease-in-out;
-}
-
-/* Glow Effect */
-.glow-effect {
-  position: relative;
-}
-
-.glow-effect::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  border-radius: inherit;
-  opacity: 0;
-  z-index: -1;
-  filter: blur(10px);
-  transition: opacity 0.3s ease;
-}
-
-.glow-effect:hover::before {
-  opacity: 0.5;
-}
-
-/* Particle Container */
-.particle-container {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Blueprint Node Style */
-.blueprint-node {
-  background: rgba(0, 212, 170, 0.1);
-  border: 1px solid var(--accent-primary);
-  border-radius: 4px;
-  padding: 8px 12px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--accent-primary);
-}
-
-/* Wireframe Style */
-.wireframe {
-  fill: none;
-  stroke: var(--accent-primary);
-  stroke-width: 1;
-  stroke-dasharray: 5, 5;
-}
-
-/* Dashboard Gauge */
-.gauge-bg {
-  fill: none;
-  stroke: var(--background-tertiary);
-  stroke-width: 8;
-}
-
-.gauge-fill {
-  fill: none;
-  stroke: var(--accent-primary);
-  stroke-width: 8;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s ease;
-}
-
-/* Ripple Effect */
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(0, 212, 170, 0.3);
-  animation: ripple 1s ease-out forwards;
-  pointer-events: none;
-}
-
-/* Audio Visualizer Bar */
-@keyframes audioBar {
-  0%, 100% { height: 20%; }
-  50% { height: 100%; }
-}
-
-.audio-bar {
-  width: 4px;
-  background: var(--accent-primary);
-  border-radius: 2px;
-  animation: audioBar 0.5s ease-in-out infinite;
-}
-
-/* Crosshair */
-.crosshair {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
-}
-
-.crosshair::before,
-.crosshair::after {
-  content: '';
-  position: absolute;
-  background: var(--accent-primary);
-}
-
-.crosshair::before {
-  width: 100%;
-  height: 2px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.crosshair::after {
-  width: 2px;
-  height: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Network Node */
-.network-node {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-primary);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--accent-primary);
-}
-
-.network-line {
-  stroke: var(--accent-primary);
-  stroke-width: 1;
-  opacity: 0.5;
-}
-
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-
-  /* 禁用背景动画 */
-  .ue5-grid-animated {
-    animation: none !important;
   }
 }

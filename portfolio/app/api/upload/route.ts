@@ -28,10 +28,10 @@ export async function POST(request: NextRequest) {
     const src = `/${dirPart}${safeName}`;
 
     return NextResponse.json({ success: true, src });
-  } catch (error: any) {
+  } catch (error) {
     console.error('[upload API Error]:', error);
     return NextResponse.json(
-      { error: error.message || String(error) },
+      { error: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }

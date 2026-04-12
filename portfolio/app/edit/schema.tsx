@@ -1,7 +1,3 @@
-// Edit页面表单Schema定义
-// 描述每个配置项的数据结构，用于动态生成表单
-// 基于 app/types/content.ts 中的类型定义
-
 import type {
   HeroContent,
   AboutContent,
@@ -30,12 +26,9 @@ export interface SectionSchema<T = unknown> {
   title: string;
   description?: string;
   fields: Record<string, FieldSchema>;
-  // 类型引用标记，用于类型检查和IDE提示
   _type?: T;
 }
 
-// Hero区域Schema
-// 对应类型: HeroContent
 export const heroSchema: SectionSchema<HeroContent> = {
   title: '首页 Hero',
   description: '配置首屏展示内容',
@@ -87,8 +80,6 @@ export const heroSchema: SectionSchema<HeroContent> = {
   }
 };
 
-// About区域Schema
-// 对应类型: AboutContent
 export const aboutSchema: SectionSchema<AboutContent> = {
   title: '关于 About',
   description: '配置个人介绍内容',
@@ -124,26 +115,10 @@ export const aboutSchema: SectionSchema<AboutContent> = {
       label: '工作年限',
       placeholder: '3'
     },
-    currentCompany: {
-      type: 'string',
-      label: '当前公司',
-      placeholder: '深圳普修汽车资讯有限公司'
-    },
     jobTitle: {
       type: 'string',
       label: '职位',
       placeholder: 'UE4开发'
-    },
-    stats: {
-      type: 'array',
-      label: '统计数据',
-      description: '关于区域显示的统计数据',
-      itemType: 'object',
-      itemSchema: {
-        label: { type: 'string', label: '标签', placeholder: 'Years' },
-        value: { type: 'number', label: '数值', placeholder: '3' },
-        suffix: { type: 'string', label: '后缀', placeholder: '+' }
-      }
     },
     coreSkills: {
       type: 'array',
@@ -158,8 +133,6 @@ export const aboutSchema: SectionSchema<AboutContent> = {
   }
 };
 
-// Projects区域Schema
-// 对应类型: ProjectsContent
 export const projectsSchema: SectionSchema<ProjectsContent> = {
   title: '项目 Projects',
   description: '配置项目经历',
@@ -182,7 +155,6 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
         id: { type: 'number', label: 'ID' },
         icon: { type: 'string', label: '图标', placeholder: 'Car' },
         title: { type: 'string', label: '项目名称', placeholder: '汽车渲染' },
-        company: { type: 'string', label: '公司', placeholder: '深圳普修汽车资讯有限公司' },
         period: { type: 'string', label: '时间段', placeholder: '2023.12 - 至今' },
         category: { type: 'string', label: '分类', placeholder: '渲染 / 动效 / UI / 编辑器' },
         description: { type: 'text', label: '项目描述' },
@@ -205,8 +177,6 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
   }
 };
 
-// Skills区域Schema
-// 对应类型: SkillsContent
 export const skillsSchema: SectionSchema<SkillsContent> = {
   title: '技能 Skills',
   description: '配置技能展示',
@@ -248,8 +218,6 @@ export const skillsSchema: SectionSchema<SkillsContent> = {
   }
 };
 
-// Contact区域Schema
-// 对应类型: ContactContent
 export const contactSchema: SectionSchema<ContactContent> = {
   title: '联系 Contact',
   description: '配置联系方式',
@@ -287,7 +255,6 @@ export const contactSchema: SectionSchema<ContactContent> = {
   }
 };
 
-// Footer区域Schema
 export const footerSchema: SectionSchema<FooterContent> = {
   title: '页脚 Footer',
   description: '配置页脚内容',
@@ -334,7 +301,6 @@ export const footerSchema: SectionSchema<FooterContent> = {
   }
 };
 
-// 所有Schema汇总
 export const allSchemas: Record<string, SectionSchema> = {
   hero: heroSchema,
   about: aboutSchema,

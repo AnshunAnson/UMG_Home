@@ -3,8 +3,8 @@ import "./globals.css";
 import { ContentProvider } from "./ContentProvider";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Creative Developer",
-  description: "A futuristic cyberpunk portfolio showcasing creative development",
+  title: "个人技术主页 | 项目、系统与工程实践",
+  description: "涵盖项目实践、界面系统、视觉表达、工具链与技术验证的个人技术主页。",
 };
 
 export default function RootLayout({

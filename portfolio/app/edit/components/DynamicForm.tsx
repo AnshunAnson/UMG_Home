@@ -9,18 +9,25 @@ import ObjectInput from './FormFields/ObjectInput';
 
 interface DynamicFormProps {
   schema: SectionSchema;
-  data: Record<string, any>;
-  onChange: (data: Record<string, any>) => void;
+  data: object;
+  onChange: (data: Record<string, unknown>) => void;
   nested?: boolean;
 }
 
 export default function DynamicForm({ schema, data, onChange, nested }: DynamicFormProps) {
-  const safeData = data || {};
+  const safeData = data as Record<string, unknown>;
+  const readString = (value: unknown) => (typeof value === 'string' ? value : '');
+  const readNumber = (value: unknown) => (typeof value === 'number' ? value : 0);
+  const readArray = (value: unknown) => (Array.isArray(value) ? value : []);
+  const readObject = (value: unknown): Record<string, unknown> =>
+    value && typeof value === 'object' && !Array.isArray(value)
+      ? (value as Record<string, unknown>)
+      : {};
 
-  const handleFieldChange = (key: string, value: any) => {
+  const handleFieldChange = (key: string, value: unknown) => {
     onChange({
       ...safeData,
-      [key]: value
+      [key]: value,
     });
   };
 
@@ -33,7 +40,7 @@ export default function DynamicForm({ schema, data, onChange, nested }: DynamicF
           <TextInput
             key={key}
             schema={fieldSchema}
-            value={value}
+            value={readString(value)}
             onChange={(v) => handleFieldChange(key, v)}
           />
         );
@@ -43,7 +50,7 @@ export default function DynamicForm({ schema, data, onChange, nested }: DynamicF
           <NumberInput
             key={key}
             schema={fieldSchema}
-            value={value}
+            value={readNumber(value)}
             onChange={(v) => handleFieldChange(key, v)}
           />
         );
@@ -53,7 +60,7 @@ export default function DynamicForm({ schema, data, onChange, nested }: DynamicF
           <TextArea
             key={key}
             schema={fieldSchema}
-            value={value}
+            value={readString(value)}
             onChange={(v) => handleFieldChange(key, v)}
           />
         );
@@ -63,7 +70,7 @@ export default function DynamicForm({ schema, data, onChange, nested }: DynamicF
           <ArrayInput
             key={key}
             schema={fieldSchema}
-            value={value || []}
+            value={readArray(value)}
             onChange={(v) => handleFieldChange(key, v)}
           />
         );
@@ -73,7 +80,7 @@ export default function DynamicForm({ schema, data, onChange, nested }: DynamicF
           <ObjectInput
             key={key}
             label={fieldSchema.label || key}
-            value={value || {}}
+            value={readObject(value)}
             onChange={(v) => handleFieldChange(key, v)}
             description={fieldSchema.description}
             required={fieldSchema.required}

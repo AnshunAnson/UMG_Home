@@ -23,12 +23,20 @@ const initialData = {
   footer: footerContent,
 };
 
+type EditableContent = typeof initialData;
+type SectionKey = keyof EditableContent;
+type SaveResponse = {
+  success?: boolean;
+  size?: number;
+  error?: string;
+};
+
 export default function EditPage() {
   const [data, setData] = useState(initialData);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState<SectionKey>('hero');
   const [hasChanges, setHasChanges] = useState(false);
 
-  const handleSectionChange = (section: string, newData: any) => {
+  const handleSectionChange = (section: SectionKey, newData: EditableContent[SectionKey]) => {
     setData(prev => ({
       ...prev,
       [section]: newData
@@ -77,24 +85,25 @@ export default function EditPage() {
         }),
       ]);
 
-      const tsData = await tsResult.json();
-      const jsonData = await jsonResult.json();
+      const tsData: SaveResponse = await tsResult.json();
+      const jsonData: SaveResponse = await jsonResult.json();
 
       if (tsData.success && jsonData.success) {
+        const totalSize = (tsData.size ?? 0) + (jsonData.size ?? 0);
         setHasChanges(false);
         setSaveStatus('success');
-        setSaveMessage(`已保存 (${tsData.size + jsonData.size} bytes)`);
+        setSaveMessage(`已保存 (${totalSize} bytes)`);
         setTimeout(() => setSaveStatus('idle'), 3000);
       } else {
-        const errors = [];
+        const errors: string[] = [];
         if (!tsData.success) errors.push('content.ts: ' + tsData.error);
         if (!jsonData.success) errors.push('content.json: ' + jsonData.error);
         setSaveStatus('error');
         setSaveMessage(errors.join('; '));
       }
-    } catch (err: any) {
+    } catch (error) {
       setSaveStatus('error');
-      setSaveMessage(err.message);
+      setSaveMessage(error instanceof Error ? error.message : String(error));
     }
   };
 
@@ -149,7 +158,7 @@ export default function EditPage() {
             {Object.entries(allSchemas).map(([key, schema]) => (
               <button
                 key={key}
-                onClick={() => setActiveSection(key)}
+                onClick={() => setActiveSection(key as SectionKey)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors
                   ${activeSection === key 
                     ? 'bg-[#00d4aa]/10 text-[#00d4aa] border border-[#00d4aa]/20' 
@@ -177,8 +186,8 @@ export default function EditPage() {
             >
               <DynamicForm
                 schema={allSchemas[activeSection]}
-                data={data[activeSection as keyof typeof data] || {}}
-                onChange={(newData) => handleSectionChange(activeSection, newData)}
+                data={data[activeSection] || {}}
+                onChange={(newData) => handleSectionChange(activeSection, newData as unknown as EditableContent[SectionKey])}
               />
             </motion.div>
           </div>

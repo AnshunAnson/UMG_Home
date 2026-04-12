@@ -1,33 +1,55 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { Plus, Trash2, GripVertical, ChevronDown, ChevronUp, Image, X } from 'lucide-react';
+import NextImage from 'next/image';
+import { useRef, useState } from 'react';
+import { Plus, Trash2, GripVertical, ChevronDown, ChevronUp, Image as ImageIcon, X } from 'lucide-react';
 import { FieldSchema } from '../../schema';
+
+type ObjectItem = Record<string, unknown>;
+type ArrayItem = string | ObjectItem;
 
 interface ArrayInputProps {
   schema: FieldSchema;
-  value: any[];
-  onChange: (value: any[]) => void;
+  value: ArrayItem[];
+  onChange: (value: ArrayItem[]) => void;
 }
 
-// 文件上传组件
+function asObjectItem(value: unknown): ObjectItem {
+  return value && typeof value === 'object' && !Array.isArray(value) ? (value as ObjectItem) : {};
+}
+
+function asArrayItems(value: unknown): ArrayItem[] {
+  return Array.isArray(value) ? (value as ArrayItem[]) : [];
+}
+
+function asText(value: unknown) {
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (typeof value === 'number') {
+    return String(value);
+  }
+  return '';
+}
+
 function FileUpload({
   value,
   onChange,
-  placeholder
+  placeholder,
 }: {
   value: string;
-  onChange: (value: string | ((prev: string) => string)) => void;
+  onChange: (value: string) => void;
   placeholder?: string;
 }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
-
-  const isDataUrl = value && value.startsWith('data:');
+  const isDataUrl = value.startsWith('data:');
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file) return;
+    if (!file) {
+      return;
+    }
 
     if (!file.type.startsWith('image/') && !file.name.endsWith('.gif')) {
       alert('请选择图片文件（支持 GIF、PNG、JPG）');
@@ -38,29 +60,26 @@ function FileUpload({
     try {
       const formData = new FormData();
       formData.append('file', file);
-      if (value && value.includes('/')) {
+      if (value.includes('/')) {
         const lastSlash = value.lastIndexOf('/');
         formData.append('targetPath', value.substring(0, lastSlash + 1));
       }
+
       const res = await fetch('/api/upload', { method: 'POST', body: formData });
-      const data = await res.json();
+      const data: { success?: boolean; src?: string; error?: string } = await res.json();
+
       if (data.success && data.src) {
         onChange(data.src);
       } else {
         alert(data.error || '上传失败');
       }
-    } catch (err) {
-      alert('上传出错：' + String(err));
+    } catch (error) {
+      alert(`上传出错：${String(error)}`);
     } finally {
       setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = '';
-    }
-  };
-
-  const handleClear = () => {
-    onChange('');
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
     }
   };
 
@@ -76,13 +95,24 @@ function FileUpload({
 
       {isDataUrl ? (
         <div className="relative inline-block">
-          <img src={value} alt="Preview" className="max-h-24 rounded border border-white/10" />
+          <NextImage
+            src={value}
+            alt="预览图"
+            width={96}
+            height={96}
+            unoptimized
+            className="max-h-24 w-auto rounded border border-white/10"
+          />
           <button
-            onClick={handleClear}
-            className="absolute -top-2 -right-2 w-5 h-5 bg-red-500/80 rounded-full flex items-center justify-center
-                     hover:bg-red-500 transition-colors"
+            onClick={() => {
+              onChange('');
+              if (fileInputRef.current) {
+                fileInputRef.current.value = '';
+              }
+            }}
+            className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500/80 transition-colors hover:bg-red-500"
           >
-            <X className="w-3 h-3 text-white" />
+            <X className="h-3 w-3 text-white" />
           </button>
         </div>
       ) : (
@@ -90,10 +120,9 @@ function FileUpload({
           <button
             onClick={() => fileInputRef.current?.click()}
             disabled={uploading}
-            className="flex items-center gap-2 px-3 py-2 bg-[#00d4aa]/20 text-[#00d4aa] rounded
-                     hover:bg-[#00d4aa]/30 transition-colors text-sm disabled:opacity-50"
+            className="flex items-center gap-2 rounded px-3 py-2 text-sm text-[#00d4aa] transition-colors hover:bg-[#00d4aa]/30 disabled:opacity-50"
           >
-            <Image className="w-4 h-4" />
+            <ImageIcon className="h-4 w-4" />
             {uploading ? '上传中...' : '选择文件'}
           </button>
           <input
@@ -106,8 +135,7 @@ function FileUpload({
             onDragStart={(e) => e.stopPropagation()}
             onDragEnd={(e) => e.stopPropagation()}
             onDrop={(e) => e.stopPropagation()}
-            className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded text-white text-sm
-                     placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50"
+            className="flex-1 rounded border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 focus:border-[#00d4aa]/50 focus:outline-none"
           />
         </div>
       )}
@@ -115,227 +143,234 @@ function FileUpload({
   );
 }
 
-// 嵌套对象表单组件
-function ObjectItemForm({ 
-  itemSchema, 
-  item, 
+function ObjectItemForm({
+  itemSchema,
+  item,
   onChange,
-  title
-}: { 
-  itemSchema: Record<string, FieldSchema>; 
-  item: any; 
-  onChange: (value: any) => void;
-  title?: string;
+}: {
+  itemSchema: Record<string, FieldSchema>;
+  item: ObjectItem;
+  onChange: (value: ObjectItem) => void;
 }) {
   const [expanded, setExpanded] = useState(true);
-  
-  const handleFieldChange = (key: string, value: any) => {
-    onChange((prevItem: any) => {
-      const resolvedValue = typeof value === 'function' ? value(prevItem) : value;
-      return {
-        ...prevItem,
-        [key]: resolvedValue
-      };
+
+  const handleFieldChange = (key: string, value: unknown) => {
+    onChange({
+      ...item,
+      [key]: value,
     });
   };
 
-  // 生成摘要信息
   const getSummary = () => {
     const parts: string[] = [];
-    if (item?.title) parts.push(item.title);
-    if (item?.name) parts.push(item.name);
-    if (item?.company) parts.push(item.company);
-    if (item?.images?.length) parts.push(`${item.images.length} 张图片`);
+    if (typeof item.title === 'string') parts.push(item.title);
+    if (typeof item.name === 'string') parts.push(item.name);
+    const images = asArrayItems(item.images);
+    if (images.length) parts.push(`${images.length} 张图片`);
     return parts.join(' · ') || '未命名项目';
   };
 
   const renderNestedField = (key: string, fieldSchema: FieldSchema) => {
-    const value = item?.[key] ?? '';
-    
-    switch (fieldSchema.type) {
-      case 'string':
-      case 'text':
-        // 检查是否是图片路径字段
-        if (key === 'src' || key.includes('image') || key.includes('path')) {
-          return (
-            <div key={key} className="space-y-1">
-              <span className="text-xs text-white/50">{fieldSchema.label}</span>
-              <FileUpload
-                value={value}
-                onChange={(v) => handleFieldChange(key, v)}
-                placeholder={fieldSchema.placeholder}
-              />
-            </div>
-          );
-        }
+    const rawValue = item[key];
+
+    if (fieldSchema.type === 'string' || fieldSchema.type === 'text') {
+      const value = asText(rawValue);
+      const isAssetField = key === 'src' || key.includes('image') || key.includes('path');
+
+      if (isAssetField) {
         return (
-          <div key={key} className="grid grid-cols-3 gap-2 items-center">
+          <div key={key} className="space-y-1">
             <span className="text-xs text-white/50">{fieldSchema.label}</span>
-            <input
-              type="text"
+            <FileUpload
               value={value}
-              onChange={(e) => handleFieldChange(key, e.target.value)}
-              draggable={false}
-              onDragOver={(e) => e.stopPropagation()}
-              onDragStart={(e) => e.stopPropagation()}
-              onDragEnd={(e) => e.stopPropagation()}
-              onDrop={(e) => e.stopPropagation()}
-              className="col-span-2 px-3 py-1 bg-white/5 border border-white/10 rounded text-white 
-                       placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 text-sm"
+              onChange={(nextValue) => handleFieldChange(key, nextValue)}
               placeholder={fieldSchema.placeholder}
             />
           </div>
         );
-      case 'number':
-        return (
-          <div key={key} className="grid grid-cols-3 gap-2 items-center">
-            <span className="text-xs text-white/50">{fieldSchema.label}</span>
-            <input
-              type="number"
-              value={value}
-              onChange={(e) => handleFieldChange(key, Number(e.target.value))}
-              draggable={false}
-              onDragOver={(e) => e.stopPropagation()}
-              onDragStart={(e) => e.stopPropagation()}
-              onDragEnd={(e) => e.stopPropagation()}
-              onDrop={(e) => e.stopPropagation()}
-              className="col-span-2 px-3 py-1 bg-white/5 border border-white/10 rounded text-white 
-                       placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 text-sm"
-              placeholder={fieldSchema.placeholder}
-            />
+      }
+
+      return (
+        <div key={key} className="grid grid-cols-3 items-center gap-2">
+          <span className="text-xs text-white/50">{fieldSchema.label}</span>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => handleFieldChange(key, e.target.value)}
+            draggable={false}
+            onDragOver={(e) => e.stopPropagation()}
+            onDragStart={(e) => e.stopPropagation()}
+            onDragEnd={(e) => e.stopPropagation()}
+            onDrop={(e) => e.stopPropagation()}
+            className="col-span-2 rounded border border-white/10 bg-white/5 px-3 py-1 text-sm text-white placeholder:text-white/30 focus:border-[#00d4aa]/50 focus:outline-none"
+            placeholder={fieldSchema.placeholder}
+          />
+        </div>
+      );
+    }
+
+    if (fieldSchema.type === 'number') {
+      return (
+        <div key={key} className="grid grid-cols-3 items-center gap-2">
+          <span className="text-xs text-white/50">{fieldSchema.label}</span>
+          <input
+            type="number"
+            value={typeof rawValue === 'number' ? rawValue : ''}
+            onChange={(e) => handleFieldChange(key, Number(e.target.value))}
+            draggable={false}
+            onDragOver={(e) => e.stopPropagation()}
+            onDragStart={(e) => e.stopPropagation()}
+            onDragEnd={(e) => e.stopPropagation()}
+            onDrop={(e) => e.stopPropagation()}
+            className="col-span-2 rounded border border-white/10 bg-white/5 px-3 py-1 text-sm text-white placeholder:text-white/30 focus:border-[#00d4aa]/50 focus:outline-none"
+            placeholder={fieldSchema.placeholder}
+          />
+        </div>
+      );
+    }
+
+    if (fieldSchema.type === 'array') {
+      const items = asArrayItems(rawValue);
+      const isImageArray =
+        key === 'images' ||
+        fieldSchema.label?.includes('图片') ||
+        fieldSchema.label?.includes('GIF');
+
+      return (
+        <div
+          key={key}
+          className={`mt-2 rounded border p-3 ${isImageArray ? 'border-[#00d4aa]/30 bg-[#00d4aa]/5' : 'border-white/10'}`}
+        >
+          <div className="mb-2 flex items-center justify-between">
+            <span className={`text-xs ${isImageArray ? 'text-[#00d4aa]' : 'text-white/70'}`}>
+              {fieldSchema.label}
+              {isImageArray ? <span className="ml-1 text-white/50">({items.length})</span> : null}
+            </span>
+            <button
+              onClick={() => {
+                const newItem: ArrayItem = fieldSchema.itemType === 'object' ? {} : '';
+                handleFieldChange(key, [...items, newItem]);
+              }}
+              className="rounded bg-[#00d4aa]/20 px-2 py-1 text-xs text-[#00d4aa] hover:bg-[#00d4aa]/30"
+            >
+              + 添加
+            </button>
           </div>
-        );
-      case 'array':
-        const isImageArray = key === 'images' || fieldSchema.label?.includes('图片') || fieldSchema.label?.includes('GIF');
-        return (
-          <div key={key} className={`border rounded p-3 mt-2 ${isImageArray ? 'border-[#00d4aa]/30 bg-[#00d4aa]/5' : 'border-white/10'}`}>
-            <div className="flex items-center justify-between mb-2">
-              <span className={`text-xs ${isImageArray ? 'text-[#00d4aa]' : 'text-white/70'}`}>
-                {fieldSchema.label}
-                {isImageArray && <span className="ml-1 text-white/50">({(item?.[key] || []).length})</span>}
-              </span>
-              <button
-                onClick={() => {
-                  const currentArray = item?.[key] || [];
-                  const newItem = fieldSchema.itemType === 'object' ? {} : '';
-                  handleFieldChange(key, [...currentArray, newItem]);
-                }}
-                className="text-xs px-2 py-1 bg-[#00d4aa]/20 text-[#00d4aa] rounded hover:bg-[#00d4aa]/30"
-              >
-                + 添加
-              </button>
-            </div>
-            {(item?.[key] || []).map((subItem: any, subIndex: number) => (
-              <div key={subIndex} className="flex items-start gap-2 mb-2 p-2 bg-white/5 rounded">
-                {fieldSchema.itemType === 'object' && fieldSchema.itemSchema ? (
-                  <div className="flex-1 space-y-2">
-                    {Object.entries(fieldSchema.itemSchema).map(([subKey, subFieldSchema]) => {
-                      const subValue = subItem?.[subKey] ?? '';
-                      // 图片路径字段使用文件上传
-                      if (subKey === 'src' || subKey.includes('image') || subKey.includes('path')) {
-                        return (
-                          <div key={subKey} className="space-y-1">
-                            <span className="text-xs text-white/40">{subFieldSchema.label}</span>
-                            <FileUpload
-                              value={subValue}
-                              onChange={(v) => {
-                                handleFieldChange(key, (prev: any) => {
-                                  const arr = prev?.[key] || [];
-                                  return arr.map((img: any, i: number) =>
-                                    i === subIndex ? { ...img, [subKey]: v } : img
-                                  );
-                                });
-                              }}
-                              placeholder={subFieldSchema.placeholder}
-                            />
-                          </div>
-                        );
-                      }
+
+          {items.map((subItem, subIndex) => (
+            <div key={subIndex} className="mb-2 flex items-start gap-2 rounded bg-white/5 p-2">
+              {fieldSchema.itemType === 'object' && fieldSchema.itemSchema ? (
+                <div className="flex-1 space-y-2">
+                  {Object.entries(fieldSchema.itemSchema).map(([subKey, subFieldSchema]) => {
+                    const subItemObject = asObjectItem(subItem);
+                    const subValue = subItemObject[subKey];
+                    const isAssetField =
+                      subKey === 'src' || subKey.includes('image') || subKey.includes('path');
+
+                    if (isAssetField) {
                       return (
-                        <div key={subKey} className="grid grid-cols-4 gap-1 items-center">
+                        <div key={subKey} className="space-y-1">
                           <span className="text-xs text-white/40">{subFieldSchema.label}</span>
-                          <input
-                            type="text"
-                            value={subValue}
-                            onChange={(e) => {
-                              handleFieldChange(key, (prev: any) => {
-                                const arr = prev?.[key] || [];
-                                return arr.map((img: any, i: number) =>
-                                  i === subIndex ? { ...img, [subKey]: e.target.value } : img
-                                );
-                              });
+                          <FileUpload
+                            value={asText(subValue)}
+                            onChange={(nextValue) => {
+                              const nextItems = [...items];
+                              nextItems[subIndex] = {
+                                ...subItemObject,
+                                [subKey]: nextValue,
+                              };
+                              handleFieldChange(key, nextItems);
                             }}
-                            draggable={false}
-                            onDragOver={(e) => e.stopPropagation()}
-                            onDragStart={(e) => e.stopPropagation()}
-                            onDragEnd={(e) => e.stopPropagation()}
-                            onDrop={(e) => e.stopPropagation()}
-                            className="col-span-3 px-2 py-1 bg-white/5 border border-white/10 rounded text-white text-sm"
                             placeholder={subFieldSchema.placeholder}
                           />
                         </div>
                       );
-                    })}
-                  </div>
-                ) : (
-                  <input
-                    type="text"
-                    value={subItem || ''}
-                    onChange={(e) => {
-                      handleFieldChange(key, (prev: any) => {
-                        const arr = prev?.[key] || [];
-                        return arr.map((item: any, i: number) =>
-                          i === subIndex ? e.target.value : item
-                        );
-                      });
-                    }}
-                    draggable={false}
-                    onDragOver={(e) => e.stopPropagation()}
-                    onDragStart={(e) => e.stopPropagation()}
-                    onDragEnd={(e) => e.stopPropagation()}
-                    onDrop={(e) => e.stopPropagation()}
-                    className="flex-1 px-2 py-1 bg-white/5 border border-white/10 rounded text-white text-sm"
-                  />
-                )}
-                <button
-                  onClick={() => {
-                    handleFieldChange(key, (prev: any) => {
-                      const arr = prev?.[key] || [];
-                      return arr.filter((_: any, i: number) => i !== subIndex);
-                    });
+                    }
+
+                    return (
+                      <div key={subKey} className="grid grid-cols-4 items-center gap-1">
+                        <span className="text-xs text-white/40">{subFieldSchema.label}</span>
+                        <input
+                          type="text"
+                          value={asText(subValue)}
+                          onChange={(e) => {
+                            const nextItems = [...items];
+                            nextItems[subIndex] = {
+                              ...subItemObject,
+                              [subKey]: e.target.value,
+                            };
+                            handleFieldChange(key, nextItems);
+                          }}
+                          draggable={false}
+                          onDragOver={(e) => e.stopPropagation()}
+                          onDragStart={(e) => e.stopPropagation()}
+                          onDragEnd={(e) => e.stopPropagation()}
+                          onDrop={(e) => e.stopPropagation()}
+                          className="col-span-3 rounded border border-white/10 bg-white/5 px-2 py-1 text-sm text-white"
+                          placeholder={subFieldSchema.placeholder}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <input
+                  type="text"
+                  value={typeof subItem === 'string' ? subItem : ''}
+                  onChange={(e) => {
+                    const nextItems = [...items];
+                    nextItems[subIndex] = e.target.value;
+                    handleFieldChange(key, nextItems);
                   }}
-                  className="text-white/30 hover:text-red-400 text-xs p-1"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            ))}
-            {(item?.[key] || []).length === 0 && (
-              <p className="text-xs text-white/30 italic py-2">
-                {isImageArray ? '暂无图片，点击"添加"上传' : '暂无项目'}
-              </p>
-            )}
-          </div>
-        );
-      default:
-        return null;
+                  draggable={false}
+                  onDragOver={(e) => e.stopPropagation()}
+                  onDragStart={(e) => e.stopPropagation()}
+                  onDragEnd={(e) => e.stopPropagation()}
+                  onDrop={(e) => e.stopPropagation()}
+                  className="flex-1 rounded border border-white/10 bg-white/5 px-2 py-1 text-sm text-white"
+                />
+              )}
+
+              <button
+                onClick={() => {
+                  handleFieldChange(
+                    key,
+                    items.filter((_, itemIndex) => itemIndex !== subIndex),
+                  );
+                }}
+                className="p-1 text-xs text-white/30 hover:text-red-400"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          ))}
+
+          {!items.length ? (
+            <p className="py-2 text-xs italic text-white/30">
+              {isImageArray ? '暂无图片，点击“添加”上传' : '暂无项目'}
+            </p>
+          ) : null}
+        </div>
+      );
     }
+
+    return null;
   };
 
   return (
     <div className="space-y-2">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center gap-2 text-sm text-white/70 hover:text-white w-full"
+        className="flex w-full items-center gap-2 text-sm text-white/70 hover:text-white"
       >
-        {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+        {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         <span className="truncate">{getSummary()}</span>
       </button>
-      {expanded && (
-        <div className="space-y-3 pl-2 border-l-2 border-white/10">
+      {expanded ? (
+        <div className="space-y-3 border-l-2 border-white/10 pl-2">
           {Object.entries(itemSchema).map(([key, fieldSchema]) => renderNestedField(key, fieldSchema))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
@@ -346,38 +381,14 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
   const [dragOverPosition, setDragOverPosition] = useState<'before' | 'after' | null>(null);
 
   const handleAdd = () => {
-    const newItem = schema.itemType === 'object' 
-      ? {} 
-      : '';
+    const newItem: ArrayItem = schema.itemType === 'object' ? {} : '';
     onChange([...value, newItem]);
   };
 
   const handleRemove = (index: number) => {
-    const newValue = [...value];
-    newValue.splice(index, 1);
-    onChange(newValue);
-  };
-
-  const handleItemChange = (index: number, itemValue: any) => {
-    if (typeof itemValue === 'function') {
-      const newValue = [...value];
-      newValue[index] = itemValue(newValue[index]);
-      onChange(newValue);
-    } else {
-      const newValue = [...value];
-      newValue[index] = itemValue;
-      onChange(newValue);
-    }
-  };
-
-  const handleDragStart = (e: React.DragEvent, index: number) => {
-    const target = e.target as HTMLElement;
-    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
-    setDraggedIndex(index);
+    const nextValue = [...value];
+    nextValue.splice(index, 1);
+    onChange(nextValue);
   };
 
   const handleDragOver = (e: React.DragEvent, index: number) => {
@@ -386,60 +397,43 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
       setDragOverPosition(null);
       return;
     }
-    
-    if (!e.dataTransfer.types || !e.dataTransfer.types.includes('text/plain')) {
+
+    if (!e.dataTransfer.types.includes('text/plain')) {
       return;
     }
-    
-    if (e.dataTransfer.effectAllowed !== 'move' && e.dataTransfer.effectAllowed !== 'copy') {
-      return;
-    }
-    
+
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    const midY = rect.top + rect.height / 2;
-    const position = e.clientY < midY ? 'before' : 'after';
-    
+    const position = e.clientY < rect.top + rect.height / 2 ? 'before' : 'after';
     setDragOverIndex(index);
     setDragOverPosition(position);
-    
     e.preventDefault();
-  };
-
-  const handleDragLeave = () => {
-    setDragOverIndex(null);
-    setDragOverPosition(null);
   };
 
   const handleDrop = (e: React.DragEvent, index: number) => {
     e.preventDefault();
+
     if (draggedIndex === null || draggedIndex === index) {
       setDraggedIndex(null);
       setDragOverIndex(null);
       setDragOverPosition(null);
       return;
     }
-    
-    const newValue = [...value];
-    const draggedItem = newValue[draggedIndex];
-    newValue.splice(draggedIndex, 1);
-    
-    // 根据放置位置计算新索引
-    let newIndex = index;
-    if (draggedIndex < index && dragOverPosition === 'before') {
-      newIndex = index - 1;
-    } else if (draggedIndex > index && dragOverPosition === 'after') {
-      newIndex = index + 1;
-    }
-    newIndex = Math.max(0, Math.min(newIndex, newValue.length));
-    
-    newValue.splice(newIndex, 0, draggedItem);
-    onChange(newValue);
-    setDraggedIndex(null);
-    setDragOverIndex(null);
-    setDragOverPosition(null);
-  };
 
-  const handleDragEnd = () => {
+    const nextValue = [...value];
+    const draggedItem = nextValue[draggedIndex];
+    nextValue.splice(draggedIndex, 1);
+
+    let nextIndex = index;
+    if (draggedIndex < index && dragOverPosition === 'before') {
+      nextIndex = index - 1;
+    } else if (draggedIndex > index && dragOverPosition === 'after') {
+      nextIndex = index + 1;
+    }
+
+    nextIndex = Math.max(0, Math.min(nextIndex, nextValue.length));
+    nextValue.splice(nextIndex, 0, draggedItem);
+    onChange(nextValue);
+
     setDraggedIndex(null);
     setDragOverIndex(null);
     setDragOverPosition(null);
@@ -450,101 +444,101 @@ export default function ArrayInput({ schema, value = [], onChange }: ArrayInputP
       <div className="flex items-center justify-between">
         <label className="block text-sm font-medium text-white/80">
           {schema.label}
-          {schema.required && <span className="text-red-400 ml-1">*</span>}
+          {schema.required ? <span className="ml-1 text-red-400">*</span> : null}
         </label>
         <button
           onClick={handleAdd}
-          className="flex items-center gap-1 px-3 py-1 text-sm bg-[#00d4aa]/20 text-[#00d4aa] 
-                     rounded-lg hover:bg-[#00d4aa]/30 transition-colors"
+          className="flex items-center gap-1 rounded-lg bg-[#00d4aa]/20 px-3 py-1 text-sm text-[#00d4aa] transition-colors hover:bg-[#00d4aa]/30"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="h-4 w-4" />
           添加
         </button>
       </div>
-      
-      {schema.description && (
-        <p className="text-xs text-white/50">{schema.description}</p>
-      )}
+
+      {schema.description ? <p className="text-xs text-white/50">{schema.description}</p> : null}
 
       <div className="space-y-1">
         {value.map((item, index) => (
           <div key={index} className="relative">
-            {/* 上方放置指示器 */}
-            {dragOverIndex === index && dragOverPosition === 'before' && draggedIndex !== index && (
-              <div className="absolute -top-1 left-0 right-0 h-1 bg-[#00d4aa] rounded-full z-10 
-                            shadow-[0_0_10px_rgba(0,212,170,0.8)]" />
-            )}
-            
+            {dragOverIndex === index && dragOverPosition === 'before' && draggedIndex !== index ? (
+              <div className="absolute -top-1 left-0 right-0 z-10 h-1 rounded-full bg-[#00d4aa] shadow-[0_0_10px_rgba(0,212,170,0.8)]" />
+            ) : null}
+
             <div
               onDragOver={(e) => handleDragOver(e, index)}
-              onDragLeave={handleDragLeave}
+              onDragLeave={() => {
+                setDragOverIndex(null);
+                setDragOverPosition(null);
+              }}
               onDrop={(e) => handleDrop(e, index)}
-              onDragEnd={handleDragEnd}
-              className={`flex items-start gap-2 p-3 bg-white/5 rounded-lg border transition-all
-                         ${draggedIndex === index 
-                           ? 'opacity-50 border-white/5' 
-                           : 'border-white/10 hover:border-white/20'
-                         }
-                         ${dragOverIndex === index && draggedIndex !== index 
-                           ? 'bg-[#00d4aa]/5' 
-                           : ''
-                         }`}
+              onDragEnd={() => {
+                setDraggedIndex(null);
+                setDragOverIndex(null);
+                setDragOverPosition(null);
+              }}
+              className={`flex items-start gap-2 rounded-lg border bg-white/5 p-3 transition-all ${
+                draggedIndex === index ? 'border-white/5 opacity-50' : 'border-white/10 hover:border-white/20'
+              } ${dragOverIndex === index && draggedIndex !== index ? 'bg-[#00d4aa]/5' : ''}`}
             >
-              <div className="mt-1 cursor-move text-white/30 hover:text-[#00d4aa] select-none 
-                            transition-colors"
-                   draggable
-                   onDragStart={(e) => {
-                     e.stopPropagation();
-                     e.dataTransfer.setData('text/plain', index.toString());
-                     setDraggedIndex(index);
-                   }}>
-                <GripVertical className="w-4 h-4" />
+              <div
+                className="mt-1 cursor-move select-none text-white/30 transition-colors hover:text-[#00d4aa]"
+                draggable
+                onDragStart={(e) => {
+                  e.stopPropagation();
+                  e.dataTransfer.setData('text/plain', index.toString());
+                  setDraggedIndex(index);
+                }}
+              >
+                <GripVertical className="h-4 w-4" />
               </div>
-              
-              <div className="flex-1 min-w-0">
+
+              <div className="min-w-0 flex-1">
                 {schema.itemType === 'string' ? (
                   <input
                     type="text"
-                    value={item || ''}
-                    onChange={(e) => handleItemChange(index, e.target.value)}
+                    value={typeof item === 'string' ? item : ''}
+                    onChange={(e) => {
+                      const nextValue = [...value];
+                      nextValue[index] = e.target.value;
+                      onChange(nextValue);
+                    }}
                     draggable={false}
                     onDragOver={(e) => e.stopPropagation()}
                     onDragStart={(e) => e.stopPropagation()}
                     onDragEnd={(e) => e.stopPropagation()}
                     onDrop={(e) => e.stopPropagation()}
-                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-white 
-                             placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50"
+                    className="w-full rounded border border-white/10 bg-white/5 px-3 py-2 text-white placeholder:text-white/30 focus:border-[#00d4aa]/50 focus:outline-none"
                     placeholder={`项目 ${index + 1}`}
                   />
                 ) : schema.itemType === 'object' && schema.itemSchema ? (
                   <ObjectItemForm
                     itemSchema={schema.itemSchema}
-                    item={item}
-                    onChange={(newItem) => handleItemChange(index, newItem)}
+                    item={asObjectItem(item)}
+                    onChange={(nextItem) => {
+                      const nextValue = [...value];
+                      nextValue[index] = nextItem;
+                      onChange(nextValue);
+                    }}
                   />
                 ) : null}
               </div>
 
               <button
                 onClick={() => handleRemove(index)}
-                className="mt-1 p-1 text-white/30 hover:text-red-400 transition-colors"
+                className="mt-1 p-1 text-white/30 transition-colors hover:text-red-400"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="h-4 w-4" />
               </button>
             </div>
-            
-            {/* 下方放置指示器 */}
-            {dragOverIndex === index && dragOverPosition === 'after' && draggedIndex !== index && (
-              <div className="absolute -bottom-1 left-0 right-0 h-1 bg-[#00d4aa] rounded-full z-10 
-                            shadow-[0_0_10px_rgba(0,212,170,0.8)]" />
-            )}
+
+            {dragOverIndex === index && dragOverPosition === 'after' && draggedIndex !== index ? (
+              <div className="absolute -bottom-1 left-0 right-0 z-10 h-1 rounded-full bg-[#00d4aa] shadow-[0_0_10px_rgba(0,212,170,0.8)]" />
+            ) : null}
           </div>
         ))}
       </div>
 
-      {value.length === 0 && (
-        <p className="text-sm text-white/30 italic">暂无项目，点击"添加"按钮</p>
-      )}
+      {!value.length ? <p className="text-sm italic text-white/30">暂无项目，点击“添加”按钮</p> : null}
     </div>
   );
 }

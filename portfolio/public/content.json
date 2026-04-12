@@ -1,98 +1,83 @@
 {
   "heroContent": {
-    "badge": "Available for work",
-    "name": "UE 工程师",
-    "nameHighlightLength": 3,
-    "subtitle": "汽车渲染 · UMG重构 · 材质动效·工作流搭建·前沿技术预研",
+    "badge": "Personal Technical Homepage",
+    "name": "个人技术主页",
+    "nameHighlightLength": 2,
+    "subtitle": "完整呈现我在 Unreal 开发、界面系统、材质动效、编辑器工具、自动化流程与玩法原型上的技术实践。",
     "stats": [
       {
         "icon": "📍",
         "label": "深圳"
       },
       {
-        "icon": "💼",
-        "label": "3年经验"
+        "icon": "🧩",
+        "label": "10+ 项目"
+      },
+      {
+        "icon": "⚙️",
+        "label": "3 年技术实践"
       }
     ],
-    "cornerLeft": "2027",
-    "cornerRight": "UnrealEngine"
+    "cornerLeft": "2026",
+    "cornerRight": "TECH LED"
   },
   "aboutContent": {
-    "sectionTitle": "关于我",
-    "sectionSubtitle": "About Me",
+    "sectionTitle": "关于",
+    "sectionSubtitle": "About",
     "bio": [
-      "曾主导项目 UMG 系统重构，深度优化 UI 内存管理与渲染响应速度。擅长编写定制化蓝图编辑器工具链，并运用 Harness 工程理念搭建自动化工作流，有效降低技术债务。",
-      "具备比亚迪、广汽丰田、德赛西威等HMI项目实战经验。擅长移动端高性能 PBR 材质与半透明动效优化（可解决摩尔纹等痛点），并能独立开发蓝图编辑器工具链提升团队效率。"
+      "我的工作不局限于某一个方向。UMG、材质动效、编辑器工具、自动化流程、性能收敛、玩法原型和技术验证，都是我实际持续投入的部分。这个首页更接近我的个人技术主页，而不是单一能力的展示页。",
+      "我偏向系统化地解决问题：先抽象结构，再落到实现、工具、流程和交付方式。无论是界面重构、视觉表现还是内部生产效率，我都习惯把问题放回完整项目链路里处理。"
     ],
     "age": 24,
     "location": "深圳",
     "experience": 3,
-    "currentCompany": "深圳普修汽车资讯有限公司",
-    "jobTitle": "UE工程师",
-    "stats": [
-      {
-        "label": "Years",
-        "value": 3,
-        "suffix": "+"
-      },
-      {
-        "label": "Projects",
-        "value": 10,
-        "suffix": "+"
-      },
-      {
-        "label": "Skills",
-        "value": 15,
-        "suffix": "+"
-      }
-    ],
+    "jobTitle": "Technical Developer",
     "coreSkills": [
       {
-        "title": "UMG开发",
-        "description": "复杂的UI系统实现"
+        "title": "界面与交互系统",
+        "description": "从 UMG 架构、交互流程到组件规范，搭建可迭代的界面系统。"
       },
       {
-        "title": "材质动效",
-        "description": "高级UI视觉效果"
+        "title": "视觉表达",
+        "description": "把材质、Niagara 与界面动效组合成可复用的视觉表达能力。"
       },
       {
-        "title": "性能优化",
-        "description": "移动端适配与优化"
+        "title": "工具与流程",
+        "description": "为设计和开发流程补齐生成器、检查器、自动化脚本与编辑器扩展。"
       },
       {
-        "title": "工具开发",
-        "description": "构建设计师/美术易用的生产工具和流程"
+        "title": "工程收敛",
+        "description": "在性能、交付效率与维护成本之间做系统性的平衡和收敛。"
       }
     ]
   },
   "projectsContent": {
-    "sectionTitle": "项目经历",
-    "sectionSubtitle": "Projects",
+    "sectionTitle": "精选项目",
+    "sectionSubtitle": "Selected Projects",
     "projects": [
       {
         "id": 1,
         "icon": "Car",
         "title": "汽车渲染平台",
-        "company": "深圳普修汽车资讯有限公司",
         "period": "2023.04 - 至今",
-        "category": "UE4开发",
-        "description": "基于UE4的汽车可视化渲染平台，支持实时光追渲染和交互式配置",
+        "category": "界面系统 / 交互体验 / 性能优化",
+        "description": "围绕汽车可视化渲染平台重做界面结构与交互表达，让复杂配置流程具备更稳定的展示层、模板化产出方式和更低的维护成本。",
         "details": [
-          "负责UMG界面重构与架构设计",
-          "开发蓝图模板和UI组件库",
-          "实现复杂的材质系统和动效",
-          "优化移动端性能和内存管理"
+          "重构 UMG 界面层级与组件组织方式，梳理项目级 UI 结构。",
+          "为常见页面与交互模块建立可复用蓝图模板与界面规范。",
+          "联动材质系统与动画表现，统一主界面、过场和状态反馈的视觉逻辑。",
+          "针对移动端和高密度界面场景优化渲染响应、资源使用与维护成本。"
         ],
         "achievements": [
-          "将UI渲染性能提升40%",
-          "建立完整的UI开发规范",
-          "实现模块化UI架构"
+          "将 UI 渲染性能提升约 40%。",
+          "建立完整的 UI 开发规范和模板资产体系。",
+          "把界面迭代从单页修改转成组件化交付方式。"
         ],
         "tech": [
           "UE4",
           "UMG",
-          "蓝图",
-          "材质系统",
+          "Blueprint",
+          "Material",
           "Niagara"
         ],
         "color": "#00d4aa"
@@ -100,140 +85,138 @@
       {
         "id": 2,
         "icon": "Sparkles",
-        "title": "Niagara粒子特效",
-        "company": "个人项目",
+        "title": "Niagara UI 粒子与序列动效",
         "period": "2023.01 - 2023.03",
-        "category": "特效开发",
-        "description": "使用Niagara系统开发的一系列UI粒子特效，包括爆炸、烟雾、火焰等效果",
+        "category": "视觉特效 / 材质动效 / 资产模板",
+        "description": "把 UI 动效拆分成可复用的粒子与序列模块，覆盖入场、切换、来电、加载和氛围强化等多个场景，让特效资产可以被快速复用而不是逐页重做。",
         "details": [
-          "设计Niagara粒子系统架构",
-          "开发可复用的粒子模板",
-          "实现粒子与UI的交互",
-          "优化粒子渲染性能"
+          "梳理 UI 粒子效果的分类方式与模板结构。",
+          "用 Niagara 和材质系统完成多种场景化动态效果。",
+          "把视觉层实现和界面状态逻辑解耦，减少重复配置。",
+          "优化粒子数量、节奏和透明效果，兼顾表现和成本。"
         ],
         "achievements": [
-          "创建20+可复用粒子模板",
-          "实现零代码配置粒子效果",
-          "性能优化支持1000+粒子同屏"
+          "沉淀 20+ 可复用粒子与序列模板。",
+          "实现更低成本的页面级动效复用方式。",
+          "在多粒子同屏情况下保持稳定表现。"
         ],
         "tech": [
           "Niagara",
           "UE4",
-          "材质系统",
-          "蓝图"
+          "Material",
+          "Blueprint"
         ],
-        "color": "#9b59b6",
+        "color": "#7ce7d0",
         "images": [
           {
             "src": "/gifs/DesaysvFX/入场_爆破,溅射.gif",
-            "alt": "入场爆破溅射动效"
+            "alt": "入场爆破与溅射动效"
           },
           {
             "src": "/gifs/DesaysvFX/IP台来电.gif",
-            "alt": "来电"
+            "alt": "来电提醒动效"
           },
           {
             "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
-            "alt": "Loading"
+            "alt": "加载界面序列动效"
           },
           {
             "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
-            "alt": "Mind"
+            "alt": "场景切换动效"
           },
           {
             "src": "/gifs/DesaysvFX/SEQ_Music.gif",
-            "alt": "Music"
+            "alt": "音乐界面动效"
           },
           {
             "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
-            "alt": "扫光"
+            "alt": "场景扫光切换效果"
           },
           {
             "src": "/gifs/DesaysvFX/IP台开机动效.gif",
-            "alt": "开机"
+            "alt": "开机过场动画"
           },
           {
             "src": "/gifs/DesaysvFX/audio.gif",
-            "alt": "音频可视化"
+            "alt": "音频可视化动效"
           },
           {
             "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
-            "alt": "入场"
+            "alt": "流体入场效果"
           },
           {
             "src": "/gifs/DesaysvFX/Wellness02.gif",
-            "alt": "粒子烟雾"
+            "alt": "烟雾氛围特效"
           },
           {
             "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
-            "alt": "森林情景"
+            "alt": "森林主题场景氛围效果"
           }
         ]
       },
       {
         "id": 3,
         "icon": "Zap",
-        "title": "UMG重构工具链",
-        "company": "深圳普修汽车资讯有限公司",
+        "title": "UMG 重构工具链",
         "period": "2022.10 - 2022.12",
-        "category": "工具开发",
-        "description": "开发完整的UMG重构工具链，包括蓝图生成器、UI检查器、自动化测试等",
+        "category": "工具开发 / 编辑器扩展 / 流程自动化",
+        "description": "围绕 UMG 重构工作本身搭建生成器、检查器和自动化流程，让重构动作从“人工逐页处理”变成“标准化流水线”。",
         "details": [
-          "开发蓝图代码生成器",
-          "实现UI规范检查工具",
-          "建立自动化测试流程",
-          "编写完整的技术文档"
+          "开发蓝图生成器，减少重复搭建基础结构的时间。",
+          "实现 UI 规范检查工具，提前发现命名、结构和资产问题。",
+          "建立自动化测试和文档输出流程，减少返工成本。",
+          "把常见重构动作沉淀为可复用的内部工具。"
         ],
         "achievements": [
-          "提升UI开发效率60%",
-          "减少UI缺陷率50%",
-          "建立团队开发标准"
+          "将 UI 开发效率提升约 60%。",
+          "显著降低重构过程中的结构性缺陷。",
+          "为团队建立统一的 UI 开发标准。"
         ],
         "tech": [
           "Python",
           "UE4",
-          "蓝图",
-          "编辑器工具"
+          "Blueprint",
+          "Editor Tools"
         ],
-        "color": "#3498db"
+        "color": "#59c8ff"
       },
       {
         "id": 5,
         "icon": "Gamepad2",
-        "title": "局域网FPS游戏",
-        "company": "个人项目",
+        "title": "局域网 FPS 游戏",
         "period": "2022.01 - 2022.05",
-        "category": "游戏开发",
-        "description": "使用UE4开发的局域网多人FPS游戏，包含完整的游戏系统和网络同步",
+        "category": "玩法原型 / 网络同步 / 系统验证",
+        "description": "一套完整的局域网多人 FPS 原型，包含基础射击循环、网络同步、武器系统和游戏内 UI，让我系统验证了 Unreal 中玩法与界面协作的完整链路。",
         "details": [
-          "实现网络同步和多人对战",
-          "开发武器系统和伤害计算",
-          "设计游戏UI和交互",
-          "优化网络延迟和性能"
+          "实现局域网多人同步与基础战斗循环。",
+          "搭建武器、伤害和反馈系统，打通玩法节奏。",
+          "设计并实现游戏内 HUD、菜单和交互界面。",
+          "针对延迟和同步体验进行调试与性能优化。"
         ],
         "achievements": [
-          "支持8人同时在线",
-          "网络延迟低于50ms",
-          "完整的游戏循环"
+          "支持 8 人同时在线对战。",
+          "完成完整的多人游戏循环验证。",
+          "沉淀出玩法 UI 与状态同步的实现经验。"
         ],
         "tech": [
           "UE4",
           "C++",
-          "网络同步",
+          "Networking",
           "UMG"
         ],
-        "color": "#f39c12",
+        "color": "#f0b562",
         "images": [
           {
-            "src": "/gifs/FPS.high.gif"
+            "src": "/gifs/FPS.high.gif",
+            "alt": "局域网 FPS 游戏实机画面"
           }
         ]
       }
     ]
   },
   "skillsContent": {
-    "sectionTitle": "技能专长",
-    "sectionSubtitle": "Skills",
+    "sectionTitle": "能力地图",
+    "sectionSubtitle": "Capabilities",
     "categories": [
       {
         "title": "引擎与蓝图",
@@ -257,7 +240,7 @@
         ]
       },
       {
-        "title": "UMG与UI",
+        "title": "界面与体验",
         "skills": [
           {
             "name": "UMG界面开发",
@@ -299,7 +282,7 @@
         ]
       },
       {
-        "title": "性能与工具",
+        "title": "性能与流程",
         "skills": [
           {
             "name": "UI性能优化",
@@ -319,46 +302,45 @@
     "techStack": [
       "UE4",
       "UE5",
-      "蓝图",
-      "C++",
       "UMG",
-      "LyraUI",
+      "Blueprint",
+      "C++",
       "Niagara",
-      "材质系统",
+      "Material",
       "Python",
-      "Git",
-      "Maya",
-      "Blender",
-      "Substance"
+      "Performance Profiling",
+      "Editor Tools",
+      "LyraUI",
+      "Automation Harness"
     ]
   },
   "contactContent": {
     "sectionTitle": "开始合作",
-    "sectionSubtitle": "Get In Touch",
-    "description": "专注于UE4/UE5开发，寻找志同道合的团队\n期待与您一起打造卓越的游戏体验",
+    "sectionSubtitle": "Contact",
+    "description": "如果你需要一个能同时处理项目实现、界面系统、视觉表现、工具链和技术验证的人，我愿意直接参与问题推进与交付。",
     "email": "an15073025868@163.com",
     "phone": "15073025868",
     "location": "深圳"
   },
   "footerContent": {
-    "logo": "UMG",
-    "logoHighlight": "Developer",
-    "tagline": "专注于UE4/UE5开发与UMG界面设计",
+    "logo": "Tech",
+    "logoHighlight": "Home",
+    "tagline": "Personal technical work across systems, visuals and workflow",
     "navLinks": [
       {
         "label": "首页",
         "href": "#hero"
       },
       {
-        "label": "关于",
-        "href": "#about"
-      },
-      {
         "label": "项目",
         "href": "#projects"
       },
       {
-        "label": "技能",
+        "label": "关于",
+        "href": "#about"
+      },
+      {
+        "label": "能力",
         "href": "#skills"
       },
       {
@@ -379,10 +361,10 @@
       },
       {
         "icon": "email",
-        "href": "mailto:contact@example.com",
+        "href": "mailto:an15073025868@163.com",
         "label": "Email"
       }
     ],
-    "copyright": "© 2024 UMG Developer. All rights reserved."
+    "copyright": "© 2026 Personal Technical Homepage. All rights reserved."
   }
 }

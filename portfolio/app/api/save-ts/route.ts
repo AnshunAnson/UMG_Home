@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
+import type { PortfolioContent } from '../../types/content';
 
-function generateContentTs(data: any): string {
+type SaveTsRequest = {
+  content?: PortfolioContent;
+};
+
+function generateContentTs(data: PortfolioContent): string {
   const { heroContent, aboutContent, projectsContent, skillsContent, contactContent, footerContent } = data;
 
   return `import {
@@ -36,7 +41,7 @@ export const footerContent: FooterContent = ${JSON.stringify(footerContent, null
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as SaveTsRequest;
     const { content } = body;
 
     if (!content) {
@@ -53,10 +58,10 @@ export async function POST(request: NextRequest) {
       message: '已更新 app/config/content.ts',
       size: new TextEncoder().encode(tsContent).length,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('[save-ts API Error]:', error);
     return NextResponse.json(
-      { error: error.message || String(error) },
+      { error: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
