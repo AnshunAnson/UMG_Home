@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ArrowUpRight, Link2 } from 'lucide-react';
 import { projectsContent as defaultProjectsContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 import type { Project } from '../types/content';
@@ -13,6 +14,14 @@ function resolveAssetPath(src: string) {
     return src;
   }
   return `${basePath}${src}`;
+}
+
+function getLinkHost(href: string) {
+  try {
+    return new URL(href).hostname.replace(/^www\./, '');
+  } catch {
+    return href;
+  }
 }
 
 function ProjectPreviewRail({ project }: { project: Project }) {
@@ -141,17 +150,54 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
 
         {links.length ? (
           <div className="space-y-3 border-t border-white/10 pt-5">
-            <p className="text-xs uppercase tracking-[0.28em] text-white/34">项目链接</p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex items-center gap-3">
+              <span
+                className="inline-flex h-10 w-10 items-center justify-center border"
+                style={{
+                  borderColor: `${project.color}44`,
+                  backgroundColor: `${project.color}14`,
+                  color: project.color,
+                }}
+              >
+                <Link2 className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-[0.28em] text-white/38">项目链接</p>
+                <p className="text-sm leading-6 text-white/58">直接进入公开展示或补充阅读入口</p>
+              </div>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-2">
               {links.map((link) => (
                 <a
                   key={`${project.id}-${link.href}`}
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center border border-white/12 px-4 py-2 text-sm leading-6 text-white/62 transition-colors duration-300 hover:border-white/28 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/20"
+                  className="group relative overflow-hidden border p-4 transition-transform duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white/20"
+                  style={{
+                    borderColor: `${project.color}44`,
+                    background: `linear-gradient(135deg, ${project.color}1c 0%, rgba(255,255,255,0.03) 58%, rgba(255,255,255,0.02) 100%)`,
+                  }}
                 >
-                  {link.label}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <p className="text-base font-medium leading-6 text-white">{link.label}</p>
+                      <p className="mt-1 truncate text-sm leading-6 text-white/55">
+                        {getLinkHost(link.href)}
+                      </p>
+                    </div>
+                    <span
+                      className="inline-flex h-10 w-10 shrink-0 items-center justify-center border transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      style={{
+                        borderColor: `${project.color}4f`,
+                        color: project.color,
+                        backgroundColor: 'rgba(255,255,255,0.04)',
+                      }}
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                    </span>
+                  </div>
                 </a>
               ))}
             </div>
