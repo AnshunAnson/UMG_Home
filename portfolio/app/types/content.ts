@@ -39,6 +39,15 @@ export interface ProjectLink {
   href: string;
 }
 
+export interface ProjectSubProject {
+  title: string;
+  period?: string;
+  description?: string;
+  details?: string[];
+  links?: ProjectLink[];
+  images?: ProjectImage[];
+}
+
 export interface Project {
   id: number;
   icon: string;
@@ -52,6 +61,7 @@ export interface Project {
   color: string;
   images?: ProjectImage[];
   links?: ProjectLink[];
+  subProjects?: ProjectSubProject[];
 }
 
 export interface ProjectsContent {

@@ -172,6 +172,36 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
             href: { type: 'string', label: '链接地址', placeholder: 'https://example.com' }
           }
         },
+        subProjects: {
+          type: 'array',
+          label: '子项目',
+          description: '将主项目下的不同子项目拆开展示，避免内容混写',
+          itemType: 'object',
+          itemSchema: {
+            title: { type: 'string', label: '子项目名称', placeholder: '智能座舱氛围动效' },
+            period: { type: 'string', label: '时间段', placeholder: '2024.12 - 2025.04' },
+            description: { type: 'text', label: '子项目描述' },
+            details: { type: 'array', label: '子项目要点', itemType: 'string' },
+            links: {
+              type: 'array',
+              label: '子项目链接',
+              itemType: 'object',
+              itemSchema: {
+                label: { type: 'string', label: '链接名称', placeholder: '案例介绍' },
+                href: { type: 'string', label: '链接地址', placeholder: 'https://example.com' }
+              }
+            },
+            images: {
+              type: 'array',
+              label: '子项目图片 / GIF',
+              itemType: 'object',
+              itemSchema: {
+                src: { type: 'string', label: '图片路径', placeholder: '/gifs/project/animation.gif' },
+                alt: { type: 'string', label: '图片描述', placeholder: '动画效果展示' }
+              }
+            }
+          }
+        },
         images: {
           type: 'array',
           label: '预览图片 / GIF',

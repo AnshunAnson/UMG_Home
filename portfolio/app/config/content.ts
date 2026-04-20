@@ -35,10 +35,7 @@ export const heroContent: HeroContent = {
 export const aboutContent: AboutContent = {
   "sectionTitle": "关于",
   "sectionSubtitle": "About",
-  "bio": [
-    "我的工作不局限于某一个方向。UMG、材质动效、编辑器工具、自动化流程、性能收敛、玩法原型和技术验证，都是我实际持续投入的部分。这个首页更接近我的个人技术主页，而不是单一能力的展示页。",
-    "我偏向系统化地解决问题：先抽象结构，再落到实现、工具、流程和交付方式。无论是界面重构、视觉表现还是内部生产效率，我都习惯把问题放回完整项目链路里处理。"
-  ],
+  "bio": [],
   "age": 24,
   "location": "深圳",
   "experience": 3,
@@ -173,13 +170,11 @@ export const projectsContent: ProjectsContent = {
       "title": "UE HMI 概念界面项目",
       "period": "2023.10 - 2025.04",
       "category": "HMI / Niagara / 材质动效",
-      "description": "围绕设计比赛、智能座舱概念展示和台架 POC，持续验证 Niagara 粒子、材质描边、音波扰动、天气系统和 UMG 整合在 HMI 场景里的实际表现力。",
+      "description": "围绕设计比赛、POC 台架和概念座舱展示，持续推进 Niagara、材质、UMG 与 Sequencer 在 HMI 场景中的整合落地。",
       "details": [
-        "为比亚迪 HMI 设计比赛制作概念效果与展示视频，完成粒子特效和材质联动。",
-        "实现 Niagara 粒子自定义变换与半透明描边材质，服务座舱界面视觉呈现。",
-        "在广汽丰田 POC 台架中推进移动端天气系统、视差冰材质等交互效果验证。",
-        "在 DesaySV 智能座舱项目中制作音波扰动、波纹、切换、开机、来电等一整套氛围动效。",
-        "在郑州日产等场景中扩展多车型渲染、情景效果与车载宠物等综合表现。"
+        "把 HMI 相关工作拆成设计比赛、POC 台架、智能座舱氛围动效和多车型概念展示等不同子项目推进。",
+        "持续沉淀 Niagara 粒子、半透明描边、SDF 波纹、音频可视化和移动端界面整合等可复用能力。",
+        "在展示交付与概念验证场景里同时兼顾效果表达、实现成本与复用效率。"
       ],
       "achievements": [
         "把 Niagara、材质、UMG 与 Sequencer 串成可复用的 HMI 表现链路。",
@@ -197,62 +192,123 @@ export const projectsContent: ProjectsContent = {
         "HMI"
       ],
       "color": "#59c8ff",
-      "images": [
+      "subProjects": [
         {
-          "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
-          "alt": "比亚迪 HMI 设计比赛的入场概念动效"
+          "title": "比亚迪 HMI 设计比赛",
+          "period": "2023.10 - 2023.11",
+          "description": "以设计比赛为目标制作概念展示效果与视频输出。",
+          "details": [
+            "基于 UI 需求制作 HMI 概念效果。",
+            "完成 Niagara 粒子自定义变换与半透明描边材质结合。",
+            "使用 UMG 与 Sequencer 完成整体展示输出。"
+          ],
+          "images": [
+            {
+              "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
+              "alt": "比亚迪 HMI 设计比赛的入场概念动效"
+            }
+          ]
         },
         {
-          "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
-          "alt": "智能座舱主题场景渲染氛围效果"
+          "title": "广汽丰田 POC 台架",
+          "period": "2024.7 - 2024.11",
+          "description": "围绕台架验证推进移动端天气系统与材质表现测试。",
+          "details": [
+            "推进 POC 台架中的 HMI 交互验证。",
+            "验证移动端天气系统与视差冰材质表现。"
+          ]
         },
         {
-          "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
-          "alt": "智能座舱场景切换粒子效果"
+          "title": "DesaySV 智能座舱",
+          "period": "2024.12 - 2025.04",
+          "description": "为智能座舱概念展示制作一整组粒子氛围与状态动效。",
+          "details": [
+            "围绕 UI 创意图制作粒子氛围动效。",
+            "实现 SDF 距离场波纹、音波扰动与音频可视化效果。",
+            "覆盖场景切换、开机、来电、加载、音乐等多类状态动画。"
+          ],
+          "images": [
+            {
+              "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
+              "alt": "智能座舱主题场景渲染氛围效果"
+            },
+            {
+              "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
+              "alt": "智能座舱场景切换粒子效果"
+            },
+            {
+              "src": "/gifs/DesaysvFX/Wellness02.gif",
+              "alt": "智能座舱烟雾与氛围层特效"
+            },
+            {
+              "src": "/gifs/DesaysvFX/入场_爆破_溅射.gif",
+              "alt": "智能座舱入场爆破与溅射特效"
+            },
+            {
+              "src": "/gifs/DesaysvFX/audio.gif",
+              "alt": "智能座舱音波扰动与音频可视化效果"
+            },
+            {
+              "src": "/gifs/DesaysvFX/IP台开机动效.gif",
+              "alt": "智能座舱 IP 台开机过场动画"
+            },
+            {
+              "src": "/gifs/DesaysvFX/IP台来电.gif",
+              "alt": "智能座舱 IP 台来电提醒效果"
+            },
+            {
+              "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
+              "alt": "智能座舱流体入场动效"
+            },
+            {
+              "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
+              "alt": "智能座舱加载序列动画"
+            },
+            {
+              "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
+              "alt": "智能座舱心智切换过场效果"
+            },
+            {
+              "src": "/gifs/DesaysvFX/SEQ_Music.gif",
+              "alt": "智能座舱音乐界面动效"
+            }
+          ]
         },
         {
-          "src": "/gifs/DesaysvFX/Wellness02.gif",
-          "alt": "智能座舱烟雾与氛围层特效"
+          "title": "郑州日产概念表现",
+          "period": "未单独标注",
+          "description": "负责情景效果渲染、多车型展示和车载宠物表现扩展。",
+          "details": [
+            "推进情景效果渲染与多车型展示。",
+            "配合汽车渲染工具搭建表现链路。",
+            "整合 Metahuman 车载宠物效果。"
+          ],
+          "links": [
+            {
+              "label": "郑州日产项目介绍",
+              "href": "https://www.autoxyz.cn/information/detail/34604"
+            }
+          ],
+          "images": [
+            {
+              "src": "/gifs/ProjectNotes/Dog.gif",
+              "alt": "郑州日产项目中的 Metahuman 车载宠物效果"
+            }
+          ]
         },
         {
-          "src": "/gifs/DesaysvFX/入场_爆破_溅射.gif",
-          "alt": "智能座舱入场爆破与溅射特效"
-        },
-        {
-          "src": "/gifs/DesaysvFX/audio.gif",
-          "alt": "智能座舱音波扰动与音频可视化效果"
-        },
-        {
-          "src": "/gifs/DesaysvFX/IP台开机动效.gif",
-          "alt": "智能座舱 IP 台开机过场动画"
-        },
-        {
-          "src": "/gifs/DesaysvFX/IP台来电.gif",
-          "alt": "智能座舱 IP 台来电提醒效果"
-        },
-        {
-          "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
-          "alt": "智能座舱流体入场动效"
-        },
-        {
-          "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
-          "alt": "智能座舱加载序列动画"
-        },
-        {
-          "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
-          "alt": "智能座舱心智切换过场效果"
-        },
-        {
-          "src": "/gifs/DesaysvFX/SEQ_Music.gif",
-          "alt": "智能座舱音乐界面动效"
-        },
-        {
-          "src": "/gifs/ProjectNotes/Dog.gif",
-          "alt": "郑州日产项目中的 Metahuman 车载宠物效果"
-        },
-        {
-          "src": "/gifs/Mobile_terminal/UMG_1080.gif",
-          "alt": "移动端 POC 的 HMI 交互与角色特效整合效果"
+          "title": "移动端 POC",
+          "period": "未单独标注",
+          "description": "整合 HMI 交互界面、角色与特效，验证移动端一体化表现。",
+          "details": [
+            "完成 UMG 界面、角色与特效整合验证。"
+          ],
+          "images": [
+            {
+              "src": "/gifs/Mobile_terminal/UMG_1080.gif",
+              "alt": "移动端 POC 的 HMI 交互与角色特效整合效果"
+            }
+          ]
         }
       ]
     },
@@ -262,13 +318,11 @@ export const projectsContent: ProjectsContent = {
       "title": "汽车可视化与多端展示",
       "period": "未单独标注",
       "category": "汽车展示 / PBR / 多端适配",
-      "description": "这是一个围绕 HTML、Android 和 Windows 三端展开的 UE 多平台能力验证项目，重点落在汽车展示场景中的性能优化、材质实现和协同交付能力。",
+      "description": "围绕 Web、Windows 和 Android 三端分别推进汽车展示能力，验证网页展示、桌面配置器和移动端效果优化的完整链路。",
       "details": [
-        "推进 Web 端汽车展示，覆盖 Unlit PBR 材质、材质动画、敞篷动画和贴图优化。",
-        "在 Windows 端搭建基于 DataTable 的摄像机机位切换系统，用数据驱动展示流程。",
-        "补齐 UMG 模板框架和 UI 材质动画，让桌面端配置体验具备统一结构。",
-        "在 Android 端持续优化材质表现与 Niagara 动态效果，兼顾移动端成本。",
-        "围绕性能优化、材质实现和多人协同交付验证跨平台汽车展示链路。"
+        "统一围绕多端汽车展示、材质表现、数据驱动和交互模板展开。",
+        "把 Web 展示、Windows 配置器与 Android 优化拆成独立子项目推进。",
+        "在不同平台上分别处理性能、材质和交互结构问题。"
       ],
       "achievements": [
         "完成 HTML、Windows 与 Android 三类展示形态的验证。",
@@ -285,20 +339,50 @@ export const projectsContent: ProjectsContent = {
         "PBR"
       ],
       "color": "#d7c77a",
-      "links": [
+      "subProjects": [
         {
-          "label": "保时捷在线展示",
-          "href": "https://www.autoy.co/porsche/#/"
+          "title": "UE Web 端汽车展示",
+          "period": "未单独标注",
+          "description": "面向网页展示场景验证轻量化材质与动画表现。",
+          "details": [
+            "实现基于 Unlit 的 PBR 材质。",
+            "完成材质动画、敞篷动画和贴图优化。"
+          ],
+          "links": [
+            {
+              "label": "保时捷在线展示",
+              "href": "https://www.autoy.co/porsche/#/"
+            },
+            {
+              "label": "奥迪在线展示",
+              "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
+            }
+          ]
         },
         {
-          "label": "奥迪在线展示",
-          "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
-        }
-      ],
-      "images": [
+          "title": "Windows 汽车配置器",
+          "period": "未单独标注",
+          "description": "围绕桌面端配置流程搭建数据驱动的展示与交互框架。",
+          "details": [
+            "实现基于 DataTable 的摄像机机位切换系统。",
+            "搭建 UMG 模板框架。",
+            "完成 UI 材质动画表现。"
+          ],
+          "images": [
+            {
+              "src": "/gifs/ProjectNotes/audi.gif",
+              "alt": "Windows 端汽车配置器的机位切换与展示效果"
+            }
+          ]
+        },
         {
-          "src": "/gifs/ProjectNotes/audi.gif",
-          "alt": "Windows 端汽车配置器的机位切换与展示效果"
+          "title": "Android 汽车配置器",
+          "period": "未单独标注",
+          "description": "在移动端持续收敛材质成本与动态效果表现。",
+          "details": [
+            "完成材质优化。",
+            "保留 Niagara 动态表现并控制移动端成本。"
+          ]
         }
       ]
     }
@@ -414,7 +498,7 @@ export const contactContent: ContactContent = {
   "description": "如果你需要一个能同时处理项目实现、界面系统、视觉表现、工具链和技术验证的人，我愿意直接参与问题推进与交付。",
   "email": "an15073025868@163.com",
   "phone": "15073025868",
-  "location": "深圳"
+  "location": "深圳、广州"
 };
 
 // Footer区域内容
