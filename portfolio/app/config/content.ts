@@ -94,7 +94,13 @@ export const projectsContent: ProjectsContent = {
         "Blueprint",
         "UI Architecture"
       ],
-      "color": "#7ce7d0"
+      "color": "#7ce7d0",
+      "links": [
+        {
+          "label": "DeltaForce UI 白皮书",
+          "href": "https://www.bilibili.com/opus/1190448420615094281/?from=readlist"
+        }
+      ]
     },
     {
       "id": 2,
