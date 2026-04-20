@@ -34,6 +34,11 @@ export interface ProjectImage {
   alt: string;
 }
 
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
 export interface Project {
   id: number;
   icon: string;
@@ -46,6 +51,7 @@ export interface Project {
   tech: string[];
   color: string;
   images?: ProjectImage[];
+  links?: ProjectLink[];
 }
 
 export interface ProjectsContent {

@@ -52,163 +52,234 @@
     ]
   },
   "projectsContent": {
-    "sectionTitle": "精选项目",
-    "sectionSubtitle": "Selected Projects",
+    "sectionTitle": "项目经历",
+    "sectionSubtitle": "Project Experience",
     "projects": [
       {
         "id": 1,
-        "icon": "Car",
-        "title": "汽车渲染平台",
-        "period": "2023.04 - 至今",
-        "category": "界面系统 / 交互体验 / 性能优化",
-        "description": "围绕汽车可视化渲染平台重做界面结构与交互表达，让复杂配置流程具备更稳定的展示层、模板化产出方式和更低的维护成本。",
+        "icon": "LayoutPanelTop",
+        "title": "DeltaForce UMG 模块化框架",
+        "period": "未单独标注",
+        "category": "UI 架构 / 方法论 / Vibe Coding",
+        "description": "围绕《虚幻引擎5模块化UI架构白皮书》整理一套适用于中大型项目的 UMG 方法论，把 Common UI、MVVM、路由分层和样式资产化收束成可落地的框架实践。",
         "details": [
-          "重构 UMG 界面层级与组件组织方式，梳理项目级 UI 结构。",
-          "为常见页面与交互模块建立可复用蓝图模板与界面规范。",
-          "联动材质系统与动画表现，统一主界面、过场和状态反馈的视觉逻辑。",
-          "针对移动端和高密度界面场景优化渲染响应、资源使用与维护成本。"
+          "输出《虚幻引擎5模块化UI架构白皮书》，把框架设计抽象成可复用方法论。",
+          "梳理 Primary Layout、Shell Layout 与行为基类，明确界面容器和交互分层。",
+          "把数据与表现解耦、组合优于继承、树状路由与焦点垄断等核心原则整理成统一框架语言。",
+          "引入样式数据资产、UI Material 与软引用加载思路，保证多端 UI 的一致性和可维护性。",
+          "把方法论落到实际样例中，验证布局、行为和资产层级的可操作性。",
+          "结合 Vibe Coding 过程整理一套更适合快速迭代的框架工作方式。"
         ],
         "achievements": [
-          "将 UI 渲染性能提升约 40%。",
-          "建立完整的 UI 开发规范和模板资产体系。",
-          "把界面迭代从单页修改转成组件化交付方式。"
+          "完成模块化 UI 架构白皮书与详细样例沉淀。",
+          "把 UMG 框架讨论从零散经验收束成可复用结构。",
+          "为后续 UI 项目的组件拆分和布局复用提供统一基线。"
         ],
         "tech": [
-          "UE4",
+          "UE5",
           "UMG",
           "Blueprint",
-          "Material",
-          "Niagara"
+          "UI Architecture"
         ],
-        "color": "#00d4aa"
+        "color": "#7ce7d0"
       },
       {
         "id": 2,
-        "icon": "Sparkles",
-        "title": "Niagara UI 粒子与序列动效",
-        "period": "2023.01 - 2023.03",
-        "category": "视觉特效 / 材质动效 / 资产模板",
-        "description": "把 UI 动效拆分成可复用的粒子与序列模块，覆盖入场、切换、来电、加载和氛围强化等多个场景，让特效资产可以被快速复用而不是逐页重做。",
+        "icon": "Wrench",
+        "title": "汽车渲染工作流工具链",
+        "period": "2023.12 - 至今",
+        "category": "编辑器工具 / 工作流 / Blueprint",
+        "description": "以汽车渲染工作流为核心，围绕模型整理、资产同步和渲染输出搭建一组 Blueprint 编辑器工具，把重复的人工作业收敛成标准化流水线。",
         "details": [
-          "梳理 UI 粒子效果的分类方式与模板结构。",
-          "用 Niagara 和材质系统完成多种场景化动态效果。",
-          "把视觉层实现和界面状态逻辑解耦，减少重复配置。",
-          "优化粒子数量、节奏和透明效果，兼顾表现和成本。"
+          "开发汽车模型整理插件，批量处理命名、枢轴点和资产整理。",
+          "搭建渲染输出流水线，串联 Runtime Blueprint 与可扩展流程。",
+          "结合 OpenUSD、UsdAssetCache 和 DataAsset 组织模型资产与汽车蓝图解耦。",
+          "补齐模型资产同步、材质替换和性能优化工具，降低多车渲染维护成本。",
+          "把 Maya 侧预处理、Unreal 侧批处理和最终输出串成完整工具链。"
         ],
         "achievements": [
-          "沉淀 20+ 可复用粒子与序列模板。",
-          "实现更低成本的页面级动效复用方式。",
-          "在多粒子同屏情况下保持稳定表现。"
+          "将多车型渲染中的重复操作转为可复用工具链。",
+          "把 Maya 到 Unreal 的渲染准备流程收敛为标准化步骤。",
+          "让设计和渲染同事可以基于统一流程交付多车型内容。"
         ],
         "tech": [
-          "Niagara",
-          "UE4",
+          "UE5",
+          "Blueprint",
+          "Editor Tools",
+          "OpenUSD",
+          "UMG",
           "Material",
-          "Blueprint"
+          "Runtime Blueprint"
         ],
         "color": "#7ce7d0",
-        "images": [
-          {
-            "src": "/gifs/DesaysvFX/入场_爆破,溅射.gif",
-            "alt": "入场爆破与溅射动效"
-          },
-          {
-            "src": "/gifs/DesaysvFX/IP台来电.gif",
-            "alt": "来电提醒动效"
-          },
-          {
-            "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
-            "alt": "加载界面序列动效"
-          },
-          {
-            "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
-            "alt": "场景切换动效"
-          },
-          {
-            "src": "/gifs/DesaysvFX/SEQ_Music.gif",
-            "alt": "音乐界面动效"
-          },
-          {
-            "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
-            "alt": "场景扫光切换效果"
-          },
-          {
-            "src": "/gifs/DesaysvFX/IP台开机动效.gif",
-            "alt": "开机过场动画"
-          },
-          {
-            "src": "/gifs/DesaysvFX/audio.gif",
-            "alt": "音频可视化动效"
-          },
-          {
-            "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
-            "alt": "流体入场效果"
-          },
-          {
-            "src": "/gifs/DesaysvFX/Wellness02.gif",
-            "alt": "烟雾氛围特效"
-          },
-          {
-            "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
-            "alt": "森林主题场景氛围效果"
-          }
-        ]
+        "images": []
       },
       {
         "id": 3,
-        "icon": "Zap",
-        "title": "UMG 重构工具链",
-        "period": "2022.10 - 2022.12",
-        "category": "工具开发 / 编辑器扩展 / 流程自动化",
-        "description": "围绕 UMG 重构工作本身搭建生成器、检查器和自动化流程，让重构动作从“人工逐页处理”变成“标准化流水线”。",
+        "icon": "Gamepad2",
+        "title": "局域网 FPS 对战原型",
+        "period": "2022.09 - 2022.12",
+        "category": "多人玩法 / Networking / UMG",
+        "description": "基于现有游戏资源完成一套局域网多人 FPS 蓝图原型，重点验证多人同步、核心战斗循环和游戏内 HUD 的完整协作。",
         "details": [
-          "开发蓝图生成器，减少重复搭建基础结构的时间。",
-          "实现 UI 规范检查工具，提前发现命名、结构和资产问题。",
-          "建立自动化测试和文档输出流程，减少返工成本。",
-          "把常见重构动作沉淀为可复用的内部工具。"
+          "使用 UE4 蓝图系统开发局域网对战功能，实现多人实时对战体验。",
+          "搭建稳定的多人网络架构，处理同步机制与延迟问题。",
+          "完成角色控制、武器系统和得分机制等核心模块开发与调试。",
+          "补齐游戏内 HUD、菜单与交互界面，验证玩法 UI 联动。",
+          "围绕 RPC、动画蓝图和基础 Gameplay 循环完成实机联调。"
         ],
         "achievements": [
-          "将 UI 开发效率提升约 60%。",
-          "显著降低重构过程中的结构性缺陷。",
-          "为团队建立统一的 UI 开发标准。"
+          "完成多人射击循环的可玩验证。",
+          "打通网络同步、角色控制和界面反馈的完整链路。",
+          "为后续多人玩法和战斗反馈系统积累了一套蓝图实现经验。"
         ],
         "tech": [
-          "Python",
           "UE4",
           "Blueprint",
-          "Editor Tools"
-        ],
-        "color": "#59c8ff"
-      },
-      {
-        "id": 5,
-        "icon": "Gamepad2",
-        "title": "局域网 FPS 游戏",
-        "period": "2022.01 - 2022.05",
-        "category": "玩法原型 / 网络同步 / 系统验证",
-        "description": "一套完整的局域网多人 FPS 原型，包含基础射击循环、网络同步、武器系统和游戏内 UI，让我系统验证了 Unreal 中玩法与界面协作的完整链路。",
-        "details": [
-          "实现局域网多人同步与基础战斗循环。",
-          "搭建武器、伤害和反馈系统，打通玩法节奏。",
-          "设计并实现游戏内 HUD、菜单和交互界面。",
-          "针对延迟和同步体验进行调试与性能优化。"
-        ],
-        "achievements": [
-          "支持 8 人同时在线对战。",
-          "完成完整的多人游戏循环验证。",
-          "沉淀出玩法 UI 与状态同步的实现经验。"
-        ],
-        "tech": [
-          "UE4",
-          "C++",
           "Networking",
-          "UMG"
+          "UMG",
+          "Gameplay"
         ],
         "color": "#f0b562",
         "images": [
           {
             "src": "/gifs/FPS.high.gif",
-            "alt": "局域网 FPS 游戏实机画面"
+            "alt": "局域网 FPS 原型的实机对战画面"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "icon": "Sparkles",
+        "title": "UE HMI 概念界面项目",
+        "period": "2023.10 - 2025.04",
+        "category": "HMI / Niagara / 材质动效",
+        "description": "围绕设计比赛、智能座舱概念展示和台架 POC，持续验证 Niagara 粒子、材质描边、音波扰动、天气系统和 UMG 整合在 HMI 场景里的实际表现力。",
+        "details": [
+          "为比亚迪 HMI 设计比赛制作概念效果与展示视频，完成粒子特效和材质联动。",
+          "实现 Niagara 粒子自定义变换与半透明描边材质，服务座舱界面视觉呈现。",
+          "在广汽丰田 POC 台架中推进移动端天气系统、视差冰材质等交互效果验证。",
+          "在 DesaySV 智能座舱项目中制作音波扰动、波纹、切换、开机、来电等一整套氛围动效。",
+          "在郑州日产等场景中扩展多车型渲染、情景效果与车载宠物等综合表现。"
+        ],
+        "achievements": [
+          "把 Niagara、材质、UMG 与 Sequencer 串成可复用的 HMI 表现链路。",
+          "覆盖设计比赛、台架验证和多车型座舱表现等多类场景。",
+          "沉淀了可直接复用的 HMI 粒子、音波和过场动效素材。"
+        ],
+        "tech": [
+          "UE5",
+          "Niagara",
+          "SDF",
+          "Material",
+          "UMG",
+          "Sequencer",
+          "Blueprint",
+          "HMI"
+        ],
+        "color": "#59c8ff",
+        "images": [
+          {
+            "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
+            "alt": "比亚迪 HMI 设计比赛的入场概念动效"
+          },
+          {
+            "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
+            "alt": "智能座舱主题场景渲染氛围效果"
+          },
+          {
+            "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
+            "alt": "智能座舱场景切换粒子效果"
+          },
+          {
+            "src": "/gifs/DesaysvFX/Wellness02.gif",
+            "alt": "智能座舱烟雾与氛围层特效"
+          },
+          {
+            "src": "/gifs/DesaysvFX/入场_爆破_溅射.gif",
+            "alt": "智能座舱入场爆破与溅射特效"
+          },
+          {
+            "src": "/gifs/DesaysvFX/audio.gif",
+            "alt": "智能座舱音波扰动与音频可视化效果"
+          },
+          {
+            "src": "/gifs/DesaysvFX/IP台开机动效.gif",
+            "alt": "智能座舱 IP 台开机过场动画"
+          },
+          {
+            "src": "/gifs/DesaysvFX/IP台来电.gif",
+            "alt": "智能座舱 IP 台来电提醒效果"
+          },
+          {
+            "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
+            "alt": "智能座舱流体入场动效"
+          },
+          {
+            "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
+            "alt": "智能座舱加载序列动画"
+          },
+          {
+            "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
+            "alt": "智能座舱心智切换过场效果"
+          },
+          {
+            "src": "/gifs/DesaysvFX/SEQ_Music.gif",
+            "alt": "智能座舱音乐界面动效"
+          },
+          {
+            "src": "/gifs/ProjectNotes/Dog.gif",
+            "alt": "郑州日产项目中的 Metahuman 车载宠物效果"
+          },
+          {
+            "src": "/gifs/Mobile_terminal/UMG_1080.gif",
+            "alt": "移动端 POC 的 HMI 交互与角色特效整合效果"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "icon": "Car",
+        "title": "汽车可视化与多端展示",
+        "period": "未单独标注",
+        "category": "汽车展示 / PBR / 多端适配",
+        "description": "这是一个围绕 HTML、Android 和 Windows 三端展开的 UE 多平台能力验证项目，重点落在汽车展示场景中的性能优化、材质实现和协同交付能力。",
+        "details": [
+          "推进 Web 端汽车展示，覆盖 Unlit PBR 材质、材质动画、敞篷动画和贴图优化。",
+          "在 Windows 端搭建基于 DataTable 的摄像机机位切换系统，用数据驱动展示流程。",
+          "补齐 UMG 模板框架和 UI 材质动画，让桌面端配置体验具备统一结构。",
+          "在 Android 端持续优化材质表现与 Niagara 动态效果，兼顾移动端成本。",
+          "围绕性能优化、材质实现和多人协同交付验证跨平台汽车展示链路。"
+        ],
+        "achievements": [
+          "完成 HTML、Windows 与 Android 三类展示形态的验证。",
+          "把材质、动画和 UI 交互整合到同一套汽车展示链路。",
+          "形成了可复用的跨平台汽车展示与配置验证方案。"
+        ],
+        "tech": [
+          "UE",
+          "HTML",
+          "UMG",
+          "Material",
+          "Niagara",
+          "DataTable",
+          "PBR"
+        ],
+        "color": "#d7c77a",
+        "links": [
+          {
+            "label": "保时捷在线展示",
+            "href": "https://www.autoy.co/porsche/#/"
+          },
+          {
+            "label": "奥迪在线展示",
+            "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
+          }
+        ],
+        "images": [
+          {
+            "src": "/gifs/ProjectNotes/audi.gif",
+            "alt": "Windows 端汽车配置器的机位切换与展示效果"
           }
         ]
       }
@@ -332,7 +403,7 @@
         "href": "#hero"
       },
       {
-        "label": "项目",
+        "label": "项目经历",
         "href": "#projects"
       },
       {

@@ -7,7 +7,6 @@ import { useContent } from '../ContentProvider';
 import type { Project } from '../types/content';
 
 const basePath = process.env.NODE_ENV === 'production' ? '/UMG_Home' : '';
-const projectTracks = ['Systems', 'Visuals', 'Workflow', 'Validation'];
 
 function resolveAssetPath(src: string) {
   if (!src.startsWith('/')) {
@@ -16,200 +15,163 @@ function resolveAssetPath(src: string) {
   return `${basePath}${src}`;
 }
 
-function ProjectMedia({ project }: { project: Project }) {
+function ProjectPreviewRail({ project }: { project: Project }) {
   const images = project.images || [];
 
   if (!images.length) {
-    return (
-      <div className="border-y border-white/10 py-8">
-        <p className="text-xs uppercase tracking-[0.28em] text-white/34">
-          Key outcomes
-        </p>
-        <div className="mt-6 space-y-4">
-          {project.achievements.map((achievement, index) => (
-            <p
-              key={`${project.id}-quote-${index}`}
-              className={
-                index === 0
-                  ? 'font-display max-w-4xl text-3xl leading-tight tracking-[-0.04em] text-white md:text-5xl'
-                  : 'max-w-3xl text-base leading-8 text-white/56'
-              }
-            >
-              {achievement}
-            </p>
-          ))}
-        </div>
-      </div>
-    );
+    return null;
   }
 
-  const leadImage = images[0];
-  const trailingImages = images.slice(1);
-
   return (
-    <div className="space-y-6">
+    <div className="space-y-3 border-t border-white/10 pt-6">
       <p className="text-xs uppercase tracking-[0.28em] text-white/34">
-        Media sequence
+        项目预览 {images.length > 1 ? `(${images.length})` : ''}
       </p>
-
-      <motion.figure
-        initial={{ opacity: 0, y: 22 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.45 }}
-        className="border-y border-white/10 py-6"
-      >
-        <Image
-          src={resolveAssetPath(leadImage.src)}
-          alt={leadImage.alt}
-          width={1600}
-          height={900}
-          unoptimized
-          className="h-auto w-full bg-[#050608] object-cover"
-        />
-        <figcaption className="mt-4 text-sm text-white/44">{leadImage.alt}</figcaption>
-      </motion.figure>
-
-      {trailingImages.length > 0 ? (
-        <div className="grid gap-5 md:grid-cols-2">
-          {trailingImages.map((image, index) => (
-            <motion.figure
-              key={`${project.id}-${index + 1}`}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
-            >
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {images.map((image, index) => (
+          <motion.figure
+            key={`${project.id}-preview-${index}`}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.35, delay: index * 0.04 }}
+            className="group"
+          >
+            <div className="relative aspect-[16/10] overflow-hidden border border-white/10 bg-white/[0.03]">
               <Image
                 src={resolveAssetPath(image.src)}
                 alt={image.alt}
-                width={1200}
-                height={800}
+                fill
                 unoptimized
-                className="h-auto w-full bg-[#050608] object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
-              <figcaption className="mt-3 text-sm text-white/42">{image.alt}</figcaption>
-            </motion.figure>
-          ))}
-        </div>
-      ) : null}
+            </div>
+            <figcaption className="mt-2 text-sm leading-6 text-white/40">{image.alt}</figcaption>
+          </motion.figure>
+        ))}
+      </div>
     </div>
   );
 }
 
-function ProjectStory({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) {
+function ProjectEntry({ project, index }: { project: Project; index: number }) {
   const projectIndex = String(index + 1).padStart(2, '0');
+  const details = project.details || [];
+  const achievements = project.achievements || [];
+  const tech = project.tech || [];
+  const links = project.links || [];
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-120px' }}
-      transition={{ duration: 0.6 }}
-      className="relative border-t border-white/10 py-16 lg:py-24"
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.45 }}
+      className="grid gap-8 border-t border-white/10 py-12 lg:grid-cols-[164px_minmax(0,1fr)] lg:gap-14 lg:py-16"
     >
-      <span className="pointer-events-none absolute right-0 top-8 hidden font-display text-[10rem] leading-none tracking-[-0.08em] text-white/[0.03] lg:block">
-        {projectIndex}
-      </span>
-
-      <div className="grid gap-10 lg:grid-cols-[64px_minmax(220px,0.72fr)_minmax(0,1.28fr)] lg:gap-12">
-        <div className="hidden lg:block">
+      <div className="flex items-start justify-between gap-6 lg:block">
+        <div>
           <p
             className="font-mono text-sm tracking-[0.24em]"
             style={{ color: project.color }}
           >
             {projectIndex}
           </p>
-        </div>
-
-        <div className="lg:sticky lg:top-24 lg:self-start">
           <p
-            className="text-xs uppercase tracking-[0.3em]"
+            className="mt-5 text-xs uppercase tracking-[0.3em]"
             style={{ color: project.color }}
           >
             {project.category}
           </p>
-          <h3
-            className={`font-display mt-5 font-semibold tracking-[-0.06em] text-white ${
-              index === 0 ? 'text-5xl leading-[0.92] md:text-7xl' : 'text-4xl leading-[0.96] md:text-6xl'
-            }`}
-          >
+        </div>
+        <p className="text-right text-sm leading-7 text-white/42 lg:mt-10 lg:text-left">
+          {project.period || '未单独标注'}
+        </p>
+      </div>
+
+      <div className="space-y-7">
+        <div className="space-y-4">
+          <h3 className="font-display text-3xl font-semibold leading-[0.96] tracking-[-0.06em] text-white md:text-5xl">
             {project.title}
           </h3>
-
-          <div className="mt-8 grid gap-4 border-t border-white/10 pt-6 text-sm text-white/48">
-            <div>
-              <p className="uppercase tracking-[0.28em] text-white/30">Period</p>
-              <p className="mt-2 text-white/72">{project.period}</p>
-            </div>
-            <div>
-              <p className="uppercase tracking-[0.28em] text-white/30">Stack</p>
-              <p className="mt-2 leading-7 text-white/58">{project.tech.join(' / ')}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-10">
-          <p
-            className={`max-w-4xl tracking-[-0.03em] text-white ${
-              index === 0
-                ? 'font-display text-3xl leading-tight md:text-5xl'
-                : 'text-2xl leading-tight md:text-[2rem]'
-            }`}
-          >
+          <p className="max-w-4xl text-lg leading-8 text-white/64 md:text-xl md:leading-9">
             {project.description}
           </p>
+        </div>
 
-          <div className="grid gap-8 border-t border-white/10 pt-8 md:grid-cols-2">
-            <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-white/34">Build</p>
-              <ol className="mt-5 space-y-5">
-                {project.details.map((detail, detailIndex) => (
-                  <li
-                    key={`${project.id}-detail-${detailIndex}`}
-                    className="grid grid-cols-[34px_minmax(0,1fr)] gap-4 border-b border-white/8 pb-5"
-                  >
-                    <span
-                      className="font-mono text-xs tracking-[0.24em]"
-                      style={{ color: project.color }}
-                    >
-                      {String(detailIndex + 1).padStart(2, '0')}
-                    </span>
-                    <span className="text-base leading-8 text-white/60">{detail}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
+        {details.length ? (
+          <ul className="grid gap-x-8 gap-y-4 border-t border-white/10 pt-6 md:grid-cols-2">
+            {details.map((detail, detailIndex) => (
+              <li
+                key={`${project.id}-detail-${detailIndex}`}
+                className="grid grid-cols-[24px_minmax(0,1fr)] gap-4"
+              >
+                <span
+                  className="mt-1 font-mono text-xs tracking-[0.24em]"
+                  style={{ color: project.color }}
+                >
+                  {String(detailIndex + 1).padStart(2, '0')}
+                </span>
+                <span className="text-base leading-8 text-white/58">{detail}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
 
-            <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-white/34">Results</p>
-              <ul className="mt-5 space-y-5">
-                {project.achievements.map((achievement, achievementIndex) => (
-                  <li
-                    key={`${project.id}-achievement-${achievementIndex}`}
-                    className="grid grid-cols-[34px_minmax(0,1fr)] gap-4 border-b border-white/8 pb-5"
-                  >
-                    <span
-                      className="font-mono text-xs tracking-[0.24em]"
-                      style={{ color: project.color }}
-                    >
-                      {String(achievementIndex + 1).padStart(2, '0')}
-                    </span>
-                    <span className="text-base leading-8 text-white/72">{achievement}</span>
-                  </li>
-                ))}
-              </ul>
+        {achievements.length ? (
+          <div className="space-y-3 border-t border-white/10 pt-5">
+            <p className="text-xs uppercase tracking-[0.28em] text-white/34">补充成果</p>
+            <ul className="grid gap-3 md:grid-cols-2">
+              {achievements.map((achievement, achievementIndex) => (
+                <li
+                  key={`${project.id}-achievement-${achievementIndex}`}
+                  className="grid grid-cols-[18px_minmax(0,1fr)] gap-3 text-sm leading-7 text-white/50 md:text-base"
+                >
+                  <span
+                    className="mt-2 h-1.5 w-1.5 rounded-full"
+                    style={{ backgroundColor: project.color }}
+                  />
+                  <span>{achievement}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        {links.length ? (
+          <div className="space-y-3 border-t border-white/10 pt-5">
+            <p className="text-xs uppercase tracking-[0.28em] text-white/34">项目链接</p>
+            <div className="flex flex-wrap gap-3">
+              {links.map((link) => (
+                <a
+                  key={`${project.id}-${link.href}`}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center border border-white/12 px-4 py-2 text-sm leading-6 text-white/62 transition-colors duration-300 hover:border-white/28 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/20"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
+        ) : null}
 
-          <ProjectMedia project={project} />
-        </div>
+        <ProjectPreviewRail project={project} />
+
+        {tech.length ? (
+          <div className="flex flex-wrap gap-2 pt-1">
+            {tech.map((item) => (
+              <span
+                key={`${project.id}-${item}`}
+                className="border border-white/10 px-3 py-1.5 text-xs uppercase tracking-[0.18em] text-white/46"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        ) : null}
       </div>
     </motion.article>
   );
@@ -227,7 +189,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="grid gap-10 border-y border-white/10 py-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] lg:items-end"
+          className="grid gap-10 border-y border-white/10 py-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(300px,0.7fr)] lg:items-end"
         >
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-[#00d4aa]">
@@ -240,22 +202,17 @@ export default function Projects() {
 
           <div className="flex flex-col gap-6">
             <p className="max-w-md text-lg leading-8 text-white/58">
-              这些项目不是单一方向的堆叠，而是我在系统实现、视觉表达、工具流程和技术验证上的综合切片。
+              这里聚焦我在 UI 架构、工具链、多人玩法、HMI 表现和汽车可视化上的核心项目，内容按实际交付与能力脉络做了整理。
             </p>
-
-            <div className="grid gap-3 text-[11px] uppercase tracking-[0.28em] text-white/38 sm:grid-cols-2">
-              {projectTracks.map((track) => (
-                <span key={track} className="border-b border-white/8 pb-2">
-                  {track}
-                </span>
-              ))}
-            </div>
+            <p className="text-sm uppercase tracking-[0.28em] text-white/32">
+              5 项核心项目，覆盖架构到交付
+            </p>
           </div>
         </motion.div>
 
         <div>
           {projectData.projects.map((project, index) => (
-            <ProjectStory key={project.id} project={project} index={index} />
+            <ProjectEntry key={project.id} project={project} index={index} />
           ))}
         </div>
       </div>

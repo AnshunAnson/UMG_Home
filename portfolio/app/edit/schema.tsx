@@ -134,8 +134,8 @@ export const aboutSchema: SectionSchema<AboutContent> = {
 };
 
 export const projectsSchema: SectionSchema<ProjectsContent> = {
-  title: '项目 Projects',
-  description: '配置项目经历',
+  title: '项目经历 Projects',
+  description: '配置首页项目经历列表与紧凑预览媒体',
   fields: {
     sectionTitle: {
       type: 'string',
@@ -145,7 +145,7 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
     sectionSubtitle: {
       type: 'string',
       label: '区域副标题',
-      placeholder: 'Projects'
+      placeholder: 'Project Experience'
     },
     projects: {
       type: 'array',
@@ -158,17 +158,27 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
         period: { type: 'string', label: '时间段', placeholder: '2023.12 - 至今' },
         category: { type: 'string', label: '分类', placeholder: '渲染 / 动效 / UI / 编辑器' },
         description: { type: 'text', label: '项目描述' },
-        details: { type: 'array', label: '详细内容', itemType: 'string' },
-        achievements: { type: 'array', label: '业绩成果', itemType: 'string' },
+        details: { type: 'array', label: '职责 / 要点', itemType: 'string' },
+        achievements: { type: 'array', label: '补充成果', itemType: 'string' },
         tech: { type: 'array', label: '技术栈', itemType: 'string' },
         color: { type: 'string', label: '主题色', placeholder: '#00d4aa' },
-        images: {
+        links: {
           type: 'array',
-          label: 'GIF图片',
-          description: '项目展示GIF图片列表，支持多个图片轮播',
+          label: '项目链接',
+          description: '项目相关的外部展示、案例或体验链接',
           itemType: 'object',
           itemSchema: {
-            src: { type: 'string', label: '图片路径', placeholder: '/gifs/project/animation.gif', description: 'GIF文件路径，如 /gifs/niagara/demo.gif' },
+            label: { type: 'string', label: '链接名称', placeholder: '在线展示' },
+            href: { type: 'string', label: '链接地址', placeholder: 'https://example.com' }
+          }
+        },
+        images: {
+          type: 'array',
+          label: '预览图片 / GIF',
+          description: '首页会以紧凑预览带展示项目的全部图片或 GIF',
+          itemType: 'object',
+          itemSchema: {
+            src: { type: 'string', label: '图片路径', placeholder: '/gifs/project/animation.gif', description: '站点 public 目录下的图片或 GIF 路径' },
             alt: { type: 'string', label: '图片描述', placeholder: '动画效果展示', description: '图片的替代文字描述' }
           }
         }
