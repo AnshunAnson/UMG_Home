@@ -130,16 +130,16 @@ function MediaLightbox({
               </div>
             </div>
 
-            <div className="min-h-0 flex-1 overflow-auto bg-black">
-              <div className="w-full">
+            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-black px-4 py-4 md:px-6 md:py-6">
+              <div className="flex h-full w-full items-center justify-center">
                 <Image
                   src={resolveAssetPath(media.src)}
                   alt={media.alt}
-                  width={0}
-                  height={0}
+                  width={1920}
+                  height={1080}
                   unoptimized
                   sizes="100vw"
-                  className="h-auto w-full"
+                  className="h-auto max-h-full w-auto max-w-full object-contain"
                 />
               </div>
             </div>
