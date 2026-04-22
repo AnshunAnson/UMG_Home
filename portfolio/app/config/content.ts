@@ -122,7 +122,7 @@ export const projectsContent: ProjectsContent = {
       "links": [
         {
           "label": "VDB + Chaos 项目链接",
-          "href": "https://www.autoxyz.cn/search?id=26138"
+          "href": "https://www.autoxyz.cn/information/detail/26652"
         }
       ],
       "subProjects": [
@@ -256,6 +256,12 @@ export const projectsContent: ProjectsContent = {
             "搭建 UMG 模板框架。",
             "完成 UI 材质动画表现。"
           ],
+          "links": [
+            {
+              "label": "Audi RS Q8 WEB3D设计与研发",
+              "href": "https://www.autoxyz.cn/information/detail/37446"
+            }
+          ],
           "images": [
             {
               "src": "/gifs/ProjectNotes/audi.gif",
@@ -366,6 +372,28 @@ export const projectsContent: ProjectsContent = {
         "Prototype"
       ],
       "color": "#59c8ff",
+      "links": [
+        {
+          "label": "3D HMI 概念设计",
+          "href": "https://www.autoxyz.cn/information/detail/32714"
+        },
+        {
+          "label": "福特烈马3D_HMI设计&汽车渲染",
+          "href": "https://www.autoxyz.cn/information/detail/34563"
+        },
+        {
+          "label": "兰博基尼自动驾驶用户体验设计",
+          "href": "https://www.autoxyz.cn/information/detail/30369"
+        },
+        {
+          "label": "Benz EQS680 Maybach的SR与ADAS用户体验设计",
+          "href": "https://www.autoxyz.cn/information/detail/31254"
+        },
+        {
+          "label": "3D仪表HMI创新设计",
+          "href": "https://www.autoxyz.cn/information/detail/25064"
+        }
+      ],
       "subProjects": [
         {
           "title": "广汽丰田 POC 台架",

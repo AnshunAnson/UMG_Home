@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Link2 } from 'lucide-react';
@@ -9,12 +8,46 @@ import { useContent } from '../ContentProvider';
 import type { Project, ProjectImage, ProjectLink, ProjectSubProject } from '../types/content';
 
 const basePath = process.env.NODE_ENV === 'production' ? '/UMG_Home' : '';
+const MEDIA_SIZE_HINTS: Record<string, number> = {
+  '/gifs/DesaysvFX/audio.gif': 211825,
+  '/gifs/DesaysvFX/SEQ_Flow7.gif': 546250,
+  '/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif': 765575,
+  '/gifs/DesaysvFX/Wellness02.gif': 1837382,
+  '/gifs/Niagara_Materials/比亚迪入场动画.gif': 1839380,
+  '/gifs/ProjectNotes/Dog.gif': 3479249,
+  '/gifs/DesaysvFX/IP台来电.gif': 4637462,
+  '/gifs/DesaysvFX/入场_爆破_溅射.gif': 6018873,
+  '/gifs/DesaysvFX/SEQ_Loading01.gif': 6327121,
+  '/gifs/DesaysvFX/IP台开机动效.gif': 7074965,
+  '/gifs/ProjectNotes/audi.gif': 7640136,
+  '/gifs/DesaysvFX/SEQ_Mind.gif': 7877037,
+  '/gifs/DesaysvFX/SEQ_Music.gif': 8086280,
+  '/gifs/DesaysvFX/SEQ_Scene_Switching.gif': 10881631,
+  '/gifs/Mobile_terminal/UMG_1080.gif': 45998418,
+  '/gifs/FPS.high.gif': 97164780,
+};
 
 function resolveAssetPath(src: string) {
   if (!src.startsWith('/')) {
     return src;
   }
   return `${basePath}${src}`;
+}
+
+function getMediaWeight(src: string) {
+  return MEDIA_SIZE_HINTS[src] ?? Number.MAX_SAFE_INTEGER;
+}
+
+function formatMediaWeight(size: number) {
+  if (!Number.isFinite(size) || size === Number.MAX_SAFE_INTEGER) {
+    return '';
+  }
+
+  if (size < 1024 * 1024) {
+    return `${(size / 1024).toFixed(0)} KB`;
+  }
+
+  return `${(size / (1024 * 1024)).toFixed(size >= 20 * 1024 * 1024 ? 1 : 2)} MB`;
 }
 
 function getLinkHost(href: string) {
@@ -30,13 +63,21 @@ function ProjectPreviewRail({
   keyPrefix,
   label = '项目预览',
   color = '#ffffff',
+  activePreviewId,
+  onActivatePreview,
+  activeThumbRailId,
+  onActivateThumbRail,
 }: {
   images?: ProjectImage[];
   keyPrefix: string;
   label?: string;
   color?: string;
+  activePreviewId: string | null;
+  onActivatePreview: (id: string) => void;
+  activeThumbRailId: string | null;
+  onActivateThumbRail: (id: string) => void;
 }) {
-  const media = images || [];
+  const media = [...(images || [])].sort((a, b) => getMediaWeight(a.src) - getMediaWeight(b.src));
   const [activeIndex, setActiveIndex] = useState(0);
 
   if (!media.length) {
@@ -45,6 +86,9 @@ function ProjectPreviewRail({
 
   const selectedIndex = activeIndex >= media.length ? 0 : activeIndex;
   const selectedImage = media[selectedIndex];
+  const selectedWeight = formatMediaWeight(getMediaWeight(selectedImage.src));
+  const previewEnabled = activePreviewId === keyPrefix;
+  const thumbsEnabled = activeThumbRailId === keyPrefix;
 
   return (
     <div className="space-y-4 border-t border-white/10 pt-6">
@@ -61,20 +105,48 @@ function ProjectPreviewRail({
         className="space-y-3"
       >
         <div
-          className="relative aspect-[16/10] overflow-hidden border bg-white/[0.03] md:aspect-[16/9]"
+          className="relative min-h-[260px] overflow-hidden border bg-white/[0.03] md:min-h-[360px]"
           style={{
             borderColor: `${color}3f`,
             boxShadow: `inset 0 0 0 1px ${color}12`,
           }}
         >
-          <Image
-            src={resolveAssetPath(selectedImage.src)}
-            alt={selectedImage.alt}
-            fill
-            unoptimized
-            sizes="(max-width: 768px) 100vw, 80vw"
-            className="object-cover"
-          />
+          {previewEnabled ? (
+            <Image
+              src={resolveAssetPath(selectedImage.src)}
+              alt={selectedImage.alt}
+              fill
+              unoptimized
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-contain p-3 md:p-4"
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => onActivatePreview(keyPrefix)}
+              className="flex h-full min-h-[260px] w-full flex-col items-center justify-center gap-4 px-6 py-8 text-center transition-colors duration-300 hover:bg-white/[0.02] md:min-h-[360px]"
+            >
+              <span className="text-xs uppercase tracking-[0.28em] text-white/34">媒体预览未加载</span>
+              <span className="max-w-2xl text-sm leading-7 text-white/56 md:text-base">
+                {selectedImage.alt}
+              </span>
+              {selectedWeight ? (
+                <span className="text-xs uppercase tracking-[0.24em] text-white/34">
+                  预计资源体积 {selectedWeight}
+                </span>
+              ) : null}
+              <span
+                className="inline-flex items-center justify-center border px-5 py-2 text-xs uppercase tracking-[0.24em]"
+                style={{
+                  borderColor: `${color}55`,
+                  color,
+                  backgroundColor: `${color}14`,
+                }}
+              >
+                点击加载预览
+              </span>
+            </button>
+          )}
         </div>
         <figcaption className="text-sm leading-6 text-white/48 md:text-base">
           {selectedImage.alt}
@@ -84,43 +156,71 @@ function ProjectPreviewRail({
       {media.length > 1 ? (
         <div className="space-y-3">
           <p className="text-[11px] uppercase tracking-[0.28em] text-white/28">切换预览</p>
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {media.map((image, index) => {
-              const isActive = index === selectedIndex;
+          {thumbsEnabled ? (
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {media.map((image, index) => {
+                const isActive = index === selectedIndex;
+                const shouldLoadThumb = Math.abs(index - selectedIndex) <= 1;
 
-              return (
-                <button
-                  key={`${keyPrefix}-preview-${index}`}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  className="group shrink-0 text-left focus:outline-none focus:ring-2 focus:ring-white/20"
-                >
-                  <div
-                    className="relative aspect-[16/10] w-44 overflow-hidden border bg-white/[0.03] transition-transform duration-300 group-hover:-translate-y-0.5 md:w-48 2xl:w-52"
-                    style={{
-                      borderColor: isActive ? color : 'rgba(255,255,255,0.12)',
-                      boxShadow: isActive ? `0 0 0 1px ${color}` : 'none',
+                return (
+                  <button
+                    key={`${keyPrefix}-preview-${index}`}
+                    type="button"
+                    onClick={() => {
+                      setActiveIndex(index);
+                      onActivateThumbRail(keyPrefix);
+                      onActivatePreview(keyPrefix);
                     }}
+                    className="group shrink-0 text-left focus:outline-none focus:ring-2 focus:ring-white/20"
                   >
-                    <Image
-                      src={resolveAssetPath(image.src)}
-                      alt={image.alt}
-                      fill
-                      unoptimized
-                      sizes="220px"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <p
-                    className="mt-2 max-w-44 text-xs leading-5 md:max-w-48 2xl:max-w-52"
-                    style={{ color: isActive ? '#ffffff' : 'rgba(255,255,255,0.48)' }}
-                  >
-                    {image.alt}
-                  </p>
-                </button>
-              );
-            })}
-          </div>
+                    <div
+                      className="relative h-28 w-44 overflow-hidden border bg-white/[0.03] transition-transform duration-300 group-hover:-translate-y-0.5 md:h-32 md:w-48 2xl:w-52"
+                      style={{
+                        borderColor: isActive ? color : 'rgba(255,255,255,0.12)',
+                        boxShadow: isActive ? `0 0 0 1px ${color}` : 'none',
+                      }}
+                    >
+                      {shouldLoadThumb ? (
+                        <Image
+                          src={resolveAssetPath(image.src)}
+                          alt={image.alt}
+                          fill
+                          unoptimized
+                          sizes="220px"
+                          className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center px-4 text-center">
+                          <span className="text-[11px] uppercase tracking-[0.24em] text-white/34">
+                            预览 {String(index + 1).padStart(2, '0')}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <p
+                      className="mt-2 max-w-44 text-xs leading-5 md:max-w-48 2xl:max-w-52"
+                      style={{ color: isActive ? '#ffffff' : 'rgba(255,255,255,0.48)' }}
+                    >
+                      {image.alt}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onActivateThumbRail(keyPrefix)}
+              className="inline-flex items-center gap-3 border px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/62 transition-colors duration-300 hover:text-white"
+              style={{
+                borderColor: `${color}3f`,
+                backgroundColor: `${color}10`,
+              }}
+            >
+              <span>显示缩略图</span>
+              <span style={{ color }}>{media.length}</span>
+            </button>
+          )}
         </div>
       ) : null}
     </div>
@@ -222,11 +322,19 @@ function ProjectSubProjectBlock({
   projectColor,
   projectId,
   index,
+  activePreviewId,
+  onActivatePreview,
+  activeThumbRailId,
+  onActivateThumbRail,
 }: {
   subProject: ProjectSubProject;
   projectColor: string;
   projectId: number;
   index: number;
+  activePreviewId: string | null;
+  onActivatePreview: (id: string) => void;
+  activeThumbRailId: string | null;
+  onActivateThumbRail: (id: string) => void;
 }) {
   const details = subProject.details || [];
   const hasSideContent = Boolean(subProject.links?.length || subProject.images?.length);
@@ -293,9 +401,9 @@ function ProjectSubProjectBlock({
 
         {hasSideContent ? (
           <div className="space-y-5 xl:border-l xl:border-white/10 xl:pl-6">
-        {subProject.links?.length ? (
-          <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.28em] text-white/36">公开链接</p>
+            {subProject.links?.length ? (
+              <div className="space-y-3">
+                <p className="text-xs uppercase tracking-[0.28em] text-white/36">公开链接</p>
                 <ProjectLinkGrid
                   links={subProject.links}
                   color={projectColor}
@@ -309,6 +417,10 @@ function ProjectSubProjectBlock({
               keyPrefix={`${projectId}-sub-${index}`}
               label="子项目预览"
               color={projectColor}
+              activePreviewId={activePreviewId}
+              onActivatePreview={onActivatePreview}
+              activeThumbRailId={activeThumbRailId}
+              onActivateThumbRail={onActivateThumbRail}
             />
           </div>
         ) : null}
@@ -317,7 +429,21 @@ function ProjectSubProjectBlock({
   );
 }
 
-function ProjectEntry({ project, index }: { project: Project; index: number }) {
+function ProjectEntry({
+  project,
+  index,
+  activePreviewId,
+  onActivatePreview,
+  activeThumbRailId,
+  onActivateThumbRail,
+}: {
+  project: Project;
+  index: number;
+  activePreviewId: string | null;
+  onActivatePreview: (id: string) => void;
+  activeThumbRailId: string | null;
+  onActivateThumbRail: (id: string) => void;
+}) {
   const projectIndex = String(index + 1).padStart(2, '0');
   const details = project.details || [];
   const achievements = project.achievements || [];
@@ -332,6 +458,7 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.45 }}
       className="grid gap-8 border-t border-white/10 py-12 xl:grid-cols-[196px_minmax(0,1fr)] xl:gap-14 xl:py-16 2xl:grid-cols-[228px_minmax(0,1fr)]"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '1180px' }}
     >
       <div className="flex items-start justify-between gap-6 xl:block">
         <div>
@@ -414,6 +541,10 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
                   projectColor={project.color}
                   projectId={project.id}
                   index={subProjectIndex}
+                  activePreviewId={activePreviewId}
+                  onActivatePreview={onActivatePreview}
+                  activeThumbRailId={activeThumbRailId}
+                  onActivateThumbRail={onActivateThumbRail}
                 />
               ))}
             </div>
@@ -446,6 +577,10 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
           images={project.images}
           keyPrefix={`${project.id}`}
           color={project.color}
+          activePreviewId={activePreviewId}
+          onActivatePreview={onActivatePreview}
+          activeThumbRailId={activeThumbRailId}
+          onActivateThumbRail={onActivateThumbRail}
         />
 
         {tech.length ? (
@@ -468,6 +603,15 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
 export default function Projects() {
   const { projects: contentProjects } = useContent();
   const projectData = contentProjects || defaultProjectsContent;
+  const [activePreviewId, setActivePreviewId] = useState<string | null>(null);
+  const [activeThumbRailId, setActiveThumbRailId] = useState<string | null>(null);
+  const handleActivatePreview = (id: string) => {
+    setActivePreviewId(id);
+  };
+  const handleActivateThumbRail = (id: string) => {
+    setActiveThumbRailId(id);
+    setActivePreviewId((current) => (current === id ? current : null));
+  };
 
   return (
     <section id="projects" className="relative bg-transparent">
@@ -500,7 +644,15 @@ export default function Projects() {
 
         <div>
           {projectData.projects.map((project, index) => (
-            <ProjectEntry key={project.id} project={project} index={index} />
+            <ProjectEntry
+              key={project.id}
+              project={project}
+              index={index}
+              activePreviewId={activePreviewId}
+              onActivatePreview={handleActivatePreview}
+              activeThumbRailId={activeThumbRailId}
+              onActivateThumbRail={handleActivateThumbRail}
+            />
           ))}
         </div>
       </div>
