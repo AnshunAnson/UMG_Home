@@ -64,6 +64,15 @@ interface ActiveMedia {
   color: string;
   label: string;
   weight: string;
+  mode: 'default' | 'cinematic';
+}
+
+function getMediaDisplayMode(src: string): ActiveMedia['mode'] {
+  if (src.includes('/gifs/DesaysvFX/') || src.includes('/gifs/Niagara_Materials/')) {
+    return 'cinematic';
+  }
+
+  return 'default';
 }
 
 function MediaLightbox({
@@ -73,6 +82,8 @@ function MediaLightbox({
   media: ActiveMedia | null;
   onClose: () => void;
 }) {
+  const isCinematic = media?.mode === 'cinematic';
+
   return (
     <AnimatePresence>
       {media ? (
@@ -89,10 +100,10 @@ function MediaLightbox({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="flex h-full max-h-[92vh] w-full max-w-[1540px] flex-col border border-white/12 bg-[#07090d]/96"
+            className="flex h-full max-h-[94vh] w-full max-w-[1720px] flex-col border border-white/12 bg-[#07090d]/96"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-6 border-b border-white/10 px-5 py-4 md:px-7">
+            <div className="flex items-start justify-between gap-4 border-b border-white/10 px-4 py-3 md:px-6">
               <div className="min-w-0">
                 <p className="text-[11px] uppercase tracking-[0.28em] text-white/34">{media.label}</p>
                 <h3 className="mt-2 text-base leading-7 text-white md:text-lg">{media.alt}</h3>
@@ -121,16 +132,31 @@ function MediaLightbox({
               </div>
             </div>
 
-            <div className="flex min-h-0 flex-1 items-center justify-center px-4 py-4 md:px-6 md:py-6">
-              <Image
-                src={resolveAssetPath(media.src)}
-                alt={media.alt}
-                width={1920}
-                height={1080}
-                unoptimized
-                className="h-auto max-h-full w-auto max-w-full object-contain"
-              />
-            </div>
+            {isCinematic ? (
+              <div className="relative min-h-0 flex-1 overflow-hidden bg-black">
+                <Image
+                  src={resolveAssetPath(media.src)}
+                  alt={media.alt}
+                  fill
+                  unoptimized
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <div className="flex min-h-0 flex-1 items-center justify-center px-4 py-4 md:px-6 md:py-6">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={resolveAssetPath(media.src)}
+                    alt={media.alt}
+                    fill
+                    unoptimized
+                    sizes="100vw"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       ) : null}
@@ -143,20 +169,20 @@ function ProjectPreviewRail({
   keyPrefix,
   label = '项目预览',
   color = '#ffffff',
-  activePreviewId,
-  onActivatePreview,
-  activeThumbRailId,
-  onActivateThumbRail,
+  loadedPreviewIds,
+  onEnsurePreviewLoaded,
+  loadedThumbRailIds,
+  onEnsureThumbsLoaded,
   onOpenLightbox,
 }: {
   images?: ProjectImage[];
   keyPrefix: string;
   label?: string;
   color?: string;
-  activePreviewId: string | null;
-  onActivatePreview: (id: string) => void;
-  activeThumbRailId: string | null;
-  onActivateThumbRail: (id: string) => void;
+  loadedPreviewIds: string[];
+  onEnsurePreviewLoaded: (id: string) => void;
+  loadedThumbRailIds: string[];
+  onEnsureThumbsLoaded: (id: string) => void;
   onOpenLightbox: (media: ActiveMedia) => void;
 }) {
   const media = [...(images || [])].sort((a, b) => getMediaWeight(a.src) - getMediaWeight(b.src));
@@ -169,8 +195,8 @@ function ProjectPreviewRail({
   const selectedIndex = activeIndex >= media.length ? 0 : activeIndex;
   const selectedImage = media[selectedIndex];
   const selectedWeight = formatMediaWeight(getMediaWeight(selectedImage.src));
-  const previewEnabled = activePreviewId === keyPrefix;
-  const thumbsEnabled = activeThumbRailId === keyPrefix;
+  const previewEnabled = loadedPreviewIds.includes(keyPrefix);
+  const thumbsEnabled = loadedThumbRailIds.includes(keyPrefix);
 
   return (
     <div className="space-y-4 border-t border-white/10 pt-6">
@@ -203,6 +229,7 @@ function ProjectPreviewRail({
                   color,
                   label,
                   weight: selectedWeight,
+                  mode: getMediaDisplayMode(selectedImage.src),
                 })
               }
               className="group relative block h-full min-h-[260px] w-full md:min-h-[360px]"
@@ -224,7 +251,17 @@ function ProjectPreviewRail({
           ) : (
             <button
               type="button"
-              onClick={() => onActivatePreview(keyPrefix)}
+              onClick={() => {
+                onEnsurePreviewLoaded(keyPrefix);
+                onOpenLightbox({
+                  src: selectedImage.src,
+                  alt: selectedImage.alt,
+                  color,
+                  label,
+                  weight: selectedWeight,
+                  mode: getMediaDisplayMode(selectedImage.src),
+                });
+              }}
               className="flex h-full min-h-[260px] w-full flex-col items-center justify-center gap-4 px-6 py-8 text-center transition-colors duration-300 hover:bg-white/[0.02] md:min-h-[360px]"
             >
               <span className="text-xs uppercase tracking-[0.28em] text-white/34">媒体预览未加载</span>
@@ -244,7 +281,7 @@ function ProjectPreviewRail({
                   backgroundColor: `${color}14`,
                 }}
               >
-                点击加载预览
+                点击播放 GIF
               </span>
             </button>
           )}
@@ -269,8 +306,8 @@ function ProjectPreviewRail({
                     type="button"
                     onClick={() => {
                       setActiveIndex(index);
-                      onActivateThumbRail(keyPrefix);
-                      onActivatePreview(keyPrefix);
+                      onEnsureThumbsLoaded(keyPrefix);
+                      onEnsurePreviewLoaded(keyPrefix);
                     }}
                     className="group shrink-0 text-left focus:outline-none focus:ring-2 focus:ring-white/20"
                   >
@@ -311,7 +348,7 @@ function ProjectPreviewRail({
           ) : (
             <button
               type="button"
-              onClick={() => onActivateThumbRail(keyPrefix)}
+              onClick={() => onEnsureThumbsLoaded(keyPrefix)}
               className="inline-flex items-center gap-3 border px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/62 transition-colors duration-300 hover:text-white"
               style={{
                 borderColor: `${color}3f`,
@@ -423,20 +460,20 @@ function ProjectSubProjectBlock({
   projectColor,
   projectId,
   index,
-  activePreviewId,
-  onActivatePreview,
-  activeThumbRailId,
-  onActivateThumbRail,
+  loadedPreviewIds,
+  onEnsurePreviewLoaded,
+  loadedThumbRailIds,
+  onEnsureThumbsLoaded,
   onOpenLightbox,
 }: {
   subProject: ProjectSubProject;
   projectColor: string;
   projectId: number;
   index: number;
-  activePreviewId: string | null;
-  onActivatePreview: (id: string) => void;
-  activeThumbRailId: string | null;
-  onActivateThumbRail: (id: string) => void;
+  loadedPreviewIds: string[];
+  onEnsurePreviewLoaded: (id: string) => void;
+  loadedThumbRailIds: string[];
+  onEnsureThumbsLoaded: (id: string) => void;
   onOpenLightbox: (media: ActiveMedia) => void;
 }) {
   const details = subProject.details || [];
@@ -520,10 +557,10 @@ function ProjectSubProjectBlock({
               keyPrefix={`${projectId}-sub-${index}`}
               label="子项目预览"
               color={projectColor}
-              activePreviewId={activePreviewId}
-              onActivatePreview={onActivatePreview}
-              activeThumbRailId={activeThumbRailId}
-              onActivateThumbRail={onActivateThumbRail}
+              loadedPreviewIds={loadedPreviewIds}
+              onEnsurePreviewLoaded={onEnsurePreviewLoaded}
+              loadedThumbRailIds={loadedThumbRailIds}
+              onEnsureThumbsLoaded={onEnsureThumbsLoaded}
               onOpenLightbox={onOpenLightbox}
             />
           </div>
@@ -536,18 +573,18 @@ function ProjectSubProjectBlock({
 function ProjectEntry({
   project,
   index,
-  activePreviewId,
-  onActivatePreview,
-  activeThumbRailId,
-  onActivateThumbRail,
+  loadedPreviewIds,
+  onEnsurePreviewLoaded,
+  loadedThumbRailIds,
+  onEnsureThumbsLoaded,
   onOpenLightbox,
 }: {
   project: Project;
   index: number;
-  activePreviewId: string | null;
-  onActivatePreview: (id: string) => void;
-  activeThumbRailId: string | null;
-  onActivateThumbRail: (id: string) => void;
+  loadedPreviewIds: string[];
+  onEnsurePreviewLoaded: (id: string) => void;
+  loadedThumbRailIds: string[];
+  onEnsureThumbsLoaded: (id: string) => void;
   onOpenLightbox: (media: ActiveMedia) => void;
 }) {
   const projectIndex = String(index + 1).padStart(2, '0');
@@ -647,10 +684,10 @@ function ProjectEntry({
                   projectColor={project.color}
                   projectId={project.id}
                   index={subProjectIndex}
-                  activePreviewId={activePreviewId}
-                  onActivatePreview={onActivatePreview}
-                  activeThumbRailId={activeThumbRailId}
-                  onActivateThumbRail={onActivateThumbRail}
+                  loadedPreviewIds={loadedPreviewIds}
+                  onEnsurePreviewLoaded={onEnsurePreviewLoaded}
+                  loadedThumbRailIds={loadedThumbRailIds}
+                  onEnsureThumbsLoaded={onEnsureThumbsLoaded}
                   onOpenLightbox={onOpenLightbox}
                 />
               ))}
@@ -684,10 +721,10 @@ function ProjectEntry({
           images={project.images}
           keyPrefix={`${project.id}`}
           color={project.color}
-          activePreviewId={activePreviewId}
-          onActivatePreview={onActivatePreview}
-          activeThumbRailId={activeThumbRailId}
-          onActivateThumbRail={onActivateThumbRail}
+          loadedPreviewIds={loadedPreviewIds}
+          onEnsurePreviewLoaded={onEnsurePreviewLoaded}
+          loadedThumbRailIds={loadedThumbRailIds}
+          onEnsureThumbsLoaded={onEnsureThumbsLoaded}
           onOpenLightbox={onOpenLightbox}
         />
 
@@ -711,8 +748,8 @@ function ProjectEntry({
 export default function Projects() {
   const { projects: contentProjects } = useContent();
   const projectData = contentProjects || defaultProjectsContent;
-  const [activePreviewId, setActivePreviewId] = useState<string | null>(null);
-  const [activeThumbRailId, setActiveThumbRailId] = useState<string | null>(null);
+  const [loadedPreviewIds, setLoadedPreviewIds] = useState<string[]>([]);
+  const [loadedThumbRailIds, setLoadedThumbRailIds] = useState<string[]>([]);
   const [activeMedia, setActiveMedia] = useState<ActiveMedia | null>(null);
 
   useEffect(() => {
@@ -736,12 +773,11 @@ export default function Projects() {
     };
   }, [activeMedia]);
 
-  const handleActivatePreview = (id: string) => {
-    setActivePreviewId(id);
+  const handleEnsurePreviewLoaded = (id: string) => {
+    setLoadedPreviewIds((current) => (current.includes(id) ? current : [...current, id]));
   };
-  const handleActivateThumbRail = (id: string) => {
-    setActiveThumbRailId(id);
-    setActivePreviewId((current) => (current === id ? current : null));
+  const handleEnsureThumbsLoaded = (id: string) => {
+    setLoadedThumbRailIds((current) => (current.includes(id) ? current : [...current, id]));
   };
 
   return (
@@ -779,10 +815,10 @@ export default function Projects() {
               key={project.id}
               project={project}
               index={index}
-              activePreviewId={activePreviewId}
-              onActivatePreview={handleActivatePreview}
-              activeThumbRailId={activeThumbRailId}
-              onActivateThumbRail={handleActivateThumbRail}
+              loadedPreviewIds={loadedPreviewIds}
+              onEnsurePreviewLoaded={handleEnsurePreviewLoaded}
+              loadedThumbRailIds={loadedThumbRailIds}
+              onEnsureThumbsLoaded={handleEnsureThumbsLoaded}
               onOpenLightbox={setActiveMedia}
             />
           ))}
