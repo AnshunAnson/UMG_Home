@@ -275,6 +275,38 @@ export const projectsContent: ProjectsContent = {
           ]
         },
         {
+          "title": "UI 动画作品",
+          "period": "未单独标注",
+          "description": "围绕界面切换、状态反馈和节奏控制整理的一组 UI 动画展示，重点放在界面动态语言和视觉连贯性上。",
+          "details": [
+            "以界面状态变化和转场节奏为核心组织动画表达。",
+            "强调 UI 层级切换、信息出现方式和整体视觉流动感。",
+            "作为公开项目案例，用于展示界面动效设计与实现能力。"
+          ],
+          "links": [
+            {
+              "label": "UI 动画项目链接",
+              "href": "https://www.autoxyz.cn/information/detail/26652"
+            }
+          ]
+        },
+        {
+          "title": "VDB + Chaos 破碎作品",
+          "period": "未单独标注",
+          "description": "以 VDB 体积表现结合 Chaos 破碎流程完成的一次视觉实验，重点验证破碎层次、体积氛围和动态表现的组合方式。",
+          "details": [
+            "将 VDB 体积效果与 Chaos 破碎系统结合，强化破碎瞬间的空间感。",
+            "关注碎裂过程中的形态变化、视觉层次和整体冲击力。",
+            "作为公开展示案例，用于补充体积特效与破碎表现方向的能力证明。"
+          ],
+          "links": [
+            {
+              "label": "VDB + Chaos 项目链接",
+              "href": "https://www.autoxyz.cn/search?id=26138"
+            }
+          ]
+        },
+        {
           "title": "郑州日产概念表现",
           "period": "未单独标注",
           "description": "负责情景效果渲染、多车型展示和车载宠物表现扩展。",
