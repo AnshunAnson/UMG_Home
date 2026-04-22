@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Link2 } from 'lucide-react';
-import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowUpRight, Link2, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { projectsContent as defaultProjectsContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 import type { Project, ProjectImage, ProjectLink, ProjectSubProject } from '../types/content';
@@ -58,6 +58,86 @@ function getLinkHost(href: string) {
   }
 }
 
+interface ActiveMedia {
+  src: string;
+  alt: string;
+  color: string;
+  label: string;
+  weight: string;
+}
+
+function MediaLightbox({
+  media,
+  onClose,
+}: {
+  media: ActiveMedia | null;
+  onClose: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      {media ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.22 }}
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/88 px-4 py-6 backdrop-blur-md md:px-8"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.98 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="flex h-full max-h-[92vh] w-full max-w-[1540px] flex-col border border-white/12 bg-[#07090d]/96"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-6 border-b border-white/10 px-5 py-4 md:px-7">
+              <div className="min-w-0">
+                <p className="text-[11px] uppercase tracking-[0.28em] text-white/34">{media.label}</p>
+                <h3 className="mt-2 text-base leading-7 text-white md:text-lg">{media.alt}</h3>
+              </div>
+              <div className="flex shrink-0 items-center gap-3">
+                {media.weight ? (
+                  <span
+                    className="hidden border px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/54 md:inline-flex"
+                    style={{
+                      borderColor: `${media.color}46`,
+                      color: media.color,
+                      backgroundColor: `${media.color}14`,
+                    }}
+                  >
+                    {media.weight}
+                  </span>
+                ) : null}
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="inline-flex h-11 w-11 items-center justify-center border border-white/12 text-white/72 transition-colors duration-300 hover:text-white"
+                  aria-label="关闭媒体弹窗"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex min-h-0 flex-1 items-center justify-center px-4 py-4 md:px-6 md:py-6">
+              <Image
+                src={resolveAssetPath(media.src)}
+                alt={media.alt}
+                width={1920}
+                height={1080}
+                unoptimized
+                className="h-auto max-h-full w-auto max-w-full object-contain"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
 function ProjectPreviewRail({
   images,
   keyPrefix,
@@ -67,6 +147,7 @@ function ProjectPreviewRail({
   onActivatePreview,
   activeThumbRailId,
   onActivateThumbRail,
+  onOpenLightbox,
 }: {
   images?: ProjectImage[];
   keyPrefix: string;
@@ -76,6 +157,7 @@ function ProjectPreviewRail({
   onActivatePreview: (id: string) => void;
   activeThumbRailId: string | null;
   onActivateThumbRail: (id: string) => void;
+  onOpenLightbox: (media: ActiveMedia) => void;
 }) {
   const media = [...(images || [])].sort((a, b) => getMediaWeight(a.src) - getMediaWeight(b.src));
   const [activeIndex, setActiveIndex] = useState(0);
@@ -112,14 +194,33 @@ function ProjectPreviewRail({
           }}
         >
           {previewEnabled ? (
-            <Image
-              src={resolveAssetPath(selectedImage.src)}
-              alt={selectedImage.alt}
-              fill
-              unoptimized
-              sizes="(max-width: 768px) 100vw, 80vw"
-              className="object-contain p-3 md:p-4"
-            />
+            <button
+              type="button"
+              onClick={() =>
+                onOpenLightbox({
+                  src: selectedImage.src,
+                  alt: selectedImage.alt,
+                  color,
+                  label,
+                  weight: selectedWeight,
+                })
+              }
+              className="group relative block h-full min-h-[260px] w-full md:min-h-[360px]"
+              aria-label={`打开 ${selectedImage.alt} 的媒体弹窗`}
+            >
+              <Image
+                src={resolveAssetPath(selectedImage.src)}
+                alt={selectedImage.alt}
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 80vw"
+                className="object-contain p-3 md:p-4"
+              />
+              <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-10 text-left text-xs uppercase tracking-[0.24em] text-white/66 transition-colors duration-300 group-hover:text-white md:px-5">
+                <span>点击弹窗播放当前 GIF</span>
+                <span style={{ color }}>{selectedWeight || '预览'}</span>
+              </span>
+            </button>
           ) : (
             <button
               type="button"
@@ -326,6 +427,7 @@ function ProjectSubProjectBlock({
   onActivatePreview,
   activeThumbRailId,
   onActivateThumbRail,
+  onOpenLightbox,
 }: {
   subProject: ProjectSubProject;
   projectColor: string;
@@ -335,6 +437,7 @@ function ProjectSubProjectBlock({
   onActivatePreview: (id: string) => void;
   activeThumbRailId: string | null;
   onActivateThumbRail: (id: string) => void;
+  onOpenLightbox: (media: ActiveMedia) => void;
 }) {
   const details = subProject.details || [];
   const hasSideContent = Boolean(subProject.links?.length || subProject.images?.length);
@@ -421,6 +524,7 @@ function ProjectSubProjectBlock({
               onActivatePreview={onActivatePreview}
               activeThumbRailId={activeThumbRailId}
               onActivateThumbRail={onActivateThumbRail}
+              onOpenLightbox={onOpenLightbox}
             />
           </div>
         ) : null}
@@ -436,6 +540,7 @@ function ProjectEntry({
   onActivatePreview,
   activeThumbRailId,
   onActivateThumbRail,
+  onOpenLightbox,
 }: {
   project: Project;
   index: number;
@@ -443,6 +548,7 @@ function ProjectEntry({
   onActivatePreview: (id: string) => void;
   activeThumbRailId: string | null;
   onActivateThumbRail: (id: string) => void;
+  onOpenLightbox: (media: ActiveMedia) => void;
 }) {
   const projectIndex = String(index + 1).padStart(2, '0');
   const details = project.details || [];
@@ -545,6 +651,7 @@ function ProjectEntry({
                   onActivatePreview={onActivatePreview}
                   activeThumbRailId={activeThumbRailId}
                   onActivateThumbRail={onActivateThumbRail}
+                  onOpenLightbox={onOpenLightbox}
                 />
               ))}
             </div>
@@ -581,6 +688,7 @@ function ProjectEntry({
           onActivatePreview={onActivatePreview}
           activeThumbRailId={activeThumbRailId}
           onActivateThumbRail={onActivateThumbRail}
+          onOpenLightbox={onOpenLightbox}
         />
 
         {tech.length ? (
@@ -605,6 +713,29 @@ export default function Projects() {
   const projectData = contentProjects || defaultProjectsContent;
   const [activePreviewId, setActivePreviewId] = useState<string | null>(null);
   const [activeThumbRailId, setActiveThumbRailId] = useState<string | null>(null);
+  const [activeMedia, setActiveMedia] = useState<ActiveMedia | null>(null);
+
+  useEffect(() => {
+    if (!activeMedia) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setActiveMedia(null);
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activeMedia]);
+
   const handleActivatePreview = (id: string) => {
     setActivePreviewId(id);
   };
@@ -652,10 +783,13 @@ export default function Projects() {
               onActivatePreview={handleActivatePreview}
               activeThumbRailId={activeThumbRailId}
               onActivateThumbRail={handleActivateThumbRail}
+              onOpenLightbox={setActiveMedia}
             />
           ))}
         </div>
       </div>
+
+      <MediaLightbox media={activeMedia} onClose={() => setActiveMedia(null)} />
     </section>
   );
 }
