@@ -3,8 +3,8 @@ import "./globals.css";
 import { ContentProvider } from "./ContentProvider";
 
 export const metadata: Metadata = {
-  title: "个人技术主页 | 项目、系统与工程实践",
-  description: "涵盖项目实践、界面系统、视觉表达、工具链与技术验证的个人技术主页。",
+  title: "技术美术主页 | 实时视觉、材质与工具流程",
+  description: "聚焦实时视觉、材质系统、特效制作、渲染流程与技术工具链的个人技术美术主页。",
 };
 
 export default function RootLayout({

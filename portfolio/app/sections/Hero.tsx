@@ -11,7 +11,7 @@ const ParticleField = dynamic(() => import('../components/ParticleField'), {
   ssr: false,
 });
 
-const heroKeywords = ['Systems', 'Visuals', 'Workflow'];
+const heroKeywords = ['Technical Art', 'Real-time Visuals', 'Workflow'];
 const heroLinks = [
   { label: 'Projects', href: '#projects' },
   { label: 'About', href: '#about' },
@@ -89,7 +89,7 @@ export default function Hero() {
                     transition={{ duration: 0.55, delay: 0.12 }}
                     className="max-w-lg text-sm uppercase tracking-[0.28em] text-white/34"
                   >
-                    Personal technical homepage
+                    Technical artist profile
                   </motion.p>
 
                   <motion.h1
@@ -163,7 +163,7 @@ export default function Hero() {
                       Positioning
                     </p>
                     <p className="font-display mt-4 text-3xl leading-tight tracking-[-0.05em] text-white md:text-4xl">
-                      从项目交付到工具流程，再到视觉和系统实现，一页看清我解决问题的方式。
+                      从材质、特效、实时渲染到工具流程，一页看清我作为技术美术解决问题的方式。
                     </p>
                   </div>
 

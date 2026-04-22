@@ -1,9 +1,9 @@
 {
   "heroContent": {
-    "badge": "Personal Technical Homepage",
-    "name": "个人技术主页",
+    "badge": "Technical Artist / Unreal",
+    "name": "技术美术",
     "nameHighlightLength": 2,
-    "subtitle": "完整呈现我在 Unreal 开发、界面系统、材质动效、编辑器工具、自动化流程与玩法原型上的技术实践。",
+    "subtitle": "聚焦实时视觉、材质系统、Niagara 特效、编辑器工具与渲染流程，把表现需求收束成可交付的技术方案。",
     "stats": [
       {
         "icon": "📍",
@@ -15,11 +15,11 @@
       },
       {
         "icon": "⚙️",
-        "label": "3 年技术实践"
+        "label": "3 年实时内容实践"
       }
     ],
     "cornerLeft": "2026",
-    "cornerRight": "TECH LED"
+    "cornerRight": "TECH ART"
   },
   "aboutContent": {
     "sectionTitle": "关于",
@@ -28,73 +28,39 @@
     "age": 24,
     "location": "深圳",
     "experience": 3,
-    "jobTitle": "Technical Developer",
+    "jobTitle": "Technical Artist",
     "coreSkills": [
       {
-        "title": "界面与交互系统",
-        "description": "从 UMG 架构、交互流程到组件规范，搭建可迭代的界面系统。"
+        "title": "实时视觉与特效",
+        "description": "使用 Niagara、SDF、体积与转场控制，把概念画面落成可实时运行的效果表现。"
       },
       {
-        "title": "视觉表达",
-        "description": "把材质、Niagara 与界面动效组合成可复用的视觉表达能力。"
+        "title": "材质与界面动效",
+        "description": "处理 UI Material、Substrate 与参数驱动动画，让界面和表现保持统一质感。"
       },
       {
-        "title": "工具与流程",
-        "description": "为设计和开发流程补齐生成器、检查器、自动化脚本与编辑器扩展。"
+        "title": "工具与资产流程",
+        "description": "为模型整理、批量渲染、资产同步和输出流程补齐工具，降低重复劳动。"
       },
       {
-        "title": "工程收敛",
-        "description": "在性能、交付效率与维护成本之间做系统性的平衡和收敛。"
+        "title": "整合与性能收敛",
+        "description": "在移动端、桌面端和概念验证场景中平衡效果成本、交付速度与可维护性。"
       }
     ]
   },
   "projectsContent": {
-    "sectionTitle": "项目经历",
-    "sectionSubtitle": "Project Experience",
+    "sectionTitle": "技术项目",
+    "sectionSubtitle": "Technical Art Projects",
     "projects": [
       {
         "id": 1,
-        "icon": "LayoutPanelTop",
-        "title": "DeltaForce UMG 模块化框架",
-        "period": "未单独标注",
-        "category": "UI 架构 / 方法论 / Vibe Coding",
-        "description": "围绕《虚幻引擎5模块化UI架构白皮书》整理一套适用于中大型项目的 UMG 方法论，把 Common UI、MVVM、路由分层和样式资产化收束成可落地的框架实践。",
-        "details": [
-          "输出《虚幻引擎5模块化UI架构白皮书》，把框架设计抽象成可复用方法论。",
-          "梳理 Primary Layout、Shell Layout 与行为基类，明确界面容器和交互分层。",
-          "把数据与表现解耦、组合优于继承、树状路由与焦点垄断等核心原则整理成统一框架语言。",
-          "引入样式数据资产、UI Material 与软引用加载思路，保证多端 UI 的一致性和可维护性。",
-          "把方法论落到实际样例中，验证布局、行为和资产层级的可操作性。",
-          "结合 Vibe Coding 过程整理一套更适合快速迭代的框架工作方式。"
-        ],
-        "achievements": [
-          "完成模块化 UI 架构白皮书与详细样例沉淀。",
-          "把 UMG 框架讨论从零散经验收束成可复用结构。",
-          "为后续 UI 项目的组件拆分和布局复用提供统一基线。"
-        ],
-        "tech": [
-          "UE5",
-          "UMG",
-          "Blueprint",
-          "UI Architecture"
-        ],
-        "color": "#7ce7d0",
-        "links": [
-          {
-            "label": "DeltaForce UI 白皮书",
-            "href": "https://www.bilibili.com/opus/1190448420615094281/?from=readlist"
-          }
-        ]
-      },
-      {
-        "id": 2,
         "icon": "Wrench",
         "title": "汽车渲染工作流工具链",
         "period": "2023.12 - 至今",
-        "category": "编辑器工具 / 工作流 / Blueprint",
-        "description": "以汽车渲染工作流为核心，围绕模型整理、资产同步和渲染输出搭建一组 Blueprint 编辑器工具，把重复的人工作业收敛成标准化流水线。",
+        "category": "Technical Art Tools / Asset Pipeline / Rendering Workflow",
+        "description": "以汽车渲染工作流为核心，围绕模型整理、资产同步和渲染输出搭建一组编辑器工具，把重复的人工作业收敛成标准化 TA 流水线。",
         "details": [
-          "开发汽车模型整理插件，批量处理命名、枢轴点和资产整理。",
+          "开发汽车模型整理插件，批量处理命名、枢轴点和资产归档。",
           "搭建渲染输出流水线，串联 Runtime Blueprint 与可扩展流程。",
           "结合 OpenUSD、UsdAssetCache 和 DataAsset 组织模型资产与汽车蓝图解耦。",
           "补齐模型资产同步、材质替换和性能优化工具，降低多车渲染维护成本。",
@@ -110,105 +76,66 @@
           "Blueprint",
           "Editor Tools",
           "OpenUSD",
-          "UMG",
           "Material",
-          "Runtime Blueprint"
+          "Automation"
         ],
         "color": "#7ce7d0",
         "images": []
       },
       {
-        "id": 3,
-        "icon": "Gamepad2",
-        "title": "局域网 FPS 对战原型",
-        "period": "2022.09 - 2022.12",
-        "category": "多人玩法 / Networking / UMG",
-        "description": "基于现有游戏资源完成一套局域网多人 FPS 蓝图原型，重点验证多人同步、核心战斗循环和游戏内 HUD 的完整协作。",
+        "id": 2,
+        "icon": "ScanSearch",
+        "title": "特效作品",
+        "period": "未单独标注",
+        "category": "Technical Art FX / Niagara / VDB / Chaos",
+        "description": "聚焦 Niagara、体积特效、材质扰动和破碎流程的一组技术美术项目，覆盖比赛展示、座舱氛围动效和 VDB + Chaos 破碎实验。",
         "details": [
-          "使用 UE4 蓝图系统开发局域网对战功能，实现多人实时对战体验。",
-          "搭建稳定的多人网络架构，处理同步机制与延迟问题。",
-          "完成角色控制、武器系统和得分机制等核心模块开发与调试。",
-          "补齐游戏内 HUD、菜单与交互界面，验证玩法 UI 联动。",
-          "围绕 RPC、动画蓝图和基础 Gameplay 循环完成实机联调。"
+          "把比亚迪概念展示特效、DesaySV 智能座舱和 VDB + Chaos 破碎实验统一收口为特效方向展示。",
+          "覆盖粒子形态、SDF 波纹、音频可视化、体积氛围和破碎冲击感等不同特效类型。",
+          "强调从概念展示到特效实验的完整表达能力，而不是混在交互项目里。"
         ],
         "achievements": [
-          "完成多人射击循环的可玩验证。",
-          "打通网络同步、角色控制和界面反馈的完整链路。",
-          "为后续多人玩法和战斗反馈系统积累了一套蓝图实现经验。"
+          "形成从座舱氛围、入场过场到体积破碎的特效案例集合。",
+          "把特效能力从交互叙事中独立出来，归类更清晰。",
+          "保留了可直接对外展示的项目入口和实机效果素材。"
         ],
         "tech": [
-          "UE4",
-          "Blueprint",
-          "Networking",
-          "UMG",
-          "Gameplay"
-        ],
-        "color": "#f0b562",
-        "images": [
-          {
-            "src": "/gifs/FPS.high.gif",
-            "alt": "局域网 FPS 原型的实机对战画面"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "icon": "Sparkles",
-        "title": "UE HMI 概念界面项目",
-        "period": "2023.10 - 2025.04",
-        "category": "HMI / Niagara / 材质动效",
-        "description": "围绕设计比赛、POC 台架和概念座舱展示，持续推进 Niagara、材质、UMG 与 Sequencer 在 HMI 场景中的整合落地。",
-        "details": [
-          "把 HMI 相关工作拆成设计比赛、POC 台架、智能座舱氛围动效和多车型概念展示等不同子项目推进。",
-          "持续沉淀 Niagara 粒子、半透明描边、SDF 波纹、音频可视化和移动端界面整合等可复用能力。",
-          "在展示交付与概念验证场景里同时兼顾效果表达、实现成本与复用效率。"
-        ],
-        "achievements": [
-          "把 Niagara、材质、UMG 与 Sequencer 串成可复用的 HMI 表现链路。",
-          "覆盖设计比赛、台架验证和多车型座舱表现等多类场景。",
-          "沉淀了可直接复用的 HMI 粒子、音波和过场动效素材。"
-        ],
-        "tech": [
-          "UE5",
+          "UE",
           "Niagara",
           "SDF",
-          "Material",
-          "UMG",
+          "VDB",
+          "Chaos",
           "Sequencer",
-          "Blueprint",
-          "HMI"
+          "FX"
         ],
-        "color": "#59c8ff",
+        "color": "#88a8ff",
+        "links": [
+          {
+            "label": "VDB + Chaos 项目链接",
+            "href": "https://www.autoxyz.cn/search?id=26138"
+          }
+        ],
         "subProjects": [
           {
-            "title": "比亚迪 HMI 设计比赛",
+            "title": "比亚迪概念展示特效",
             "period": "2023.10 - 2023.11",
-            "description": "以设计比赛为目标制作概念展示效果与视频输出。",
+            "description": "以设计比赛为目标制作概念展示特效与视频输出，重点放在入场节奏、粒子形态和视觉记忆点上。",
             "details": [
-              "基于 UI 需求制作 HMI 概念效果。",
+              "围绕界面概念展示制作入场特效和整体节奏设计。",
               "完成 Niagara 粒子自定义变换与半透明描边材质结合。",
               "使用 UMG 与 Sequencer 完成整体展示输出。"
             ],
             "images": [
               {
                 "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
-                "alt": "比亚迪 HMI 设计比赛的入场概念动效"
+                "alt": "比亚迪概念展示项目的入场特效"
               }
-            ]
-          },
-          {
-            "title": "广汽丰田 POC 台架",
-            "period": "2024.7 - 2024.11",
-            "description": "围绕台架验证推进移动端天气系统与材质表现测试。",
-            "details": [
-              "推进 POC 台架中的 HMI 交互验证。",
-              "验证移动端天气系统与视差冰材质表现。"
             ]
           },
           {
             "title": "DesaySV 智能座舱",
             "period": "2024.12 - 2025.04",
-            "description": "为智能座舱概念展示制作一整组粒子氛围与状态动效。",
+            "description": "为智能座舱概念展示制作一整组粒子氛围、状态切换和音波反馈特效。",
             "details": [
               "围绕 UI 创意图制作粒子氛围动效。",
               "实现 SDF 距离场波纹、音波扰动与音频可视化效果。",
@@ -260,116 +187,16 @@
                 "alt": "智能座舱音乐界面动效"
               }
             ]
-          },
-          {
-            "title": "郑州日产概念表现",
-            "period": "未单独标注",
-            "description": "负责情景效果渲染、多车型展示和车载宠物表现扩展。",
-            "details": [
-              "推进情景效果渲染与多车型展示。",
-              "配合汽车渲染工具搭建表现链路。",
-              "整合 Metahuman 车载宠物效果。"
-            ],
-            "links": [
-              {
-                "label": "郑州日产项目介绍",
-                "href": "https://www.autoxyz.cn/information/detail/34604"
-              }
-            ],
-            "images": [
-              {
-                "src": "/gifs/ProjectNotes/Dog.gif",
-                "alt": "郑州日产项目中的 Metahuman 车载宠物效果"
-              }
-            ]
-          },
-          {
-            "title": "移动端 POC",
-            "period": "未单独标注",
-            "description": "整合 HMI 交互界面、角色与特效，验证移动端一体化表现。",
-            "details": [
-              "完成 UMG 界面、角色与特效整合验证。"
-            ],
-            "images": [
-              {
-                "src": "/gifs/Mobile_terminal/UMG_1080.gif",
-                "alt": "移动端 POC 的 HMI 交互与角色特效整合效果"
-              }
-            ]
           }
         ]
       },
       {
-        "id": 5,
-        "icon": "PanelsTopLeft",
-        "title": "UI 材质动画作品",
-        "period": "未单独标注",
-        "category": "UI 材质 / 界面动效 / Material Animation",
-        "description": "围绕界面材质、参数驱动和状态转场整理的一组 UI 材质动画展示，重点强调材质动画在界面层的节奏、质感和连续性，而不是作为 HMI 子项混合出现。",
-        "details": [
-          "把界面材质变化、参数动画和转场组织单独抽离成完整项目表达。",
-          "重点展示 UI 材质在状态反馈、层级切换和动态质感上的控制能力。",
-          "将原本挂在 HMI 项目下的案例独立出来，明确它属于 UI 材质动画能力而非 HMI 子项。"
-        ],
-        "achievements": [
-          "补齐了个人主页里 UI 材质动画方向的独立项目样本。",
-          "让界面材质动态能力不再依附于座舱或 HMI 场景叙事。",
-          "形成一个可以直接对外引用的 UI 材质动画案例入口。"
-        ],
-        "tech": [
-          "UE",
-          "UMG",
-          "UI Material",
-          "Sequencer",
-          "Material Animation"
-        ],
-        "color": "#62d8c8",
-        "links": [
-          {
-            "label": "UI 材质动画项目链接",
-            "href": "https://www.autoxyz.cn/information/detail/26652"
-          }
-        ]
-      },
-      {
-        "id": 6,
-        "icon": "ScanSearch",
-        "title": "特效作品",
-        "period": "未单独标注",
-        "category": "特效 / VDB / Chaos",
-        "description": "以 VDB 体积表现结合 Chaos 破碎流程完成的一次特效实验，核心是验证破碎层次、体积氛围和冲击感塑形，这个方向独立于 HMI 与界面项目本身。",
-        "details": [
-          "将 VDB 体积效果与 Chaos 破碎系统结合，强化破碎瞬间的空间感和层次感。",
-          "关注碎裂过程中的形态变化、体积氛围和整体视觉冲击力。",
-          "把这一类偏特效实验的内容从 HMI 项目里拆出，作为单独的特效能力条目展示。"
-        ],
-        "achievements": [
-          "补充了个人主页在体积特效和破碎表现上的独立案例。",
-          "让特效实验类项目不再混入界面或座舱项目的叙事中。",
-          "形成一个清晰的 VDB 与 Chaos 特效方向外部展示入口。"
-        ],
-        "tech": [
-          "UE",
-          "VDB",
-          "Chaos",
-          "Destruction",
-          "FX"
-        ],
-        "color": "#88a8ff",
-        "links": [
-          {
-            "label": "VDB + Chaos 项目链接",
-            "href": "https://www.autoxyz.cn/search?id=26138"
-          }
-        ]
-      },
-      {
-        "id": 7,
+        "id": 3,
         "icon": "Car",
         "title": "汽车可视化与多端展示",
         "period": "未单独标注",
-        "category": "汽车展示 / PBR / 多端适配",
-        "description": "围绕 Web、Windows 和 Android 三端分别推进汽车展示能力，验证网页展示、桌面配置器和移动端效果优化的完整链路。",
+        "category": "Real-time Rendering / Automotive Visualization / Multi-platform",
+        "description": "围绕 Web、Windows 和 Android 三端推进汽车实时展示能力，验证材质、灯光、动画与交互在多端场景中的落地。",
         "details": [
           "统一围绕多端汽车展示、材质表现、数据驱动和交互模板展开。",
           "把 Web 展示、Windows 配置器与 Android 优化拆成独立子项目推进。",
@@ -436,15 +263,188 @@
             ]
           }
         ]
+      },
+      {
+        "id": 4,
+        "icon": "PanelsTopLeft",
+        "title": "UI 材质动画作品",
+        "period": "未单独标注",
+        "category": "UI Technical Art / Material Animation / Motion",
+        "description": "围绕 UI 材质、参数驱动和状态转场整理的一组技术美术案例，重点展示界面层的节奏、质感和连续反馈。",
+        "details": [
+          "把界面材质变化、参数动画和转场组织成独立项目表达。",
+          "重点展示 UI 材质在状态反馈、层级切换和动态质感上的控制能力。",
+          "用单独案例说明我在界面技术与技术美术交叉位置上的方法和结果。"
+        ],
+        "achievements": [
+          "补齐了个人主页里 UI 材质动画方向的独立项目样本。",
+          "让界面动态与材质表现成为可单独展示的技术美术能力。",
+          "形成一个可以直接对外引用的 UI 材质动画案例入口。"
+        ],
+        "tech": [
+          "UE",
+          "UMG",
+          "UI Material",
+          "Sequencer",
+          "Material Animation"
+        ],
+        "color": "#62d8c8",
+        "links": [
+          {
+            "label": "UI 材质动画项目链接",
+            "href": "https://www.autoxyz.cn/information/detail/26652"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "icon": "LayoutPanelTop",
+        "title": "DeltaForce 实时界面技术框架",
+        "period": "未单独标注",
+        "category": "Interface Tech / UI Systems / Methodology",
+        "description": "围绕《虚幻引擎5模块化UI架构白皮书》整理一套实时界面技术方法论，把 Common UI、MVVM、路由分层和样式资产化收束成可复用框架实践。",
+        "details": [
+          "输出《虚幻引擎5模块化UI架构白皮书》，把框架设计抽象成可复用方法论。",
+          "梳理 Primary Layout、Shell Layout 与行为基类，明确界面容器和交互分层。",
+          "把数据与表现解耦、组合优于继承、树状路由与焦点垄断等核心原则整理成统一框架语言。",
+          "引入样式数据资产、UI Material 与软引用加载思路，保证多端 UI 的一致性和可维护性。",
+          "把方法论落到实际样例中，验证布局、行为和资产层级的可操作性。"
+        ],
+        "achievements": [
+          "完成模块化界面技术白皮书与详细样例沉淀。",
+          "把界面技术讨论从零散经验收束成可复用结构。",
+          "为后续 UI 项目的组件拆分和布局复用提供统一基线。"
+        ],
+        "tech": [
+          "UE5",
+          "UMG",
+          "Blueprint",
+          "UI Material",
+          "UI Architecture"
+        ],
+        "color": "#7ce7d0",
+        "links": [
+          {
+            "label": "实时界面技术白皮书",
+            "href": "https://www.bilibili.com/opus/1190448420615094281/?from=readlist"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "icon": "Sparkles",
+        "title": "概念交互验证项目",
+        "period": "2023.10 - 2025.04",
+        "category": "Concept Interaction / Prototype / Presentation",
+        "description": "围绕 POC 台架、概念展示和移动端验证，推进材质、交互流程与展示链路在实时场景中的整合落地。",
+        "details": [
+          "把项目聚焦到 POC 台架、移动端验证和多车型概念展示等交互场景。",
+          "重点处理界面结构、材质表现、功能验证和展示链路之间的协同。",
+          "在概念验证与展示交付场景里兼顾交互可读性、实现效率和整体完成度。"
+        ],
+        "achievements": [
+          "形成覆盖台架验证、移动端展示和概念演示的交互项目链路。",
+          "打通 UMG、材质和交互状态在概念项目中的整合方式。",
+          "沉淀了适合概念验证与展示交付的组合流程。"
+        ],
+        "tech": [
+          "UE5",
+          "Material",
+          "Sequencer",
+          "Blueprint",
+          "UMG",
+          "Prototype"
+        ],
+        "color": "#59c8ff",
+        "subProjects": [
+          {
+            "title": "广汽丰田 POC 台架",
+            "period": "2024.7 - 2024.11",
+            "description": "围绕台架验证推进移动端天气系统与材质表现测试。",
+            "details": [
+              "推进 POC 台架中的交互验证。",
+              "验证移动端天气系统与视差冰材质表现。"
+            ]
+          },
+          {
+            "title": "郑州日产概念表现",
+            "period": "未单独标注",
+            "description": "负责概念演示中的情景效果渲染、多车型展示和车载宠物表现扩展。",
+            "details": [
+              "推进情景效果渲染与多车型展示。",
+              "配合汽车渲染工具搭建表现链路。",
+              "整合 Metahuman 车载宠物效果。"
+            ],
+            "links": [
+              {
+                "label": "郑州日产项目介绍",
+                "href": "https://www.autoxyz.cn/information/detail/34604"
+              }
+            ],
+            "images": [
+              {
+                "src": "/gifs/ProjectNotes/Dog.gif",
+                "alt": "郑州日产项目中的 Metahuman 车载宠物效果"
+              }
+            ]
+          },
+          {
+            "title": "移动端 POC",
+            "period": "未单独标注",
+            "description": "整合交互界面、角色与特效，验证移动端一体化表现。",
+            "details": [
+              "完成交互界面、角色与特效整合验证。"
+            ],
+            "images": [
+              {
+                "src": "/gifs/Mobile_terminal/UMG_1080.gif",
+                "alt": "移动端 POC 的交互界面与角色特效整合效果"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "icon": "Gamepad2",
+        "title": "局域网 FPS 对战原型",
+        "period": "2022.09 - 2022.12",
+        "category": "Gameplay Prototype / Networking / Blueprint",
+        "description": "基于现有游戏资源完成一套局域网多人 FPS 蓝图原型，重点验证多人同步、核心战斗循环和游戏内反馈的完整协作。",
+        "details": [
+          "使用 UE4 蓝图系统开发局域网对战功能，实现多人实时对战体验。",
+          "搭建稳定的多人网络架构，处理同步机制与延迟问题。",
+          "完成角色控制、武器系统和得分机制等核心模块开发与调试。",
+          "补齐游戏内 HUD、菜单与交互界面，验证玩法反馈联动。",
+          "围绕 RPC、动画蓝图和基础 Gameplay 循环完成实机联调。"
+        ],
+        "achievements": [
+          "完成多人射击循环的可玩验证。",
+          "打通网络同步、角色控制和界面反馈的完整链路。",
+          "为后续多人玩法和战斗反馈系统积累了一套蓝图实现经验。"
+        ],
+        "tech": [
+          "UE4",
+          "Blueprint",
+          "Networking",
+          "Gameplay"
+        ],
+        "color": "#f0b562",
+        "images": [
+          {
+            "src": "/gifs/FPS.high.gif",
+            "alt": "局域网 FPS 原型的实机对战画面"
+          }
+        ]
       }
     ]
   },
   "skillsContent": {
-    "sectionTitle": "能力地图",
-    "sectionSubtitle": "Capabilities",
+    "sectionTitle": "技术能力",
+    "sectionSubtitle": "Technical Art Capabilities",
     "categories": [
       {
-        "title": "引擎与蓝图",
+        "title": "引擎与整合",
         "skills": [
           {
             "name": "Unreal Engine 4/5",
@@ -459,34 +459,13 @@
             "level": 75
           },
           {
-            "name": "编辑器工具",
-            "level": 85
+            "name": "Sequencer 集成",
+            "level": 84
           }
         ]
       },
       {
-        "title": "界面与体验",
-        "skills": [
-          {
-            "name": "UMG界面开发",
-            "level": 95
-          },
-          {
-            "name": "LyraUI框架",
-            "level": 88
-          },
-          {
-            "name": "UI架构设计",
-            "level": 85
-          },
-          {
-            "name": "蓝图模板开发",
-            "level": 90
-          }
-        ]
-      },
-      {
-        "title": "材质与动效",
+        "title": "材质与实时视觉",
         "skills": [
           {
             "name": "UI材质制作",
@@ -501,25 +480,50 @@
             "level": 85
           },
           {
-            "name": "UI动效实现",
-            "level": 90
+            "name": "实时渲染表现",
+            "level": 88
           }
         ]
       },
       {
-        "title": "性能与流程",
+        "title": "工具与资产流程",
         "skills": [
           {
-            "name": "UI性能优化",
-            "level": 88
+            "name": "编辑器工具",
+            "level": 85
           },
           {
-            "name": "移动端适配",
-            "level": 82
+            "name": "资产流程搭建",
+            "level": 86
           },
           {
             "name": "Python自动化",
             "level": 75
+          },
+          {
+            "name": "移动端适配",
+            "level": 82
+          }
+        ]
+      },
+      {
+        "title": "界面技术",
+        "skills": [
+          {
+            "name": "UMG界面开发",
+            "level": 95
+          },
+          {
+            "name": "UI架构设计",
+            "level": 85
+          },
+          {
+            "name": "UI动效实现",
+            "level": 90
+          },
+          {
+            "name": "蓝图模板开发",
+            "level": 90
           }
         ]
       }
@@ -527,37 +531,39 @@
     "techStack": [
       "UE4",
       "UE5",
-      "UMG",
-      "Blueprint",
-      "C++",
       "Niagara",
       "Material",
+      "UI Material",
+      "Substrate",
+      "Sequencer",
+      "Blueprint",
+      "C++",
+      "Editor Tools",
+      "OpenUSD",
       "Python",
       "Performance Profiling",
-      "Editor Tools",
-      "LyraUI",
       "Automation Harness"
     ]
   },
   "contactContent": {
     "sectionTitle": "开始合作",
     "sectionSubtitle": "Contact",
-    "description": "如果你需要一个能同时处理项目实现、界面系统、视觉表现、工具链和技术验证的人，我愿意直接参与问题推进与交付。",
+    "description": "如果你需要一个能把实时视觉、材质特效、渲染工具链和项目落地串起来的人，我愿意直接参与问题推进与交付。",
     "email": "an15073025868@163.com",
     "phone": "15073025868",
     "location": "深圳、广州"
   },
   "footerContent": {
     "logo": "Tech",
-    "logoHighlight": "Home",
-    "tagline": "Personal technical work across systems, visuals and workflow",
+    "logoHighlight": "Art",
+    "tagline": "Technical art work across visuals, materials and workflow",
     "navLinks": [
       {
         "label": "首页",
         "href": "#hero"
       },
       {
-        "label": "项目经历",
+        "label": "技术项目",
         "href": "#projects"
       },
       {
@@ -590,6 +596,6 @@
         "label": "Email"
       }
     ],
-    "copyright": "© 2026 Personal Technical Homepage. All rights reserved."
+    "copyright": "© 2026 Technical Art Homepage. All rights reserved."
   }
 }

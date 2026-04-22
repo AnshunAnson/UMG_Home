@@ -490,10 +490,10 @@ export default function Projects() {
 
           <div className="flex flex-col gap-6">
             <p className="max-w-xl text-lg leading-8 text-white/58">
-              这里聚焦我在 UI 架构、工具链、多人玩法、HMI 表现和汽车可视化上的核心项目，内容按实际交付与能力脉络做了整理。
+              这里聚焦我在实时视觉、材质系统、特效制作、工具流程和多端展示上的核心项目，内容按实际交付与技术能力脉络做了整理。
             </p>
             <p className="text-sm uppercase tracking-[0.28em] text-white/32">
-              {projectData.projects.length} 项核心项目，覆盖架构到交付
+              {projectData.projects.length} 项核心项目，覆盖表现、流程与落地
             </p>
           </div>
         </motion.div>
