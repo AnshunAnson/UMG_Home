@@ -82,8 +82,6 @@ function MediaLightbox({
   media: ActiveMedia | null;
   onClose: () => void;
 }) {
-  const isCinematic = media?.mode === 'cinematic';
-
   return (
     <AnimatePresence>
       {media ? (
@@ -132,31 +130,19 @@ function MediaLightbox({
               </div>
             </div>
 
-            {isCinematic ? (
-              <div className="relative min-h-0 flex-1 overflow-hidden bg-black">
+            <div className="min-h-0 flex-1 overflow-auto bg-black">
+              <div className="w-full">
                 <Image
                   src={resolveAssetPath(media.src)}
                   alt={media.alt}
-                  fill
+                  width={0}
+                  height={0}
                   unoptimized
                   sizes="100vw"
-                  className="object-cover"
+                  className="h-auto w-full"
                 />
               </div>
-            ) : (
-              <div className="flex min-h-0 flex-1 items-center justify-center px-4 py-4 md:px-6 md:py-6">
-                <div className="relative h-full w-full">
-                  <Image
-                    src={resolveAssetPath(media.src)}
-                    alt={media.alt}
-                    fill
-                    unoptimized
-                    sizes="100vw"
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-            )}
+            </div>
           </motion.div>
         </motion.div>
       ) : null}
