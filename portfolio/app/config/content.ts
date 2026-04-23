@@ -14,10 +14,6 @@ export const heroContent: HeroContent = {
   "subtitle": "聚焦实时视觉、材质系统、Niagara 特效、编辑器工具与渲染流程，把表现需求收束成可交付的技术方案。",
   "stats": [
     {
-      "icon": "📍",
-      "label": "深圳"
-    },
-    {
       "icon": "🧩",
       "label": "10+ 项目"
     },
@@ -35,7 +31,7 @@ export const aboutContent: AboutContent = {
   "sectionSubtitle": "About",
   "bio": [],
   "age": 24,
-  "location": "深圳",
+  "location": "",
   "experience": 3,
   "jobTitle": "Technical Artist",
   "coreSkills": [
@@ -584,7 +580,7 @@ export const contactContent: ContactContent = {
   "description": "如果你需要一个能把实时视觉、材质特效、渲染工具链和项目落地串起来的人，我愿意直接参与问题推进与交付。",
   "email": "an15073025868@163.com",
   "phone": "15073025868",
-  "location": "深圳、广州"
+  "location": ""
 };
 
 export const footerContent: FooterContent = {

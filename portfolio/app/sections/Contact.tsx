@@ -13,7 +13,6 @@ export default function Contact() {
   const contactRows = [
     { label: 'Email', value: content.email, href: `mailto:${content.email}` },
     { label: 'Phone', value: content.phone, href: `tel:${content.phone}` },
-    { label: 'Base', value: content.location },
   ];
 
   return (

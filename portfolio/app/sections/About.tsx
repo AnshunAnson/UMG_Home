@@ -34,10 +34,6 @@ export default function About() {
                 <span className="text-right text-white/74">{content.jobTitle}</span>
               </div>
               <div className="flex items-center justify-between gap-6">
-                <span className="uppercase tracking-[0.2em]">Base</span>
-                <span className="text-right text-white/74">{content.location}</span>
-              </div>
-              <div className="flex items-center justify-between gap-6">
                 <span className="uppercase tracking-[0.2em]">Experience</span>
                 <span className="text-right text-white/74">{content.experience} 年</span>
               </div>

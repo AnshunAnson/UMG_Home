@@ -138,7 +138,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.4 }}
-                  className="grid gap-5 border-t border-white/10 pt-8 md:grid-cols-3"
+                  className="grid gap-5 border-t border-white/10 pt-8 md:grid-cols-2"
                 >
                   {stats.map((stat, index) => (
                     <div key={stat.label} className="border-b border-white/8 pb-5 md:border-b-0 md:pb-0">
