@@ -97,15 +97,15 @@ export const projectsContent: ProjectsContent = {
       "icon": "ScanSearch",
       "title": "特效作品",
       "period": "未单独标注",
-      "category": "Technical Art FX / Niagara / VDB / Chaos",
-      "description": "聚焦 Niagara、体积特效、材质扰动和破碎流程的一组技术美术项目，覆盖比赛展示、座舱氛围动效和 VDB + Chaos 破碎实验。",
+      "category": "Technical Art FX / Niagara / SDF / Sequencer",
+      "description": "聚焦 Niagara、材质扰动和实时氛围表达的一组技术美术项目，覆盖比赛展示、座舱氛围动效和转场节奏设计。",
       "details": [
-        "把比亚迪概念展示特效、DesaySV 智能座舱和 VDB + Chaos 破碎实验统一收口为特效方向展示。",
-        "覆盖粒子形态、SDF 波纹、音频可视化、体积氛围和破碎冲击感等不同特效类型。",
-        "强调从概念展示到特效实验的完整表达能力，而不是混在交互项目里。"
+        "把比亚迪概念展示特效和 DesaySV 智能座舱统一收口为特效方向展示。",
+        "覆盖粒子形态、SDF 波纹、音频可视化和空间氛围等不同特效类型。",
+        "强调从概念展示到座舱氛围表达的完整能力，而不是混在交互项目里。"
       ],
       "achievements": [
-        "形成从座舱氛围、入场过场到体积破碎的特效案例集合。",
+        "形成从座舱氛围到入场过场的特效案例集合。",
         "把特效能力从交互叙事中独立出来，归类更清晰。",
         "保留了可直接对外展示的项目入口和实机效果素材。"
       ],
@@ -113,18 +113,11 @@ export const projectsContent: ProjectsContent = {
         "UE",
         "Niagara",
         "SDF",
-        "VDB",
-        "Chaos",
         "Sequencer",
         "FX"
       ],
       "color": "#88a8ff",
-      "links": [
-        {
-          "label": "VDB + Chaos 项目链接",
-          "href": "https://www.autoxyz.cn/information/detail/26652"
-        }
-      ],
+      "links": [],
       "subProjects": [
         {
           "title": "比亚迪概念展示特效",
