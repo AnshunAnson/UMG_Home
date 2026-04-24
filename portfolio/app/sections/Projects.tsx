@@ -50,6 +50,14 @@ function formatMediaWeight(size: number) {
   return `${(size / (1024 * 1024)).toFixed(size >= 20 * 1024 * 1024 ? 1 : 2)} MB`;
 }
 
+function getMediaActionText(src: string) {
+  return src.toLowerCase().endsWith('.gif') ? '点击弹窗播放当前 GIF' : '点击弹窗查看当前图片';
+}
+
+function getMediaLoadText(src: string) {
+  return src.toLowerCase().endsWith('.gif') ? '点击播放 GIF' : '点击查看图片';
+}
+
 function getLinkHost(href: string) {
   try {
     return new URL(href).hostname.replace(/^www\./, '');
@@ -230,7 +238,7 @@ function ProjectPreviewRail({
                 className="object-contain p-3 md:p-4"
               />
               <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-10 text-left text-xs uppercase tracking-[0.24em] text-white/66 transition-colors duration-300 group-hover:text-white md:px-5">
-                <span>点击弹窗播放当前 GIF</span>
+                <span>{getMediaActionText(selectedImage.src)}</span>
                 <span style={{ color }}>{selectedWeight || '预览'}</span>
               </span>
             </button>
@@ -267,7 +275,7 @@ function ProjectPreviewRail({
                   backgroundColor: `${color}14`,
                 }}
               >
-                点击播放 GIF
+                {getMediaLoadText(selectedImage.src)}
               </span>
             </button>
           )}

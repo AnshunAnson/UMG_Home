@@ -86,7 +86,12 @@ export const projectsContent: ProjectsContent = {
         "Automation"
       ],
       "color": "#7ce7d0",
-      "images": []
+      "images": [
+        {
+          "src": "/images/tools/maya-material-naming-tool.png",
+          "alt": "Maya 材质与模型命名工具界面截图"
+        }
+      ]
     },
     {
       "id": 2,
