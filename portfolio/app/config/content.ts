@@ -474,8 +474,27 @@ export const projectsContent: ProjectsContent = {
     },
     {
       "id": 0,
-      "icon": "car",
-      "title": "BenZ",
+      "icon": "Car",
+      "title": "BenZ 汽车实时展示",
+      "period": "未单独标注",
+      "category": "Web 端汽车实时渲染",
+      "description": "基于 Unreal Engine 的汽车 3D 实时展示项目，支持 Web 端在线浏览与交互。",
+      "details": [
+        "使用 Unreal Engine 实现高质量汽车 3D 渲染",
+        "支持 Web 端 HTML5 发布，无需本地安装",
+        "实现实时材质切换与交互控制"
+      ],
+      "achievements": [
+        "完成汽车模型在 Web 端的轻量化渲染",
+        "实现流畅的实时交互体验"
+      ],
+      "tech": [
+        "Unreal Engine",
+        "HTML5",
+        "WebGL",
+        "3D Rendering"
+      ],
+      "color": "#7ce7d0",
       "links": [
         {
           "label": "BenZ_Html",
