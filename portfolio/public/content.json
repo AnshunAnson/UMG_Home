@@ -465,23 +465,72 @@
         "title": "BenZ 汽车实时展示",
         "period": "未单独标注",
         "category": "Web 端汽车实时渲染",
-        "description": "基于 Unreal Engine 的汽车 3D 实时展示项目，支持 Web 端在线浏览与交互。",
+        "description": "基于 Unreal Engine 的汽车 3D 实时展示项目，支持 Web 端在线浏览与交互。包含完整的 UE4 HTML5 部署经验总结。",
         "details": [
           "使用 Unreal Engine 实现高质量汽车 3D 渲染",
           "支持 Web 端 HTML5 发布，无需本地安装",
-          "实现实时材质切换与交互控制"
+          "实现实时材质切换与交互控制",
+          "Canvas 尺寸与 UE 摄像机控制优化",
+          "Loading 进度与真实生命周期绑定",
+          "IndexedDB 缓存管理与部署流程"
         ],
         "achievements": [
           "完成汽车模型在 Web 端的轻量化渲染",
-          "实现流畅的实时交互体验"
+          "实现流畅的实时交互体验",
+          "整理完整的 UE4 HTML5 部署经验文档"
         ],
         "tech": [
-          "Unreal Engine",
+          "Unreal Engine 4",
           "HTML5",
           "WebGL",
-          "3D Rendering"
+          "Emscripten",
+          "JavaScript",
+          "IndexedDB",
+          "GitHub Pages"
         ],
         "color": "#7ce7d0",
+        "subProjects": [
+          {
+            "title": "Canvas 尺寸与 UE 摄像机控制",
+            "description": "解决浏览器窗口变化、画面模糊、画布混乱等问题",
+            "details": [
+              "移除 CSS 尺寸设置，让 JS 完全控制",
+              "启用 canvasWindowedUseHighDpi，渲染分辨率 = 窗口 × devicePixelRatio",
+              "使用 STRETCH 模式跟随窗口尺寸"
+            ]
+          },
+          {
+            "title": "Loading 进度与真实生命周期绑定",
+            "description": "跟踪下载、WASM 编译、Shader 编译、引擎启动各阶段进度",
+            "details": [
+              "下载资源：40% - reportDownloadProgress() 跟踪真实下载字节数",
+              "WASM 编译：25% - instantiateWasm() 开始/完成",
+              "Shader 编译：25% - 按 shader 数量/总数计算",
+              "引擎启动：10% - postRunEmscripten() 完成"
+            ]
+          },
+          {
+            "title": "鼠标交互与缓存管理",
+            "description": "解决交互失效问题并优化 IndexedDB 缓存",
+            "details": [
+              "Loading 屏幕直接 remove() 避免挡住鼠标",
+              "多次加载不会溢出（相同资源会覆盖）",
+              "Ctrl+Shift+Delete 快捷键清理缓存",
+              "URL 参数 ?noidbread 禁用读取，?noidbwrite 禁用写入"
+            ]
+          },
+          {
+            "title": "GitHub Pages 部署",
+            "description": "完整的部署流程与常见陷阱",
+            "details": [
+              "创建 gh-pages 分支，推送所有 HTML5 导出文件",
+              "GitHub Settings → Pages → Source 选择 gh-pages",
+              "等待 5-10 分钟部署",
+              "404 错误检查 GitHub Pages 是否启用",
+              "缓存问题强制刷新 Ctrl+F5"
+            ]
+          }
+        ],
         "links": [
           {
             "label": "BenZ_Html",
