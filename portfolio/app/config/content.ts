@@ -7,6 +7,7 @@ import {
   FooterContent,
 } from '../types/content';
 
+// Hero区域内容
 export const heroContent: HeroContent = {
   "badge": "Technical Artist / Unreal",
   "name": "技术美术",
@@ -26,6 +27,7 @@ export const heroContent: HeroContent = {
   "cornerRight": "TECH ART"
 };
 
+// About区域内容
 export const aboutContent: AboutContent = {
   "sectionTitle": "关于",
   "sectionSubtitle": "About",
@@ -54,6 +56,7 @@ export const aboutContent: AboutContent = {
   ]
 };
 
+// Projects区域内容
 export const projectsContent: ProjectsContent = {
   "sectionTitle": "技术项目",
   "sectionSubtitle": "Technical Art Projects",
@@ -468,10 +471,22 @@ export const projectsContent: ProjectsContent = {
           "alt": "局域网 FPS 原型的实机对战画面"
         }
       ]
+    },
+    {
+      "id": 0,
+      "icon": "car",
+      "title": "BenZ",
+      "links": [
+        {
+          "label": "BenZ_Html",
+          "href": "https://anshunanson.github.io/BenZ/BenZ-HTML5-Shipping.html"
+        }
+      ]
     }
   ]
 };
 
+// Skills区域内容
 export const skillsContent: SkillsContent = {
   "sectionTitle": "技术能力",
   "sectionSubtitle": "Technical Art Capabilities",
@@ -579,6 +594,7 @@ export const skillsContent: SkillsContent = {
   ]
 };
 
+// Contact区域内容
 export const contactContent: ContactContent = {
   "sectionTitle": "开始合作",
   "sectionSubtitle": "Contact",
@@ -588,6 +604,7 @@ export const contactContent: ContactContent = {
   "location": ""
 };
 
+// Footer区域内容
 export const footerContent: FooterContent = {
   "logo": "Tech",
   "logoHighlight": "Art",
