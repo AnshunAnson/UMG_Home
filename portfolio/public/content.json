@@ -134,52 +134,6 @@
               "围绕 UI 创意图制作粒子氛围动效。",
               "实现 SDF 距离场波纹、音波扰动与音频可视化效果。",
               "覆盖场景切换、开机、来电、加载、音乐等多类状态动画。"
-            ],
-            "images": [
-              {
-                "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
-                "alt": "智能座舱主题场景渲染氛围效果"
-              },
-              {
-                "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
-                "alt": "智能座舱场景切换粒子效果"
-              },
-              {
-                "src": "/gifs/DesaysvFX/Wellness02.gif",
-                "alt": "智能座舱烟雾与氛围层特效"
-              },
-              {
-                "src": "/gifs/DesaysvFX/入场_爆破_溅射.gif",
-                "alt": "智能座舱入场爆破与溅射特效"
-              },
-              {
-                "src": "/gifs/DesaysvFX/audio.gif",
-                "alt": "智能座舱音波扰动与音频可视化效果"
-              },
-              {
-                "src": "/gifs/DesaysvFX/IP台开机动效.gif",
-                "alt": "智能座舱 IP 台开机过场动画"
-              },
-              {
-                "src": "/gifs/DesaysvFX/IP台来电.gif",
-                "alt": "智能座舱 IP 台来电提醒效果"
-              },
-              {
-                "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
-                "alt": "智能座舱流体入场动效"
-              },
-              {
-                "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
-                "alt": "智能座舱加载序列动画"
-              },
-              {
-                "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
-                "alt": "智能座舱心智切换过场效果"
-              },
-              {
-                "src": "/gifs/DesaysvFX/SEQ_Music.gif",
-                "alt": "智能座舱音乐界面动效"
-              }
             ]
           }
         ]
