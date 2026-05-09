@@ -161,18 +161,13 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                       {sub.images && sub.images.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: any, j: number) => (
-                            <div key={j}>
-                              <div className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
-                                <Image
-                                  src={resolveAssetPath(img.src)}
-                                  alt={img.alt || `${sub.title} ${j + 1}`}
-                                  fill
-                                  className="object-cover"
-                                />
-                              </div>
-                              {img.alt && (
-                                <p className="text-xs text-white/35 mt-1.5 leading-relaxed">{img.alt}</p>
-                              )}
+                            <div key={j} className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
+                              <Image
+                                src={resolveAssetPath(img.src)}
+                                alt={img.alt || `${sub.title} ${j + 1}`}
+                                fill
+                                className="object-cover"
+                              />
                             </div>
                           ))}
                         </div>
