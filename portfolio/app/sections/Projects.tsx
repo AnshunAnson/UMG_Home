@@ -4,10 +4,9 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, Folder, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
-import { projectsContent as defaultProjectsContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 
-const basePath = process.env.NODE_ENV === 'production' ? '/UMG_Home' : '';
+const basePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/UMG_Home') ? '/UMG_Home' : '';
 
 function resolveAssetPath(src: string) {
   if (!src.startsWith('/')) {
@@ -116,24 +115,34 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
               {project.images && project.images.length > 0 && (
                 <div>
                   {project.images.length === 1 ? (
-                    <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
-                      <Image
-                        src={resolveAssetPath(project.images[0].src)}
-                        alt={project.images[0].alt || project.title}
-                        fill
-                        className="object-cover"
-                      />
+                    <div>
+                      <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
+                        <Image
+                          src={resolveAssetPath(project.images[0].src)}
+                          alt={project.images[0].alt || project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      {project.images[0].alt && (
+                        <p className="text-sm text-white/40 mt-2 leading-relaxed">{project.images[0].alt}</p>
+                      )}
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {project.images.map((img: any, i: number) => (
-                        <div key={i} className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
-                          <Image
-                            src={resolveAssetPath(img.src)}
-                            alt={img.alt || `${project.title} ${i + 1}`}
-                            fill
-                            className="object-cover"
-                          />
+                        <div key={i}>
+                          <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
+                            <Image
+                              src={resolveAssetPath(img.src)}
+                              alt={img.alt || `${project.title} ${i + 1}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          {img.alt && (
+                            <p className="text-sm text-white/40 mt-2 leading-relaxed">{img.alt}</p>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -152,13 +161,18 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                       {sub.images && sub.images.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: any, j: number) => (
-                            <div key={j} className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
-                              <Image
-                                src={resolveAssetPath(img.src)}
-                                alt={img.alt || `${sub.title} ${j + 1}`}
-                                fill
-                                className="object-cover"
-                              />
+                            <div key={j}>
+                              <div className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
+                                <Image
+                                  src={resolveAssetPath(img.src)}
+                                  alt={img.alt || `${sub.title} ${j + 1}`}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+                              {img.alt && (
+                                <p className="text-xs text-white/35 mt-1.5 leading-relaxed">{img.alt}</p>
+                              )}
                             </div>
                           ))}
                         </div>
@@ -223,7 +237,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
 
 export default function Projects() {
   const { projects: contentProjects } = useContent();
-  const projectData = contentProjects || defaultProjectsContent;
+  const projectData = contentProjects;
 
   return (
     <section id="projects" className="py-24 px-6">
