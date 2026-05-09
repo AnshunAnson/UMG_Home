@@ -23,8 +23,6 @@ export default function Home() {
         id="main-content"
         className="relative overflow-x-hidden bg-transparent text-white"
       >
-        <div className="pointer-events-none fixed inset-y-0 left-6 z-0 hidden w-px bg-white/[0.05] lg:block" />
-        <div className="pointer-events-none fixed inset-y-0 right-6 z-0 hidden w-px bg-white/[0.05] lg:block" />
         <Hero />
         <Projects />
         <About />

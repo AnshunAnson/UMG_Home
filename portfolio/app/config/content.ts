@@ -10,7 +10,7 @@ import {
 // Hero区域内容
 export const heroContent: HeroContent = {
   "badge": "Technical Artist / Unreal",
-  "name": "技术美术",
+  "name": "安顺",
   "nameHighlightLength": 2,
   "subtitle": "聚焦实时视觉、材质系统、Niagara 特效、编辑器工具与渲染流程，把表现需求收束成可交付的技术方案。",
   "stats": [
@@ -31,11 +31,11 @@ export const heroContent: HeroContent = {
 export const aboutContent: AboutContent = {
   "sectionTitle": "关于",
   "sectionSubtitle": "About",
-  "bio": [],
+  "bio": ["技术美术，专注于实时视觉、材质系统和Niagara特效，致力于把创意转化为可交付的技术方案。"],
   "age": 24,
   "location": "",
   "experience": 3,
-  "jobTitle": "Technical Artist",
+  "jobTitle": "技术美术 (Technical Artist)",
   "coreSkills": [
     {
       "title": "实时视觉与特效",
