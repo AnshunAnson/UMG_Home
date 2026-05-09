@@ -163,10 +163,10 @@ export const projectsContent: ProjectsContent = {
     },
     {
       "id": 3,
-      "icon": "Car",
-      "title": "汽车可视化与多端展示",
-      "period": "未单独标注",
-      "category": "Real-time Rendering / Automotive Visualization / Multi-platform",
+        "icon": "Car",
+        "title": "HMI多平台展示",
+        "period": "未单独标注",
+        "category": "Real-time Rendering / Automotive Visualization / Multi-platform",
       "tech": [
         "UE",
         "HTML",
@@ -205,15 +205,46 @@ export const projectsContent: ProjectsContent = {
             {
               "src": "/gifs/ProjectNotes/audi.gif",
               "alt": "Windows 端汽车配置器的机位切换与展示效果"
+            },
+            {
+              "src": "/gifs/autoxyz_37446/gif2.gif",
+              "alt": "Audi RS Q8 汽车配置器特效展示1"
+            },
+            {
+              "src": "/gifs/autoxyz_37446/gif3.gif",
+              "alt": "Audi RS Q8 汽车配置器特效展示2"
+            },
+            {
+              "src": "/gifs/autoxyz_37446/gif4.gif",
+              "alt": "Audi RS Q8 汽车配置器特效展示3"
             }
           ]
         },
         {
-          "title": "Android 汽车配置器",
-          "period": "未单独标注"
-        }
-      ]
-    },
+            "title": "Android 汽车配置器",
+            "period": "未单独标注"
+          },
+          {
+            "title": "BenZ 汽车实时展示",
+            "period": "未单独标注",
+            "tech": [
+              "Unreal Engine 4",
+              "HTML5",
+              "WebGL",
+              "Emscripten",
+              "JavaScript",
+              "IndexedDB",
+              "GitHub Pages"
+            ],
+            "links": [
+              {
+                "label": "BenZ_Html",
+                "href": "https://anshunanson.github.io/BenZ/BenZ-HTML5-Shipping.html"
+              }
+            ]
+          }
+        ]
+      },
     {
       "id": 4,
       "icon": "PanelsTopLeft",
@@ -241,6 +272,7 @@ export const projectsContent: ProjectsContent = {
       "title": "DeltaForce 实时界面技术框架",
       "period": "未单独标注",
       "category": "Interface Tech / UI Systems / Methodology",
+      "description": "一套完整的实时界面技术方法论，涵盖架构设计、渲染技术、动效系统、工具链和性能优化五大核心领域，为复杂HMI项目提供系统化的技术解决方案。",
       "tech": [
         "UE5",
         "UMG",
@@ -465,21 +497,150 @@ export const projectsContent: ProjectsContent = {
           ]
         },
         {
-          "title": "郑州日产概念表现",
-          "period": "未单独标注",
-          "links": [
-            {
-              "label": "郑州日产项目介绍",
-              "href": "https://www.autoxyz.cn/information/detail/34604"
-            }
-          ],
-          "images": [
-            {
-              "src": "/gifs/ProjectNotes/Dog.gif",
-              "alt": "郑州日产项目中的 Metahuman 车载宠物效果"
-            }
-          ]
-        },
+            "title": "郑州日产Z9皮卡HMI设计",
+            "period": "2023.06 - 2025.04",
+            "description": "为郑州日产Z9皮卡车型进行HMI设计，以城市极简主义和空间建构主义为灵感，打造简洁直观的3D虚拟场景。",
+            "details": [
+              "引入无缝3D场景过渡模式替代复杂的树状菜单",
+              "使用全天候数字孪生技术，界面主题和3D场景根据环境、时间和天气实时变化",
+              "支持多模态交互，包括触摸和手势控制、语音助手和生物识别",
+              "采用半透明磨砂玻璃质感增加现代感和透明度",
+              "通过模块化HMI系统确保多屏幕和设备的一致性",
+              "获得A' Design Award 2025-2026界面、交互和用户体验设计类别奖项"
+            ],
+            "links": [
+              {
+                "label": "郑州日产项目介绍",
+                "href": "https://www.autoxyz.cn/information/detail/34604"
+              },
+              {
+                "label": "A' Design Award获奖作品",
+                "href": "https://competition.adesignaward.com/design.php?ID=181663"
+              }
+            ],
+            "images": [
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/png_1.png",
+                "alt": "郑州日产Z9皮卡HMI设计图1"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/png_2.png",
+                "alt": "郑州日产Z9皮卡HMI设计图2"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/png_3.png",
+                "alt": "郑州日产Z9皮卡HMI设计图3"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/png_4.png",
+                "alt": "郑州日产Z9皮卡HMI设计图4"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/png_5.png",
+                "alt": "郑州日产Z9皮卡HMI设计图5"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/png_6.png",
+                "alt": "郑州日产Z9皮卡HMI设计图6"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/png_7.png",
+                "alt": "郑州日产Z9皮卡HMI设计图7"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/gif_1.gif",
+                "alt": "郑州日产Z9皮卡HMI动效1"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/gif_2.gif",
+                "alt": "郑州日产Z9皮卡HMI动效2"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/gif_3.gif",
+                "alt": "郑州日产Z9皮卡HMI动效3"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_1.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图1"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_2.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图2"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_3.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图3"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_4.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图4"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_5.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图5"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_6.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图6"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_7.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图7"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_8.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图8"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_9.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图9"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_10.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图10"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_11.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图11"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_12.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图12"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_13.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图13"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_14.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图14"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_15.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图15"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_16.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图16"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_17.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图17"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_18.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图18"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_19.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图19"
+              },
+              {
+                "src": "/gifs/zhengzhou_nissan_z9/thumb_20.jpg",
+                "alt": "郑州日产Z9皮卡视频缩略图20"
+              }
+            ]
+          },
         {
           "title": "移动端 POC",
           "period": "未单独标注",
@@ -507,31 +668,8 @@ export const projectsContent: ProjectsContent = {
       "color": "#f0b562",
       "images": [
         {
-          "src": "/gifs/FPS.high.gif",
+          "src": "/gifs/FPS_RPC/FPS.high.gif",
           "alt": "局域网 FPS 原型的实机对战画面"
-        }
-      ]
-    },
-    {
-      "id": 0,
-      "icon": "Car",
-      "title": "BenZ 汽车实时展示",
-      "period": "未单独标注",
-      "category": "Web 端汽车实时渲染",
-      "tech": [
-        "Unreal Engine 4",
-        "HTML5",
-        "WebGL",
-        "Emscripten",
-        "JavaScript",
-        "IndexedDB",
-        "GitHub Pages"
-      ],
-      "color": "#7ce7d0",
-      "links": [
-        {
-          "label": "BenZ_Html",
-          "href": "https://anshunanson.github.io/BenZ/BenZ-HTML5-Shipping.html"
         }
       ]
     }

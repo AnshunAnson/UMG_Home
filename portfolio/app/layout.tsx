@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ContentProvider } from "./ContentProvider";
+import Navigation from "./components/Navigation";
 
 export const metadata: Metadata = {
   title: "技术美术主页 | 实时视觉、材质与工具流程",
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="zh-CN" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-[#0a0a0f] text-white">
         <ContentProvider>
+          <Navigation />
           {children}
         </ContentProvider>
       </body>

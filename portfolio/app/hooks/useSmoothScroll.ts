@@ -15,6 +15,7 @@ export function useSmoothScroll() {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
+      autoResize: true,
     });
 
     lenisRef.current = lenis;
@@ -26,8 +27,16 @@ export function useSmoothScroll() {
 
     requestAnimationFrame(raf);
 
+    // 监听内容高度变化
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+    });
+
+    resizeObserver.observe(document.body);
+
     return () => {
       lenis.destroy();
+      resizeObserver.disconnect();
     };
   }, []);
 

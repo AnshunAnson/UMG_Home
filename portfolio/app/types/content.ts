@@ -44,6 +44,7 @@ export interface ProjectSubProject {
   period?: string;
   description?: string;
   details?: string[];
+  tech?: string[];
   links?: ProjectLink[];
   images?: ProjectImage[];
 }
@@ -54,9 +55,9 @@ export interface Project {
   title: string;
   period: string;
   category: string;
-  description: string;
-  details: string[];
-  achievements: string[];
+  description?: string;
+  details?: string[];
+  achievements?: string[];
   tech: string[];
   color: string;
   images?: ProjectImage[];

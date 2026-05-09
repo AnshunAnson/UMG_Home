@@ -21,7 +21,7 @@ export default function Home() {
 
       <main
         id="main-content"
-        className="relative overflow-x-hidden bg-transparent text-white"
+        className="relative overflow-x-hidden bg-transparent text-white pt-16"
       >
         <Hero />
         <Projects />
