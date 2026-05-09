@@ -113,12 +113,6 @@ export const projectsContent: ProjectsContent = {
         "FX"
       ],
       "color": "#88a8ff",
-      "images": [
-        {
-          "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
-          "alt": "比亚迪概念展示项目的入场特效"
-        }
-      ],
       "links": [],
       "subProjects": [
         {
@@ -636,22 +630,6 @@ export const projectsContent: ProjectsContent = {
           "alt": "郑州日产Z9皮卡HMI设计图3"
         },
         {
-          "src": "/gifs/zhengzhou_nissan_z9/png_4.png",
-          "alt": "郑州日产Z9皮卡HMI设计图4"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/png_5.png",
-          "alt": "郑州日产Z9皮卡HMI设计图5"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/png_6.png",
-          "alt": "郑州日产Z9皮卡HMI设计图6"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/png_7.png",
-          "alt": "郑州日产Z9皮卡HMI设计图7"
-        },
-        {
           "src": "/gifs/zhengzhou_nissan_z9/gif_1.gif",
           "alt": "郑州日产Z9皮卡HMI动效1"
         },
@@ -662,86 +640,6 @@ export const projectsContent: ProjectsContent = {
         {
           "src": "/gifs/zhengzhou_nissan_z9/gif_3.gif",
           "alt": "郑州日产Z9皮卡HMI动效3"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_1.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图1"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_2.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图2"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_3.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图3"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_4.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图4"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_5.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图5"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_6.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图6"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_7.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图7"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_8.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图8"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_9.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图9"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_10.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图10"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_11.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图11"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_12.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图12"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_13.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图13"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_14.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图14"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_15.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图15"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_16.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图16"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_17.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图17"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_18.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图18"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_19.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图19"
-        },
-        {
-          "src": "/gifs/zhengzhou_nissan_z9/thumb_20.jpg",
-          "alt": "郑州日产Z9皮卡视频缩略图20"
         }
       ]
     },
