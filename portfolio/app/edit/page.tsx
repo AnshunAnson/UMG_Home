@@ -114,7 +114,7 @@ export default function EditPage() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold">内容编辑器</h1>
-            <p className="text-sm text-white/50">修改后保存，同时更新 content.ts 和 content.json</p>
+            <p className="text-sm text-white/50">修改后保存到 content.json</p>
           </div>
           <div className="flex items-center gap-3">
             {hasChanges && saveStatus === 'idle' && (

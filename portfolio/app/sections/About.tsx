@@ -1,16 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { aboutContent as defaultAboutContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 
 export default function About() {
   const { about } = useContent();
-  const content = about || defaultAboutContent;
+  const content = about;
 
   return (
-    <section id="about" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="about" className="py-32 px-6 md:px-12 lg:px-20">
+      <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

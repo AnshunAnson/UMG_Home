@@ -53,7 +53,7 @@ export default function Navigation() {
         scrolled ? 'bg-[#0a0a0f]/90 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="px-6 md:px-12 lg:px-20 h-16 flex items-center justify-between w-full">
         <div className="text-xl font-bold text-white cursor-pointer" onClick={() => handleClick('hero')}>
           安顺
         </div>

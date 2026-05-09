@@ -2,17 +2,16 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Mail, Phone } from 'lucide-react';
-import { contactContent as defaultContactContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 import Footer from './Footer';
 
 export default function Contact() {
   const { contact } = useContent();
-  const content = contact || defaultContactContent;
+  const content = contact;
 
   return (
-    <section id="contact" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-32 px-6 md:px-12 lg:px-20">
+      <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

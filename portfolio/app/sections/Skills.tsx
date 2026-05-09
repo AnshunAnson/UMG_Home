@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { skillsContent as defaultSkillsContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 
 function SkillTag({ skill, delay }: { skill: string; delay: number }) {
@@ -20,11 +19,11 @@ function SkillTag({ skill, delay }: { skill: string; delay: number }) {
 
 export default function Skills() {
   const { skills } = useContent();
-  const content = skills || defaultSkillsContent;
+  const content = skills;
 
   return (
-    <section id="skills" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-32 px-6 md:px-12 lg:px-20">
+      <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -3,12 +3,10 @@
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { useContent } from '../ContentProvider';
-import { heroContent as defaultHeroContent } from '../config/content';
 
 export default function Hero() {
   const { hero } = useContent();
-  const heroData = hero || defaultHeroContent;
-  const { name, nameHighlightLength, subtitle } = heroData;
+  const { name, nameHighlightLength, subtitle } = hero;
   const leadingName = name.slice(0, nameHighlightLength);
   const trailingName = name.slice(nameHighlightLength);
 
@@ -19,7 +17,7 @@ export default function Hero() {
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#506dff]/8 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 px-6 py-20 max-w-7xl mx-auto">
+      <div className="relative z-10 px-6 md:px-12 lg:px-20 py-20 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

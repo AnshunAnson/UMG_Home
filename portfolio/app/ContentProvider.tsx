@@ -1,13 +1,13 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
-import { 
-  heroContent as defaultHero, 
-  aboutContent as defaultAbout, 
-  projectsContent as defaultProjects, 
-  skillsContent as defaultSkills,
-  contactContent as defaultContact,
-  footerContent as defaultFooter 
+import { createContext, useContext } from 'react';
+import {
+  heroContent,
+  aboutContent,
+  projectsContent,
+  skillsContent,
+  contactContent,
+  footerContent,
 } from './config/content';
 import type {
   HeroContent,
@@ -29,18 +29,16 @@ interface EditedContent {
 
 const ContentContext = createContext<EditedContent | null>(null);
 
-const defaultContent: EditedContent = {
-  hero: defaultHero,
-  about: defaultAbout,
-  projects: defaultProjects,
-  skills: defaultSkills,
-  contact: defaultContact,
-  footer: defaultFooter
+const content: EditedContent = {
+  hero: heroContent,
+  about: aboutContent,
+  projects: projectsContent,
+  skills: skillsContent,
+  contact: contactContent,
+  footer: footerContent,
 };
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
-  const [content] = useState<EditedContent>(defaultContent);
-
   return (
     <ContentContext.Provider value={content}>
       {children}

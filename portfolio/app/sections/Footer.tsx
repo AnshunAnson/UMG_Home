@@ -1,12 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { footerContent as defaultFooterContent } from '../config/content';
 import { useContent } from '../ContentProvider';
 
 export default function Footer() {
   const { footer } = useContent();
-  const content = footer || defaultFooterContent;
+  const content = footer;
 
   return (
     <footer className="bg-transparent">

@@ -22,8 +22,7 @@
 | UI Library | React | 19.2.4 |
 | Language | TypeScript | strict |
 | Styling | Tailwind CSS v4 | — |
-| Animation | Framer Motion, GSAP | latest |
-| 3D | Three.js / React Three Fiber / @react-three/drei | latest |
+| Animation | Framer Motion | latest |
 | Icons | Lucide React | latest |
 | Scroll | Lenis (smooth scroll) | latest |
 | Deployment | GitHub Pages (via Actions) | — |
@@ -33,46 +32,44 @@
 ```
 portfolio/
 ├── app/
-│   ├── api/save-content/route.ts    # POST: write content.json to disk
-│   ├── components/                   # Reusable UI components
-│   │   ├── GlitchText.tsx            # Glitch text animation effect
-│   │   ├── GlobalAnimatedBackground.tsx # Full-page animated background (self-contained)
-│   │   ├── NeonCard.tsx              # Neon-styled card wrapper
-│   │   ├── ParticleBackground.tsx    # Canvas particle background
-│   │   ├── ParticleField.tsx        # Particle field component
-│   │   ├── ProjectCard.tsx          # Individual project card (inlined animations)
-│   │   └── ScrollIndicator.tsx      # Scroll down indicator
+│   ├── api/
+│   │   ├── save-content/route.ts    # POST: write content.json to disk
+│   │   └── upload/route.ts          # POST: file upload (images/GIFs)
+│   ├── components/
+│   │   └── Navigation.tsx           # Fixed top navigation bar
 │   ├── config/
-│   │   └── content.ts               # DEFAULT content data (~305 lines, single source of truth for defaults)
+│   │   └── content.ts               # DEFAULT content data (single source of truth)
 │   ├── edit/                        # No-code content editor
-│   │   ├── page.tsx                 # Editor main page (save → API + localStorage)
+│   │   ├── page.tsx                 # Editor main page (save → /api/save-content)
 │   │   ├── schema.tsx               # Form field definitions for each section
 │   │   └── components/
 │   │       ├── DynamicForm.tsx      # Dynamic form renderer (safeData guard)
 │   │       └── FormFields/
-│   │           ├── ArrayInput.tsx   # Array-type field editor
+│   │           ├── ArrayInput.tsx   # Array-type field editor (with drag reorder + file upload)
 │   │           ├── NumberInput.tsx  # Number field editor
 │   │           ├── ObjectInput.tsx  # Object/nested field editor
 │   │           ├── TextArea.tsx     # Multi-line text editor
 │   │           ├── TextInput.tsx    # Single-line text editor
 │   │           └── index.ts         # Barrel export
 │   ├── hooks/
-│   │   ├── useMousePosition.ts      # Mouse position tracking hook
 │   │   └── useSmoothScroll.ts       # Lenis smooth scroll hook
 │   ├── sections/                    # Page section components (consume useContent())
 │   │   ├── Hero.tsx                 # Hero/banner section
 │   │   ├── About.tsx                # About me section
-│   │   ├── Experience.tsx          # Career timeline section
-│   │   ├── Projects.tsx            # Projects showcase (array bounds protected)
-│   │   ├── Skills.tsx              # Skills hexagon grid (HEX_POSITIONS slice)
-│   │   ├── Contact.tsx             # Contact form / info section
+│   │   ├── Projects.tsx            # Projects showcase (expandable cards with images/GIFs)
+│   │   ├── Skills.tsx              # Skills category grid
+│   │   ├── Contact.tsx             # Contact info section (includes Footer)
 │   │   └── Footer.tsx              # Site footer
-│   ├── ContentProvider.tsx          # Global content state (3-level loading)
-│   ├── globals.css                  # Global styles + Tailwind imports
-│   ├── layout.tsx                   # Root layout (wraps ContentProvider)
+│   ├── types/
+│   │   └── content.ts               # TypeScript interfaces for all content types
+│   ├── ContentProvider.tsx          # Global content state (static context provider)
+│   ├── globals.css                  # Global styles + Tailwind imports + CSS variables
+│   ├── layout.tsx                   # Root layout (wraps ContentProvider + Navigation)
 │   └── page.tsx                     # Home page (assembles all sections)
 ├── public/
 │   ├── content.json                 # LIVE content data (written by edit API)
+│   ├── gifs/                        # Project GIF assets (organized by project)
+│   ├── images/                      # Project image assets (organized by project)
 │   ├── next.svg                     # Default Next.js SVG
 │   └── vercel.svg                   # Default Vercel SVG
 ├── next.config.ts                   # Static export + basePath config
@@ -90,41 +87,40 @@ portfolio/
 | `/` | Static (SSG) | Main portfolio page |
 | `/edit` | Static (SSG) | No-code content editor |
 | `/api/save-content` | Dynamic (API) | POST: save content to `public/content.json` |
+| `/api/upload` | Dynamic (API) | POST: upload image/GIF to `public/` |
 
 ## Data Architecture
 
 ### Single Source of Truth Flow
 
 ```
-┌─────────────┐     fetch()      ┌──────────────────┐
-│  content.json │ ◄───────────── │  ContentProvider   │
-│  (public/)   │  Priority 1     │  (app level)       │
-└─────────────┘                 └────────┬───────────┘
-                                         │ context
-        ┌────────────────────────────────┼────────────────────────┐
-        │                                │                        │
-        ▼                                ▼                        ▼
-┌──────────────┐                ┌──────────────┐          ┌──────────────┐
-│   / (home)   │                │   /edit       │          │  All sections │
-│  read-only   │                │  read+write  │          │ useContent()  │
-└──────────────┘                └──────┬───────┘          └──────────────┘
-                                       │ POST
-                                       ▼
-                              ┌──────────────────┐
-                              │ /api/save-content │
-                              │  writes to disk   │
-                              └──────────────────┘
+┌─────────────────────┐
+│  config/content.ts   │ ◄────── 手动维护（git 版本化管理）
+│  (默认值，编译时确定） │
+└─────────┬───────────┘
+          │ import
+          ▼
+┌─────────────────────┐
+│  ContentProvider     │
+│  (静态 Context)      │ ──→ useContent() → 所有 Sections
+└─────────────────────┘
+
+┌─────────────┐     POST      ┌──────────────────┐
+│   /edit      │ ───────────→ │ /api/save-content │
+│  (编辑器)    │              │  writes content.json│
+└─────────────┘              └──────────────────┘
 ```
 
-### ContentProvider Loading Priority
+### Content Provider
 
-1. **Priority 1**: `fetch('/content.json')` — deployed file (GitHub Pages)
-2. **Priority 2**: `localStorage.getItem('portfolio-content')` — local edits override deployed
-3. **Fallback**: `config/content.ts` defaults — hardcoded fallback
+ContentProvider 是一个**静态 Context Provider**：
+- 编译时从 `config/content.ts` 加载默认值
+- 通过 `useContent()` hook 提供给所有 Section 组件
+- 不执行 fetch、不读 localStorage、无异步加载
 
 ### Key Data Types
 
-All content keys in `content.json`:
+All content keys in `content.json` and `config/content.ts`:
 
 | JSON Key | Section | Component |
 |----------|---------|-----------|
@@ -133,19 +129,20 @@ All content keys in `content.json`:
 | `projectsContent` | Projects list | [Projects.tsx](app/sections/Projects.tsx) |
 | `skillsContent` | Skills grid | [Skills.tsx](app/sections/Skills.tsx) |
 | `contactContent` | Contact info | [Contact.tsx](app/sections/Contact.tsx) |
+| `footerContent` | Footer | [Footer.tsx](app/sections/Footer.tsx) |
 
 ### Edit Page Key Mapping
 
 Edit page uses short keys internally (`data.hero`, `data.about`), maps to long keys on save:
 
 ```typescript
-// edit/page.tsx handleSave()
 const saveData = {
-  heroContent: data.hero,      // short → long key mapping
+  heroContent: data.hero,
   aboutContent: data.about,
   projectsContent: data.projects,
   skillsContent: data.skills,
   contactContent: data.contact,
+  footerContent: data.footer,
 };
 ```
 
@@ -154,14 +151,13 @@ const saveData = {
 ### Commands
 
 ```bash
-# Development
 npm run dev                          # Start dev server (Turbopack)
-
-# Production
 npm run build                        # Build static export → dist/
 npm run start                        # Preview production build
+```
 
-# Git operations (from repo root e:\AnShunConfig\html\)
+Git operations from repo root (`e:\AnShunConfig\html\`):
+```bash
 cd .. && git add . && git commit -m "msg" && git push origin master
 ```
 
@@ -171,20 +167,19 @@ File: [next.config.ts](next.config.ts)
 
 ```typescript
 {
-  output: 'export',        // SSG mode required for GitHub Pages
-  distDir: 'dist',         // Output directory
-  basePath: '/UMG_Home',   // CRITICAL: matches GitHub Pages subdirectory
-  images: { unoptimized: true },  // Required for static export
+  output: 'export',
+  distDir: process.env.NEXT_DIST_DIR || 'dist',
+  basePath: process.env.NODE_ENV === 'production' ? '/UMG_Home' : '',
+  images: { unoptimized: true },
 }
 ```
 
 ### CI/CD
 
-File location: `.github/workflows/deploy.yml` at **repo root** (`e:\AnShunConfig\html\.github\workflows\deploy.yml`)
+File: `.github/workflows/deploy.yml` at **repo root**
 
 - Triggered on: push to `master`, or manual `workflow_dispatch`
 - Builds `portfolio/` with `working-directory: portfolio`
-- Uploads `portfolio/dist` as Pages artifact
 - Deploys via `actions/deploy-pages@v4`
 
 ## Coding Conventions
@@ -196,23 +191,19 @@ File location: `.github/workflows/deploy.yml` at **repo root** (`e:\AnShunConfig
 | **No comments in code** | Unless explicitly requested by user |
 | **Client Components** | All interactive files must have `'use client'` at line 1 |
 | **Content access** | Sections MUST use `useContent()` hook, never import `content.ts` directly |
-| **Defensive data** | Always destructure with default values (see Hero.tsx pattern) |
 | **Array bounds** | Check `.length > N` before accessing indexed items (Projects.tsx pattern) |
 | **Safe data guard** | DynamicForm uses `safeData = data \|\| {}` before property access |
-| **basePath awareness** | Fetch URLs must detect basePath: `window.location.pathname.startsWith('/UMG_Home')` |
-| **FOUC prevention** | ContentProvider renders defaultContent immediately, updates silently from fetch — never block rendering with loading state |
+| **basePath awareness** | Asset paths must detect basePath at runtime: `window.location.pathname.startsWith('/UMG_Home')` |
 
 ### Patterns to Use
 
 ```tsx
-// ✅ Safe content access (Hero.tsx pattern)
-const { title = '', subtitle = '' } = useContent().hero;
+const { hero } = useContent();
+const { name, subtitle } = hero;
 
-// ✅ Safe array access (Projects.tsx pattern)
 {projects.length > 0 && <div>{projects[0].title}</div>}
 {projects.length > 3 && <div>{projects[3]}</div>}
 
-// ✅ Safe dynamic data (DynamicForm.tsx pattern)
 const safeData = data || {};
 const value = safeData[key];
 ```
@@ -220,13 +211,8 @@ const value = safeData[key];
 ### Patterns to Avoid
 
 ```tsx
-// ❌ Never import content defaults directly in sections
-import { heroContent } from '../config/content';  // WRONG
-
-// ❌ Never assume data shape without guards
+import { heroContent } from '../config/content';  // WRONG in sections
 const title = data.hero.title;  // CRASH if data is undefined
-
-// ❌ Never hardcode absolute paths
 fetch('/content.json');  // WRONG — won't work on GitHub Pages
 ```
 
@@ -234,11 +220,9 @@ fetch('/content.json');  // WRONG — won't work on GitHub Pages
 
 | Issue | Solution | Reference |
 |-------|----------|-----------|
-| **Static resources 404 on GitHub Pages** | `basePath: '/UMG_Home'` in next.config.ts | [next.config.ts:5](next.config.ts#L5) |
-| **Content flash on reload (FOUC)** | Render defaultContent immediately, silent background update via `setContent(prev => ...)` — never block with loading state | [ContentProvider.tsx:33](app/ContentProvider.tsx#L33) |
-| **Skills hex positions overflow** | `.slice(0, HEX_POSITIONS.length)` + null guard | [Skills.tsx](app/sections/Skills.tsx) |
-| **Edit→Home content not syncing** | Key mapping: `data.hero` → `heroContent` on save | [edit/page.tsx](app/edit/page.tsx) |
+| **Static resources 404 on GitHub Pages** | `basePath: '/UMG_Home'` in next.config.ts | [next.config.ts](next.config.ts) |
+| **Asset path resolution in Projects** | Runtime basePath detection via `window.location.pathname.startsWith(...)` | [Projects.tsx](app/sections/Projects.tsx) |
+| **Skills hex positions overflow** | Category grid renders all items; no fixed position overflow risk | [Skills.tsx](app/sections/Skills.tsx) |
+| **Edit→Home content not syncing** | Key mapping: short key → long key on save | [edit/page.tsx](app/edit/page.tsx) |
 | **DynamicForm crash on undefined data** | `safeData = data \|\| {}` defensive guard | [DynamicForm.tsx](app/edit/components/DynamicForm.tsx) |
 | **Workflow file not triggering** | Must be at repo ROOT `.github/workflows/`, NOT inside `portfolio/` | Repo root |
-| **ProjectHoverContext missing after cleanup** | GlobalAnimatedBackground rewritten as self-contained | [GlobalAnimatedBackground.tsx](app/components/GlobalAnimatedBackground.tsx) |
-| **Animations lib deleted** | ProjectCard inlines its own constants | [ProjectCard.tsx](app/components/ProjectCard.tsx)
