@@ -382,12 +382,6 @@ export const projectsContent: ProjectsContent = {
         "Prototype"
       ],
       "color": "#59c8ff",
-      "images": [
-        {
-          "src": "/images/projects/guangfeng-poc/1.png",
-          "alt": "广汽丰田 POC 3D HMI 概念设计图1"
-        }
-      ],
       "links": [
         {
           "label": "3D HMI 概念设计",
