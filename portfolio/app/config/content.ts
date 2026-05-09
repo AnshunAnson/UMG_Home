@@ -97,6 +97,12 @@ export const projectsContent: ProjectsContent = {
         "FX"
       ],
       "color": "#88a8ff",
+      "images": [
+        {
+          "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
+          "alt": "比亚迪概念展示项目的入场特效"
+        }
+      ],
       "links": [],
       "subProjects": [
         {
@@ -163,10 +169,10 @@ export const projectsContent: ProjectsContent = {
     },
     {
       "id": 3,
-        "icon": "Car",
-        "title": "HMI多平台展示",
-        "period": "未单独标注",
-        "category": "Real-time Rendering / Automotive Visualization / Multi-platform",
+      "icon": "Car",
+      "title": "HMI多平台展示",
+      "period": "未单独标注",
+      "category": "Real-time Rendering / Automotive Visualization / Multi-platform",
       "tech": [
         "UE",
         "HTML",
@@ -177,6 +183,12 @@ export const projectsContent: ProjectsContent = {
         "PBR"
       ],
       "color": "#d7c77a",
+      "images": [
+        {
+          "src": "/gifs/ProjectNotes/audi.gif",
+          "alt": "Windows 端汽车配置器的机位切换与展示效果"
+        }
+      ],
       "subProjects": [
         {
           "title": "UE Web 端汽车展示",
@@ -221,10 +233,6 @@ export const projectsContent: ProjectsContent = {
           ]
         },
         {
-            "title": "Android 汽车配置器",
-            "period": "未单独标注"
-          },
-          {
             "title": "移动端 POC",
             "period": "未单独标注",
             "images": [
@@ -271,6 +279,12 @@ export const projectsContent: ProjectsContent = {
         "Niagara"
       ],
       "color": "#62d8c8",
+      "images": [
+        {
+          "src": "/images/projects/hummer-hmi-design/1.png",
+          "alt": "HUMMER EV HMI创新设计封面"
+        }
+      ],
       "subProjects": [
         {
           "title": "Hummer EV汽车动效",
@@ -360,6 +374,12 @@ export const projectsContent: ProjectsContent = {
         "Prototype"
       ],
       "color": "#59c8ff",
+      "images": [
+        {
+          "src": "/images/projects/guangfeng-poc/1.png",
+          "alt": "广汽丰田 POC 3D HMI 概念设计图1"
+        }
+      ],
       "links": [
         {
           "label": "3D HMI 概念设计",
