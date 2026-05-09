@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, Folder, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
@@ -33,11 +32,10 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
       >
         <div className="relative aspect-[16/9] overflow-hidden">
           {firstImage ? (
-            <Image
+            <img
               src={resolveAssetPath(firstImage.src)}
               alt={firstImage.alt || project.title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-white/10 to-white/5">
@@ -117,11 +115,10 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                   {project.images.length === 1 ? (
                     <div>
                       <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
-                        <Image
+                        <img
                           src={resolveAssetPath(project.images[0].src)}
                           alt={project.images[0].alt || project.title}
-                          fill
-                          className="object-cover"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       {project.images[0].alt && (
@@ -133,11 +130,10 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                       {project.images.map((img: any, i: number) => (
                         <div key={i}>
                           <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
-                            <Image
+                            <img
                               src={resolveAssetPath(img.src)}
                               alt={img.alt || `${project.title} ${i + 1}`}
-                              fill
-                              className="object-cover"
+                              className="w-full h-full object-cover"
                             />
                           </div>
                           {img.alt && (
@@ -162,11 +158,10 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: any, j: number) => (
                             <div key={j} className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
-                              <Image
+                              <img
                                 src={resolveAssetPath(img.src)}
                                 alt={img.alt || `${sub.title} ${j + 1}`}
-                                fill
-                                className="object-cover"
+                                className="w-full h-full object-cover"
                               />
                             </div>
                           ))}
