@@ -161,7 +161,7 @@ function MediaLightbox({
 function ProjectPreviewRail({
   images,
   keyPrefix,
-  label = '项目预览',
+  label = '',
   color = '#ffffff',
   loadedPreviewIds,
   onEnsurePreviewLoaded,
@@ -193,10 +193,12 @@ function ProjectPreviewRail({
   const thumbsEnabled = loadedThumbRailIds.includes(keyPrefix);
 
   return (
-    <div className="space-y-4 border-t border-white/10 pt-6">
-      <p className="text-xs uppercase tracking-[0.28em] text-white/34">
-        {label} {media.length > 1 ? `(${media.length})` : ''}
-      </p>
+    <div className="space-y-3">
+      {label && (
+        <p className="text-xs uppercase tracking-[0.28em] text-white/34">
+          {label} {media.length > 1 ? `(${media.length})` : ''}
+        </p>
+      )}
 
       <motion.figure
         key={`${keyPrefix}-featured-${selectedIndex}`}
@@ -204,10 +206,9 @@ function ProjectPreviewRail({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.35 }}
-        className="space-y-3"
       >
         <div
-          className="relative min-h-[260px] overflow-hidden border bg-white/[0.03] md:min-h-[360px]"
+          className="relative min-h-[220px] overflow-hidden border bg-white/[0.03] md:min-h-[300px]"
           style={{
             borderColor: `${color}3f`,
             boxShadow: `inset 0 0 0 1px ${color}12`,
@@ -226,7 +227,7 @@ function ProjectPreviewRail({
                   mode: getMediaDisplayMode(selectedImage.src),
                 })
               }
-              className="group relative block h-full min-h-[260px] w-full md:min-h-[360px]"
+              className="group relative block h-full min-h-[220px] w-full md:min-h-[300px]"
               aria-label={`打开 ${selectedImage.alt} 的媒体弹窗`}
             >
               <Image
@@ -235,12 +236,8 @@ function ProjectPreviewRail({
                 fill
                 unoptimized
                 sizes="(max-width: 768px) 100vw, 80vw"
-                className="object-contain p-3 md:p-4"
+                className="object-contain p-2 md:p-3"
               />
-              <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-10 text-left text-xs uppercase tracking-[0.24em] text-white/66 transition-colors duration-300 group-hover:text-white md:px-5">
-                <span>{getMediaActionText(selectedImage.src)}</span>
-                <span style={{ color }}>{selectedWeight || '预览'}</span>
-              </span>
             </button>
           ) : (
             <button
@@ -256,40 +253,27 @@ function ProjectPreviewRail({
                   mode: getMediaDisplayMode(selectedImage.src),
                 });
               }}
-              className="flex h-full min-h-[260px] w-full flex-col items-center justify-center gap-4 px-6 py-8 text-center transition-colors duration-300 hover:bg-white/[0.02] md:min-h-[360px]"
+              className="flex h-full min-h-[220px] w-full flex-col items-center justify-center gap-3 px-4 py-6 text-center transition-colors duration-300 hover:bg-white/[0.02] md:min-h-[300px]"
             >
-              <span className="text-xs uppercase tracking-[0.28em] text-white/34">媒体预览未加载</span>
-              <span className="max-w-2xl text-sm leading-7 text-white/56 md:text-base">
-                {selectedImage.alt}
-              </span>
-              {selectedWeight ? (
-                <span className="text-xs uppercase tracking-[0.24em] text-white/34">
-                  预计资源体积 {selectedWeight}
-                </span>
-              ) : null}
               <span
-                className="inline-flex items-center justify-center border px-5 py-2 text-xs uppercase tracking-[0.24em]"
+                className="inline-flex items-center justify-center border px-4 py-2 text-[11px] uppercase tracking-[0.24em]"
                 style={{
                   borderColor: `${color}55`,
                   color,
                   backgroundColor: `${color}14`,
                 }}
               >
-                {getMediaLoadText(selectedImage.src)}
+                查看
               </span>
             </button>
           )}
         </div>
-        <figcaption className="text-sm leading-6 text-white/48 md:text-base">
-          {selectedImage.alt}
-        </figcaption>
       </motion.figure>
 
       {media.length > 1 ? (
-        <div className="space-y-3">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-white/28">切换预览</p>
+        <div>
           {thumbsEnabled ? (
-            <div className="flex gap-3 overflow-x-auto pb-2">
+            <div className="flex gap-2 overflow-x-auto pb-1">
               {media.map((image, index) => {
                 const isActive = index === selectedIndex;
                 const shouldLoadThumb = Math.abs(index - selectedIndex) <= 1;
@@ -303,10 +287,10 @@ function ProjectPreviewRail({
                       onEnsureThumbsLoaded(keyPrefix);
                       onEnsurePreviewLoaded(keyPrefix);
                     }}
-                    className="group shrink-0 text-left focus:outline-none focus:ring-2 focus:ring-white/20"
+                    className="group shrink-0 focus:outline-none focus:ring-2 focus:ring-white/20"
                   >
                     <div
-                      className="relative h-28 w-44 overflow-hidden border bg-white/[0.03] transition-transform duration-300 group-hover:-translate-y-0.5 md:h-32 md:w-48 2xl:w-52"
+                      className="relative h-20 w-32 overflow-hidden border bg-white/[0.03] transition-all duration-300 group-hover:-translate-y-0.5 md:h-24 md:w-40"
                       style={{
                         borderColor: isActive ? color : 'rgba(255,255,255,0.12)',
                         boxShadow: isActive ? `0 0 0 1px ${color}` : 'none',
@@ -318,23 +302,17 @@ function ProjectPreviewRail({
                           alt={image.alt}
                           fill
                           unoptimized
-                          sizes="220px"
-                          className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]"
+                          sizes="200px"
+                          className="object-contain p-1.5 transition-transform duration-500 group-hover:scale-[1.02]"
                         />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center px-4 text-center">
-                          <span className="text-[11px] uppercase tracking-[0.24em] text-white/34">
-                            预览 {String(index + 1).padStart(2, '0')}
+                        <div className="flex h-full w-full items-center justify-center">
+                          <span className="text-[10px] uppercase tracking-[0.24em] text-white/34">
+                            {index + 1}
                           </span>
                         </div>
                       )}
                     </div>
-                    <p
-                      className="mt-2 max-w-44 text-xs leading-5 md:max-w-48 2xl:max-w-52"
-                      style={{ color: isActive ? '#ffffff' : 'rgba(255,255,255,0.48)' }}
-                    >
-                      {image.alt}
-                    </p>
                   </button>
                 );
               })}
@@ -470,8 +448,7 @@ function ProjectSubProjectBlock({
   onEnsureThumbsLoaded: (id: string) => void;
   onOpenLightbox: (media: ActiveMedia) => void;
 }) {
-  const details = subProject.details || [];
-  const hasSideContent = Boolean(subProject.links?.length || subProject.images?.length);
+  const hasMedia = (subProject.images?.length || 0) > 0;
 
   return (
     <motion.div
@@ -479,84 +456,53 @@ function ProjectSubProjectBlock({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.35, delay: index * 0.04 }}
-      className="space-y-5 border p-5 md:p-6"
+      className="border p-4 md:p-5"
       style={{
         borderColor: `${projectColor}36`,
-        background: `linear-gradient(180deg, ${projectColor}14 0%, rgba(255,255,255,0.02) 52%, rgba(255,255,255,0.015) 100%)`,
+        background: `linear-gradient(180deg, ${projectColor}14 0%, rgba(255,255,255,0.02) 100%)`,
       }}
     >
-      <div
-        className={
-          hasSideContent
-            ? 'grid gap-6 xl:grid-cols-[minmax(0,0.88fr)_minmax(340px,1fr)] xl:gap-8'
-            : 'space-y-5'
-        }
-      >
-        <div className="space-y-5">
-          <div className="flex flex-col gap-3 border-b border-white/10 pb-4 md:flex-row md:items-start md:justify-between">
-            <div className="space-y-2">
-              <p
-                className="font-mono text-[11px] uppercase tracking-[0.28em]"
-                style={{ color: projectColor }}
-              >
-                子项目 {String(index + 1).padStart(2, '0')}
-              </p>
-              <h4 className="text-xl font-semibold leading-tight text-white md:text-2xl">
-                {subProject.title}
-              </h4>
-              {subProject.description ? (
-                <p className="text-sm leading-7 text-white/62 md:text-base">
-                  {subProject.description}
-                </p>
-              ) : null}
-            </div>
-            {subProject.period ? (
-              <p className="shrink-0 text-sm leading-7 text-white/42">{subProject.period}</p>
-            ) : null}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <h4 className="text-lg font-semibold leading-tight text-white truncate">
+              {subProject.title}
+            </h4>
+            {subProject.period && (
+              <p className="text-xs text-white/42 mt-1">{subProject.period}</p>
+            )}
           </div>
-
-          {details.length ? (
-            <ul className="grid gap-3">
-              {details.map((detail, detailIndex) => (
-                <li
-                  key={`${projectId}-sub-${index}-detail-${detailIndex}`}
-                  className="grid grid-cols-[16px_minmax(0,1fr)] gap-3 text-sm leading-7 text-white/58 md:text-base"
-                >
-                  <span
-                    className="mt-2 h-1.5 w-1.5 rounded-full"
-                    style={{ backgroundColor: projectColor }}
-                  />
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
         </div>
 
-        {hasSideContent ? (
-          <div className="space-y-5 xl:border-l xl:border-white/10 xl:pl-6">
-            {subProject.links?.length ? (
-              <div className="space-y-3">
-                <p className="text-xs uppercase tracking-[0.28em] text-white/36">公开链接</p>
-                <ProjectLinkGrid
-                  links={subProject.links}
-                  color={projectColor}
-                  keyPrefix={`${projectId}-sub-${index}`}
-                />
-              </div>
-            ) : null}
+        {hasMedia && (
+          <ProjectPreviewRail
+            images={subProject.images}
+            keyPrefix={`${projectId}-sub-${index}`}
+            label=""
+            color={projectColor}
+            loadedPreviewIds={loadedPreviewIds}
+            onEnsurePreviewLoaded={onEnsurePreviewLoaded}
+            loadedThumbRailIds={loadedThumbRailIds}
+            onEnsureThumbsLoaded={onEnsureThumbsLoaded}
+            onOpenLightbox={onOpenLightbox}
+          />
+        )}
 
-            <ProjectPreviewRail
-              images={subProject.images}
-              keyPrefix={`${projectId}-sub-${index}`}
-              label="子项目预览"
-              color={projectColor}
-              loadedPreviewIds={loadedPreviewIds}
-              onEnsurePreviewLoaded={onEnsurePreviewLoaded}
-              loadedThumbRailIds={loadedThumbRailIds}
-              onEnsureThumbsLoaded={onEnsureThumbsLoaded}
-              onOpenLightbox={onOpenLightbox}
-            />
+        {subProject.links?.length ? (
+          <div className="flex flex-wrap gap-2">
+            {subProject.links.map((link, linkIndex) => (
+              <a
+                key={`${projectId}-sub-${index}-link-${linkIndex}`}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border px-2.5 py-1.5 text-[10px] uppercase tracking-[0.18em] text-white/60 hover:text-white transition-colors"
+                style={{ borderColor: `${projectColor}40`, backgroundColor: `${projectColor}10` }}
+              >
+                <ArrowUpRight className="h-3 w-3" />
+                {link.label}
+              </a>
+            ))}
           </div>
         ) : null}
       </div>
@@ -582,11 +528,10 @@ function ProjectEntry({
   onOpenLightbox: (media: ActiveMedia) => void;
 }) {
   const projectIndex = String(index + 1).padStart(2, '0');
-  const details = project.details || [];
-  const achievements = project.achievements || [];
   const tech = project.tech || [];
   const links = project.links || [];
   const subProjects = project.subProjects || [];
+  const hasMedia = (project.images?.length || 0) > 0 || subProjects.some(sp => (sp.images?.length || 0) > 0);
 
   return (
     <motion.article
@@ -594,83 +539,55 @@ function ProjectEntry({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.45 }}
-      className="grid gap-8 border-t border-white/10 py-12 xl:grid-cols-[196px_minmax(0,1fr)] xl:gap-14 xl:py-16 2xl:grid-cols-[228px_minmax(0,1fr)]"
+      className="border-t border-white/10 py-12 xl:py-16"
       style={{ contentVisibility: 'auto', containIntrinsicSize: '1180px' }}
     >
-      <div className="flex items-start justify-between gap-6 xl:block">
-        <div>
-          <p
-            className="font-mono text-sm tracking-[0.24em]"
-            style={{ color: project.color }}
-          >
-            {projectIndex}
-          </p>
-          <p
-            className="mt-5 text-xs uppercase tracking-[0.3em]"
-            style={{ color: project.color }}
-          >
-            {project.category}
-          </p>
-        </div>
-        <p className="text-right text-sm leading-7 text-white/42 xl:mt-10 xl:text-left">
-          {project.period || '未单独标注'}
-        </p>
-      </div>
-
-      <div className="space-y-7">
-        <div className="grid gap-6 border-b border-white/10 pb-7 xl:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.48fr)] xl:items-end">
-          <div className="space-y-4">
-            <h3 className="font-display text-3xl font-semibold leading-[0.96] tracking-[-0.06em] text-white md:text-5xl 2xl:text-6xl">
-              {project.title}
-            </h3>
-            <p className="text-lg leading-8 text-white/64 md:text-[1.3rem] md:leading-9">
-              {project.description}
-            </p>
-          </div>
-
-          <div className="grid gap-3 text-sm leading-7 text-white/48 md:grid-cols-2 xl:grid-cols-1">
-            <div className="border-l border-white/10 pl-4">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-white/30">类别</p>
-              <p className="mt-2 text-white/62">{project.category}</p>
-            </div>
-            <div className="border-l border-white/10 pl-4">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-white/30">范围</p>
-              <p className="mt-2 text-white/62">
-                {subProjects.length ? `${subProjects.length} 个子项目` : '单项目交付'}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {details.length ? (
-          <ul className="grid gap-x-10 gap-y-4 md:grid-cols-2 2xl:grid-cols-3">
-            {details.map((detail, detailIndex) => (
-              <li
-                key={`${project.id}-detail-${detailIndex}`}
-                className="grid grid-cols-[24px_minmax(0,1fr)] gap-4"
+      <div className="space-y-6">
+        <div className="flex items-start justify-between gap-6">
+          <div className="min-w-0">
+            <div className="flex items-baseline gap-4">
+              <p
+                className="font-mono text-sm tracking-[0.24em] shrink-0"
+                style={{ color: project.color }}
               >
-                <span
-                  className="mt-1 font-mono text-xs tracking-[0.24em]"
-                  style={{ color: project.color }}
-                >
-                  {String(detailIndex + 1).padStart(2, '0')}
+                {projectIndex}
+              </p>
+              <h3 className="font-display text-2xl font-semibold leading-tight tracking-[-0.04em] text-white md:text-4xl 2xl:text-5xl truncate">
+                {project.title}
+              </h3>
+            </div>
+            <div className="flex items-center gap-4 mt-2">
+              <p
+                className="text-xs uppercase tracking-[0.28em]"
+                style={{ color: project.color }}
+              >
+                {project.category}
+              </p>
+              {project.period && (
+                <span className="text-sm text-white/42">
+                  {project.period}
                 </span>
-                <span className="text-base leading-8 text-white/58">{detail}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+              )}
+            </div>
+          </div>
+        </div>
+
+        {hasMedia && (
+          <ProjectPreviewRail
+            images={project.images}
+            keyPrefix={`${project.id}`}
+            color={project.color}
+            loadedPreviewIds={loadedPreviewIds}
+            onEnsurePreviewLoaded={onEnsurePreviewLoaded}
+            loadedThumbRailIds={loadedThumbRailIds}
+            onEnsureThumbsLoaded={onEnsureThumbsLoaded}
+            onOpenLightbox={onOpenLightbox}
+          />
+        )}
 
         {subProjects.length ? (
-          <div className="space-y-4 border-t border-white/10 pt-6">
-            <div className="space-y-2">
-              <p className="text-xs uppercase tracking-[0.28em] text-white/34">子项目拆分</p>
-              <p className="max-w-3xl text-sm leading-6 text-white/56">
-                按实际交付阶段拆开展示，避免把不同子项目的内容与预览混写在一起。
-              </p>
-            </div>
-
-            <div className="grid gap-4 2xl:grid-cols-2">
+          <div className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {subProjects.map((subProject, subProjectIndex) => (
                 <ProjectSubProjectBlock
                   key={`${project.id}-sub-${subProjectIndex}`}
@@ -689,51 +606,38 @@ function ProjectEntry({
           </div>
         ) : null}
 
-        {achievements.length ? (
-          <div className="space-y-3 border-t border-white/10 pt-5">
-            <p className="text-xs uppercase tracking-[0.28em] text-white/34">补充成果</p>
-            <ul className="grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
-              {achievements.map((achievement, achievementIndex) => (
-                <li
-                  key={`${project.id}-achievement-${achievementIndex}`}
-                  className="grid grid-cols-[18px_minmax(0,1fr)] gap-3 text-sm leading-7 text-white/50 md:text-base"
+        <div className="flex flex-wrap items-center gap-4 pt-2">
+          {tech.length ? (
+            <div className="flex flex-wrap gap-2">
+              {tech.map((item) => (
+                <span
+                  key={`${project.id}-${item}`}
+                  className="border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.16em] text-white/44"
                 >
-                  <span
-                    className="mt-2 h-1.5 w-1.5 rounded-full"
-                    style={{ backgroundColor: project.color }}
-                  />
-                  <span>{achievement}</span>
-                </li>
+                  {item}
+                </span>
               ))}
-            </ul>
-          </div>
-        ) : null}
-
-        <ProjectLinksPanel links={links} color={project.color} keyPrefix={`${project.id}`} />
-
-        <ProjectPreviewRail
-          images={project.images}
-          keyPrefix={`${project.id}`}
-          color={project.color}
-          loadedPreviewIds={loadedPreviewIds}
-          onEnsurePreviewLoaded={onEnsurePreviewLoaded}
-          loadedThumbRailIds={loadedThumbRailIds}
-          onEnsureThumbsLoaded={onEnsureThumbsLoaded}
-          onOpenLightbox={onOpenLightbox}
-        />
-
-        {tech.length ? (
-          <div className="flex flex-wrap gap-2 pt-1">
-            {tech.map((item) => (
-              <span
-                key={`${project.id}-${item}`}
-                className="border border-white/10 px-3 py-1.5 text-xs uppercase tracking-[0.18em] text-white/46"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        ) : null}
+            </div>
+          ) : null}
+          
+          {links.length ? (
+            <div className="flex flex-wrap gap-2">
+              {links.map((link, linkIndex) => (
+                <a
+                  key={`${project.id}-link-${linkIndex}`}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 border px-3 py-1.5 text-xs uppercase tracking-[0.18em] text-white/60 hover:text-white transition-colors"
+                  style={{ borderColor: `${project.color}40`, backgroundColor: `${project.color}10` }}
+                >
+                  <ArrowUpRight className="h-3 w-3" />
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
     </motion.article>
   );

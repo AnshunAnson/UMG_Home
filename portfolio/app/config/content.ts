@@ -67,19 +67,6 @@ export const projectsContent: ProjectsContent = {
       "title": "汽车渲染工作流工具链",
       "period": "2023.12 - 至今",
       "category": "Technical Art Tools / Asset Pipeline / Rendering Workflow",
-      "description": "以汽车渲染工作流为核心，围绕模型整理、资产同步和渲染输出搭建一组编辑器工具，把重复的人工作业收敛成标准化 TA 流水线。",
-      "details": [
-        "开发汽车模型整理插件，批量处理命名、枢轴点和资产归档。",
-        "搭建渲染输出流水线，串联 Runtime Blueprint 与可扩展流程。",
-        "结合 OpenUSD、UsdAssetCache 和 DataAsset 组织模型资产与汽车蓝图解耦。",
-        "补齐模型资产同步、材质替换和性能优化工具，降低多车渲染维护成本。",
-        "把 Maya 侧预处理、Unreal 侧批处理和最终输出串成完整工具链。"
-      ],
-      "achievements": [
-        "将多车型渲染中的重复操作转为可复用工具链。",
-        "把 Maya 到 Unreal 的渲染准备流程收敛为标准化步骤。",
-        "让设计和渲染同事可以基于统一流程交付多车型内容。"
-      ],
       "tech": [
         "UE5",
         "Blueprint",
@@ -102,17 +89,6 @@ export const projectsContent: ProjectsContent = {
       "title": "特效作品",
       "period": "未单独标注",
       "category": "Technical Art FX / Niagara / SDF / Sequencer",
-      "description": "聚焦 Niagara、材质扰动和实时氛围表达的一组技术美术项目，覆盖比赛展示、座舱氛围动效和转场节奏设计。",
-      "details": [
-        "把比亚迪概念展示特效和 DesaySV 智能座舱统一收口为特效方向展示。",
-        "覆盖粒子形态、SDF 波纹、音频可视化和空间氛围等不同特效类型。",
-        "强调从概念展示到座舱氛围表达的完整能力，而不是混在交互项目里。"
-      ],
-      "achievements": [
-        "形成从座舱氛围到入场过场的特效案例集合。",
-        "把特效能力从交互叙事中独立出来，归类更清晰。",
-        "保留了可直接对外展示的项目入口和实机效果素材。"
-      ],
       "tech": [
         "UE",
         "Niagara",
@@ -126,12 +102,6 @@ export const projectsContent: ProjectsContent = {
         {
           "title": "比亚迪概念展示特效",
           "period": "2023.10 - 2023.11",
-          "description": "以设计比赛为目标制作概念展示特效与视频输出，重点放在入场节奏、粒子形态和视觉记忆点上。",
-          "details": [
-            "围绕界面概念展示制作入场特效和整体节奏设计。",
-            "完成 Niagara 粒子自定义变换与半透明描边材质结合。",
-            "使用 UMG 与 Sequencer 完成整体展示输出。"
-          ],
           "images": [
             {
               "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
@@ -142,12 +112,6 @@ export const projectsContent: ProjectsContent = {
         {
           "title": "DesaySV 智能座舱",
           "period": "2024.12 - 2025.04",
-          "description": "为智能座舱概念展示制作一整组粒子氛围、状态切换和音波反馈特效。",
-          "details": [
-            "围绕 UI 创意图制作粒子氛围动效。",
-            "实现 SDF 距离场波纹、音波扰动与音频可视化效果。",
-            "覆盖场景切换、开机、来电、加载、音乐等多类状态动画。"
-          ],
           "images": [
             {
               "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
@@ -203,17 +167,6 @@ export const projectsContent: ProjectsContent = {
       "title": "汽车可视化与多端展示",
       "period": "未单独标注",
       "category": "Real-time Rendering / Automotive Visualization / Multi-platform",
-      "description": "围绕 Web、Windows 和 Android 三端推进汽车实时展示能力，验证材质、灯光、动画与交互在多端场景中的落地。",
-      "details": [
-        "统一围绕多端汽车展示、材质表现、数据驱动和交互模板展开。",
-        "把 Web 展示、Windows 配置器与 Android 优化拆成独立子项目推进。",
-        "在不同平台上分别处理性能、材质和交互结构问题。"
-      ],
-      "achievements": [
-        "完成 HTML、Windows 与 Android 三类展示形态的验证。",
-        "把材质、动画和 UI 交互整合到同一套汽车展示链路。",
-        "形成了可复用的跨平台汽车展示与配置验证方案。"
-      ],
       "tech": [
         "UE",
         "HTML",
@@ -228,11 +181,6 @@ export const projectsContent: ProjectsContent = {
         {
           "title": "UE Web 端汽车展示",
           "period": "未单独标注",
-          "description": "面向网页展示场景验证轻量化材质与动画表现。",
-          "details": [
-            "实现基于 Unlit 的 PBR 材质。",
-            "完成材质动画、敞篷动画和贴图优化。"
-          ],
           "links": [
             {
               "label": "保时捷在线展示",
@@ -247,12 +195,6 @@ export const projectsContent: ProjectsContent = {
         {
           "title": "Windows 汽车配置器",
           "period": "未单独标注",
-          "description": "围绕桌面端配置流程搭建数据驱动的展示与交互框架。",
-          "details": [
-            "实现基于 DataTable 的摄像机机位切换系统。",
-            "搭建 UMG 模板框架。",
-            "完成 UI 材质动画表现。"
-          ],
           "links": [
             {
               "label": "Audi RS Q8 WEB3D设计与研发",
@@ -268,12 +210,7 @@ export const projectsContent: ProjectsContent = {
         },
         {
           "title": "Android 汽车配置器",
-          "period": "未单独标注",
-          "description": "在移动端持续收敛材质成本与动态效果表现。",
-          "details": [
-            "完成材质优化。",
-            "保留 Niagara 动态表现并控制移动端成本。"
-          ]
+          "period": "未单独标注"
         }
       ]
     },
@@ -283,17 +220,6 @@ export const projectsContent: ProjectsContent = {
       "title": "UI 材质动画作品",
       "period": "未单独标注",
       "category": "UI Technical Art / Material Animation / Motion",
-      "description": "围绕 UI 材质、参数驱动和状态转场整理的一组技术美术案例，重点展示界面层的节奏、质感和连续反馈。",
-      "details": [
-        "把界面材质变化、参数动画和转场组织成独立项目表达。",
-        "重点展示 UI 材质在状态反馈、层级切换和动态质感上的控制能力。",
-        "用单独案例说明我在界面技术与技术美术交叉位置上的方法和结果。"
-      ],
-      "achievements": [
-        "补齐了个人主页里 UI 材质动画方向的独立项目样本。",
-        "让界面动态与材质表现成为可单独展示的技术美术能力。",
-        "形成一个可以直接对外引用的 UI 材质动画案例入口。"
-      ],
       "tech": [
         "UE",
         "UMG",
@@ -315,19 +241,6 @@ export const projectsContent: ProjectsContent = {
       "title": "DeltaForce 实时界面技术框架",
       "period": "未单独标注",
       "category": "Interface Tech / UI Systems / Methodology",
-      "description": "围绕《虚幻引擎5模块化UI架构白皮书》整理一套实时界面技术方法论，把 Common UI、MVVM、路由分层和样式资产化收束成可复用框架实践。",
-      "details": [
-        "输出《虚幻引擎5模块化UI架构白皮书》，把框架设计抽象成可复用方法论。",
-        "梳理 Primary Layout、Shell Layout 与行为基类，明确界面容器和交互分层。",
-        "把数据与表现解耦、组合优于继承、树状路由与焦点垄断等核心原则整理成统一框架语言。",
-        "引入样式数据资产、UI Material 与软引用加载思路，保证多端 UI 的一致性和可维护性。",
-        "把方法论落到实际样例中，验证布局、行为和资产层级的可操作性。"
-      ],
-      "achievements": [
-        "完成模块化界面技术白皮书与详细样例沉淀。",
-        "把界面技术讨论从零散经验收束成可复用结构。",
-        "为后续 UI 项目的组件拆分和布局复用提供统一基线。"
-      ],
       "tech": [
         "UE5",
         "UMG",
@@ -349,17 +262,6 @@ export const projectsContent: ProjectsContent = {
       "title": "概念交互验证项目",
       "period": "2023.10 - 2025.04",
       "category": "Concept Interaction / Prototype / Presentation",
-      "description": "围绕 POC 台架、概念展示和移动端验证，推进材质、交互流程与展示链路在实时场景中的整合落地。",
-      "details": [
-        "把项目聚焦到 POC 台架、移动端验证和多车型概念展示等交互场景。",
-        "重点处理界面结构、材质表现、功能验证和展示链路之间的协同。",
-        "在概念验证与展示交付场景里兼顾交互可读性、实现效率和整体完成度。"
-      ],
-      "achievements": [
-        "形成覆盖台架验证、移动端展示和概念演示的交互项目链路。",
-        "打通 UMG、材质和交互状态在概念项目中的整合方式。",
-        "沉淀了适合概念验证与展示交付的组合流程。"
-      ],
       "tech": [
         "UE5",
         "Material",
@@ -395,21 +297,108 @@ export const projectsContent: ProjectsContent = {
         {
           "title": "广汽丰田 POC 台架",
           "period": "2024.7 - 2024.11",
-          "description": "围绕台架验证推进移动端天气系统与材质表现测试。",
+          "description": "3D HMI 概念设计与台架验证，推进移动端天气系统与材质表现测试。",
           "details": [
             "推进 POC 台架中的交互验证。",
-            "验证移动端天气系统与视差冰材质表现。"
+            "验证移动端天气系统与视差冰材质表现。",
+            "完成 3D HMI 概念设计与整体视觉呈现。"
+          ],
+          "images": [
+            {
+              "src": "/images/projects/guangfeng-poc/1.png",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图1"
+            },
+            {
+              "src": "/images/projects/guangfeng-poc/2.png",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图2"
+            },
+            {
+              "src": "/images/projects/guangfeng-poc/3.png",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图3"
+            },
+            {
+              "src": "/images/projects/guangfeng-poc/4.png",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图4"
+            }
+          ],
+          "links": [
+            {
+              "label": "3D HMI 概念设计",
+              "href": "https://www.autoxyz.cn/information/detail/32714"
+            }
+          ]
+        },
+        {
+          "title": "福特烈马3D_HMI设计&汽车渲染",
+          "period": "未单独标注",
+          "description": "负责福特烈马项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "实现高质量汽车渲染材质与特效。",
+            "设计并实现不同界面间的动效过渡逻辑。",
+            "优化HMI界面的视觉表现与交互体验。"
+          ],
+          "images": [],
+          "links": [
+            {
+              "label": "福特烈马项目",
+              "href": "https://www.autoxyz.cn/information/detail/34563"
+            }
+          ]
+        },
+        {
+          "title": "兰博基尼自动驾驶用户体验设计",
+          "period": "未单独标注",
+          "description": "负责兰博基尼项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "打造高端汽车品牌的材质与视觉效果。",
+            "实现自动驾驶场景下的特效与动效。",
+            "设计流畅的用户体验界面过渡效果。"
+          ],
+          "images": [],
+          "links": [
+            {
+              "label": "兰博基尼项目",
+              "href": "https://www.autoxyz.cn/information/detail/30369"
+            }
+          ]
+        },
+        {
+          "title": "Benz EQS680 Maybach的SR与ADAS用户体验设计",
+          "period": "未单独标注",
+          "description": "负责SR与ADAS项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "实现超级分辨率(SR)与高级驾驶辅助系统(ADAS)界面特效。",
+            "设计安全、直观的用户体验动效。",
+            "优化高端车型的材质表现与视觉层次。"
+          ],
+          "images": [],
+          "links": [
+            {
+              "label": "SR与ADAS项目",
+              "href": "https://www.autoxyz.cn/information/detail/31254"
+            }
+          ]
+        },
+        {
+          "title": "极星3D仪表HMI创新设计",
+          "period": "未单独标注",
+          "description": "负责极星3D仪表项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "打造创新的3D仪表HMI界面。",
+            "实现仪表界面的材质与动态特效。",
+            "设计多场景下的流畅动效过渡。"
+          ],
+          "images": [],
+          "links": [
+            {
+              "label": "极星3D仪表项目",
+              "href": "https://www.autoxyz.cn/information/detail/25064"
+            }
           ]
         },
         {
           "title": "郑州日产概念表现",
           "period": "未单独标注",
-          "description": "负责概念演示中的情景效果渲染、多车型展示和车载宠物表现扩展。",
-          "details": [
-            "推进情景效果渲染与多车型展示。",
-            "配合汽车渲染工具搭建表现链路。",
-            "整合 Metahuman 车载宠物效果。"
-          ],
           "links": [
             {
               "label": "郑州日产项目介绍",
@@ -426,10 +415,6 @@ export const projectsContent: ProjectsContent = {
         {
           "title": "移动端 POC",
           "period": "未单独标注",
-          "description": "整合交互界面、角色与特效，验证移动端一体化表现。",
-          "details": [
-            "完成交互界面、角色与特效整合验证。"
-          ],
           "images": [
             {
               "src": "/gifs/Mobile_terminal/UMG_1080.gif",
@@ -445,19 +430,6 @@ export const projectsContent: ProjectsContent = {
       "title": "局域网 FPS 对战原型",
       "period": "2022.09 - 2022.12",
       "category": "Gameplay Prototype / Networking / Blueprint",
-      "description": "基于现有游戏资源完成一套局域网多人 FPS 蓝图原型，重点验证多人同步、核心战斗循环和游戏内反馈的完整协作。",
-      "details": [
-        "使用 UE4 蓝图系统开发局域网对战功能，实现多人实时对战体验。",
-        "搭建稳定的多人网络架构，处理同步机制与延迟问题。",
-        "完成角色控制、武器系统和得分机制等核心模块开发与调试。",
-        "补齐游戏内 HUD、菜单与交互界面，验证玩法反馈联动。",
-        "围绕 RPC、动画蓝图和基础 Gameplay 循环完成实机联调。"
-      ],
-      "achievements": [
-        "完成多人射击循环的可玩验证。",
-        "打通网络同步、角色控制和界面反馈的完整链路。",
-        "为后续多人玩法和战斗反馈系统积累了一套蓝图实现经验。"
-      ],
       "tech": [
         "UE4",
         "Blueprint",
@@ -478,20 +450,6 @@ export const projectsContent: ProjectsContent = {
       "title": "BenZ 汽车实时展示",
       "period": "未单独标注",
       "category": "Web 端汽车实时渲染",
-      "description": "基于 Unreal Engine 的汽车 3D 实时展示项目，支持 Web 端在线浏览与交互。包含完整的 UE4 HTML5 部署经验总结。",
-      "details": [
-        "使用 Unreal Engine 实现高质量汽车 3D 渲染",
-        "支持 Web 端 HTML5 发布，无需本地安装",
-        "实现实时材质切换与交互控制",
-        "Canvas 尺寸与 UE 摄像机控制优化",
-        "Loading 进度与真实生命周期绑定",
-        "IndexedDB 缓存管理与部署流程"
-      ],
-      "achievements": [
-        "完成汽车模型在 Web 端的轻量化渲染",
-        "实现流畅的实时交互体验",
-        "整理完整的 UE4 HTML5 部署经验文档"
-      ],
       "tech": [
         "Unreal Engine 4",
         "HTML5",
@@ -502,48 +460,6 @@ export const projectsContent: ProjectsContent = {
         "GitHub Pages"
       ],
       "color": "#7ce7d0",
-      "subProjects": [
-        {
-          "title": "Canvas 尺寸与 UE 摄像机控制",
-          "description": "解决浏览器窗口变化、画面模糊、画布混乱等问题",
-          "details": [
-            "移除 CSS 尺寸设置，让 JS 完全控制",
-            "启用 canvasWindowedUseHighDpi，渲染分辨率 = 窗口 × devicePixelRatio",
-            "使用 STRETCH 模式跟随窗口尺寸"
-          ]
-        },
-        {
-          "title": "Loading 进度与真实生命周期绑定",
-          "description": "跟踪下载、WASM 编译、Shader 编译、引擎启动各阶段进度",
-          "details": [
-            "下载资源：40% - reportDownloadProgress() 跟踪真实下载字节数",
-            "WASM 编译：25% - instantiateWasm() 开始/完成",
-            "Shader 编译：25% - 按 shader 数量/总数计算",
-            "引擎启动：10% - postRunEmscripten() 完成"
-          ]
-        },
-        {
-          "title": "鼠标交互与缓存管理",
-          "description": "解决交互失效问题并优化 IndexedDB 缓存",
-          "details": [
-            "Loading 屏幕直接 remove() 避免挡住鼠标",
-            "多次加载不会溢出（相同资源会覆盖）",
-            "Ctrl+Shift+Delete 快捷键清理缓存",
-            "URL 参数 ?noidbread 禁用读取，?noidbwrite 禁用写入"
-          ]
-        },
-        {
-          "title": "GitHub Pages 部署",
-          "description": "完整的部署流程与常见陷阱",
-          "details": [
-            "创建 gh-pages 分支，推送所有 HTML5 导出文件",
-            "GitHub Settings → Pages → Source 选择 gh-pages",
-            "等待 5-10 分钟部署",
-            "404 错误检查 GitHub Pages 是否启用",
-            "缓存问题强制刷新 Ctrl+F5"
-          ]
-        }
-      ],
       "links": [
         {
           "label": "BenZ_Html",
