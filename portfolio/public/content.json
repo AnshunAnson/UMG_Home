@@ -67,6 +67,22 @@
           {
             "src": "/images/tools/maya-material-naming-tool.png",
             "alt": "Maya 材质与模型命名工具界面截图"
+          },
+          {
+            "src": "/images/tools/1.1资产处理_材质数量繁多.png",
+            "alt": "资产处理_材质数量繁多"
+          },
+          {
+            "src": "/images/tools/1.2资产处理_一键替换所有材质.png",
+            "alt": "资产处理_一键替换所有材质"
+          },
+          {
+            "src": "/images/tools/2.1资产处理_actor中复杂层级嵌套解决方案.png",
+            "alt": "资产处理_actor中复杂层级嵌套解决方案"
+          },
+          {
+            "src": "/images/tools/2.2资产处理_保留蓝图中层级嵌套关系的同时还原到场景.png",
+            "alt": "资产处理_保留蓝图中层级嵌套关系的同时还原到场景"
           }
         ]
       },
