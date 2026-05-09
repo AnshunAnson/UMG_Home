@@ -199,12 +199,6 @@ export const projectsContent: ProjectsContent = {
         "PBR"
       ],
       "color": "#d7c77a",
-      "images": [
-        {
-          "src": "/gifs/ProjectNotes/audi.gif",
-          "alt": "Windows 端汽车配置器的机位切换与展示效果"
-        }
-      ],
       "subProjects": [
         {
             "title": "UE Web 端汽车展示",
@@ -305,12 +299,6 @@ export const projectsContent: ProjectsContent = {
         "Niagara"
       ],
       "color": "#62d8c8",
-      "images": [
-        {
-          "src": "/images/projects/hummer-hmi-design/1.png",
-          "alt": "HUMMER EV HMI创新设计封面"
-        }
-      ],
       "subProjects": [
         {
           "title": "Hummer EV汽车动效",
