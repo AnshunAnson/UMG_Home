@@ -324,7 +324,24 @@
               "设计并实现不同界面间的动效过渡逻辑。",
               "优化HMI界面的视觉表现与交互体验。"
             ],
-            "images": [],
+            "images": [
+              {
+                "src": "/images/projects/ford/1.png",
+                "alt": "福特烈马3D_HMI设计图1"
+              },
+              {
+                "src": "/images/projects/ford/2.png",
+                "alt": "福特烈马3D_HMI设计图2"
+              },
+              {
+                "src": "/images/projects/ford/3.png",
+                "alt": "福特烈马3D_HMI设计图3"
+              },
+              {
+                "src": "/images/projects/ford/4.png",
+                "alt": "福特烈马3D_HMI设计图4"
+              }
+            ],
             "links": [
               {
                 "label": "福特烈马项目",
@@ -341,7 +358,12 @@
               "实现自动驾驶场景下的特效与动效。",
               "设计流畅的用户体验界面过渡效果。"
             ],
-            "images": [],
+            "images": [
+              {
+                "src": "/images/projects/lamborghini/1.png",
+                "alt": "兰博基尼自动驾驶用户体验设计图"
+              }
+            ],
             "links": [
               {
                 "label": "兰博基尼项目",
@@ -358,7 +380,36 @@
               "设计安全、直观的用户体验动效。",
               "优化高端车型的材质表现与视觉层次。"
             ],
-            "images": [],
+            "images": [
+              {
+                "src": "/images/projects/sr-adas/1.png",
+                "alt": "Benz EQS680 Maybach SR与ADAS设计图1"
+              },
+              {
+                "src": "/images/projects/sr-adas/2.png",
+                "alt": "Benz EQS680 Maybach SR与ADAS设计图2"
+              },
+              {
+                "src": "/images/projects/sr-adas/3.png",
+                "alt": "Benz EQS680 Maybach SR与ADAS设计图3"
+              },
+              {
+                "src": "/images/projects/sr-adas/4.png",
+                "alt": "Benz EQS680 Maybach SR与ADAS设计图4"
+              },
+              {
+                "src": "/images/projects/sr-adas/5.png",
+                "alt": "Benz EQS680 Maybach SR与ADAS设计图5"
+              },
+              {
+                "src": "/images/projects/sr-adas/6.png",
+                "alt": "Benz EQS680 Maybach SR与ADAS设计图6"
+              },
+              {
+                "src": "/images/projects/sr-adas/7.png",
+                "alt": "Benz EQS680 Maybach SR与ADAS设计图7"
+              }
+            ],
             "links": [
               {
                 "label": "SR与ADAS项目",
@@ -375,7 +426,24 @@
               "实现仪表界面的材质与动态特效。",
               "设计多场景下的流畅动效过渡。"
             ],
-            "images": [],
+            "images": [
+              {
+                "src": "/images/projects/polestar-3d/1.png",
+                "alt": "极星3D仪表HMI设计图1"
+              },
+              {
+                "src": "/images/projects/polestar-3d/2.png",
+                "alt": "极星3D仪表HMI设计图2"
+              },
+              {
+                "src": "/images/projects/polestar-3d/3.png",
+                "alt": "极星3D仪表HMI设计图3"
+              },
+              {
+                "src": "/images/projects/polestar-3d/4.png",
+                "alt": "极星3D仪表HMI设计图4"
+              }
+            ],
             "links": [
               {
                 "label": "极星3D仪表项目",
