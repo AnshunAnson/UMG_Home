@@ -207,19 +207,29 @@ export const projectsContent: ProjectsContent = {
       ],
       "subProjects": [
         {
-          "title": "UE Web 端汽车展示",
-          "period": "未单独标注",
-          "links": [
-            {
-              "label": "保时捷在线展示",
-              "href": "https://www.autoy.co/porsche/#/"
-            },
-            {
-              "label": "奥迪在线展示",
-              "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
-            }
-          ]
-        },
+            "title": "UE Web 端汽车展示",
+            "period": "未单独标注",
+            "images": [
+              {
+                "src": "/images/projects/911CarreraCabriolet/911CarreraCabriolet.png",
+                "alt": "911 Carrera Cabriolet 汽车展示"
+              },
+              {
+                "src": "/images/projects/BenZ/BenZWeb.png",
+                "alt": "BenZ Web 汽车展示"
+              }
+            ],
+            "links": [
+              {
+                "label": "保时捷在线展示",
+                "href": "https://www.autoy.co/porsche/#/"
+              },
+              {
+                "label": "奥迪在线展示",
+                "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
+              }
+            ]
+          },
         {
           "title": "Windows 汽车配置器",
           "period": "未单独标注",
