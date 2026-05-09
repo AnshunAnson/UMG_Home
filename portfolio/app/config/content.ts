@@ -258,7 +258,7 @@ export const projectsContent: ProjectsContent = {
     {
       "id": 4,
       "icon": "PanelsTopLeft",
-      "title": "技术美术作品集",
+      "title": "其他",
       "period": "未单独标注",
       "category": "Technical Art / UI Design / Material",
       "description": "汇集了多个UI材质动画、动效设计和技术美术相关的项目作品，展示了在实时视觉、材质系统和动效设计方面的技术能力。",
@@ -348,7 +348,7 @@ export const projectsContent: ProjectsContent = {
     {
       "id": 5,
       "icon": "Sparkles",
-      "title": "概念交互验证项目",
+      "title": "POC",
       "period": "2023.10 - 2025.04",
       "category": "Concept Interaction / Prototype / Presentation",
       "tech": [
