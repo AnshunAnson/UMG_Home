@@ -6,7 +6,6 @@ import { ArrowUpRight, ExternalLink, Folder, ChevronDown, ChevronUp } from 'luci
 import { useState } from 'react';
 import { projectsContent as defaultProjectsContent } from '../config/content';
 import { useContent } from '../ContentProvider';
-import MindMap from '../components/MindMap';
 
 const basePath = process.env.NODE_ENV === 'production' ? '/UMG_Home' : '';
 
@@ -113,8 +112,6 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                   </p>
                 </div>
               )}
-              
-              {project.title?.includes('DeltaForce') && <MindMap />}
               
               {project.images && project.images.length > 0 && (
                 <div>

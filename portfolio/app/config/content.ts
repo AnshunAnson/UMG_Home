@@ -225,6 +225,16 @@ export const projectsContent: ProjectsContent = {
             "period": "未单独标注"
           },
           {
+            "title": "移动端 POC",
+            "period": "未单独标注",
+            "images": [
+              {
+                "src": "/gifs/Mobile_terminal/UMG_1080.gif",
+                "alt": "移动端 POC 的交互界面与角色特效整合效果"
+              }
+            ]
+          },
+          {
             "title": "BenZ 汽车实时展示",
             "period": "未单独标注",
             "tech": [
@@ -248,48 +258,95 @@ export const projectsContent: ProjectsContent = {
     {
       "id": 4,
       "icon": "PanelsTopLeft",
-      "title": "UI 材质动画作品",
+      "title": "技术美术作品集",
       "period": "未单独标注",
-      "category": "UI Technical Art / Material Animation / Motion",
+      "category": "Technical Art / UI Design / Material",
+      "description": "汇集了多个UI材质动画、动效设计和技术美术相关的项目作品，展示了在实时视觉、材质系统和动效设计方面的技术能力。",
       "tech": [
         "UE",
         "UMG",
         "UI Material",
         "Sequencer",
-        "Material Animation"
+        "Material Animation",
+        "Niagara"
       ],
       "color": "#62d8c8",
-      "links": [
+      "subProjects": [
         {
-          "label": "UI 材质动画项目链接",
-          "href": "https://www.autoxyz.cn/information/detail/26652"
+          "title": "Hummer EV汽车动效",
+          "period": "2024-05-31",
+          "description": "使用UE5渲染的Hummer EV汽车动效设计作品",
+          "images": [
+            {
+              "src": "/images/projects/hummer-ev-animations/1.png",
+              "alt": "Hummer EV汽车动效设计作品"
+            }
+          ],
+          "links": [
+            {
+              "label": "查看作品",
+              "href": "https://www.autoxyz.cn/information/detail/26652"
+            }
+          ]
+        },
+        {
+          "title": "迈凯伦汽车渲染",
+          "period": "2024-03-30",
+          "description": "迈凯伦汽车渲染设计作品",
+          "images": [
+            {
+              "src": "/images/projects/mclaren-rendering/1.png",
+              "alt": "迈凯伦汽车渲染设计作品"
+            }
+          ],
+          "links": [
+            {
+              "label": "查看作品",
+              "href": "https://www.autoxyz.cn/information/detail/25119"
+            }
+          ]
+        },
+        {
+          "title": "HUMMER EV HMI创新设计",
+          "period": "2023-11-20",
+          "description": "设计元素主要从宇宙、星空进行提炼，利用圆形符合进行重构，太空星空作为背景进行体现视觉画面的科技感、未来感与天地融合广阔的画面感。通过3D设计手法展示新型现代设计审美趋势。界面风格设计关键词：科技 / 未来 / 宇宙 / 3D。仪表HMI设计通过XR技术完美实现虚实结合，让用户更好地理解产品使用意图。界面的车辆视角根据档位不同状态进行切换不仅仅增加画面的生动有趣并且提供产品的易用性。中控HMI设计通过场景化设计思维，信息根据用户在不同场景下需求进行合理展示，有效避免画面的复杂。本中控屏首页功能有效直观展示核心功能：多媒体、车辆设置、天气、电量、导航、等，用户还可以根据个人习惯进行自定义产品功能从而满足千人千面的个性化需求。通过FUI、游戏、3D等多种设计手法综合应用，从而体现视觉科技感、未来感与空间感。",
+          "images": [
+            {
+              "src": "/images/projects/hummer-hmi-design/1.png",
+              "alt": "HUMMER EV HMI创新设计封面"
+            },
+            {
+              "src": "/images/projects/hummer-hmi-design/2.png",
+              "alt": "HUMMER EV HMI创新设计展示1"
+            },
+            {
+              "src": "/images/projects/hummer-hmi-design/3.png",
+              "alt": "HUMMER EV HMI创新设计展示2"
+            },
+            {
+              "src": "/images/projects/hummer-hmi-design/4.png",
+              "alt": "HUMMER EV HMI创新设计展示3"
+            },
+            {
+              "src": "/images/projects/hummer-hmi-design/5.png",
+              "alt": "HUMMER EV HMI创新设计展示4"
+            },
+            {
+              "src": "/images/projects/hummer-hmi-design/6.png",
+              "alt": "HUMMER EV HMI创新设计展示5"
+            }
+          ],
+          "links": [
+            {
+              "label": "查看作品",
+              "href": "https://www.autoxyz.cn/information/detail/22721"
+            }
+          ]
         }
       ]
     },
     {
       "id": 5,
-      "icon": "LayoutPanelTop",
-      "title": "DeltaForce 实时界面技术框架",
-      "period": "未单独标注",
-      "category": "Interface Tech / UI Systems / Methodology",
-      "description": "一套完整的实时界面技术方法论，涵盖架构设计、渲染技术、动效系统、工具链和性能优化五大核心领域，为复杂HMI项目提供系统化的技术解决方案。",
-      "tech": [
-        "UE5",
-        "UMG",
-        "Blueprint",
-        "UI Material",
-        "UI Architecture"
-      ],
-      "color": "#7ce7d0",
-      "links": [
-        {
-          "label": "实时界面技术白皮书",
-          "href": "https://www.bilibili.com/opus/1190448420615094281/?from=readlist"
-        }
-      ]
-    },
-    {
-      "id": 6,
       "icon": "Sparkles",
       "title": "概念交互验证项目",
       "period": "2023.10 - 2025.04",
@@ -495,166 +552,167 @@ export const projectsContent: ProjectsContent = {
               "href": "https://www.autoxyz.cn/information/detail/25064"
             }
           ]
-        },
-        {
-            "title": "郑州日产Z9皮卡HMI设计",
-            "period": "2023.06 - 2025.04",
-            "description": "为郑州日产Z9皮卡车型进行HMI设计，以城市极简主义和空间建构主义为灵感，打造简洁直观的3D虚拟场景。",
-            "details": [
-              "引入无缝3D场景过渡模式替代复杂的树状菜单",
-              "使用全天候数字孪生技术，界面主题和3D场景根据环境、时间和天气实时变化",
-              "支持多模态交互，包括触摸和手势控制、语音助手和生物识别",
-              "采用半透明磨砂玻璃质感增加现代感和透明度",
-              "通过模块化HMI系统确保多屏幕和设备的一致性",
-              "获得A' Design Award 2025-2026界面、交互和用户体验设计类别奖项"
-            ],
-            "links": [
-              {
-                "label": "郑州日产项目介绍",
-                "href": "https://www.autoxyz.cn/information/detail/34604"
-              },
-              {
-                "label": "A' Design Award获奖作品",
-                "href": "https://competition.adesignaward.com/design.php?ID=181663"
-              }
-            ],
-            "images": [
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/png_1.png",
-                "alt": "郑州日产Z9皮卡HMI设计图1"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/png_2.png",
-                "alt": "郑州日产Z9皮卡HMI设计图2"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/png_3.png",
-                "alt": "郑州日产Z9皮卡HMI设计图3"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/png_4.png",
-                "alt": "郑州日产Z9皮卡HMI设计图4"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/png_5.png",
-                "alt": "郑州日产Z9皮卡HMI设计图5"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/png_6.png",
-                "alt": "郑州日产Z9皮卡HMI设计图6"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/png_7.png",
-                "alt": "郑州日产Z9皮卡HMI设计图7"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/gif_1.gif",
-                "alt": "郑州日产Z9皮卡HMI动效1"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/gif_2.gif",
-                "alt": "郑州日产Z9皮卡HMI动效2"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/gif_3.gif",
-                "alt": "郑州日产Z9皮卡HMI动效3"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_1.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图1"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_2.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图2"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_3.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图3"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_4.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图4"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_5.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图5"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_6.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图6"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_7.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图7"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_8.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图8"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_9.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图9"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_10.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图10"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_11.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图11"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_12.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图12"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_13.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图13"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_14.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图14"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_15.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图15"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_16.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图16"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_17.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图17"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_18.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图18"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_19.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图19"
-              },
-              {
-                "src": "/gifs/zhengzhou_nissan_z9/thumb_20.jpg",
-                "alt": "郑州日产Z9皮卡视频缩略图20"
-              }
-            ]
-          },
-        {
-          "title": "移动端 POC",
-          "period": "未单独标注",
-          "images": [
-            {
-              "src": "/gifs/Mobile_terminal/UMG_1080.gif",
-              "alt": "移动端 POC 的交互界面与角色特效整合效果"
-            }
-          ]
         }
       ]
     },
     {
-      "id": 7,
+      "id": 6,
+      "icon": "Trophy",
+      "title": "郑州日产Z9皮卡HMI设计",
+      "period": "2023.06 - 2025.04",
+      "category": "HMI Design / Award-Winning / Automotive UX",
+      "description": "为郑州日产Z9皮卡车型进行HMI设计，以城市极简主义和空间建构主义为灵感，打造简洁直观的3D虚拟场景。",
+      "details": [
+        "引入无缝3D场景过渡模式替代复杂的树状菜单",
+        "使用全天候数字孪生技术，界面主题和3D场景根据环境、时间和天气实时变化",
+        "支持多模态交互，包括触摸和手势控制、语音助手和生物识别",
+        "采用半透明磨砂玻璃质感增加现代感和透明度",
+        "通过模块化HMI系统确保多屏幕和设备的一致性",
+        "获得A' Design Award 2025-2026界面、交互和用户体验设计类别奖项"
+      ],
+      "tech": [
+        "UE5",
+        "UMG",
+        "Digital Twin",
+        "HMI Design",
+        "3D Scene"
+      ],
+      "color": "#e6b800",
+      "links": [
+        {
+          "label": "郑州日产项目介绍",
+          "href": "https://www.autoxyz.cn/information/detail/34604"
+        },
+        {
+          "label": "A' Design Award获奖作品",
+          "href": "https://competition.adesignaward.com/design.php?ID=181663"
+        }
+      ],
+      "images": [
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/png_1.png",
+          "alt": "郑州日产Z9皮卡HMI设计图1"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/png_2.png",
+          "alt": "郑州日产Z9皮卡HMI设计图2"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/png_3.png",
+          "alt": "郑州日产Z9皮卡HMI设计图3"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/png_4.png",
+          "alt": "郑州日产Z9皮卡HMI设计图4"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/png_5.png",
+          "alt": "郑州日产Z9皮卡HMI设计图5"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/png_6.png",
+          "alt": "郑州日产Z9皮卡HMI设计图6"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/png_7.png",
+          "alt": "郑州日产Z9皮卡HMI设计图7"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/gif_1.gif",
+          "alt": "郑州日产Z9皮卡HMI动效1"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/gif_2.gif",
+          "alt": "郑州日产Z9皮卡HMI动效2"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/gif_3.gif",
+          "alt": "郑州日产Z9皮卡HMI动效3"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_1.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图1"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_2.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图2"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_3.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图3"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_4.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图4"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_5.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图5"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_6.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图6"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_7.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图7"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_8.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图8"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_9.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图9"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_10.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图10"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_11.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图11"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_12.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图12"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_13.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图13"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_14.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图14"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_15.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图15"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_16.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图16"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_17.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图17"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_18.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图18"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_19.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图19"
+        },
+        {
+          "src": "/gifs/zhengzhou_nissan_z9/thumb_20.jpg",
+          "alt": "郑州日产Z9皮卡视频缩略图20"
+        }
+      ]
+    },
+    {
+      "id": 8,
       "icon": "Gamepad2",
       "title": "局域网 FPS 对战原型",
       "period": "2022.09 - 2022.12",
