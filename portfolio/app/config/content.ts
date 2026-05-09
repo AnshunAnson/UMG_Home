@@ -259,6 +259,12 @@ export const projectsContent: ProjectsContent = {
           {
             "title": "BenZ 汽车实时展示",
             "period": "未单独标注",
+            "images": [
+              {
+                "src": "/images/projects/BenZ/BenZWeb.png",
+                "alt": "BenZ Web 汽车实时展示"
+              }
+            ],
             "tech": [
               "Unreal Engine 4",
               "HTML5",
