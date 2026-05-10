@@ -5,26 +5,15 @@ import { ArrowUpRight, ExternalLink, Folder, ChevronDown, ChevronUp } from 'luci
 import { useState } from 'react';
 import { useContent } from '../ContentProvider';
 
-const basePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/UMG_Home') ? '/UMG_Home' : '';
-
-function resolveAssetPath(src: string) {
-  if (!src.startsWith('/')) {
-    return src;
-  }
-  return `${basePath}${src}`;
-}
-
 function isVideo(src: string) {
   return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
 }
 
 function MediaAsset({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  const resolvedSrc = resolveAssetPath(src);
-
   if (isVideo(src)) {
     return (
       <video
-        src={resolvedSrc}
+        src={src}
         autoPlay
         loop
         muted
@@ -36,7 +25,7 @@ function MediaAsset({ src, alt, className }: { src: string; alt: string; classNa
 
   return (
     <img
-      src={resolvedSrc}
+      src={src}
       alt={alt}
       className={className || "w-full h-full object-cover"}
     />
