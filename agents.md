@@ -37,7 +37,9 @@ portfolio/
 │   │   ├── save-ts/route.ts         # POST: write config/content.ts (TypeScript source)
 │   │   └── upload/route.ts          # POST: file upload (images/GIFs)
 │   ├── components/
-│   │   └── Navigation.tsx           # Fixed top navigation bar
+│   │   ├── Navigation.tsx           # Fixed top navigation bar
+│   │   ├── SectionHeader.tsx        # Reusable section title (label + h2)
+│   │   └── ContactCard.tsx          # Reusable contact info card (icon + label + value)
 │   ├── config/
 │   │   └── content.ts               # DEFAULT content data (single source of truth)
 │   ├── edit/                        # No-code content editor
@@ -47,6 +49,7 @@ portfolio/
 │   │       ├── DynamicForm.tsx      # Dynamic form renderer (safeData guard)
 │   │       └── FormFields/
 │   │           ├── ArrayInput.tsx   # Array-type field editor (with drag reorder + file upload)
+│   │           ├── FieldWrapper.tsx # Shared label+description wrapper for form fields
 │   │           ├── NumberInput.tsx  # Number field editor
 │   │           ├── ObjectInput.tsx  # Object/nested field editor
 │   │           ├── TextArea.tsx     # Multi-line text editor
@@ -201,8 +204,9 @@ File: `.github/workflows/deploy.yml` at **repo root**
 | **Client Components** | All interactive files must have `'use client'` at line 1 |
 | **Content access** | Sections MUST use `useContent()` hook, never import `content.ts` directly |
 | **Array bounds** | Check `.length > N` before accessing indexed items (Projects.tsx pattern) |
-| **Safe data guard** | DynamicForm uses `safeData = data \|\| {}` before property access |
-| **basePath awareness** | Asset paths must detect basePath at runtime: `window.location.pathname.startsWith('/UMG_Home')` |
+| **Safe data guard** | DynamicForm uses `safe = data \|\| {}` before property access |
+| **Relative asset paths** | All image/GIF paths MUST be relative (`images/xxx.png`, NOT `/images/xxx.png`). SSG tree-shaking eliminates runtime basePath detection code |
+| **Type-schema-config sync** | Every field in `types/content.ts` MUST have a matching entry in `schema.tsx` AND be consumed by a Section component. Dead fields cause editor confusion |
 
 ### Patterns to Use
 
@@ -223,14 +227,97 @@ const value = safeData[key];
 import { heroContent } from '../config/content';  // WRONG in sections
 const title = data.hero.title;  // CRASH if data is undefined
 fetch('/content.json');  // WRONG — won't work on GitHub Pages
+window.location.pathname.startsWith('/UMG_Home')  // WRONG — gets tree-shaken away in SSG
+resolveAssetPath(src)  // WRONG — any runtime path function using browser APIs will be eliminated
 ```
+
+### Component Extraction Pattern
+
+When 2+ sections share identical UI structure, extract into `app/components/`:
+
+| Extracted Component | Props | Used By |
+|---------------------|-------|---------|
+| `SectionHeader` | `{ label: string, title: string }` | About, Skills, Contact, Projects |
+| `ContactCard` | `{ icon: LucideIcon, label, value, href, delay }` | Contact (Email + Phone cards) |
+| `FieldWrapper` | `{ label, required?, description?, children }` | TextInput, NumberInput, TextArea |
+| `stopDragPropagation` | (constant object spread) | ArrayInput nested inputs (6 sites) |
+
+Extraction criteria: identical markup appears ≥2 times with only data props differing.
+
+## Architecture Lessons Learned
+
+### Lesson 1: SSG Tree-Shaking Eliminates Runtime Browser Code
+
+**Problem**: Added `resolveAssetPath()` function that detected `basePath` via `window.location.pathname`. Built successfully, dev server worked fine. But production build had **all images returning 404** — the function was completely absent from the output JS bundle.
+
+**Root Cause**: Next.js SSG pre-renders HTML at build time. Any code path that depends solely on browser APIs (`window`, `document`, `location`) and is not triggered during server-side rendering gets **tree-shaken away** as dead code. The function existed in source but never appeared in any chunk.
+
+**Solution**: Use **relative paths** (`images/photo.png` instead of `/images/photo.png`). Browsers resolve relative URLs against the current page URL, which already includes the basePath prefix (`/UMG_Home/`). No runtime detection needed.
+
+**Rule**: Never write runtime path-resolution functions for SSG assets. Always use relative paths.
+
+### Lesson 2: Schema Drift — The Silent Killer of Editable Content Systems
+
+**Problem**: After extracting `SectionHeader` component (replacing inline `<motion.div><span><h2>` blocks across 4 sections), the old `sectionTitle`/`sectionSubtitle` fields remained in:
+- `types/content.ts` (interface definitions)
+- `config/content.ts` (default data values)
+- `edit/schema.tsx` (editor form fields)
+- `public/content.json` (runtime data)
+
+Users could edit these fields in the `/edit` page, but changes had **zero visual effect** because no Section component reads them anymore.
+
+**Root Cause**: Refactoring rendering components without synchronously cleaning the data layer creates **unconsumed dead fields**. In an editable-content system this is worse than normal dead code — it actively misleads users into thinking their edits matter.
+
+**Prevention Rule (Schema Sync Invariant)**:
+
+```
+For every field F in types/content.ts interface I:
+  ├─→ F MUST exist in schema.tsx corresponding section definition
+  ├─→ F MUST exist in config/content.ts default export
+  └─→ F MUST be referenced (destructured or accessed) in the consuming Section component
+
+If ANY link breaks during refactoring, ALL four layers must be updated together.
+```
+
+**Audit command** — after any Section refactor, verify no drift:
+
+```powershell
+# List all fields in types vs actual usage in sections
+$typeFields = Select-String -Path "app/types/content.ts" -Pattern "^\s+\w+\??:"
+$sectionUsage = Select-String -Path "app/sections/*.tsx" -Pattern "\.\w+" | ForEach { $_.Matches.Value }
+# Compare manually or script the diff
+```
+
+### Lesson 3: Relative Paths Are the Only Reliable Strategy for GitHub Pages + SSG
+
+| Approach | Dev Server | GitHub Pages Production | Verdict |
+|----------|-----------|------------------------|---------|
+| Absolute `/images/x.png` | ✅ Works | ❌ 404 (missing `/UMG_Home` prefix) | Broken |
+| Runtime `basePath` detection | ✅ Works | ❌ Function tree-shaken away | Broken |
+| Relative `images/x.png` | ✅ Works | ✅ Browser resolves from page URL | **Correct** |
+| `next/image` component | ✅ Works | ❌ Requires image optimization API | Broken on GH Pages |
+
+**Rule**: All asset references in `content.ts`, `content.json`, and JSX must use relative paths starting from `public/` root (no leading slash).
+
+### Lesson 4: Cleanup Priority Framework
+
+When auditing this codebase, classify issues by severity:
+
+| Priority | Criteria | Examples from this project |
+|----------|----------|---------------------------|
+| **P1 Critical** | Data correctness: dead/misleading fields, type safety gaps | Unconsumed schema fields (15 found), `any` types (8 found) |
+| **P2 Important** | Logic errors, dead imports, stale comments | Unused `React` import, wrong placeholder path, `'boolean'` in enum |
+| **P3 Minor** | Code duplication, naming inconsistency | Identical Email/Phone cards (~35 lines × 2), repeated form field wrappers |
+
+Always fix P1 before P2 before P3. P1 issues silently corrupt user experience; P3 issues only affect maintainability.
 
 ## Known Gotchas & Issues Resolved
 
 | Issue | Solution | Reference |
 |-------|----------|-----------|
-| **Static resources 404 on GitHub Pages** | `basePath: '/UMG_Home'` in next.config.ts | [next.config.ts](next.config.ts) |
-| **Asset path resolution in Projects** | Runtime basePath detection via `window.location.pathname.startsWith(...)` | [Projects.tsx](app/sections/Projects.tsx) |
+| **SSG tree-shaking removes runtime path code** | Use relative paths for all assets. Never rely on `window.location` detection | See Lesson 1 above |
+| **Schema drift after Section refactor** | Maintain schema-sync invariant: types ↔ schema ↔ config ↔ rendering must stay in sync | See Lesson 2 above |
+| **Static resources 404 on GitHub Pages** | `basePath: '/UMG_Home'` in next.config.ts + relative asset paths | [next.config.ts](next.config.ts) |
 | **Skills hex positions overflow** | Category grid renders all items; no fixed position overflow risk | [Skills.tsx](app/sections/Skills.tsx) |
 | **Edit→Home content not syncing** | Key mapping: short key → long key on save | [edit/page.tsx](app/edit/page.tsx) |
 | **DynamicForm crash on undefined data** | `safeData = data \|\| {}` defensive guard | [DynamicForm.tsx](app/edit/components/DynamicForm.tsx) |
@@ -239,40 +326,6 @@ fetch('/content.json');  // WRONG — won't work on GitHub Pages
 | **Large media files (PNG>2MB, GIF>5MB)** | GitHub Pages has transfer limits. Compress PNG→JPG (ffmpeg `-q:v 2`), GIF→MP4 (`-crf 28`). Update both config files | See Debug Workflow below |
 | **Batch path rename causes 404s** | After renaming extensions, verify every referenced file exists on disk before committing. Use `Get-ChildItem -Recurse` audit | See Debug Workflow below |
 | **Edit page save returns 404 for /api/save-ts** | Edit page calls `/api/save-ts` AND `/api/save-content` via `Promise.all`. If either route file is missing under `app/api/`, the save fails with 404. Both route directories must exist | [save-ts/route.ts](app/api/save-ts/route.ts), [edit/page.tsx](app/edit/page.tsx) |
-| **异构比例图片布局混乱** | 使用**黑底画布模式**: 固定比例容器 + `bg-black` + `flex items-center justify-center` + 图片 `object-contain`。纯 CSS 解决，不修改原生素材，无需数据字段驱动 | [Projects.tsx](app/sections/Projects.tsx) |
-| **preserveAspectRatio 数据字段过度工程** | 曾尝试用数据字段标记每张图的比例类型，条件渲染不同容器。最终简化为统一黑底画布，移除所有数据字段和条件逻辑。**原则: CSS 能解决的问题不要引入数据复杂度** | [Projects.tsx](app/sections/Projects.tsx), [types/content.ts](app/types/content.ts) |
-| **正则表达式操作 JSON 导致结构损坏** | 用 regex 删除 JSON 字段（如 preserveAspectRatio）会破坏格式/逗号/缩进。必须用 PowerShell `ConvertFrom-Json | Select-Object -ExcludeProperty | ConvertTo-Json` 管道安全操作 | — |
-
-## Design Patterns
-
-### Black Canvas Layout (黑底画布布局)
-
-**问题**: Projects 区域包含多种比例的 GIF/图片（16:9、1:1、21:9、超宽横条等），直接渲染会导致卡片高度不一、布局错乱。
-
-**方案**: 统一容器为固定比例黑底画布，图片以 `object-contain` 自适应居中。
-
-```tsx
-<div className="relative aspect-video rounded-xl overflow-hidden bg-black flex items-center justify-center">
-  <img
-    src={src}
-    alt={alt}
-    className="max-w-full max-h-full w-auto h-auto object-contain"
-  />
-</div>
-```
-
-**关键类组合**:
-| 类 | 作用 |
-|---|------|
-| `aspect-video` 或 `aspect-[21/9]` | 固定容器比例（网格用 16:9，卡片预览用 21:9） |
-| `bg-black` | 黑底填充图片未覆盖区域，视觉统一 |
-| `flex items-center justify-center` | 图片在容器内水平垂直居中 |
-| `max-w-full max-h-full w-auto h-auto` | 限制图片不超过容器尺寸 |
-| `object-contain` | 保持原图比例完整显示，不裁切不拉伸 |
-
-**适用场景**: 作品集展示、产品画廊等需要混排不同比例媒体的场景。
-
-**反模式**: 不要用 `preserveAspectRatio` 数据字段做条件渲染；不要用 ffmpeg 给原生素材加黑边；不要用正则修改 JSON。
 
 ## Debug Workflow
 
@@ -281,7 +334,7 @@ fetch('/content.json');  // WRONG — won't work on GitHub Pages
 | Tool | Path | Usage |
 |------|------|-------|
 | **ffmpeg** | `C:\Program Files\UI2V\resources\app.asar.unpacked\node_modules\ffmpeg-static\ffmpeg.exe` | PNG→JPG compression, GIF→MP4 conversion |
-| **gifski** | `C:\Users\Administrator\Desktop\gifski-main-fixed-source\target\release\gifski.exe` | High-quality GIF encoding (MP4→GIF conversion) |
+| **gifski** | `C:\Users\Administrator\Desktop\gifski-main-fixed-source\target\release\gifski.exe` | High-quality GIF encoding (backup) |
 | **Git** | `C:\Program Files\Git\cmd\git.exe` | Full path required in PowerShell |
 
 ### Chrome DevTools MCP Debugging Steps
@@ -329,7 +382,6 @@ fetch('/content.json');  // WRONG — won't work on GitHub Pages
 ```powershell
 $ffmpeg = "C:\Program Files\UI2V\resources\app.asar.unpacked\node_modules\ffmpeg-static\ffmpeg.exe"
 & $ffmpeg -y -i input.png -vf "scale=1920:-2" -q:v 2 output.jpg
-# Remove original, keep .jpg
 Remove-Item input.png -Force
 ```
 
@@ -339,21 +391,6 @@ Remove-Item input.png -Force
   -vf "scale='if(gt(iw,1920),1920,-2)':'if(gt(ih,1080),1080,-2)'" `
   -c:v libx264 -crf 28 -preset medium output.mp4
 ```
-
-**MP4 → GIF (需要高质量动画预览时):**
-```powershell
-$ffmpeg = "C:\Program Files\UI2V\resources\app.asar.unpacked\node_modules\ffmpeg-static\ffmpeg.exe"
-$gifski = "C:\Users\Administrator\Desktop\gifski-main-fixed-source\target\release\gifski.exe"
-$framesDir = "temp_frames"
-New-Item -ItemType Directory -Path $framesDir -Force | Out-Null
-# 1. 提取帧
-& $ffmpeg -i input.mp4 -vf "fps=15" -q:v 2 "$framesDir/frame%04d.png"
-# 2. gifski 编码（从帧序列生成高质量GIF）
-& $gifski -o output.gif "$framesDir/*.png"
-# 3. 清理临时帧
-Remove-Item $framesDir -Recurse -Force
-```
-> 注意: GIF 文件通常比 MP4 大 2-3 倍，仅用于必须展示动画的场景。
 
 **Batch audit all image sizes:**
 ```powershell
@@ -388,12 +425,7 @@ Therefore:
 If batch operations delete files that weren't properly replaced:
 
 ```powershell
-# Find which commit last had the file
 & git log --oneline --all --diff-filter=A -- "<file_path>"
-
-# Restore from a specific commit
 & git show <commit-sha>:<file_path> | Set-Content -Path <local_path> -Encoding Byte
-
-# Or checkout from specific commit
 & git checkout <commit-sha> -- "<file_path>"
 ```
