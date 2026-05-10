@@ -6,8 +6,6 @@ import {
   ContactContent,
   FooterContent,
 } from '../types/content';
-
-// Hero区域内容
 export const heroContent: HeroContent = {
   "badge": "Technical Artist / Unreal",
   "name": "安顺",
@@ -15,15 +13,15 @@ export const heroContent: HeroContent = {
   "subtitle": "聚焦实时视觉、材质系统、Niagara 特效、编辑器工具与渲染流程，把表现需求收束成可交付的技术方案。"
 };
 
-// About区域内容
 export const aboutContent: AboutContent = {
-  "bio": ["技术美术，专注于实时视觉、材质系统和Niagara特效，致力于把创意转化为可交付的技术方案。"],
+  "bio": [
+    "技术美术，专注于实时视觉、材质系统和Niagara特效，致力于把创意转化为可交付的技术方案。"
+  ],
   "age": 24,
   "experience": 3,
   "jobTitle": "技术美术 (Technical Artist)"
 };
 
-// Projects区域内容
 export const projectsContent: ProjectsContent = {
   "projects": [
     {
@@ -100,7 +98,7 @@ export const projectsContent: ProjectsContent = {
           "images": [
             {
               "src": "gifs/Niagara_Materials/byd-entry-animation.gif",
-              "alt": "比亚迪概念展示项目的入场特效",
+              "alt": "比亚迪概念展示项目的入场特效"
             }
           ]
         },
@@ -110,7 +108,7 @@ export const projectsContent: ProjectsContent = {
           "images": [
             {
               "src": "gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
-              "alt": "智能座舱主题场景渲染氛围效果",
+              "alt": "智能座舱主题场景渲染氛围效果"
             },
             {
               "src": "gifs/DesaysvFX/SEQ_Scene_Switching.mp4",
@@ -118,7 +116,7 @@ export const projectsContent: ProjectsContent = {
             },
             {
               "src": "gifs/DesaysvFX/Wellness02.gif",
-              "alt": "智能座舱烟雾与氛围层特效",
+              "alt": "智能座舱烟雾与氛围层特效"
             },
             {
               "src": "gifs/DesaysvFX/entry-explosion-splash.mp4",
@@ -126,7 +124,7 @@ export const projectsContent: ProjectsContent = {
             },
             {
               "src": "gifs/DesaysvFX/audio.gif",
-              "alt": "智能座舱音波扰动与音频可视化效果",
+              "alt": "智能座舱音波扰动与音频可视化效果"
             },
             {
               "src": "gifs/DesaysvFX/ip-startup-animation.mp4",
@@ -134,15 +132,15 @@ export const projectsContent: ProjectsContent = {
             },
             {
               "src": "gifs/DesaysvFX/ip-incoming-call.gif",
-              "alt": "智能座舱 IP 台来电提醒效果",
+              "alt": "智能座舱 IP 台来电提醒效果"
             },
             {
               "src": "gifs/DesaysvFX/SEQ_Flow7.gif",
-              "alt": "智能座舱流体入场动效",
+              "alt": "智能座舱流体入场动效"
             },
             {
               "src": "gifs/DesaysvFX/SEQ_Loading01.gif",
-              "alt": "智能座舱加载序列动画",
+              "alt": "智能座舱加载序列动画"
             },
             {
               "src": "gifs/DesaysvFX/SEQ_Mind.mp4",
@@ -174,29 +172,29 @@ export const projectsContent: ProjectsContent = {
       "color": "#d7c77a",
       "subProjects": [
         {
-            "title": "UE Web 端汽车展示",
-            "period": "未单独标注",
-            "images": [
-              {
-                "src": "images/projects/911CarreraCabriolet/911CarreraCabriolet.png",
-                "alt": "911 Carrera Cabriolet 汽车展示"
-              },
-              {
-                "src": "images/projects/BenZ/BenZWeb.png",
-                "alt": "BenZ Web 汽车展示"
-              }
-            ],
-            "links": [
-              {
-                "label": "保时捷在线展示",
-                "href": "https://www.autoy.co/porsche/#/"
-              },
-              {
-                "label": "奥迪在线展示",
-                "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
-              }
-            ]
-          },
+          "title": "UE Web 端汽车展示",
+          "period": "未单独标注",
+          "images": [
+            {
+              "src": "images/projects/911CarreraCabriolet/911CarreraCabriolet.png",
+              "alt": "911 Carrera Cabriolet 汽车展示"
+            },
+            {
+              "src": "images/projects/BenZ/BenZWeb.png",
+              "alt": "BenZ Web 汽车展示"
+            }
+          ],
+          "links": [
+            {
+              "label": "保时捷在线展示",
+              "href": "https://www.autoy.co/porsche/#/"
+            },
+            {
+              "label": "奥迪在线展示",
+              "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
+            }
+          ]
+        },
         {
           "title": "Windows 汽车配置器",
           "period": "未单独标注",
@@ -226,42 +224,42 @@ export const projectsContent: ProjectsContent = {
           ]
         },
         {
-            "title": "移动端 POC",
-            "period": "未单独标注",
-            "images": [
-              {
-                "src": "gifs/Mobile_terminal/UMG_1080.mp4",
-                "alt": "移动端 POC 的交互界面与角色特效整合效果"
-              }
-            ]
-          },
-          {
-            "title": "BenZ 汽车实时展示",
-            "period": "未单独标注",
-            "images": [
-              {
-                "src": "images/projects/BenZ/BenZWeb.png",
-                "alt": "BenZ Web 汽车实时展示"
-              }
-            ],
-            "tech": [
-              "Unreal Engine 4",
-              "HTML5",
-              "WebGL",
-              "Emscripten",
-              "JavaScript",
-              "IndexedDB",
-              "GitHub Pages"
-            ],
-            "links": [
-              {
-                "label": "BenZ_Html",
-                "href": "https://anshunanson.github.io/BenZ/BenZ-HTML5-Shipping.html"
-              }
-            ]
-          }
-        ]
-      },
+          "title": "移动端 POC",
+          "period": "未单独标注",
+          "images": [
+            {
+              "src": "gifs/Mobile_terminal/UMG_1080.mp4",
+              "alt": "移动端 POC 的交互界面与角色特效整合效果"
+            }
+          ]
+        },
+        {
+          "title": "BenZ 汽车实时展示",
+          "period": "未单独标注",
+          "images": [
+            {
+              "src": "images/projects/BenZ/BenZWeb.png",
+              "alt": "BenZ Web 汽车实时展示"
+            }
+          ],
+          "tech": [
+            "Unreal Engine 4",
+            "HTML5",
+            "WebGL",
+            "Emscripten",
+            "JavaScript",
+            "IndexedDB",
+            "GitHub Pages"
+          ],
+          "links": [
+            {
+              "label": "BenZ_Html",
+              "href": "https://anshunanson.github.io/BenZ/BenZ-HTML5-Shipping.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": 4,
       "icon": "PanelsTopLeft",
@@ -658,7 +656,6 @@ export const projectsContent: ProjectsContent = {
   ]
 };
 
-// Skills区域内容
 export const skillsContent: SkillsContent = {
   "categories": [
     {
@@ -728,6 +725,17 @@ export const skillsContent: SkillsContent = {
           "name": "蓝图模板开发"
         }
       ]
+    },
+    {
+      "title": "AI",
+      "skills": [
+        {
+          "name": "工程治理"
+        },
+        {
+          "name": "VibeCoding"
+        }
+      ]
     }
   ],
   "techStack": [
@@ -748,14 +756,12 @@ export const skillsContent: SkillsContent = {
   ]
 };
 
-// Contact区域内容
 export const contactContent: ContactContent = {
   "description": "如果你需要一个能把实时视觉、材质特效、渲染工具链和项目落地串起来的人，我愿意直接参与问题推进与交付。",
   "email": "an15073025868@163.com",
   "phone": "15073025868"
 };
 
-// Footer区域内容
 export const footerContent: FooterContent = {
   "logo": "Tech",
   "logoHighlight": "Art",
