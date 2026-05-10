@@ -122,7 +122,6 @@ export const projectsContent: ProjectsContent = {
             {
               "src": "/gifs/Niagara_Materials/byd-entry-animation.gif",
               "alt": "比亚迪概念展示项目的入场特效",
-              "preserveAspectRatio": true
             }
           ]
         },
@@ -133,7 +132,6 @@ export const projectsContent: ProjectsContent = {
             {
               "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
               "alt": "智能座舱主题场景渲染氛围效果",
-              "preserveAspectRatio": true
             },
             {
               "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.mp4",
@@ -142,7 +140,6 @@ export const projectsContent: ProjectsContent = {
             {
               "src": "/gifs/DesaysvFX/Wellness02.gif",
               "alt": "智能座舱烟雾与氛围层特效",
-              "preserveAspectRatio": true
             },
             {
               "src": "/gifs/DesaysvFX/entry-explosion-splash.mp4",
@@ -151,7 +148,6 @@ export const projectsContent: ProjectsContent = {
             {
               "src": "/gifs/DesaysvFX/audio.gif",
               "alt": "智能座舱音波扰动与音频可视化效果",
-              "preserveAspectRatio": true
             },
             {
               "src": "/gifs/DesaysvFX/ip-startup-animation.mp4",
@@ -160,17 +156,14 @@ export const projectsContent: ProjectsContent = {
             {
               "src": "/gifs/DesaysvFX/ip-incoming-call.gif",
               "alt": "智能座舱 IP 台来电提醒效果",
-              "preserveAspectRatio": true
             },
             {
               "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
               "alt": "智能座舱流体入场动效",
-              "preserveAspectRatio": true
             },
             {
               "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
               "alt": "智能座舱加载序列动画",
-              "preserveAspectRatio": true
             },
             {
               "src": "/gifs/DesaysvFX/SEQ_Mind.mp4",

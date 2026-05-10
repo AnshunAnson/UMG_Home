@@ -20,7 +20,9 @@
   "aboutContent": {
     "sectionTitle": "关于",
     "sectionSubtitle": "About",
-    "bio": ["技术美术，专注于实时视觉、材质系统和Niagara特效，致力于把创意转化为可交付的技术方案。"],
+    "bio": [
+      "技术美术，专注于实时视觉、材质系统和Niagara特效，致力于把创意转化为可交付的技术方案。"
+    ],
     "age": 24,
     "location": "",
     "experience": 3,
@@ -105,60 +107,51 @@
           {
             "title": "比亚迪概念展示特效",
             "period": "2023.10 - 2023.11",
-            "images": [
-              {
+            "images": {
               "src": "/gifs/Niagara_Materials/byd-entry-animation.gif",
-              "alt": "比亚迪概念展示项目的入场特效",
-              "preserveAspectRatio": true
+              "alt": "比亚迪概念展示项目的入场特效"
             }
-            ]
           },
           {
             "title": "DesaySV 智能座舱",
             "period": "2024.12 - 2025.04",
             "images": [
               {
-              "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
-              "alt": "智能座舱主题场景渲染氛围效果",
-              "preserveAspectRatio": true
-            },
+                "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
+                "alt": "智能座舱主题场景渲染氛围效果"
+              },
               {
                 "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.mp4",
                 "alt": "智能座舱场景切换粒子效果"
               },
               {
-              "src": "/gifs/DesaysvFX/Wellness02.gif",
-              "alt": "智能座舱烟雾与氛围层特效",
-              "preserveAspectRatio": true
-            },
+                "src": "/gifs/DesaysvFX/Wellness02.gif",
+                "alt": "智能座舱烟雾与氛围层特效"
+              },
               {
                 "src": "/gifs/DesaysvFX/entry-explosion-splash.mp4",
                 "alt": "智能座舱入场爆破与溅射特效"
               },
               {
-              "src": "/gifs/DesaysvFX/audio.gif",
-              "alt": "智能座舱音波扰动与音频可视化效果",
-              "preserveAspectRatio": true
-            },
+                "src": "/gifs/DesaysvFX/audio.gif",
+                "alt": "智能座舱音波扰动与音频可视化效果"
+              },
               {
                 "src": "/gifs/DesaysvFX/ip-startup-animation.mp4",
                 "alt": "智能座舱 IP 台开机过场动画"
               },
               {
-              "src": "/gifs/DesaysvFX/ip-incoming-call.gif",
-              "alt": "智能座舱 IP 台来电提醒效果",
-              "preserveAspectRatio": true
-            },
+                "src": "/gifs/DesaysvFX/ip-incoming-call.gif",
+                "alt": "智能座舱 IP 台来电提醒效果"
+              },
               {
-              "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
-              "alt": "智能座舱流体入场动效",
-              "preserveAspectRatio": true
-            },
+                "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
+                "alt": "智能座舱流体入场动效"
+              },
               {
-              "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
-              "alt": "智能座舱加载序列动画",
-              "preserveAspectRatio": true
-            },
+                "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
+                "alt": "智能座舱加载序列动画"
+              },
               {
                 "src": "/gifs/DesaysvFX/SEQ_Mind.mp4",
                 "alt": "智能座舱心智切换过场效果"
@@ -222,43 +215,39 @@
               }
             ],
             "images": [
-            {
-              "src": "/gifs/ProjectNotes/audi.mp4",
-              "alt": "Windows 端汽车配置器的机位切换与展示效果"
-            },
-            {
-              "src": "/gifs/autoxyz_37446/gif2.mp4",
-              "alt": "Audi RS Q8 汽车配置器特效展示1"
-            },
-            {
-              "src": "/gifs/autoxyz_37446/gif3.mp4",
-              "alt": "Audi RS Q8 汽车配置器特效展示2"
-            },
-            {
-              "src": "/gifs/autoxyz_37446/gif4.mp4",
-              "alt": "Audi RS Q8 汽车配置器特效展示3"
-            }
-          ]
-          },
-          {
-            "title": "移动端 POC",
-            "period": "未单独标注",
-            "images": [
               {
-                "src": "/gifs/Mobile_terminal/UMG_1080.mp4",
-                "alt": "移动端 POC 的交互界面与角色特效整合效果"
+                "src": "/gifs/ProjectNotes/audi.mp4",
+                "alt": "Windows 端汽车配置器的机位切换与展示效果"
+              },
+              {
+                "src": "/gifs/autoxyz_37446/gif2.mp4",
+                "alt": "Audi RS Q8 汽车配置器特效展示1"
+              },
+              {
+                "src": "/gifs/autoxyz_37446/gif3.mp4",
+                "alt": "Audi RS Q8 汽车配置器特效展示2"
+              },
+              {
+                "src": "/gifs/autoxyz_37446/gif4.mp4",
+                "alt": "Audi RS Q8 汽车配置器特效展示3"
               }
             ]
           },
           {
+            "title": "移动端 POC",
+            "period": "未单独标注",
+            "images": {
+              "src": "/gifs/Mobile_terminal/UMG_1080.mp4",
+              "alt": "移动端 POC 的交互界面与角色特效整合效果"
+            }
+          },
+          {
             "title": "BenZ 汽车实时展示",
             "period": "未单独标注",
-            "images": [
-              {
-                "src": "/images/projects/BenZ/BenZWeb.png",
-                "alt": "BenZ Web 汽车实时展示"
-              }
-            ],
+            "images": {
+              "src": "/images/projects/BenZ/BenZWeb.png",
+              "alt": "BenZ Web 汽车实时展示"
+            },
             "tech": [
               "Unreal Engine 4",
               "HTML5",
@@ -298,12 +287,10 @@
             "title": "Hummer EV汽车动效",
             "period": "2024-05-31",
             "description": "使用UE5渲染的Hummer EV汽车动效设计作品",
-            "images": [
-              {
-                "src": "/images/projects/hummer-ev-animations/1.png",
-                "alt": "Hummer EV汽车动效设计作品"
-              }
-            ],
+            "images": {
+              "src": "/images/projects/hummer-ev-animations/1.png",
+              "alt": "Hummer EV汽车动效设计作品"
+            },
             "links": [
               {
                 "label": "查看作品",
@@ -315,12 +302,10 @@
             "title": "迈凯伦汽车渲染",
             "period": "2024-03-30",
             "description": "迈凯伦汽车渲染设计作品",
-            "images": [
-              {
-                "src": "/images/projects/mclaren-rendering/1.png",
-                "alt": "迈凯伦汽车渲染设计作品"
-              }
-            ],
+            "images": {
+              "src": "/images/projects/mclaren-rendering/1.png",
+              "alt": "迈凯伦汽车渲染设计作品"
+            },
             "links": [
               {
                 "label": "查看作品",
@@ -474,12 +459,10 @@
               "实现自动驾驶场景下的特效与动效。",
               "设计流畅的用户体验界面过渡效果。"
             ],
-            "images": [
-              {
-                "src": "/images/projects/lamborghini/1.jpg",
-                "alt": "兰博基尼自动驾驶用户体验设计图"
-              }
-            ],
+            "images": {
+              "src": "/images/projects/lamborghini/1.jpg",
+              "alt": "兰博基尼自动驾驶用户体验设计图"
+            },
             "links": [
               {
                 "label": "兰博基尼项目",
@@ -669,9 +652,9 @@
             "alt": "局域网 FPS 原型的实机对战画面"
           }
         ]
-    }
-  ]
-},
+      }
+    ]
+  },
   "skillsContent": {
     "sectionTitle": "技术能力",
     "sectionSubtitle": "Technical Art Capabilities",

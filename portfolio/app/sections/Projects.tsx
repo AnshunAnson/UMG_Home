@@ -59,12 +59,12 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
         className="relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all cursor-pointer group"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className={firstImage?.preserveAspectRatio ? "relative overflow-hidden flex items-center justify-center max-h-[300px]" : "relative aspect-[21/9] overflow-hidden"}>
+        <div className="relative aspect-[21/9] overflow-hidden bg-black flex items-center justify-center">
           {firstImage ? (
             <MediaAsset
               src={firstImage.src}
               alt={firstImage.alt || project.title}
-              className={firstImage?.preserveAspectRatio ? "max-w-full max-h-[300px] h-auto object-contain transition-transform duration-700 group-hover:scale-105" : "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"}
+              className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-700 group-hover:scale-105"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-white/10 to-white/5">
@@ -185,11 +185,11 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: any, j: number) => (
                             <div key={j}>
-                              <div className={img.preserveAspectRatio ? "relative rounded-xl overflow-hidden bg-white/5 flex items-center justify-center max-h-[300px]" : "relative aspect-video rounded-xl overflow-hidden bg-white/5"}>
+                              <div className="relative aspect-video rounded-xl overflow-hidden bg-black flex items-center justify-center">
                                 <MediaAsset
                                   src={img.src}
                                   alt={img.alt || `${sub.title} ${j + 1}`}
-                                  className={img.preserveAspectRatio ? "max-w-full max-h-[300px] h-auto object-contain" : undefined}
+                                  className="max-w-full max-h-full w-auto h-auto object-contain"
                                 />
                               </div>
                               {img.alt && (
