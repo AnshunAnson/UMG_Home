@@ -226,3 +226,115 @@ fetch('/content.json');  // WRONG — won't work on GitHub Pages
 | **Edit→Home content not syncing** | Key mapping: short key → long key on save | [edit/page.tsx](app/edit/page.tsx) |
 | **DynamicForm crash on undefined data** | `safeData = data \|\| {}` defensive guard | [DynamicForm.tsx](app/edit/components/DynamicForm.tsx) |
 | **Workflow file not triggering** | Must be at repo ROOT `.github/workflows/`, NOT inside `portfolio/` | Repo root |
+| **SSG content not updating after edit** | SSG compiles from `config/content.ts`, NOT runtime `content.json`. Both must be synced | [config/content.ts](app/config/content.ts), [public/content.json](public/content.json) |
+| **Large media files (PNG>2MB, GIF>5MB)** | GitHub Pages has transfer limits. Compress PNG→JPG (ffmpeg `-q:v 2`), GIF→MP4 (`-crf 28`). Update both config files | See Debug Workflow below |
+| **Batch path rename causes 404s** | After renaming extensions, verify every referenced file exists on disk before committing. Use `Get-ChildItem -Recurse` audit | See Debug Workflow below |
+
+## Debug Workflow
+
+### Toolchain for Media Operations
+
+| Tool | Path | Usage |
+|------|------|-------|
+| **ffmpeg** | `C:\Program Files\UI2V\resources\app.asar.unpacked\node_modules\ffmpeg-static\ffmpeg.exe` | PNG→JPG compression, GIF→MP4 conversion |
+| **gifski** | `C:\Users\Administrator\Desktop\gifski-main-fixed-source\target\release\gifski.exe` | High-quality GIF encoding (backup) |
+| **Git** | `C:\Program Files\Git\cmd\git.exe` | Full path required in PowerShell |
+
+### Chrome DevTools MCP Debugging Steps
+
+1. **Navigate to target page**
+   ```
+   mcp_Chrome_DevTools_MCP_navigate_page → type: "url", url: "http://localhost:3000/" or live URL
+   ```
+
+2. **Take visual screenshot**
+   ```
+   mcp_Chrome_DevTools_MCP_take_screenshot
+   ```
+
+3. **Check network requests for 404s**
+   ```
+   mcp_Chrome_DevTools_MCP_list_network_requests → resourceTypes: ["image"]
+   Look for status 404 entries — these are broken assets
+   ```
+
+4. **Inspect failed request details**
+   ```
+   mcp_Chrome_DevTools_MCP_get_network_request → reqid: <failed_reqid>
+   Check response body for "Site not found" (GitHub Pages 404)
+   ```
+
+5. **Check console errors**
+   ```
+   mcp_Chrome_DevTools_MCP_list_console_messages → types: ["error", "warn"]
+   ```
+
+6. **Verify image loading via JS**
+   ```
+   mcp_Chrome_DevTools_MCP_evaluate_script → function:
+     document.querySelectorAll('img').map(img => ({
+       src: img.src,
+       naturalWidth: img.naturalWidth,    // 0 = failed
+       complete: img.complete
+     }))
+   ```
+
+### Media Compression Commands
+
+**PNG → JPG (files > 2MB):**
+```powershell
+$ffmpeg = "C:\Program Files\UI2V\resources\app.asar.unpacked\node_modules\ffmpeg-static\ffmpeg.exe"
+& $ffmpeg -y -i input.png -vf "scale=1920:-2" -q:v 2 output.jpg
+# Remove original, keep .jpg
+Remove-Item input.png -Force
+```
+
+**GIF → MP4 (files > 5MB):**
+```powershell
+& $ffmpeg -y -i input.gif -movflags +faststart -pix_fmt yuv420p `
+  -vf "scale='if(gt(iw,1920),1920,-2)':'if(gt(ih,1080),1080,-2)'" `
+  -c:v libx264 -crf 28 -preset medium output.mp4
+```
+
+**Batch audit all image sizes:**
+```powershell
+Get-ChildItem public -Recurse -File | Where-Object { $_.Extension -match '\.(png|gif|jpg|mp4)$' } |
+  Sort-Object Length -Descending |
+  Select-Object @{N='SizeMB';E={[math]::Round($_.Length/1MB,2)}}, FullName
+```
+
+### Post-Compression Verification Checklist
+
+- [ ] All referenced files exist on disk: `Get-ChildItem public -Recurse | Select-String <path>`
+- [ ] `config/content.ts` paths match actual file extensions
+- [ ] `public/content.json` paths match actual file extensions (sync from config)
+- [ ] No stale references to deleted files (e.g., old `1.png`~`6.png`)
+- [ ] Browser MCP confirms all images load (naturalWidth > 0)
+- [ ] Network panel shows no 404s for image requests
+- [ ] Git commit includes both config changes AND binary asset files
+
+### Common Pitfall: SSG vs Runtime Data
+
+This project uses **SSG (Static Site Generation)**:
+- **Build time**: Next.js reads `config/content.ts`, bakes HTML at compile
+- **Runtime**: Browser loads static HTML + assets, NO data fetching
+
+Therefore:
+- Editing `public/content.json` alone does **NOT** change the built site
+- Must update `config/content.ts` AND rebuild/redeploy
+- The `/edit` page writes to `content.json` for the editor's own use, but the main site reads from compiled config
+
+### Git Restore for Accidentally Deleted Assets
+
+If batch operations delete files that weren't properly replaced:
+
+```powershell
+# Find which commit last had the file
+& git log --oneline --all --diff-filter=A -- "<file_path>"
+
+# Restore from a specific commit
+& git show <commit-sha>:<file_path> | Set-Content -Path <local_path> -Encoding Byte
+
+# Or checkout from specific commit
+& git checkout <commit-sha> -- "<file_path>"
+```
