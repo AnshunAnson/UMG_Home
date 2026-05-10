@@ -14,6 +14,35 @@ function resolveAssetPath(src: string) {
   return `${basePath}${src}`;
 }
 
+function isVideo(src: string) {
+  return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
+}
+
+function MediaAsset({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const resolvedSrc = resolveAssetPath(src);
+
+  if (isVideo(src)) {
+    return (
+      <video
+        src={resolvedSrc}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className={className || "w-full h-full object-cover"}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={resolvedSrc}
+      alt={alt}
+      className={className || "w-full h-full object-cover"}
+    />
+  );
+}
+
 function ProjectItem({ project, index }: { project: any; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const firstImage = project.images?.[0] || project.subProjects?.[0]?.images?.[0];
@@ -32,8 +61,8 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
       >
         <div className="relative aspect-[16/9] overflow-hidden">
           {firstImage ? (
-            <img
-              src={resolveAssetPath(firstImage.src)}
+            <MediaAsset
+              src={firstImage.src}
               alt={firstImage.alt || project.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -115,10 +144,9 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                   {project.images.length === 1 ? (
                     <div>
                       <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
-                        <img
-                          src={resolveAssetPath(project.images[0].src)}
+                        <MediaAsset
+                          src={project.images[0].src}
                           alt={project.images[0].alt || project.title}
-                          className="w-full h-full object-cover"
                         />
                       </div>
                       {project.images[0].alt && (
@@ -130,10 +158,9 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                       {project.images.map((img: any, i: number) => (
                         <div key={i}>
                           <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
-                            <img
-                              src={resolveAssetPath(img.src)}
+                            <MediaAsset
+                              src={img.src}
                               alt={img.alt || `${project.title} ${i + 1}`}
-                              className="w-full h-full object-cover"
                             />
                           </div>
                           {img.alt && (
@@ -157,12 +184,16 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                       {sub.images && sub.images.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: any, j: number) => (
-                            <div key={j} className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
-                              <img
-                                src={resolveAssetPath(img.src)}
-                                alt={img.alt || `${sub.title} ${j + 1}`}
-                                className="w-full h-full object-cover"
-                              />
+                            <div key={j}>
+                              <div className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
+                                <MediaAsset
+                                  src={img.src}
+                                  alt={img.alt || `${sub.title} ${j + 1}`}
+                                />
+                              </div>
+                              {img.alt && (
+                                <p className="text-xs text-white/40 mt-1.5 leading-relaxed">{img.alt}</p>
+                              )}
                             </div>
                           ))}
                         </div>
