@@ -636,6 +636,27 @@ export const projectsContent: ProjectsContent = {
       ]
     },
     {
+      "id": 7,
+      "icon": "User",
+      "title": "MetaHuman数字人",
+      "period": "未单独标注",
+      "category": "Digital Human / MetaHuman / Real-time Character",
+      "tech": [
+        "UE5",
+        "MetaHuman",
+        "Control Rig",
+        "Sequencer",
+        "Real-time Animation"
+      ],
+      "color": "#c084fc",
+      "images": [
+        {
+          "src": "/gifs/Zznissan/metahuman-dog-pet.gif",
+          "alt": "日产车机数字宠物"
+        }
+      ]
+    },
+    {
       "id": 8,
       "icon": "Gamepad2",
       "title": "局域网 FPS 对战原型",
