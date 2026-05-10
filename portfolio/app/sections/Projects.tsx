@@ -59,7 +59,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
         className="relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all cursor-pointer group"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className={firstImage?.preserveAspectRatio ? "relative overflow-hidden" : "relative aspect-[21/9] overflow-hidden"}>
+        <div className={firstImage?.preserveAspectRatio ? "relative overflow-hidden flex items-center justify-center" : "relative aspect-[21/9] overflow-hidden"}>
           {firstImage ? (
             <MediaAsset
               src={firstImage.src}
@@ -185,7 +185,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: any, j: number) => (
                             <div key={j}>
-                              <div className={img.preserveAspectRatio ? "relative rounded-xl overflow-hidden bg-white/5" : "relative aspect-video rounded-xl overflow-hidden bg-white/5"}>
+                              <div className={img.preserveAspectRatio ? "relative rounded-xl overflow-hidden bg-white/5 flex items-center justify-center" : "relative aspect-video rounded-xl overflow-hidden bg-white/5"}>
                                 <MediaAsset
                                   src={img.src}
                                   alt={img.alt || `${sub.title} ${j + 1}`}
