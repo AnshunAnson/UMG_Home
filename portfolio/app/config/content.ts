@@ -657,7 +657,7 @@ export const projectsContent: ProjectsContent = {
       "id": 9,
       "icon": "Radio",
       "title": "轻量联调接口MVP",
-      "period": "2025.05.11",
+      "period": "2026.05.11",
       "category": "Integration Tool / Stage Control / Real-time Communication",
       "tech": [
         "Next.js",
