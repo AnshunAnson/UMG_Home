@@ -142,6 +142,12 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
                 src: { type: 'string', label: '图片路径', placeholder: 'gifs/project/animation.gif' },
                 alt: { type: 'string', label: '图片描述', placeholder: '动画效果展示' }
               }
+            },
+            embedUrl: {
+              type: 'string',
+              label: '嵌入链接',
+              description: '填写外部页面地址，将以 iframe 形式内嵌展示（如在线 Demo、控制台等）',
+              placeholder: 'https://example.com/demo'
             }
           }
         },

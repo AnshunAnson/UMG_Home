@@ -172,6 +172,27 @@ function ProjectItem({ project }: { project: Project }) {
                       {sub.period && (
                         <p className="text-sm text-white/40 mb-4">{sub.period}</p>
                       )}
+                      {sub.description && (
+                        <p className="text-white/60 text-sm leading-relaxed mb-4">{sub.description}</p>
+                      )}
+                      {sub.details && sub.details.length > 0 && (
+                        <ul className="list-disc list-inside space-y-1 mb-4">
+                          {sub.details.map((detail: string, k: number) => (
+                            <li key={k} className="text-sm text-white/50">{detail}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {sub.embedUrl && (
+                        <div className="mb-4 rounded-xl overflow-hidden border border-white/10 bg-black">
+                          <iframe
+                            src={sub.embedUrl}
+                            title={sub.title}
+                            className="w-full aspect-[16/9] border-0"
+                            loading="lazy"
+                            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                          />
+                        </div>
+                      )}
                       {sub.images && sub.images.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: ProjectImage, j: number) => (

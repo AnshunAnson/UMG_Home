@@ -31,6 +31,7 @@ export interface ProjectSubProject {
   tech?: string[];
   links?: ProjectLink[];
   images?: ProjectImage[];
+  embedUrl?: string;
 }
 
 export interface Project {
