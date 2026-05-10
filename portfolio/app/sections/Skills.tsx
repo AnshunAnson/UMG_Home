@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useContent } from '../ContentProvider';
+import SectionHeader from '../components/SectionHeader';
 
 function SkillTag({ skill, delay }: { skill: string; delay: number }) {
   return (
@@ -19,27 +20,14 @@ function SkillTag({ skill, delay }: { skill: string; delay: number }) {
 
 export default function Skills() {
   const { skills } = useContent();
-  const content = skills;
 
   return (
     <section id="skills" className="py-32 px-6 md:px-12 lg:px-20">
       <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <span className="text-[#00d4aa] font-mono text-sm tracking-widest">
-            CAPABILITIES
-          </span>
-          <h2 className="text-5xl md:text-7xl font-display font-bold mt-4">
-            技术能力
-          </h2>
-        </motion.div>
+        <SectionHeader label="CAPABILITIES" title="技术能力" />
 
         <div className="space-y-12">
-          {content.categories.map((category, categoryIndex) => (
+          {skills.categories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
@@ -71,7 +59,7 @@ export default function Skills() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-12 text-white/40 text-sm"
         >
-          {content.techStack.join(' · ')}
+          {skills.techStack.join(' · ')}
         </motion.div>
       </div>
     </section>

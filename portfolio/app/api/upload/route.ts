@@ -25,14 +25,10 @@ export async function POST(request: NextRequest) {
     await mkdir(dirPath, { recursive: true });
     const buffer = Buffer.from(await file.arrayBuffer());
     await writeFile(filePath, buffer);
-    const src = `/${dirPart}${safeName}`;
+    const src = `${dirPart}${safeName}`;
 
     return NextResponse.json({ success: true, src });
   } catch (error) {
-    console.error('[upload API Error]:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : String(error) },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: 'Upload failed' }, { status: 500 });
   }
 }

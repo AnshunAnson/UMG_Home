@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, Folder, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 import { useContent } from '../ContentProvider';
+import type { Project, ProjectImage, ProjectSubProject, ProjectLink } from '../types/content';
+import SectionHeader from '../components/SectionHeader';
 
 function isVideo(src: string) {
   return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
@@ -32,9 +34,9 @@ function MediaAsset({ src, alt, className }: { src: string; alt: string; classNa
   );
 }
 
-function ProjectItem({ project, index }: { project: any; index: number }) {
+function ProjectItem({ project }: { project: Project }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const firstImage = project.images?.[0] || project.subProjects?.[0]?.images?.[0];
+  const firstImage: ProjectImage | undefined = project.images?.[0] || project.subProjects?.[0]?.images?.[0];
 
   return (
     <motion.div
@@ -144,7 +146,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {project.images.map((img: any, i: number) => (
+                      {project.images.map((img: ProjectImage, i: number) => (
                         <div key={i}>
                           <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
                             <MediaAsset
@@ -164,7 +166,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
               
               {project.subProjects && project.subProjects.length > 0 && (
                 <div className="space-y-4">
-                  {project.subProjects.map((sub: any, i: number) => (
+                  {project.subProjects.map((sub: ProjectSubProject, i: number) => (
                     <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
                       <h4 className="font-medium text-white text-xl mb-2">{sub.title}</h4>
                       {sub.period && (
@@ -172,7 +174,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                       )}
                       {sub.images && sub.images.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
-                          {sub.images.map((img: any, j: number) => (
+                          {sub.images.map((img: ProjectImage, j: number) => (
                             <div key={j}>
                               <div className="relative aspect-video rounded-xl overflow-hidden bg-black flex items-center justify-center">
                                 <MediaAsset
@@ -190,7 +192,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                       )}
                       {sub.links && sub.links.length > 0 && (
                         <div className="flex flex-wrap gap-2">
-                          {sub.links.map((link: any, j: number) => (
+                          {sub.links.map((link: ProjectLink, j: number) => (
                             <a
                               key={j}
                               href={link.href}
@@ -212,7 +214,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
               
               {project.links && project.links.length > 0 && (
                 <div className="flex flex-wrap gap-3">
-                  {project.links.map((link: any, i: number) => (
+                  {project.links.map((link: ProjectLink, i: number) => (
                     <a
                       key={i}
                       href={link.href}
@@ -247,32 +249,18 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
 }
 
 export default function Projects() {
-  const { projects: contentProjects } = useContent();
-  const projectData = contentProjects;
+  const { projects } = useContent();
 
   return (
     <section id="projects" className="py-24 px-6 md:px-12 lg:px-20">
       <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <span className="text-[#00d4aa] font-mono text-sm tracking-widest">
-            SELECTED WORK
-          </span>
-          <h2 className="text-6xl md:text-8xl font-bold mt-4">
-            项目作品
-          </h2>
-        </motion.div>
+        <SectionHeader label="SELECTED WORK" title="项目作品" />
 
         <div>
-          {projectData.projects.map((project: any, index: number) => (
+          {projects.projects.map((project: Project, index: number) => (
             <ProjectItem 
               key={project.id} 
-              project={project} 
-              index={index}
+              project={project}
             />
           ))}
         </div>

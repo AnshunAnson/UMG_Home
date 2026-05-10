@@ -196,7 +196,7 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
               label: '子项目图片 / GIF',
               itemType: 'object',
               itemSchema: {
-                src: { type: 'string', label: '图片路径', placeholder: '/gifs/project/animation.gif' },
+                src: { type: 'string', label: '图片路径', placeholder: 'gifs/project/animation.gif' },
                 alt: { type: 'string', label: '图片描述', placeholder: '动画效果展示' }
               }
             }
@@ -208,7 +208,7 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
           description: '首页会以紧凑预览带展示项目的全部图片或 GIF',
           itemType: 'object',
           itemSchema: {
-            src: { type: 'string', label: '图片路径', placeholder: '/gifs/project/animation.gif', description: '站点 public 目录下的图片或 GIF 路径' },
+            src: { type: 'string', label: '图片路径', placeholder: 'gifs/project/animation.gif', description: '站点 public 目录下的图片或 GIF 路径' },
             alt: { type: 'string', label: '图片描述', placeholder: '动画效果展示', description: '图片的替代文字描述' }
           }
         }

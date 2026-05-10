@@ -29,7 +29,6 @@ export async function POST(request: NextRequest) {
       size: new TextEncoder().encode(jsonStr).length,
     });
   } catch (error) {
-    console.error('[save-content API Error]:', error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : String(error) },
       { status: 500 }

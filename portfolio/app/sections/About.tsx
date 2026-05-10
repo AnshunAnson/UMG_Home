@@ -2,27 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { useContent } from '../ContentProvider';
+import SectionHeader from '../components/SectionHeader';
 
 export default function About() {
   const { about } = useContent();
-  const content = about;
 
   return (
     <section id="about" className="py-32 px-6 md:px-12 lg:px-20">
       <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <span className="text-[#00d4aa] font-mono text-sm tracking-widest">
-            ABOUT
-          </span>
-          <h2 className="text-5xl md:text-7xl font-display font-bold mt-4">
-            关于我
-          </h2>
-        </motion.div>
+        <SectionHeader label="ABOUT" title="关于我" />
 
         <div className="grid lg:grid-cols-2 gap-12">
           <motion.div
@@ -33,7 +21,7 @@ export default function About() {
             className="space-y-6"
           >
             <p className="text-xl md:text-2xl text-white/80 leading-relaxed">
-              {content.bio[0]}
+              {about.bio[0]}
             </p>
           </motion.div>
 
@@ -46,15 +34,15 @@ export default function About() {
           >
             <div className="flex justify-between items-center border-b border-white/10 pb-4">
               <span className="text-white/50 text-sm uppercase tracking-wide">Role</span>
-              <span className="text-white">{content.jobTitle}</span>
+              <span className="text-white">{about.jobTitle}</span>
             </div>
             <div className="flex justify-between items-center border-b border-white/10 pb-4">
               <span className="text-white/50 text-sm uppercase tracking-wide">Experience</span>
-              <span className="text-white">{content.experience} 年</span>
+              <span className="text-white">{about.experience} 年</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-white/50 text-sm uppercase tracking-wide">Age</span>
-              <span className="text-white">{content.age}</span>
+              <span className="text-white">{about.age}</span>
             </div>
           </motion.div>
         </div>
