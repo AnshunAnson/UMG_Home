@@ -327,40 +327,16 @@
             "description": "设计元素主要从宇宙、星空进行提炼，利用圆形符合进行重构，太空星空作为背景进行体现视觉画面的科技感、未来感与天地融合广阔的画面感。通过3D设计手法展示新型现代设计审美趋势。界面风格设计关键词：科技 / 未来 / 宇宙 / 3D。仪表HMI设计通过XR技术完美实现虚实结合，让用户更好地理解产品使用意图。界面的车辆视角根据档位不同状态进行切换不仅仅增加画面的生动有趣并且提供产品的易用性。中控HMI设计通过场景化设计思维，信息根据用户在不同场景下需求进行合理展示，有效避免画面的复杂。本中控屏首页功能有效直观展示核心功能：多媒体、车辆设置、天气、电量、导航、等，用户还可以根据个人习惯进行自定义产品功能从而满足千人千面的个性化需求。通过FUI、游戏、3D等多种设计手法综合应用，从而体现视觉科技感、未来感与空间感。",
             "images": [
               {
-                "src": "/images/projects/hummer-hmi-design/1.png",
-                "alt": "HUMMER EV HMI创新设计封面"
-              },
-              {
-                "src": "/images/projects/hummer-hmi-design/2.png",
-                "alt": "HUMMER EV HMI创新设计展示1"
-              },
-              {
-                "src": "/images/projects/hummer-hmi-design/3.png",
-                "alt": "HUMMER EV HMI创新设计展示2"
-              },
-              {
-                "src": "/images/projects/hummer-hmi-design/4.png",
-                "alt": "HUMMER EV HMI创新设计展示3"
-              },
-              {
-                "src": "/images/projects/hummer-hmi-design/5.png",
-                "alt": "HUMMER EV HMI创新设计展示4"
-              },
-              {
-                "src": "/images/projects/hummer-hmi-design/6.png",
-                "alt": "HUMMER EV HMI创新设计展示5"
-              },
-              {
-                "src": "/images/projects/hummer-hmi-design/ADAS.gif",
-                "alt": "HUMMER EV HMI ADAS动效展示"
-              },
-              {
                 "src": "/images/projects/hummer-hmi-design/center-console-hmi.png",
                 "alt": "HUMMER EV HMI 中控界面设计"
               },
               {
                 "src": "/images/projects/hummer-hmi-design/仪表.png",
                 "alt": "HUMMER EV HMI 仪表盘设计"
+              },
+              {
+                "src": "/images/projects/hummer-hmi-design/ADAS.gif",
+                "alt": "HUMMER EV HMI ADAS动效展示"
               },
               {
                 "src": "/images/projects/hummer-hmi-design/渲染动画.gif",
