@@ -163,7 +163,7 @@ export const projectsContent: ProjectsContent = {
               "alt": "智能座舱流体入场动效"
             },
             {
-              "src": "/gifs/DesaysvFX/SEQ_Loading01.mp4",
+              "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
               "alt": "智能座舱加载序列动画"
             },
             {
