@@ -8,8 +8,8 @@
 |----------|-------|
 | **Name** | UMG Portfolio (UMG_Home) |
 | **Type** | Next.js 16 Static Site (SSG) + Content Editor |
-| **Live URL** | `https://anshunanson.github.io/UMG_Home/` |
-| **Git Remote** | `https://github.com/AnshunAnson/UMG_Home.git` |
+| **Live URL** | `https://anshunanson.github.io/Personal_Technical_Homepage/` |
+| **Git Remote** | `https://github.com/AnshunAnson/Personal_Technical_Homepage.git` |
 | **Branch** | `master` |
 | **Repo Root** | `e:\AnShunConfig\html\` (git root), project in `portfolio/` subfolder |
 | **Purpose** | Personal portfolio for a UMG/UI developer with no-code content editing |
@@ -181,7 +181,7 @@ File: [next.config.ts](next.config.ts)
 {
   output: 'export',
   distDir: process.env.NEXT_DIST_DIR || 'dist',
-  basePath: process.env.NODE_ENV === 'production' ? '/UMG_Home' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/Personal_Technical_Homepage' : '',
   images: { unoptimized: true },
 }
 ```
@@ -227,7 +227,7 @@ const value = safeData[key];
 import { heroContent } from '../config/content';  // WRONG in sections
 const title = data.hero.title;  // CRASH if data is undefined
 fetch('/content.json');  // WRONG — won't work on GitHub Pages
-window.location.pathname.startsWith('/UMG_Home')  // WRONG — gets tree-shaken away in SSG
+window.location.pathname.startsWith('/Personal_Technical_Homepage')  // WRONG — gets tree-shaken away in SSG
 resolveAssetPath(src)  // WRONG — any runtime path function using browser APIs will be eliminated
 ```
 
@@ -252,7 +252,7 @@ Extraction criteria: identical markup appears ≥2 times with only data props di
 
 **Root Cause**: Next.js SSG pre-renders HTML at build time. Any code path that depends solely on browser APIs (`window`, `document`, `location`) and is not triggered during server-side rendering gets **tree-shaken away** as dead code. The function existed in source but never appeared in any chunk.
 
-**Solution**: Use **relative paths** (`images/photo.png` instead of `/images/photo.png`). Browsers resolve relative URLs against the current page URL, which already includes the basePath prefix (`/UMG_Home/`). No runtime detection needed.
+**Solution**: Use **relative paths** (`images/photo.png` instead of `/images/photo.png`). Browsers resolve relative URLs against the current page URL, which already includes the basePath prefix (`/Personal_Technical_Homepage/`). No runtime detection needed.
 
 **Rule**: Never write runtime path-resolution functions for SSG assets. Always use relative paths.
 
@@ -292,7 +292,7 @@ $sectionUsage = Select-String -Path "app/sections/*.tsx" -Pattern "\.\w+" | ForE
 
 | Approach | Dev Server | GitHub Pages Production | Verdict |
 |----------|-----------|------------------------|---------|
-| Absolute `/images/x.png` | ✅ Works | ❌ 404 (missing `/UMG_Home` prefix) | Broken |
+| Absolute `/images/x.png` | ✅ Works | ❌ 404 (missing `/Personal_Technical_Homepage` prefix) | Broken |
 | Runtime `basePath` detection | ✅ Works | ❌ Function tree-shaken away | Broken |
 | Relative `images/x.png` | ✅ Works | ✅ Browser resolves from page URL | **Correct** |
 | `next/image` component | ✅ Works | ❌ Requires image optimization API | Broken on GH Pages |
@@ -317,7 +317,7 @@ Always fix P1 before P2 before P3. P1 issues silently corrupt user experience; P
 |-------|----------|-----------|
 | **SSG tree-shaking removes runtime path code** | Use relative paths for all assets. Never rely on `window.location` detection | See Lesson 1 above |
 | **Schema drift after Section refactor** | Maintain schema-sync invariant: types ↔ schema ↔ config ↔ rendering must stay in sync | See Lesson 2 above |
-| **Static resources 404 on GitHub Pages** | `basePath: '/UMG_Home'` in next.config.ts + relative asset paths | [next.config.ts](next.config.ts) |
+| **Static resources 404 on GitHub Pages** | `basePath: '/Personal_Technical_Homepage'` in next.config.ts + relative asset paths | [next.config.ts](next.config.ts) |
 | **Skills hex positions overflow** | Category grid renders all items; no fixed position overflow risk | [Skills.tsx](app/sections/Skills.tsx) |
 | **Edit→Home content not syncing** | Key mapping: short key → long key on save | [edit/page.tsx](app/edit/page.tsx) |
 | **DynamicForm crash on undefined data** | `safeData = data \|\| {}` defensive guard | [DynamicForm.tsx](app/edit/components/DynamicForm.tsx) |
