@@ -185,10 +185,11 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                           {sub.images.map((img: any, j: number) => (
                             <div key={j}>
-                              <div className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
+                              <div className={img.preserveAspectRatio ? "relative rounded-xl overflow-hidden bg-white/5" : "relative aspect-video rounded-xl overflow-hidden bg-white/5"}>
                                 <MediaAsset
                                   src={img.src}
                                   alt={img.alt || `${sub.title} ${j + 1}`}
+                                  className={img.preserveAspectRatio ? "w-full h-auto object-contain" : undefined}
                                 />
                               </div>
                               {img.alt && (

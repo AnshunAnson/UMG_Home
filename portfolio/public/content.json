@@ -107,9 +107,10 @@
             "period": "2023.10 - 2023.11",
             "images": [
               {
-                "src": "/gifs/Niagara_Materials/byd-entry-animation.gif",
-                "alt": "比亚迪概念展示项目的入场特效"
-              }
+              "src": "/gifs/Niagara_Materials/byd-entry-animation.gif",
+              "alt": "比亚迪概念展示项目的入场特效",
+              "preserveAspectRatio": true
+            }
             ]
           },
           {

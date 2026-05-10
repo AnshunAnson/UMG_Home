@@ -32,6 +32,7 @@ export interface AboutContent {
 export interface ProjectImage {
   src: string;
   alt: string;
+  preserveAspectRatio?: boolean;
 }
 
 export interface ProjectLink {

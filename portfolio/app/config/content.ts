@@ -121,7 +121,8 @@ export const projectsContent: ProjectsContent = {
           "images": [
             {
               "src": "/gifs/Niagara_Materials/byd-entry-animation.gif",
-              "alt": "比亚迪概念展示项目的入场特效"
+              "alt": "比亚迪概念展示项目的入场特效",
+              "preserveAspectRatio": true
             }
           ]
         },
