@@ -65,26 +65,40 @@
           "Automation"
         ],
         "color": "#7ce7d0",
-        "images": [
+        "subProjects": [
           {
-            "src": "images/tools/maya-material-naming-tool.png",
-            "alt": "Maya 材质与模型命名工具界面截图 - 实现一键自动化命名，规范材质球和模型命名规则，确保资产流程标准化"
+            "title": "Maya 工具",
+            "period": "2023.12 - 至今",
+            "description": "Maya 端材质与模型命名规范化工具，实现一键自动化命名，确保资产流程标准化。",
+            "images": [
+              {
+                "src": "images/tools/maya-material-naming-tool.png",
+                "alt": "Maya 材质与模型命名工具界面截图 - 实现一键自动化命名，规范材质球和模型命名规则，确保资产流程标准化"
+              }
+            ]
           },
           {
-            "src": "images/tools/tool-01-material-count.png",
-            "alt": "资产处理_材质数量繁多 - 汽车项目导入后面临上百个材质球，材质管理和替换效率低下的痛点场景展示"
-          },
-          {
-            "src": "images/tools/tool-02-replace-all-materials.png",
-            "alt": "资产处理_一键替换所有材质 - 通过编辑器工具实现按材质名称匹配规则，快速批量替换整个场景中的对应材质"
-          },
-          {
-            "src": "images/tools/tool-03-nested-actor-solution.png",
-            "alt": "资产处理_actor中复杂层级嵌套解决方案 - 处理复杂蓝图架构中的多层嵌套问题，确保资产结构完整性"
-          },
-          {
-            "src": "images/tools/tool-04-preserve-nesting-to-scene.png",
-            "alt": "资产处理_保留蓝图中层级嵌套关系的同时还原到场景 - 在保持原逻辑关系的前提下，将嵌套资产展开到场景，提升编辑效率"
+            "title": "资产处理",
+            "period": "2023.12 - 至今",
+            "description": "UE5 编辑器内资产处理工具集，解决汽车项目导入后的材质管理、批量替换、复杂层级嵌套等痛点问题。",
+            "images": [
+              {
+                "src": "images/tools/tool-01-material-count.png",
+                "alt": "资产处理_材质数量繁多 - 汽车项目导入后面临上百个材质球，材质管理和替换效率低下的痛点场景展示"
+              },
+              {
+                "src": "images/tools/tool-02-replace-all-materials.png",
+                "alt": "资产处理_一键替换所有材质 - 通过编辑器工具实现按材质名称匹配规则，快速批量替换整个场景中的对应材质"
+              },
+              {
+                "src": "images/tools/tool-03-nested-actor-solution.png",
+                "alt": "资产处理_actor中复杂层级嵌套解决方案 - 处理复杂蓝图架构中的多层嵌套问题，确保资产结构完整性"
+              },
+              {
+                "src": "images/tools/tool-04-preserve-nesting-to-scene.png",
+                "alt": "资产处理_保留蓝图中层级嵌套关系的同时还原到场景 - 在保持原逻辑关系的前提下，将嵌套资产展开到场景，提升编辑效率"
+              }
+            ]
           }
         ]
       },
