@@ -1,6 +1,7 @@
 'use client';
 
 import { FieldSchema } from '../../schema';
+import FieldWrapper from './FieldWrapper';
 
 interface NumberInputProps {
   schema: FieldSchema;
@@ -10,14 +11,7 @@ interface NumberInputProps {
 
 export default function NumberInput({ schema, value, onChange }: NumberInputProps) {
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-white/80">
-        {schema.label}
-        {schema.required && <span className="text-red-400 ml-1">*</span>}
-      </label>
-      {schema.description && (
-        <p className="text-xs text-white/50">{schema.description}</p>
-      )}
+    <FieldWrapper label={schema.label} required={schema.required} description={schema.description}>
       <input
         type="number"
         value={value ?? ''}
@@ -27,6 +21,6 @@ export default function NumberInput({ schema, value, onChange }: NumberInputProp
                    placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 
                    focus:ring-1 focus:ring-[#00d4aa]/50 transition-colors"
       />
-    </div>
+    </FieldWrapper>
   );
 }

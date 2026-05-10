@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import DynamicForm from '../DynamicForm';
 import { SectionSchema, FieldSchema } from '../../schema';
 

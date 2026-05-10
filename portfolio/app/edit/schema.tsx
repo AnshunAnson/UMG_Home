@@ -7,7 +7,7 @@ import type {
   FooterContent,
 } from '../types/content';
 
-export type FieldType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'text';
+export type FieldType = 'string' | 'number' | 'array' | 'object' | 'text';
 
 export interface FieldSchema {
   type: FieldType;
@@ -15,10 +15,8 @@ export interface FieldSchema {
   description?: string;
   placeholder?: string;
   required?: boolean;
-  // 数组类型特有
   itemType?: 'string' | 'object';
   itemSchema?: Record<string, FieldSchema>;
-  // 对象类型特有
   properties?: Record<string, FieldSchema>;
 }
 
@@ -56,26 +54,6 @@ export const heroSchema: SectionSchema<HeroContent> = {
       label: '副标题',
       description: '主标题下方的描述文字',
       placeholder: '汽车渲染 · UMG重构 · 材质动效'
-    },
-    stats: {
-      type: 'array',
-      label: '统计标签',
-      description: '标签项，如地点、经验',
-      itemType: 'object',
-      itemSchema: {
-        icon: { type: 'string', label: '图标', placeholder: '📍' },
-        label: { type: 'string', label: '文字', placeholder: '深圳' }
-      }
-    },
-    cornerLeft: {
-      type: 'string',
-      label: '左上角文字',
-      placeholder: '2024'
-    },
-    cornerRight: {
-      type: 'string',
-      label: '右上角文字',
-      placeholder: 'PORTFOLIO'
     }
   }
 };
@@ -84,16 +62,6 @@ export const aboutSchema: SectionSchema<AboutContent> = {
   title: '关于 About',
   description: '配置个人介绍内容',
   fields: {
-    sectionTitle: {
-      type: 'string',
-      label: '区域标题',
-      placeholder: '关于我'
-    },
-    sectionSubtitle: {
-      type: 'string',
-      label: '区域副标题',
-      placeholder: 'About Me'
-    },
     bio: {
       type: 'array',
       label: '个人介绍',
@@ -105,11 +73,6 @@ export const aboutSchema: SectionSchema<AboutContent> = {
       label: '年龄',
       placeholder: '23'
     },
-    location: {
-      type: 'string',
-      label: '所在城市',
-      placeholder: '深圳'
-    },
     experience: {
       type: 'number',
       label: '工作年限',
@@ -119,16 +82,6 @@ export const aboutSchema: SectionSchema<AboutContent> = {
       type: 'string',
       label: '职位',
       placeholder: 'UE4开发'
-    },
-    coreSkills: {
-      type: 'array',
-      label: '核心技能',
-      description: '核心技能卡片列表',
-      itemType: 'object',
-      itemSchema: {
-        title: { type: 'string', label: '技能标题', placeholder: 'UMG开发' },
-        description: { type: 'string', label: '技能描述', placeholder: '复杂的UI系统实现' }
-      }
     }
   }
 };
@@ -137,16 +90,6 @@ export const projectsSchema: SectionSchema<ProjectsContent> = {
   title: '项目经历 Projects',
   description: '配置首页项目经历列表与紧凑预览媒体',
   fields: {
-    sectionTitle: {
-      type: 'string',
-      label: '区域标题',
-      placeholder: '项目经历'
-    },
-    sectionSubtitle: {
-      type: 'string',
-      label: '区域副标题',
-      placeholder: 'Project Experience'
-    },
     projects: {
       type: 'array',
       label: '项目列表',
@@ -221,16 +164,6 @@ export const skillsSchema: SectionSchema<SkillsContent> = {
   title: '技能 Skills',
   description: '配置技能展示',
   fields: {
-    sectionTitle: {
-      type: 'string',
-      label: '区域标题',
-      placeholder: '技能专长'
-    },
-    sectionSubtitle: {
-      type: 'string',
-      label: '区域副标题',
-      placeholder: 'Skills'
-    },
     categories: {
       type: 'array',
       label: '技能分类',
@@ -243,8 +176,7 @@ export const skillsSchema: SectionSchema<SkillsContent> = {
           label: '技能列表',
           itemType: 'object',
           itemSchema: {
-            name: { type: 'string', label: '技能名称', placeholder: 'Unreal Engine 4/5' },
-            level: { type: 'number', label: '熟练度 (0-100)', placeholder: '95' }
+            name: { type: 'string', label: '技能名称', placeholder: 'Unreal Engine 4/5' }
           }
         }
       }
@@ -262,16 +194,6 @@ export const contactSchema: SectionSchema<ContactContent> = {
   title: '联系 Contact',
   description: '配置联系方式',
   fields: {
-    sectionTitle: {
-      type: 'string',
-      label: '区域标题',
-      placeholder: '开始合作'
-    },
-    sectionSubtitle: {
-      type: 'string',
-      label: '区域副标题',
-      placeholder: 'Contact'
-    },
     description: {
       type: 'text',
       label: '描述文字',
@@ -286,11 +208,6 @@ export const contactSchema: SectionSchema<ContactContent> = {
       type: 'string',
       label: '电话',
       placeholder: '15073025868'
-    },
-    location: {
-      type: 'string',
-      label: '城市',
-      placeholder: '深圳'
     }
   }
 };

@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { useContent } from '../ContentProvider';
 import SectionHeader from '../components/SectionHeader';
+import ContactCard from '../components/ContactCard';
 import Footer from './Footer';
 
 export default function Contact() {
@@ -26,41 +27,8 @@ export default function Contact() {
           </motion.p>
 
           <div className="space-y-6">
-            <motion.a
-              href={`mailto:${contact.email}`}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="group flex items-center gap-4 p-6 rounded-2xl bg-white/3 border border-white/10 hover:border-[#00d4aa]/30 transition-all"
-            >
-              <Mail className="w-6 h-6 text-[#00d4aa]" />
-              <div className="flex-1">
-                <p className="text-white/50 text-sm uppercase tracking-wide mb-1">Email</p>
-                <p className="text-xl text-white group-hover:text-[#00d4aa] transition-colors">
-                  {contact.email}
-                </p>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-[#00d4aa] transition-colors group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </motion.a>
-
-            <motion.a
-              href={`tel:${contact.phone}`}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="group flex items-center gap-4 p-6 rounded-2xl bg-white/3 border border-white/10 hover:border-[#00d4aa]/30 transition-all"
-            >
-              <Phone className="w-6 h-6 text-[#00d4aa]" />
-              <div className="flex-1">
-                <p className="text-white/50 text-sm uppercase tracking-wide mb-1">Phone</p>
-                <p className="text-xl text-white group-hover:text-[#00d4aa] transition-colors">
-                  {contact.phone}
-                </p>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-[#00d4aa] transition-colors group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </motion.a>
+            <ContactCard icon={Mail} label="Email" value={contact.email} href={`mailto:${contact.email}`} delay={0.2} />
+            <ContactCard icon={Phone} label="Phone" value={contact.phone} href={`tel:${contact.phone}`} delay={0.3} />
           </div>
         </div>
       </div>

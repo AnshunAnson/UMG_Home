@@ -1,6 +1,7 @@
 'use client';
 
 import { FieldSchema } from '../../schema';
+import FieldWrapper from './FieldWrapper';
 
 interface TextAreaProps {
   schema: FieldSchema;
@@ -10,14 +11,7 @@ interface TextAreaProps {
 
 export default function TextArea({ schema, value, onChange }: TextAreaProps) {
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-white/80">
-        {schema.label}
-        {schema.required && <span className="text-red-400 ml-1">*</span>}
-      </label>
-      {schema.description && (
-        <p className="text-xs text-white/50">{schema.description}</p>
-      )}
+    <FieldWrapper label={schema.label} required={schema.required} description={schema.description}>
       <textarea
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
@@ -27,6 +21,6 @@ export default function TextArea({ schema, value, onChange }: TextAreaProps) {
                    placeholder:text-white/30 focus:outline-none focus:border-[#00d4aa]/50 
                    focus:ring-1 focus:ring-[#00d4aa]/50 transition-colors resize-vertical"
       />
-    </div>
+    </FieldWrapper>
   );
 }

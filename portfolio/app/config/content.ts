@@ -12,54 +12,19 @@ export const heroContent: HeroContent = {
   "badge": "Technical Artist / Unreal",
   "name": "安顺",
   "nameHighlightLength": 2,
-  "subtitle": "聚焦实时视觉、材质系统、Niagara 特效、编辑器工具与渲染流程，把表现需求收束成可交付的技术方案。",
-  "stats": [
-    {
-      "icon": "🧩",
-      "label": "10+ 项目"
-    },
-    {
-      "icon": "⚙️",
-      "label": "3 年实时内容实践"
-    }
-  ],
-  "cornerLeft": "2026",
-  "cornerRight": "TECH ART"
+  "subtitle": "聚焦实时视觉、材质系统、Niagara 特效、编辑器工具与渲染流程，把表现需求收束成可交付的技术方案。"
 };
 
 // About区域内容
 export const aboutContent: AboutContent = {
-  "sectionTitle": "关于",
-  "sectionSubtitle": "About",
   "bio": ["技术美术，专注于实时视觉、材质系统和Niagara特效，致力于把创意转化为可交付的技术方案。"],
   "age": 24,
-  "location": "",
   "experience": 3,
-  "jobTitle": "技术美术 (Technical Artist)",
-  "coreSkills": [
-    {
-      "title": "实时视觉与特效",
-      "description": "使用 Niagara、SDF、体积与转场控制，把概念画面落成可实时运行的效果表现。"
-    },
-    {
-      "title": "材质与界面动效",
-      "description": "处理 UI Material、Substrate 与参数驱动动画，让界面和表现保持统一质感。"
-    },
-    {
-      "title": "工具与资产流程",
-      "description": "为模型整理、批量渲染、资产同步和输出流程补齐工具，降低重复劳动。"
-    },
-    {
-      "title": "整合与性能收敛",
-      "description": "在移动端、桌面端和概念验证场景中平衡效果成本、交付速度与可维护性。"
-    }
-  ]
+  "jobTitle": "技术美术 (Technical Artist)"
 };
 
 // Projects区域内容
 export const projectsContent: ProjectsContent = {
-  "sectionTitle": "技术项目",
-  "sectionSubtitle": "Technical Art Projects",
   "projects": [
     {
       "id": 1,
@@ -695,27 +660,21 @@ export const projectsContent: ProjectsContent = {
 
 // Skills区域内容
 export const skillsContent: SkillsContent = {
-  "sectionTitle": "技术能力",
-  "sectionSubtitle": "Technical Art Capabilities",
   "categories": [
     {
       "title": "引擎与整合",
       "skills": [
         {
-          "name": "Unreal Engine 4/5",
-          "level": 95
+          "name": "Unreal Engine 4/5"
         },
         {
-          "name": "蓝图开发",
-          "level": 90
+          "name": "蓝图开发"
         },
         {
-          "name": "C++ 开发",
-          "level": 75
+          "name": "C++ 开发"
         },
         {
-          "name": "Sequencer 集成",
-          "level": 84
+          "name": "Sequencer 集成"
         }
       ]
     },
@@ -723,20 +682,16 @@ export const skillsContent: SkillsContent = {
       "title": "材质与实时视觉",
       "skills": [
         {
-          "name": "UI材质制作",
-          "level": 92
+          "name": "UI材质制作"
         },
         {
-          "name": "Substrate材质",
-          "level": 80
+          "name": "Substrate材质"
         },
         {
-          "name": "Niagara粒子",
-          "level": 85
+          "name": "Niagara粒子"
         },
         {
-          "name": "实时渲染表现",
-          "level": 88
+          "name": "实时渲染表现"
         }
       ]
     },
@@ -744,20 +699,16 @@ export const skillsContent: SkillsContent = {
       "title": "工具与资产流程",
       "skills": [
         {
-          "name": "编辑器工具",
-          "level": 85
+          "name": "编辑器工具"
         },
         {
-          "name": "资产流程搭建",
-          "level": 86
+          "name": "资产流程搭建"
         },
         {
-          "name": "Python自动化",
-          "level": 75
+          "name": "Python自动化"
         },
         {
-          "name": "移动端适配",
-          "level": 82
+          "name": "移动端适配"
         }
       ]
     },
@@ -765,20 +716,16 @@ export const skillsContent: SkillsContent = {
       "title": "界面技术",
       "skills": [
         {
-          "name": "UMG界面开发",
-          "level": 95
+          "name": "UMG界面开发"
         },
         {
-          "name": "UI架构设计",
-          "level": 85
+          "name": "UI架构设计"
         },
         {
-          "name": "UI动效实现",
-          "level": 90
+          "name": "UI动效实现"
         },
         {
-          "name": "蓝图模板开发",
-          "level": 90
+          "name": "蓝图模板开发"
         }
       ]
     }
@@ -803,12 +750,9 @@ export const skillsContent: SkillsContent = {
 
 // Contact区域内容
 export const contactContent: ContactContent = {
-  "sectionTitle": "开始合作",
-  "sectionSubtitle": "Contact",
   "description": "如果你需要一个能把实时视觉、材质特效、渲染工具链和项目落地串起来的人，我愿意直接参与问题推进与交付。",
   "email": "an15073025868@163.com",
-  "phone": "15073025868",
-  "location": ""
+  "phone": "15073025868"
 };
 
 // Footer区域内容

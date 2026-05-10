@@ -3,3 +3,4 @@ export { default as NumberInput } from './NumberInput';
 export { default as TextArea } from './TextArea';
 export { default as ArrayInput } from './ArrayInput';
 export { default as ObjectInput } from './ObjectInput';
+export { default as FieldWrapper } from './FieldWrapper';

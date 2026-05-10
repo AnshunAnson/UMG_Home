@@ -136,7 +136,7 @@ function FileUpload({
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            placeholder={placeholder || '或输入路径 /gifs/...'}
+            placeholder={placeholder || '或输入路径 gifs/...'}
             draggable={false}
             {...stopDragPropagation}
             className="flex-1 rounded border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 focus:border-[#00d4aa]/50 focus:outline-none"
