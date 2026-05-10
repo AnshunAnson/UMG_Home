@@ -1,0 +1,175 @@
+{
+  "$schema": "nexus-mapper/concept-model/v1",
+  "generated_at": "2026-05-10T00:00:00Z",
+  "repo_path": "e:\\AnShunConfig\\html",
+  "generator": "nexus-mapper v2",
+  "nodes": [
+    {
+      "id": "umg.content-data-layer",
+      "type": "System",
+      "label": "Content Data Layer",
+      "responsibility": "管理内容默认值定义、TypeScript 类型声明和运行时内容状态分发，三层加载优先级：content.json > localStorage > config/content.ts 默认值",
+      "implementation_status": "implemented",
+      "code_path": "portfolio/app/config/content.ts",
+      "evidence_path": null,
+      "evidence_gap": null,
+      "tech_stack": ["typescript", "react-context"],
+      "related_reqs": [],
+      "complexity": "medium",
+      "hotspot": true
+    },
+    {
+      "id": "umg.content-provider",
+      "type": "System",
+      "label": "Content Provider",
+      "responsibility": "全局内容状态管理，提供 useContent() hook，实现三层加载策略和 FOUC 防御（立即渲染默认值，后台静默更新）",
+      "implementation_status": "implemented",
+      "code_path": "portfolio/app/ContentProvider.tsx",
+      "evidence_path": null,
+      "evidence_gap": null,
+      "tech_stack": ["react-context", "typescript"],
+      "related_reqs": [],
+      "complexity": "medium",
+      "hotspot": true
+    },
+    {
+      "id": "umg.page-sections",
+      "type": "System",
+      "label": "Page Sections",
+      "responsibility": "渲染主页各区块：Hero、About、Skills、Projects、Contact、Footer，通过 useContent() 获取运行时数据，同时 import config/content 作为默认值回退",
+      "implementation_status": "implemented",
+      "code_path": "portfolio/app/sections/",
+      "evidence_path": null,
+      "evidence_gap": null,
+      "tech_stack": ["react", "framer-motion", "lucide-react", "tailwind-css"],
+      "related_reqs": [],
+      "complexity": "medium",
+      "hotspot": true
+    },
+    {
+      "id": "umg.content-editor",
+      "type": "System",
+      "label": "Content Editor",
+      "responsibility": "无代码内容编辑器，提供表单化界面编辑各区块内容，保存时写入 content.json 和 content.ts，是 content.json 高频变更的真正驱动者",
+      "implementation_status": "implemented",
+      "code_path": "portfolio/app/edit/",
+      "evidence_path": null,
+      "evidence_gap": null,
+      "tech_stack": ["react", "framer-motion", "lucide-react"],
+      "related_reqs": [],
+      "complexity": "high",
+      "hotspot": true
+    },
+    {
+      "id": "umg.api-persistence",
+      "type": "System",
+      "label": "API Persistence",
+      "responsibility": "处理内容保存（save-content）、TypeScript 类型文件生成（save-ts）和文件上传（upload）的 Next.js API 路由",
+      "implementation_status": "implemented",
+      "code_path": "portfolio/app/api/",
+      "evidence_path": null,
+      "evidence_gap": null,
+      "tech_stack": ["next.js-api-routes", "typescript"],
+      "related_reqs": [],
+      "complexity": "low",
+      "hotspot": false
+    },
+    {
+      "id": "umg.app-shell",
+      "type": "System",
+      "label": "App Shell",
+      "responsibility": "应用外壳：根布局、导航组件、页面组装、全局样式、平滑滚动和粒子背景等全局基础设施",
+      "implementation_status": "implemented",
+      "code_path": "portfolio/app/layout.tsx",
+      "evidence_path": null,
+      "evidence_gap": null,
+      "tech_stack": ["next.js", "react", "lenis", "tailwind-css"],
+      "related_reqs": [],
+      "complexity": "low",
+      "hotspot": false
+    },
+    {
+      "id": "umg.content-types",
+      "type": "Module",
+      "label": "Content Types",
+      "responsibility": "定义所有内容数据的 TypeScript 接口类型，是 content.ts、ContentProvider、edit/schema 和 API 路由共享的类型基础",
+      "implementation_status": "implemented",
+      "code_path": "portfolio/app/types/content.ts",
+      "evidence_path": null,
+      "evidence_gap": null,
+      "tech_stack": ["typescript"],
+      "related_reqs": [],
+      "complexity": "low",
+      "hotspot": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "umg.page-sections",
+      "target": "umg.content-provider",
+      "type": "depends_on",
+      "description": "所有 section 通过 useContent() hook 获取运行时内容数据"
+    },
+    {
+      "source": "umg.page-sections",
+      "target": "umg.content-data-layer",
+      "type": "depends_on",
+      "description": "sections import config/content 作为默认值回退（FOUC 防御策略）"
+    },
+    {
+      "source": "umg.content-provider",
+      "target": "umg.content-data-layer",
+      "type": "depends_on",
+      "description": "ContentProvider import config/content 作为 fallback 默认值"
+    },
+    {
+      "source": "umg.content-provider",
+      "target": "umg.content-types",
+      "type": "depends_on",
+      "description": "ContentProvider import types/content 定义内容数据结构"
+    },
+    {
+      "source": "umg.content-data-layer",
+      "target": "umg.content-types",
+      "type": "depends_on",
+      "description": "config/content.ts import types/content 获取类型定义"
+    },
+    {
+      "source": "umg.content-editor",
+      "target": "umg.content-data-layer",
+      "type": "depends_on",
+      "description": "edit/page.tsx import config/content 作为 initialData 初始值"
+    },
+    {
+      "source": "umg.content-editor",
+      "target": "umg.api-persistence",
+      "type": "depends_on",
+      "description": "编辑器通过 POST /api/save-content 和 /api/save-ts 持久化内容"
+    },
+    {
+      "source": "umg.api-persistence",
+      "target": "umg.content-types",
+      "type": "depends_on",
+      "description": "save-ts route import types/content 获取类型定义"
+    },
+    {
+      "source": "umg.app-shell",
+      "target": "umg.content-provider",
+      "type": "depends_on",
+      "description": "layout.tsx 包裹 ContentProvider 为全局提供内容状态"
+    },
+    {
+      "source": "umg.app-shell",
+      "target": "umg.page-sections",
+      "type": "depends_on",
+      "description": "page.tsx 组装所有 section 组件"
+    }
+  ],
+  "metadata": {
+    "total_files": 32,
+    "total_lines": 3766,
+    "languages": ["typescript", "tsx", "javascript", "python"],
+    "git_commits_analyzed": 61,
+    "analysis_days": 90
+  }
+}

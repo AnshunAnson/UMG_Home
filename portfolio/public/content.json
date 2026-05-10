@@ -69,19 +69,19 @@
             "alt": "Maya 材质与模型命名工具界面截图 - 实现一键自动化命名，规范材质球和模型命名规则，确保资产流程标准化"
           },
           {
-            "src": "/images/tools/1.1资产处理_材质数量繁多.png",
+            "src": "/images/tools/tool-01-material-count.png",
             "alt": "资产处理_材质数量繁多 - 汽车项目导入后面临上百个材质球，材质管理和替换效率低下的痛点场景展示"
           },
           {
-            "src": "/images/tools/1.2资产处理_一键替换所有材质.png",
+            "src": "/images/tools/tool-02-replace-all-materials.png",
             "alt": "资产处理_一键替换所有材质 - 通过编辑器工具实现按材质名称匹配规则，快速批量替换整个场景中的对应材质"
           },
           {
-            "src": "/images/tools/2.1资产处理_actor中复杂层级嵌套解决方案.png",
+            "src": "/images/tools/tool-03-nested-actor-solution.png",
             "alt": "资产处理_actor中复杂层级嵌套解决方案 - 处理复杂蓝图架构中的多层嵌套问题，确保资产结构完整性"
           },
           {
-            "src": "/images/tools/2.2资产处理_保留蓝图中层级嵌套关系的同时还原到场景.png",
+            "src": "/images/tools/tool-04-preserve-nesting-to-scene.png",
             "alt": "资产处理_保留蓝图中层级嵌套关系的同时还原到场景 - 在保持原逻辑关系的前提下，将嵌套资产展开到场景，提升编辑效率"
           }
         ]
@@ -107,7 +107,7 @@
             "period": "2023.10 - 2023.11",
             "images": [
               {
-                "src": "/gifs/Niagara_Materials/比亚迪入场动画.gif",
+                "src": "/gifs/Niagara_Materials/byd-entry-animation.gif",
                 "alt": "比亚迪概念展示项目的入场特效"
               }
             ]
@@ -129,7 +129,7 @@
                 "alt": "智能座舱烟雾与氛围层特效"
               },
               {
-                "src": "/gifs/DesaysvFX/入场_爆破_溅射.gif",
+                "src": "/gifs/DesaysvFX/entry-explosion-splash.gif",
                 "alt": "智能座舱入场爆破与溅射特效"
               },
               {
@@ -137,11 +137,11 @@
                 "alt": "智能座舱音波扰动与音频可视化效果"
               },
               {
-                "src": "/gifs/DesaysvFX/IP台开机动效.gif",
+                "src": "/gifs/DesaysvFX/ip-startup-animation.gif",
                 "alt": "智能座舱 IP 台开机过场动画"
               },
               {
-                "src": "/gifs/DesaysvFX/IP台来电.gif",
+                "src": "/gifs/DesaysvFX/ip-incoming-call.gif",
                 "alt": "智能座舱 IP 台来电提醒效果"
               },
               {

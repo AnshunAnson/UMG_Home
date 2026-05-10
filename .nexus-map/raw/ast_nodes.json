@@ -1,0 +1,1219 @@
+{
+  "languages": [
+    "javascript",
+    "python",
+    "tsx",
+    "typescript"
+  ],
+  "stats": {
+    "total_files": 32,
+    "total_lines": 3814,
+    "parse_errors": 0,
+    "truncated": false,
+    "truncated_nodes": 0,
+    "supported_file_counts": {
+      "python": 1,
+      "javascript": 2,
+      "typescript": 10,
+      "tsx": 19
+    },
+    "languages_with_structural_queries": [
+      "c",
+      "cpp",
+      "csharp",
+      "elixir",
+      "gdscript",
+      "go",
+      "java",
+      "javascript",
+      "kotlin",
+      "lua",
+      "php",
+      "python",
+      "ruby",
+      "rust",
+      "scala",
+      "swift",
+      "tsx",
+      "typescript"
+    ],
+    "languages_with_custom_queries": [],
+    "module_only_file_counts": {},
+    "known_unsupported_file_counts": {},
+    "configured_but_unavailable_file_counts": {},
+    "custom_language_config_paths": []
+  },
+  "nodes": [
+    {
+      "id": "compress_gif",
+      "type": "Module",
+      "label": "compress_gif",
+      "path": "compress_gif.py",
+      "lines": 97,
+      "lang": "python"
+    },
+    {
+      "id": "compress_gif.compress_gif",
+      "type": "Function",
+      "label": "compress_gif",
+      "path": "compress_gif.py",
+      "parent": "compress_gif",
+      "start_line": 4,
+      "end_line": 84
+    },
+    {
+      "id": "portfolio.app.api.save-content.route",
+      "type": "Module",
+      "label": "route",
+      "path": "portfolio/app/api/save-content/route.ts",
+      "lines": 39,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.app.api.save-content.route.POST",
+      "type": "Function",
+      "label": "POST",
+      "path": "portfolio/app/api/save-content/route.ts",
+      "parent": "portfolio.app.api.save-content.route",
+      "start_line": 10,
+      "end_line": 38
+    },
+    {
+      "id": "portfolio.app.api.save-ts.route",
+      "type": "Module",
+      "label": "route",
+      "path": "portfolio/app/api/save-ts/route.ts",
+      "lines": 69,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.app.api.save-ts.route.generateContentTs",
+      "type": "Function",
+      "label": "generateContentTs",
+      "path": "portfolio/app/api/save-ts/route.ts",
+      "parent": "portfolio.app.api.save-ts.route",
+      "start_line": 10,
+      "end_line": 40
+    },
+    {
+      "id": "portfolio.app.api.save-ts.route.POST",
+      "type": "Function",
+      "label": "POST",
+      "path": "portfolio/app/api/save-ts/route.ts",
+      "parent": "portfolio.app.api.save-ts.route",
+      "start_line": 42,
+      "end_line": 68
+    },
+    {
+      "id": "portfolio.app.api.upload.route",
+      "type": "Module",
+      "label": "route",
+      "path": "portfolio/app/api/upload/route.ts",
+      "lines": 39,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.app.api.upload.route.POST",
+      "type": "Function",
+      "label": "POST",
+      "path": "portfolio/app/api/upload/route.ts",
+      "parent": "portfolio.app.api.upload.route",
+      "start_line": 5,
+      "end_line": 38
+    },
+    {
+      "id": "portfolio.app.components.Navigation",
+      "type": "Module",
+      "label": "Navigation",
+      "path": "portfolio/app/components/Navigation.tsx",
+      "lines": 84,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.components.Navigation.Navigation",
+      "type": "Function",
+      "label": "Navigation",
+      "path": "portfolio/app/components/Navigation.tsx",
+      "parent": "portfolio.app.components.Navigation",
+      "start_line": 14,
+      "end_line": 83
+    },
+    {
+      "id": "portfolio.app.components.ParticleField",
+      "type": "Module",
+      "label": "ParticleField",
+      "path": "portfolio/app/components/ParticleField.tsx",
+      "lines": 246,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.components.ParticleField.ParticleField",
+      "type": "Function",
+      "label": "ParticleField",
+      "path": "portfolio/app/components/ParticleField.tsx",
+      "parent": "portfolio.app.components.ParticleField",
+      "start_line": 30,
+      "end_line": 245
+    },
+    {
+      "id": "portfolio.app.config.content",
+      "type": "Module",
+      "label": "content",
+      "path": "portfolio/app/config/content.ts",
+      "lines": 833,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.app.ContentProvider",
+      "type": "Module",
+      "label": "ContentProvider",
+      "path": "portfolio/app/ContentProvider.tsx",
+      "lines": 58,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.ContentProvider.ContentProvider",
+      "type": "Function",
+      "label": "ContentProvider",
+      "path": "portfolio/app/ContentProvider.tsx",
+      "parent": "portfolio.app.ContentProvider",
+      "start_line": 41,
+      "end_line": 49
+    },
+    {
+      "id": "portfolio.app.ContentProvider.useContent",
+      "type": "Function",
+      "label": "useContent",
+      "path": "portfolio/app/ContentProvider.tsx",
+      "parent": "portfolio.app.ContentProvider",
+      "start_line": 51,
+      "end_line": 57
+    },
+    {
+      "id": "portfolio.app.edit.components.DynamicForm",
+      "type": "Module",
+      "label": "DynamicForm",
+      "path": "portfolio/app/edit/components/DynamicForm.tsx",
+      "lines": 121,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.edit.components.DynamicForm.DynamicForm",
+      "type": "Function",
+      "label": "DynamicForm",
+      "path": "portfolio/app/edit/components/DynamicForm.tsx",
+      "parent": "portfolio.app.edit.components.DynamicForm",
+      "start_line": 17,
+      "end_line": 120
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "type": "Module",
+      "label": "ArrayInput",
+      "path": "portfolio/app/edit/components/FormFields/ArrayInput.tsx",
+      "lines": 545,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ArrayInput.asObjectItem",
+      "type": "Function",
+      "label": "asObjectItem",
+      "path": "portfolio/app/edit/components/FormFields/ArrayInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "start_line": 17,
+      "end_line": 19
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ArrayInput.asArrayItems",
+      "type": "Function",
+      "label": "asArrayItems",
+      "path": "portfolio/app/edit/components/FormFields/ArrayInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "start_line": 21,
+      "end_line": 23
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ArrayInput.asText",
+      "type": "Function",
+      "label": "asText",
+      "path": "portfolio/app/edit/components/FormFields/ArrayInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "start_line": 25,
+      "end_line": 33
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ArrayInput.FileUpload",
+      "type": "Function",
+      "label": "FileUpload",
+      "path": "portfolio/app/edit/components/FormFields/ArrayInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "start_line": 35,
+      "end_line": 144
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ArrayInput.ObjectItemForm",
+      "type": "Function",
+      "label": "ObjectItemForm",
+      "path": "portfolio/app/edit/components/FormFields/ArrayInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "start_line": 146,
+      "end_line": 376
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ArrayInput.ArrayInput",
+      "type": "Function",
+      "label": "ArrayInput",
+      "path": "portfolio/app/edit/components/FormFields/ArrayInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "start_line": 378,
+      "end_line": 544
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.index",
+      "type": "Module",
+      "label": "index",
+      "path": "portfolio/app/edit/components/FormFields/index.ts",
+      "lines": 6,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.NumberInput",
+      "type": "Module",
+      "label": "NumberInput",
+      "path": "portfolio/app/edit/components/FormFields/NumberInput.tsx",
+      "lines": 33,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.NumberInput.NumberInput",
+      "type": "Function",
+      "label": "NumberInput",
+      "path": "portfolio/app/edit/components/FormFields/NumberInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.NumberInput",
+      "start_line": 11,
+      "end_line": 32
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ObjectInput",
+      "type": "Module",
+      "label": "ObjectInput",
+      "path": "portfolio/app/edit/components/FormFields/ObjectInput.tsx",
+      "lines": 50,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.ObjectInput.ObjectInput",
+      "type": "Function",
+      "label": "ObjectInput",
+      "path": "portfolio/app/edit/components/FormFields/ObjectInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.ObjectInput",
+      "start_line": 16,
+      "end_line": 49
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.TextArea",
+      "type": "Module",
+      "label": "TextArea",
+      "path": "portfolio/app/edit/components/FormFields/TextArea.tsx",
+      "lines": 33,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.TextArea.TextArea",
+      "type": "Function",
+      "label": "TextArea",
+      "path": "portfolio/app/edit/components/FormFields/TextArea.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.TextArea",
+      "start_line": 11,
+      "end_line": 32
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.TextInput",
+      "type": "Module",
+      "label": "TextInput",
+      "path": "portfolio/app/edit/components/FormFields/TextInput.tsx",
+      "lines": 33,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.edit.components.FormFields.TextInput.TextInput",
+      "type": "Function",
+      "label": "TextInput",
+      "path": "portfolio/app/edit/components/FormFields/TextInput.tsx",
+      "parent": "portfolio.app.edit.components.FormFields.TextInput",
+      "start_line": 11,
+      "end_line": 32
+    },
+    {
+      "id": "portfolio.app.edit.page",
+      "type": "Module",
+      "label": "page",
+      "path": "portfolio/app/edit/page.tsx",
+      "lines": 199,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.edit.page.EditPage",
+      "type": "Function",
+      "label": "EditPage",
+      "path": "portfolio/app/edit/page.tsx",
+      "parent": "portfolio.app.edit.page",
+      "start_line": 34,
+      "end_line": 198
+    },
+    {
+      "id": "portfolio.app.edit.schema",
+      "type": "Module",
+      "label": "schema",
+      "path": "portfolio/app/edit/schema.tsx",
+      "lines": 352,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.hooks.useMousePosition",
+      "type": "Module",
+      "label": "useMousePosition",
+      "path": "portfolio/app/hooks/useMousePosition.ts",
+      "lines": 52,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.app.hooks.useMousePosition.useMousePosition",
+      "type": "Function",
+      "label": "useMousePosition",
+      "path": "portfolio/app/hooks/useMousePosition.ts",
+      "parent": "portfolio.app.hooks.useMousePosition",
+      "start_line": 12,
+      "end_line": 51
+    },
+    {
+      "id": "portfolio.app.hooks.useSmoothScroll",
+      "type": "Module",
+      "label": "useSmoothScroll",
+      "path": "portfolio/app/hooks/useSmoothScroll.ts",
+      "lines": 45,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.app.hooks.useSmoothScroll.useSmoothScroll",
+      "type": "Function",
+      "label": "useSmoothScroll",
+      "path": "portfolio/app/hooks/useSmoothScroll.ts",
+      "parent": "portfolio.app.hooks.useSmoothScroll",
+      "start_line": 6,
+      "end_line": 44
+    },
+    {
+      "id": "portfolio.app.hooks.useSmoothScroll.raf",
+      "type": "Function",
+      "label": "raf",
+      "path": "portfolio/app/hooks/useSmoothScroll.ts",
+      "parent": "portfolio.app.hooks.useSmoothScroll",
+      "start_line": 23,
+      "end_line": 26
+    },
+    {
+      "id": "portfolio.app.layout",
+      "type": "Module",
+      "label": "layout",
+      "path": "portfolio/app/layout.tsx",
+      "lines": 27,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.layout.RootLayout",
+      "type": "Function",
+      "label": "RootLayout",
+      "path": "portfolio/app/layout.tsx",
+      "parent": "portfolio.app.layout",
+      "start_line": 11,
+      "end_line": 26
+    },
+    {
+      "id": "portfolio.app.page",
+      "type": "Module",
+      "label": "page",
+      "path": "portfolio/app/page.tsx",
+      "lines": 34,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.page.Home",
+      "type": "Function",
+      "label": "Home",
+      "path": "portfolio/app/page.tsx",
+      "parent": "portfolio.app.page",
+      "start_line": 10,
+      "end_line": 34
+    },
+    {
+      "id": "portfolio.app.sections.About",
+      "type": "Module",
+      "label": "About",
+      "path": "portfolio/app/sections/About.tsx",
+      "lines": 65,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.sections.About.About",
+      "type": "Function",
+      "label": "About",
+      "path": "portfolio/app/sections/About.tsx",
+      "parent": "portfolio.app.sections.About",
+      "start_line": 7,
+      "end_line": 65
+    },
+    {
+      "id": "portfolio.app.sections.Contact",
+      "type": "Module",
+      "label": "Contact",
+      "path": "portfolio/app/sections/Contact.tsx",
+      "lines": 84,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.sections.Contact.Contact",
+      "type": "Function",
+      "label": "Contact",
+      "path": "portfolio/app/sections/Contact.tsx",
+      "parent": "portfolio.app.sections.Contact",
+      "start_line": 9,
+      "end_line": 84
+    },
+    {
+      "id": "portfolio.app.sections.Footer",
+      "type": "Module",
+      "label": "Footer",
+      "path": "portfolio/app/sections/Footer.tsx",
+      "lines": 80,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.sections.Footer.Footer",
+      "type": "Function",
+      "label": "Footer",
+      "path": "portfolio/app/sections/Footer.tsx",
+      "parent": "portfolio.app.sections.Footer",
+      "start_line": 7,
+      "end_line": 79
+    },
+    {
+      "id": "portfolio.app.sections.Hero",
+      "type": "Module",
+      "label": "Hero",
+      "path": "portfolio/app/sections/Hero.tsx",
+      "lines": 77,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.sections.Hero.Hero",
+      "type": "Function",
+      "label": "Hero",
+      "path": "portfolio/app/sections/Hero.tsx",
+      "parent": "portfolio.app.sections.Hero",
+      "start_line": 8,
+      "end_line": 76
+    },
+    {
+      "id": "portfolio.app.sections.Projects",
+      "type": "Module",
+      "label": "Projects",
+      "path": "portfolio/app/sections/Projects.tsx",
+      "lines": 257,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.sections.Projects.resolveAssetPath",
+      "type": "Function",
+      "label": "resolveAssetPath",
+      "path": "portfolio/app/sections/Projects.tsx",
+      "parent": "portfolio.app.sections.Projects",
+      "start_line": 12,
+      "end_line": 17
+    },
+    {
+      "id": "portfolio.app.sections.Projects.ProjectItem",
+      "type": "Function",
+      "label": "ProjectItem",
+      "path": "portfolio/app/sections/Projects.tsx",
+      "parent": "portfolio.app.sections.Projects",
+      "start_line": 19,
+      "end_line": 222
+    },
+    {
+      "id": "portfolio.app.sections.Projects.Projects",
+      "type": "Function",
+      "label": "Projects",
+      "path": "portfolio/app/sections/Projects.tsx",
+      "parent": "portfolio.app.sections.Projects",
+      "start_line": 224,
+      "end_line": 257
+    },
+    {
+      "id": "portfolio.app.sections.Skills",
+      "type": "Module",
+      "label": "Skills",
+      "path": "portfolio/app/sections/Skills.tsx",
+      "lines": 80,
+      "lang": "tsx"
+    },
+    {
+      "id": "portfolio.app.sections.Skills.SkillTag",
+      "type": "Function",
+      "label": "SkillTag",
+      "path": "portfolio/app/sections/Skills.tsx",
+      "parent": "portfolio.app.sections.Skills",
+      "start_line": 7,
+      "end_line": 19
+    },
+    {
+      "id": "portfolio.app.sections.Skills.Skills",
+      "type": "Function",
+      "label": "Skills",
+      "path": "portfolio/app/sections/Skills.tsx",
+      "parent": "portfolio.app.sections.Skills",
+      "start_line": 21,
+      "end_line": 80
+    },
+    {
+      "id": "portfolio.app.types.content",
+      "type": "Module",
+      "label": "content",
+      "path": "portfolio/app/types/content.ts",
+      "lines": 128,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.eslint.config",
+      "type": "Module",
+      "label": "config",
+      "path": "portfolio/eslint.config.mjs",
+      "lines": 20,
+      "lang": "javascript"
+    },
+    {
+      "id": "portfolio.next-env.d",
+      "type": "Module",
+      "label": "d",
+      "path": "portfolio/next-env.d.ts",
+      "lines": 7,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.next.config",
+      "type": "Module",
+      "label": "config",
+      "path": "portfolio/next.config.ts",
+      "lines": 13,
+      "lang": "typescript"
+    },
+    {
+      "id": "portfolio.postcss.config",
+      "type": "Module",
+      "label": "config",
+      "path": "portfolio/postcss.config.mjs",
+      "lines": 8,
+      "lang": "javascript"
+    }
+  ],
+  "edges": [
+    {
+      "source": "compress_gif",
+      "target": "compress_gif.compress_gif",
+      "type": "contains"
+    },
+    {
+      "source": "compress_gif",
+      "target": "PIL",
+      "type": "imports"
+    },
+    {
+      "source": "compress_gif",
+      "target": "os",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.save-content.route",
+      "target": "portfolio.app.api.save-content.route.POST",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.api.save-content.route",
+      "target": "next/server",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.save-content.route",
+      "target": "fs/promises",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.save-content.route",
+      "target": "path",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.save-ts.route",
+      "target": "portfolio.app.api.save-ts.route.generateContentTs",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.api.save-ts.route",
+      "target": "portfolio.app.api.save-ts.route.POST",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.api.save-ts.route",
+      "target": "next/server",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.save-ts.route",
+      "target": "fs/promises",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.save-ts.route",
+      "target": "path",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.save-ts.route",
+      "target": "../../types/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.upload.route",
+      "target": "portfolio.app.api.upload.route.POST",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.api.upload.route",
+      "target": "next/server",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.upload.route",
+      "target": "fs/promises",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.api.upload.route",
+      "target": "path",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.components.Navigation",
+      "target": "portfolio.app.components.Navigation.Navigation",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.components.Navigation",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.components.Navigation",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.components.ParticleField",
+      "target": "portfolio.app.components.ParticleField.ParticleField",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.components.ParticleField",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.config.content",
+      "target": "../types/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.ContentProvider",
+      "target": "portfolio.app.ContentProvider.ContentProvider",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.ContentProvider",
+      "target": "portfolio.app.ContentProvider.useContent",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.ContentProvider",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.ContentProvider",
+      "target": "./config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.ContentProvider",
+      "target": "./types/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.DynamicForm",
+      "target": "portfolio.app.edit.components.DynamicForm.DynamicForm",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.DynamicForm",
+      "target": "../schema",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.DynamicForm",
+      "target": "./FormFields/TextInput",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.DynamicForm",
+      "target": "./FormFields/NumberInput",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.DynamicForm",
+      "target": "./FormFields/TextArea",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.DynamicForm",
+      "target": "./FormFields/ArrayInput",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.DynamicForm",
+      "target": "./FormFields/ObjectInput",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "portfolio.app.edit.components.FormFields.ArrayInput.asObjectItem",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "portfolio.app.edit.components.FormFields.ArrayInput.asArrayItems",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "portfolio.app.edit.components.FormFields.ArrayInput.asText",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "portfolio.app.edit.components.FormFields.ArrayInput.FileUpload",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "portfolio.app.edit.components.FormFields.ArrayInput.ObjectItemForm",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "portfolio.app.edit.components.FormFields.ArrayInput.ArrayInput",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "next/image",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "lucide-react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ArrayInput",
+      "target": "../../schema",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.NumberInput",
+      "target": "portfolio.app.edit.components.FormFields.NumberInput.NumberInput",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.NumberInput",
+      "target": "../../schema",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ObjectInput",
+      "target": "portfolio.app.edit.components.FormFields.ObjectInput.ObjectInput",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ObjectInput",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ObjectInput",
+      "target": "../DynamicForm",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.ObjectInput",
+      "target": "../../schema",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.TextArea",
+      "target": "portfolio.app.edit.components.FormFields.TextArea.TextArea",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.TextArea",
+      "target": "../../schema",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.TextInput",
+      "target": "portfolio.app.edit.components.FormFields.TextInput.TextInput",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.components.FormFields.TextInput",
+      "target": "../../schema",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.page",
+      "target": "portfolio.app.edit.page.EditPage",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.edit.page",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.page",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.page",
+      "target": "lucide-react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.page",
+      "target": "./schema",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.page",
+      "target": "./components/DynamicForm",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.page",
+      "target": "../config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.edit.schema",
+      "target": "../types/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.hooks.useMousePosition",
+      "target": "portfolio.app.hooks.useMousePosition.useMousePosition",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.hooks.useMousePosition",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.hooks.useSmoothScroll",
+      "target": "portfolio.app.hooks.useSmoothScroll.useSmoothScroll",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.hooks.useSmoothScroll",
+      "target": "portfolio.app.hooks.useSmoothScroll.raf",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.hooks.useSmoothScroll",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.hooks.useSmoothScroll",
+      "target": "lenis",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.layout",
+      "target": "portfolio.app.layout.RootLayout",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.layout",
+      "target": "next",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.layout",
+      "target": "./globals.css",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.layout",
+      "target": "./ContentProvider",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.layout",
+      "target": "./components/Navigation",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.page",
+      "target": "portfolio.app.page.Home",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.page",
+      "target": "./hooks/useSmoothScroll",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.page",
+      "target": "./sections/Hero",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.page",
+      "target": "./sections/Projects",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.page",
+      "target": "./sections/About",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.page",
+      "target": "./sections/Skills",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.page",
+      "target": "./sections/Contact",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.About",
+      "target": "portfolio.app.sections.About.About",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.About",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.About",
+      "target": "../config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.About",
+      "target": "../ContentProvider",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Contact",
+      "target": "portfolio.app.sections.Contact.Contact",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Contact",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Contact",
+      "target": "lucide-react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Contact",
+      "target": "../config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Contact",
+      "target": "../ContentProvider",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Contact",
+      "target": "./Footer",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Footer",
+      "target": "portfolio.app.sections.Footer.Footer",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Footer",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Footer",
+      "target": "../config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Footer",
+      "target": "../ContentProvider",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Hero",
+      "target": "portfolio.app.sections.Hero.Hero",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Hero",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Hero",
+      "target": "lucide-react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Hero",
+      "target": "../ContentProvider",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Hero",
+      "target": "../config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "portfolio.app.sections.Projects.resolveAssetPath",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "portfolio.app.sections.Projects.ProjectItem",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "portfolio.app.sections.Projects.Projects",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "next/image",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "lucide-react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "react",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "../config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Projects",
+      "target": "../ContentProvider",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Skills",
+      "target": "portfolio.app.sections.Skills.SkillTag",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Skills",
+      "target": "portfolio.app.sections.Skills.Skills",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio.app.sections.Skills",
+      "target": "framer-motion",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Skills",
+      "target": "../config/content",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.app.sections.Skills",
+      "target": "../ContentProvider",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.eslint.config",
+      "target": "eslint/config",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.eslint.config",
+      "target": "eslint-config-next/core-web-vitals",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.eslint.config",
+      "target": "eslint-config-next/typescript",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.next-env.d",
+      "target": "./dist/dev/types/routes.d.ts",
+      "type": "imports"
+    },
+    {
+      "source": "portfolio.next.config",
+      "target": "next",
+      "type": "imports"
+    }
+  ],
+  "warnings": [
+    "custom exclude dirs applied: dist, node_modules, .next"
+  ]
+}
