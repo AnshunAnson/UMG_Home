@@ -78,23 +78,23 @@ export const projectsContent: ProjectsContent = {
       "color": "#7ce7d0",
       "images": [
         {
-          "src": "/images/tools/maya-material-naming-tool.png",
+          "src": "/images/tools/maya-material-naming-tool.jpg",
           "alt": "Maya 材质与模型命名工具界面截图 - 实现一键自动化命名，规范材质球和模型命名规则，确保资产流程标准化"
         },
         {
-          "src": "/images/tools/tool-01-material-count.png",
+          "src": "/images/tools/tool-01-material-count.jpg",
           "alt": "资产处理_材质数量繁多 - 汽车项目导入后面临上百个材质球，材质管理和替换效率低下的痛点场景展示"
         },
         {
-          "src": "/images/tools/tool-02-replace-all-materials.png",
+          "src": "/images/tools/tool-02-replace-all-materials.jpg",
           "alt": "资产处理_一键替换所有材质 - 通过编辑器工具实现按材质名称匹配规则，快速批量替换整个场景中的对应材质"
         },
         {
-          "src": "/images/tools/tool-03-nested-actor-solution.png",
+          "src": "/images/tools/tool-03-nested-actor-solution.jpg",
           "alt": "资产处理_actor中复杂层级嵌套解决方案 - 处理复杂蓝图架构中的多层嵌套问题，确保资产结构完整性"
         },
         {
-          "src": "/images/tools/tool-04-preserve-nesting-to-scene.png",
+          "src": "/images/tools/tool-04-preserve-nesting-to-scene.jpg",
           "alt": "资产处理_保留蓝图中层级嵌套关系的同时还原到场景 - 在保持原逻辑关系的前提下，将嵌套资产展开到场景，提升编辑效率"
         }
       ]
@@ -120,7 +120,7 @@ export const projectsContent: ProjectsContent = {
           "period": "2023.10 - 2023.11",
           "images": [
             {
-              "src": "/gifs/Niagara_Materials/byd-entry-animation.gif",
+              "src": "/gifs/Niagara_Materials/byd-entry-animation.mp4",
               "alt": "比亚迪概念展示项目的入场特效"
             }
           ]
@@ -130,47 +130,47 @@ export const projectsContent: ProjectsContent = {
           "period": "2024.12 - 2025.04",
           "images": [
             {
-              "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
+              "src": "/gifs/DesaysvFX/SEQ_Render_thm2_prob4.mp4",
               "alt": "智能座舱主题场景渲染氛围效果"
             },
             {
-              "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.gif",
+              "src": "/gifs/DesaysvFX/SEQ_Scene_Switching.mp4",
               "alt": "智能座舱场景切换粒子效果"
             },
             {
-              "src": "/gifs/DesaysvFX/Wellness02.gif",
+              "src": "/gifs/DesaysvFX/Wellness02.mp4",
               "alt": "智能座舱烟雾与氛围层特效"
             },
             {
-              "src": "/gifs/DesaysvFX/entry-explosion-splash.gif",
+              "src": "/gifs/DesaysvFX/entry-explosion-splash.mp4",
               "alt": "智能座舱入场爆破与溅射特效"
             },
             {
-              "src": "/gifs/DesaysvFX/audio.gif",
+              "src": "/gifs/DesaysvFX/audio.mp4",
               "alt": "智能座舱音波扰动与音频可视化效果"
             },
             {
-              "src": "/gifs/DesaysvFX/ip-startup-animation.gif",
+              "src": "/gifs/DesaysvFX/ip-startup-animation.mp4",
               "alt": "智能座舱 IP 台开机过场动画"
             },
             {
-              "src": "/gifs/DesaysvFX/ip-incoming-call.gif",
+              "src": "/gifs/DesaysvFX/ip-incoming-call.mp4",
               "alt": "智能座舱 IP 台来电提醒效果"
             },
             {
-              "src": "/gifs/DesaysvFX/SEQ_Flow7.gif",
+              "src": "/gifs/DesaysvFX/SEQ_Flow7.mp4",
               "alt": "智能座舱流体入场动效"
             },
             {
-              "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
+              "src": "/gifs/DesaysvFX/SEQ_Loading01.mp4",
               "alt": "智能座舱加载序列动画"
             },
             {
-              "src": "/gifs/DesaysvFX/SEQ_Mind.gif",
+              "src": "/gifs/DesaysvFX/SEQ_Mind.mp4",
               "alt": "智能座舱心智切换过场效果"
             },
             {
-              "src": "/gifs/DesaysvFX/SEQ_Music.gif",
+              "src": "/gifs/DesaysvFX/SEQ_Music.mp4",
               "alt": "智能座舱音乐界面动效"
             }
           ]
@@ -229,19 +229,19 @@ export const projectsContent: ProjectsContent = {
           ],
           "images": [
             {
-              "src": "/gifs/ProjectNotes/audi.gif",
+              "src": "/gifs/ProjectNotes/audi.mp4",
               "alt": "Windows 端汽车配置器的机位切换与展示效果"
             },
             {
-              "src": "/gifs/autoxyz_37446/gif2.gif",
+              "src": "/gifs/autoxyz_37446/gif2.mp4",
               "alt": "Audi RS Q8 汽车配置器特效展示1"
             },
             {
-              "src": "/gifs/autoxyz_37446/gif3.gif",
+              "src": "/gifs/autoxyz_37446/gif3.mp4",
               "alt": "Audi RS Q8 汽车配置器特效展示2"
             },
             {
-              "src": "/gifs/autoxyz_37446/gif4.gif",
+              "src": "/gifs/autoxyz_37446/gif4.mp4",
               "alt": "Audi RS Q8 汽车配置器特效展示3"
             }
           ]
@@ -251,7 +251,7 @@ export const projectsContent: ProjectsContent = {
             "period": "未单独标注",
             "images": [
               {
-                "src": "/gifs/Mobile_terminal/UMG_1080.gif",
+                "src": "/gifs/Mobile_terminal/UMG_1080.mp4",
                 "alt": "移动端 POC 的交互界面与角色特效整合效果"
               }
             ]
@@ -422,7 +422,7 @@ export const projectsContent: ProjectsContent = {
           ],
           "images": [
             {
-              "src": "/images/projects/guangfeng-poc/1.png",
+              "src": "/images/projects/guangfeng-poc/1.jpg",
               "alt": "广汽丰田 POC 3D HMI 概念设计图1"
             },
             {
@@ -430,11 +430,11 @@ export const projectsContent: ProjectsContent = {
               "alt": "广汽丰田 POC 3D HMI 概念设计图2"
             },
             {
-              "src": "/images/projects/guangfeng-poc/3.png",
+              "src": "/images/projects/guangfeng-poc/3.jpg",
               "alt": "广汽丰田 POC 3D HMI 概念设计图3"
             },
             {
-              "src": "/images/projects/guangfeng-poc/4.png",
+              "src": "/images/projects/guangfeng-poc/4.jpg",
               "alt": "广汽丰田 POC 3D HMI 概念设计图4"
             }
           ],
@@ -456,15 +456,15 @@ export const projectsContent: ProjectsContent = {
           ],
           "images": [
             {
-              "src": "/images/projects/ford/1.png",
+              "src": "/images/projects/ford/1.jpg",
               "alt": "福特烈马3D_HMI设计图1"
             },
             {
-              "src": "/images/projects/ford/2.png",
+              "src": "/images/projects/ford/2.jpg",
               "alt": "福特烈马3D_HMI设计图2"
             },
             {
-              "src": "/images/projects/ford/3.png",
+              "src": "/images/projects/ford/3.jpg",
               "alt": "福特烈马3D_HMI设计图3"
             },
             {
@@ -490,7 +490,7 @@ export const projectsContent: ProjectsContent = {
           ],
           "images": [
             {
-              "src": "/images/projects/lamborghini/1.png",
+              "src": "/images/projects/lamborghini/1.jpg",
               "alt": "兰博基尼自动驾驶用户体验设计图"
             }
           ],
@@ -630,15 +630,15 @@ export const projectsContent: ProjectsContent = {
           "alt": "郑州日产Z9皮卡HMI设计图3"
         },
         {
-          "src": "/gifs/zhengzhou_nissan_z9/gif_1.gif",
+          "src": "/gifs/zhengzhou_nissan_z9/gif_1.mp4",
           "alt": "郑州日产Z9皮卡HMI动效1"
         },
         {
-          "src": "/gifs/zhengzhou_nissan_z9/gif_2.gif",
+          "src": "/gifs/zhengzhou_nissan_z9/gif_2.mp4",
           "alt": "郑州日产Z9皮卡HMI动效2"
         },
         {
-          "src": "/gifs/zhengzhou_nissan_z9/gif_3.gif",
+          "src": "/gifs/zhengzhou_nissan_z9/gif_3.mp4",
           "alt": "郑州日产Z9皮卡HMI动效3"
         }
       ]
@@ -658,7 +658,7 @@ export const projectsContent: ProjectsContent = {
       "color": "#f0b562",
       "images": [
         {
-          "src": "/gifs/FPS_RPC/FPS.high.gif",
+          "src": "/gifs/FPS_RPC/FPS.high.mp4",
           "alt": "局域网 FPS 原型的实机对战画面"
         }
       ]
