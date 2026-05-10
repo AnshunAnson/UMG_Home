@@ -34,13 +34,14 @@ portfolio/
 ├── app/
 │   ├── api/
 │   │   ├── save-content/route.ts    # POST: write content.json to disk
+│   │   ├── save-ts/route.ts         # POST: write config/content.ts (TypeScript source)
 │   │   └── upload/route.ts          # POST: file upload (images/GIFs)
 │   ├── components/
 │   │   └── Navigation.tsx           # Fixed top navigation bar
 │   ├── config/
 │   │   └── content.ts               # DEFAULT content data (single source of truth)
 │   ├── edit/                        # No-code content editor
-│   │   ├── page.tsx                 # Editor main page (save → /api/save-content)
+│   │   ├── page.tsx                 # Editor main page (save → /api/save-ts + /api/save-content)
 │   │   ├── schema.tsx               # Form field definitions for each section
 │   │   └── components/
 │   │       ├── DynamicForm.tsx      # Dynamic form renderer (safeData guard)
@@ -87,6 +88,7 @@ portfolio/
 | `/` | Static (SSG) | Main portfolio page |
 | `/edit` | Static (SSG) | No-code content editor |
 | `/api/save-content` | Dynamic (API) | POST: save content to `public/content.json` |
+| `/api/save-ts` | Dynamic (API) | POST: save content to `app/config/content.ts` (TypeScript source with type annotations) |
 | `/api/upload` | Dynamic (API) | POST: upload image/GIF to `public/` |
 
 ## Data Architecture
@@ -109,6 +111,13 @@ portfolio/
 │   /edit      │ ───────────→ │ /api/save-content │
 │  (编辑器)    │              │  writes content.json│
 └─────────────┘              └──────────────────┘
+
+┌─────────────┐     POST      ┌──────────────────┐
+│   /edit      │ ───────────→ │   /api/save-ts    │
+│  (编辑器)    │              │ writes content.ts  │
+└─────────────┘              └──────────────────┘
+
+> Edit page saves to **both** endpoints simultaneously via `Promise.all`. Both must exist.
 ```
 
 ### Content Provider
@@ -229,6 +238,41 @@ fetch('/content.json');  // WRONG — won't work on GitHub Pages
 | **SSG content not updating after edit** | SSG compiles from `config/content.ts`, NOT runtime `content.json`. Both must be synced | [config/content.ts](app/config/content.ts), [public/content.json](public/content.json) |
 | **Large media files (PNG>2MB, GIF>5MB)** | GitHub Pages has transfer limits. Compress PNG→JPG (ffmpeg `-q:v 2`), GIF→MP4 (`-crf 28`). Update both config files | See Debug Workflow below |
 | **Batch path rename causes 404s** | After renaming extensions, verify every referenced file exists on disk before committing. Use `Get-ChildItem -Recurse` audit | See Debug Workflow below |
+| **Edit page save returns 404 for /api/save-ts** | Edit page calls `/api/save-ts` AND `/api/save-content` via `Promise.all`. If either route file is missing under `app/api/`, the save fails with 404. Both route directories must exist | [save-ts/route.ts](app/api/save-ts/route.ts), [edit/page.tsx](app/edit/page.tsx) |
+| **异构比例图片布局混乱** | 使用**黑底画布模式**: 固定比例容器 + `bg-black` + `flex items-center justify-center` + 图片 `object-contain`。纯 CSS 解决，不修改原生素材，无需数据字段驱动 | [Projects.tsx](app/sections/Projects.tsx) |
+| **preserveAspectRatio 数据字段过度工程** | 曾尝试用数据字段标记每张图的比例类型，条件渲染不同容器。最终简化为统一黑底画布，移除所有数据字段和条件逻辑。**原则: CSS 能解决的问题不要引入数据复杂度** | [Projects.tsx](app/sections/Projects.tsx), [types/content.ts](app/types/content.ts) |
+| **正则表达式操作 JSON 导致结构损坏** | 用 regex 删除 JSON 字段（如 preserveAspectRatio）会破坏格式/逗号/缩进。必须用 PowerShell `ConvertFrom-Json | Select-Object -ExcludeProperty | ConvertTo-Json` 管道安全操作 | — |
+
+## Design Patterns
+
+### Black Canvas Layout (黑底画布布局)
+
+**问题**: Projects 区域包含多种比例的 GIF/图片（16:9、1:1、21:9、超宽横条等），直接渲染会导致卡片高度不一、布局错乱。
+
+**方案**: 统一容器为固定比例黑底画布，图片以 `object-contain` 自适应居中。
+
+```tsx
+<div className="relative aspect-video rounded-xl overflow-hidden bg-black flex items-center justify-center">
+  <img
+    src={src}
+    alt={alt}
+    className="max-w-full max-h-full w-auto h-auto object-contain"
+  />
+</div>
+```
+
+**关键类组合**:
+| 类 | 作用 |
+|---|------|
+| `aspect-video` 或 `aspect-[21/9]` | 固定容器比例（网格用 16:9，卡片预览用 21:9） |
+| `bg-black` | 黑底填充图片未覆盖区域，视觉统一 |
+| `flex items-center justify-center` | 图片在容器内水平垂直居中 |
+| `max-w-full max-h-full w-auto h-auto` | 限制图片不超过容器尺寸 |
+| `object-contain` | 保持原图比例完整显示，不裁切不拉伸 |
+
+**适用场景**: 作品集展示、产品画廊等需要混排不同比例媒体的场景。
+
+**反模式**: 不要用 `preserveAspectRatio` 数据字段做条件渲染；不要用 ffmpeg 给原生素材加黑边；不要用正则修改 JSON。
 
 ## Debug Workflow
 
@@ -237,7 +281,7 @@ fetch('/content.json');  // WRONG — won't work on GitHub Pages
 | Tool | Path | Usage |
 |------|------|-------|
 | **ffmpeg** | `C:\Program Files\UI2V\resources\app.asar.unpacked\node_modules\ffmpeg-static\ffmpeg.exe` | PNG→JPG compression, GIF→MP4 conversion |
-| **gifski** | `C:\Users\Administrator\Desktop\gifski-main-fixed-source\target\release\gifski.exe` | High-quality GIF encoding (backup) |
+| **gifski** | `C:\Users\Administrator\Desktop\gifski-main-fixed-source\target\release\gifski.exe` | High-quality GIF encoding (MP4→GIF conversion) |
 | **Git** | `C:\Program Files\Git\cmd\git.exe` | Full path required in PowerShell |
 
 ### Chrome DevTools MCP Debugging Steps
@@ -295,6 +339,21 @@ Remove-Item input.png -Force
   -vf "scale='if(gt(iw,1920),1920,-2)':'if(gt(ih,1080),1080,-2)'" `
   -c:v libx264 -crf 28 -preset medium output.mp4
 ```
+
+**MP4 → GIF (需要高质量动画预览时):**
+```powershell
+$ffmpeg = "C:\Program Files\UI2V\resources\app.asar.unpacked\node_modules\ffmpeg-static\ffmpeg.exe"
+$gifski = "C:\Users\Administrator\Desktop\gifski-main-fixed-source\target\release\gifski.exe"
+$framesDir = "temp_frames"
+New-Item -ItemType Directory -Path $framesDir -Force | Out-Null
+# 1. 提取帧
+& $ffmpeg -i input.mp4 -vf "fps=15" -q:v 2 "$framesDir/frame%04d.png"
+# 2. gifski 编码（从帧序列生成高质量GIF）
+& $gifski -o output.gif "$framesDir/*.png"
+# 3. 清理临时帧
+Remove-Item $framesDir -Recurse -Force
+```
+> 注意: GIF 文件通常比 MP4 大 2-3 倍，仅用于必须展示动画的场景。
 
 **Batch audit all image sizes:**
 ```powershell
