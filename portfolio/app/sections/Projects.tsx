@@ -59,7 +59,7 @@ function ProjectItem({ project, index }: { project: any; index: number }) {
         className="relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all cursor-pointer group"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="relative aspect-[16/9] overflow-hidden">
+        <div className="relative aspect-[21/9] overflow-hidden">
           {firstImage ? (
             <MediaAsset
               src={firstImage.src}
