@@ -164,7 +164,8 @@ export const projectsContent: ProjectsContent = {
             },
             {
               "src": "/gifs/DesaysvFX/SEQ_Loading01.gif",
-              "alt": "智能座舱加载序列动画"
+              "alt": "智能座舱加载序列动画",
+              "preserveAspectRatio": true
             },
             {
               "src": "/gifs/DesaysvFX/SEQ_Mind.mp4",
