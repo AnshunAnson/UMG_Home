@@ -25,6 +25,49 @@ export const aboutContent: AboutContent = {
 export const projectsContent: ProjectsContent = {
   "projects": [
     {
+      "id": 0,
+      "icon": "Radio",
+      "title": "轻量联调接口MVP",
+      "period": "2026.05.11",
+      "category": "Integration Tool / Stage Control / Real-time Communication",
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "MCP Protocol",
+        "UDP Broadcast",
+        "UE5",
+        "Framer Motion"
+      ],
+      "color": "#f472b6",
+      "subProjects": [
+        {
+          "title": "Broadcast Control 舞台控制台",
+          "period": "2025.05 - 至今",
+          "description": "基于 MCP（Model Context Protocol）的 UE5 舞台广播控制系统，前端提供功能看板与参数调节面板，通过 UDP 向 UE5 渲染端发送控制指令，支持灯光、全息投影、环境氛围等参数的实时调控。",
+          "details": [
+            "MCP Server 实现 UE5 参数上报与指令下发",
+            "前端功能看板动态编排与布局管理",
+            "自然语言语义映射 → 精确参数控制",
+            "UDP 广播通信保障低延迟实时性"
+          ],
+          "tech": [
+            "MCP",
+            "Chrome DevTools Protocol",
+            "UDP",
+            "UE5 Blueprint"
+          ],
+          "embedUrl": "https://anshunanson.github.io/Broadcast_control/",
+          "links": [
+            {
+              "label": "打开独立页面",
+              "href": "https://anshunanson.github.io/Broadcast_control/"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": 1,
       "icon": "Wrench",
       "title": "汽车渲染工作流工具链",
@@ -650,49 +693,6 @@ export const projectsContent: ProjectsContent = {
         {
           "src": "gifs/FPS_RPC/FPS.high.mp4",
           "alt": "局域网 FPS 原型的实机对战画面"
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "icon": "Radio",
-      "title": "轻量联调接口MVP",
-      "period": "2026.05.11",
-      "category": "Integration Tool / Stage Control / Real-time Communication",
-      "tech": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "MCP Protocol",
-        "UDP Broadcast",
-        "UE5",
-        "Framer Motion"
-      ],
-      "color": "#f472b6",
-      "subProjects": [
-        {
-          "title": "Broadcast Control 舞台控制台",
-          "period": "2025.05 - 至今",
-          "description": "基于 MCP（Model Context Protocol）的 UE5 舞台广播控制系统，前端提供功能看板与参数调节面板，通过 UDP 向 UE5 渲染端发送控制指令，支持灯光、全息投影、环境氛围等参数的实时调控。",
-          "details": [
-            "MCP Server 实现 UE5 参数上报与指令下发",
-            "前端功能看板动态编排与布局管理",
-            "自然语言语义映射 → 精确参数控制",
-            "UDP 广播通信保障低延迟实时性"
-          ],
-          "tech": [
-            "MCP",
-            "Chrome DevTools Protocol",
-            "UDP",
-            "UE5 Blueprint"
-          ],
-          "embedUrl": "https://anshunanson.github.io/Broadcast_control/",
-          "links": [
-            {
-              "label": "打开独立页面",
-              "href": "https://anshunanson.github.io/Broadcast_control/"
-            }
-          ]
         }
       ]
     }
