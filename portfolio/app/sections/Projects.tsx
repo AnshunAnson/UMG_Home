@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, Folder, ChevronDown, ChevronUp } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useContent } from '../ContentProvider';
 import type { Project, ProjectImage, ProjectSubProject, ProjectLink } from '../types/content';
 import SectionHeader from '../components/SectionHeader';
@@ -271,20 +271,78 @@ function ProjectItem({ project }: { project: Project }) {
 
 export default function Projects() {
   const { projects } = useContent();
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  const filterTags = useMemo(() => {
+    const tags = new Set<string>();
+    projects.projects.forEach((p) => {
+      const tag = p.category?.split(' / ')[0]?.split(' ')[0] || '';
+      if (tag) tags.add(tag);
+    });
+    return Array.from(tags);
+  }, [projects.projects]);
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'all') return projects.projects;
+    return projects.projects.filter((p) => {
+      const tag = p.category?.split(' / ')[0]?.split(' ')[0] || '';
+      return tag === activeFilter;
+    });
+  }, [projects.projects, activeFilter]);
 
   return (
     <section id="projects" className="py-24 px-6 md:px-12 lg:px-20">
       <div className="w-full">
         <SectionHeader label="SELECTED WORK" title="项目作品" />
 
-        <div>
-          {projects.projects.map((project: Project, index: number) => (
-            <ProjectItem 
-              key={project.id} 
-              project={project}
-            />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="flex flex-wrap gap-2 mb-12"
+        >
+          <button
+            onClick={() => setActiveFilter('all')}
+            className={`px-4 py-1.5 text-xs font-mono tracking-wider rounded-full border transition-all duration-300 ${
+              activeFilter === 'all'
+                ? 'bg-[#00d4aa]/15 border-[#00d4aa]/40 text-[#00d4aa]'
+                : 'border-white/10 text-white/50 hover:text-white hover:border-white/30'
+            }`}
+          >
+            全部
+          </button>
+          {filterTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveFilter(tag)}
+              className={`px-4 py-1.5 text-xs font-mono tracking-wider rounded-full border transition-all duration-300 ${
+                activeFilter === tag
+                  ? 'bg-[#00d4aa]/15 border-[#00d4aa]/40 text-[#00d4aa]'
+                  : 'border-white/10 text-white/50 hover:text-white hover:border-white/30'
+              }`}
+            >
+              {tag}
+            </button>
           ))}
-        </div>
+        </motion.div>
+
+        <AnimatePresence mode="wait">
+          <motion.div key={activeFilter}>
+            {filteredProjects.map((project: Project) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProjectItem project={project} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
