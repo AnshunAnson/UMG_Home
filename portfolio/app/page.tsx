@@ -5,7 +5,7 @@ import Hero from './sections/Hero';
 import Projects from './sections/Projects';
 import About from './sections/About';
 import Skills from './sections/Skills';
-import Contact from './sections/Contact';
+import Footer from './sections/Footer';
 
 export default function Home() {
   useSmoothScroll();
@@ -27,7 +27,7 @@ export default function Home() {
         <Projects />
         <About />
         <Skills />
-        <Contact />
+        <Footer />
       </main>
     </>
   );

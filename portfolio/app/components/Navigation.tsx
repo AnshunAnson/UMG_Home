@@ -8,7 +8,6 @@ const sections = [
   { id: 'projects', label: '作品' },
   { id: 'about', label: '关于' },
   { id: 'skills', label: '技能' },
-  { id: 'contact', label: '联系' },
 ];
 
 export default function Navigation() {

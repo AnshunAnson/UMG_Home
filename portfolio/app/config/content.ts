@@ -827,10 +827,7 @@ export const footerContent: FooterContent = {
       "label": "能力",
       "href": "#skills"
     },
-    {
-      "label": "联系",
-      "href": "#contact"
-    }
+
   ],
   "socialLinks": [
     {
