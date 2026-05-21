@@ -20,7 +20,7 @@
         "icon": "Radio",
         "title": "AI实战",
         "period": "2026.05.11",
-        "category": "人机协同 / Integration Tool / Stage Control / Real-time Communication",
+        "category": "AI / Integration Tool / Stage Control / Real-time Communication",
         "description": "以人机协同为核心理念，将 AI 融入实时渲染管线、舞台控制与工程治理，让工具链与创作流程在人与机器的深度协作中持续演进。",
         "tech": [
           "Next.js",
@@ -652,7 +652,7 @@
         "icon": "User",
         "title": "MetaHuman数字人",
         "period": "未单独标注",
-        "category": "Digital Human / MetaHuman / Real-time Character",
+        "category": "Metahuman / MetaHuman / Real-time Character",
         "tech": [
           "UE5",
           "MetaHuman",
