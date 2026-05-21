@@ -1,0 +1,852 @@
+import {
+  HeroContent,
+  AboutContent,
+  ProjectsContent,
+  SkillsContent,
+  ContactContent,
+  FooterContent,
+} from '../types/content';
+export const heroContent: HeroContent = {
+  "badge": "Technical Artist / Unreal",
+  "name": "安顺",
+  "nameHighlightLength": 2,
+  "subtitle": "聚焦实时视觉、材质系统、Niagara 特效、编辑器工具与渲染流程，把表现需求收束成可交付的技术方案。"
+};
+
+export const aboutContent: AboutContent = {
+  "bio": [
+    "技术美术，专注于实时视觉、材质系统和Niagara特效，致力于把创意转化为可交付的技术方案。"
+  ],
+  "age": 24,
+  "experience": 3,
+  "jobTitle": "技术美术 (Technical Artist)"
+};
+
+export const projectsContent: ProjectsContent = {
+  "projects": [
+    {
+      "id": 1,
+      "icon": "Wrench",
+      "title": "汽车渲染工作流工具链",
+      "period": "2023.12 - 至今",
+      "category": "Technical Art Tools / Asset Pipeline / Rendering Workflow",
+      "tech": [
+        "UE5",
+        "Blueprint",
+        "Editor Tools",
+        "OpenUSD",
+        "Material",
+        "Automation"
+      ],
+      "color": "#7ce7d0",
+      "subProjects": [
+        {
+          "title": "Maya 工具",
+          "period": "2023.12 - 至今",
+          "description": "Maya 端材质与模型命名规范化工具，实现一键自动化命名，确保资产流程标准化。",
+          "images": [
+            {
+              "src": "images/tools/maya-material-naming-tool.png",
+              "alt": "Maya 材质与模型命名工具界面截图 - 实现一键自动化命名，规范材质球和模型命名规则，确保资产流程标准化"
+            }
+          ]
+        },
+        {
+          "title": "资产处理",
+          "period": "2023.12 - 至今",
+          "description": "UE5 编辑器内资产处理工具集，解决汽车项目导入后的材质管理、批量替换、复杂层级嵌套等痛点问题。",
+          "images": [
+            {
+              "src": "images/tools/tool-01-material-count.png",
+              "alt": "资产处理_材质数量繁多 - 汽车项目导入后面临上百个材质球，材质管理和替换效率低下的痛点场景展示"
+            },
+            {
+              "src": "images/tools/tool-02-replace-all-materials.png",
+              "alt": "资产处理_一键替换所有材质 - 通过编辑器工具实现按材质名称匹配规则，快速批量替换整个场景中的对应材质"
+            },
+            {
+              "src": "images/tools/tool-03-nested-actor-solution.png",
+              "alt": "资产处理_actor中复杂层级嵌套解决方案 - 处理复杂蓝图架构中的多层嵌套问题，确保资产结构完整性"
+            },
+            {
+              "src": "images/tools/tool-04-preserve-nesting-to-scene.png",
+              "alt": "资产处理_保留蓝图中层级嵌套关系的同时还原到场景 - 在保持原逻辑关系的前提下，将嵌套资产展开到场景，提升编辑效率"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "icon": "ScanSearch",
+      "title": "特效作品",
+      "period": "未单独标注",
+      "category": "Technical Art FX / Niagara / SDF / Sequencer",
+      "tech": [
+        "UE",
+        "Niagara",
+        "SDF",
+        "Sequencer",
+        "FX"
+      ],
+      "color": "#88a8ff",
+      "links": [],
+      "subProjects": [
+        {
+          "title": "比亚迪概念展示特效",
+          "period": "2023.10 - 2023.11",
+          "images": [
+            {
+              "src": "gifs/Niagara_Materials/byd-entry-animation.gif",
+              "alt": "比亚迪概念展示项目的入场特效"
+            }
+          ]
+        },
+        {
+          "title": "DesaySV 智能座舱",
+          "period": "2024.12 - 2025.04",
+          "images": [
+            {
+              "src": "gifs/DesaysvFX/SEQ_Render_thm2_prob4.gif",
+              "alt": "智能座舱主题场景渲染氛围效果"
+            },
+            {
+              "src": "gifs/DesaysvFX/SEQ_Scene_Switching.mp4",
+              "alt": "智能座舱场景切换粒子效果"
+            },
+            {
+              "src": "gifs/DesaysvFX/Wellness02.gif",
+              "alt": "智能座舱烟雾与氛围层特效"
+            },
+            {
+              "src": "gifs/DesaysvFX/entry-explosion-splash.mp4",
+              "alt": "智能座舱入场爆破与溅射特效"
+            },
+            {
+              "src": "gifs/DesaysvFX/audio.gif",
+              "alt": "智能座舱音波扰动与音频可视化效果"
+            },
+            {
+              "src": "gifs/DesaysvFX/ip-startup-animation.mp4",
+              "alt": "智能座舱 IP 台开机过场动画"
+            },
+            {
+              "src": "gifs/DesaysvFX/ip-incoming-call.gif",
+              "alt": "智能座舱 IP 台来电提醒效果"
+            },
+            {
+              "src": "gifs/DesaysvFX/SEQ_Flow7.gif",
+              "alt": "智能座舱流体入场动效"
+            },
+            {
+              "src": "gifs/DesaysvFX/SEQ_Loading01.gif",
+              "alt": "智能座舱加载序列动画"
+            },
+            {
+              "src": "gifs/DesaysvFX/SEQ_Mind.mp4",
+              "alt": "智能座舱心智切换过场效果"
+            },
+            {
+              "src": "gifs/DesaysvFX/SEQ_Music.mp4",
+              "alt": "智能座舱音乐界面动效"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "icon": "Car",
+      "title": "HMI多平台展示",
+      "period": "未单独标注",
+      "category": "Real-time Rendering / Automotive Visualization / Multi-platform",
+      "tech": [
+        "UE",
+        "HTML",
+        "UMG",
+        "Material",
+        "Niagara",
+        "DataTable",
+        "PBR"
+      ],
+      "color": "#d7c77a",
+      "subProjects": [
+        {
+          "title": "UE Web 端汽车展示",
+          "period": "未单独标注",
+          "images": [
+            {
+              "src": "images/projects/911CarreraCabriolet/911CarreraCabriolet.png",
+              "alt": "911 Carrera Cabriolet 汽车展示"
+            },
+            {
+              "src": "images/projects/BenZ/BenZWeb.png",
+              "alt": "BenZ Web 汽车展示"
+            }
+          ],
+          "links": [
+            {
+              "label": "保时捷在线展示",
+              "href": "https://www.autoy.co/porsche/#/"
+            },
+            {
+              "label": "奥迪在线展示",
+              "href": "https://www.autoy.co/2025_audi_rs_e_tron_gt/index/"
+            }
+          ]
+        },
+        {
+          "title": "Windows 汽车配置器",
+          "period": "未单独标注",
+          "links": [
+            {
+              "label": "Audi RS Q8 WEB3D设计与研发",
+              "href": "https://www.autoxyz.cn/information/detail/37446"
+            }
+          ],
+          "images": [
+            {
+              "src": "gifs/ProjectNotes/audi.mp4",
+              "alt": "Windows 端汽车配置器的机位切换与展示效果"
+            },
+            {
+              "src": "gifs/autoxyz_37446/gif2.mp4",
+              "alt": "Audi RS Q8 汽车配置器特效展示1"
+            },
+            {
+              "src": "gifs/autoxyz_37446/gif3.mp4",
+              "alt": "Audi RS Q8 汽车配置器特效展示2"
+            },
+            {
+              "src": "gifs/autoxyz_37446/gif4.mp4",
+              "alt": "Audi RS Q8 汽车配置器特效展示3"
+            }
+          ]
+        },
+        {
+          "title": "移动端 POC",
+          "period": "未单独标注",
+          "images": [
+            {
+              "src": "gifs/Mobile_terminal/UMG_1080.mp4",
+              "alt": "移动端 POC 的交互界面与角色特效整合效果"
+            }
+          ]
+        },
+        {
+          "title": "BenZ 汽车实时展示",
+          "period": "未单独标注",
+          "images": [
+            {
+              "src": "images/projects/BenZ/BenZWeb.png",
+              "alt": "BenZ Web 汽车实时展示"
+            }
+          ],
+          "tech": [
+            "Unreal Engine 4",
+            "HTML5",
+            "WebGL",
+            "Emscripten",
+            "JavaScript",
+            "IndexedDB",
+            "GitHub Pages"
+          ],
+          "links": [
+            {
+              "label": "BenZ_Html",
+              "href": "https://anshunanson.github.io/BenZ/BenZ-HTML5-Shipping.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "icon": "PanelsTopLeft",
+      "title": "其他",
+      "period": "未单独标注",
+      "category": "Technical Art / UI Design / Material",
+      "description": "汇集了多个UI材质动画、动效设计和技术美术相关的项目作品，展示了在实时视觉、材质系统和动效设计方面的技术能力。",
+      "tech": [
+        "UE",
+        "UMG",
+        "UI Material",
+        "Sequencer",
+        "Material Animation",
+        "Niagara"
+      ],
+      "color": "#62d8c8",
+      "subProjects": [
+        {
+          "title": "Hummer EV汽车动效",
+          "period": "2024-05-31",
+          "description": "使用UE5渲染的Hummer EV汽车动效设计作品",
+          "images": [
+            {
+              "src": "images/projects/hummer-ev-animations/1.png",
+              "alt": "Hummer EV汽车动效设计作品"
+            }
+          ],
+          "links": [
+            {
+              "label": "查看作品",
+              "href": "https://www.autoxyz.cn/information/detail/26652"
+            }
+          ]
+        },
+        {
+          "title": "迈凯伦汽车渲染",
+          "period": "2024-03-30",
+          "description": "迈凯伦汽车渲染设计作品",
+          "images": [
+            {
+              "src": "images/projects/mclaren-rendering/1.png",
+              "alt": "迈凯伦汽车渲染设计作品"
+            }
+          ],
+          "links": [
+            {
+              "label": "查看作品",
+              "href": "https://www.autoxyz.cn/information/detail/25119"
+            }
+          ]
+        },
+        {
+          "title": "HUMMER EV HMI创新设计",
+          "period": "2023-11-20",
+          "description": "设计元素主要从宇宙、星空进行提炼，利用圆形符合进行重构，太空星空作为背景进行体现视觉画面的科技感、未来感与天地融合广阔的画面感。通过3D设计手法展示新型现代设计审美趋势。界面风格设计关键词：科技 / 未来 / 宇宙 / 3D。仪表HMI设计通过XR技术完美实现虚实结合，让用户更好地理解产品使用意图。界面的车辆视角根据档位不同状态进行切换不仅仅增加画面的生动有趣并且提供产品的易用性。中控HMI设计通过场景化设计思维，信息根据用户在不同场景下需求进行合理展示，有效避免画面的复杂。本中控屏首页功能有效直观展示核心功能：多媒体、车辆设置、天气、电量、导航、等，用户还可以根据个人习惯进行自定义产品功能从而满足千人千面的个性化需求。通过FUI、游戏、3D等多种设计手法综合应用，从而体现视觉科技感、未来感与空间感。",
+          "images": [
+            {
+              "src": "images/projects/hummer-hmi-design/center-console-hmi.jpg",
+              "alt": "HUMMER EV HMI 中控界面设计"
+            },
+            {
+              "src": "images/projects/hummer-hmi-design/仪表.jpg",
+              "alt": "HUMMER EV HMI 仪表盘设计"
+            },
+            {
+              "src": "images/projects/hummer-hmi-design/ADAS.mp4",
+              "alt": "HUMMER EV HMI ADAS动效展示"
+            },
+            {
+              "src": "images/projects/hummer-hmi-design/渲染动画.mp4",
+              "alt": "HUMMER EV HMI 渲染动画效果"
+            }
+          ],
+          "links": [
+            {
+              "label": "查看作品",
+              "href": "https://www.autoxyz.cn/information/detail/22721"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "icon": "Sparkles",
+      "title": "POC",
+      "period": "2023.10 - 2025.04",
+      "category": "Concept Interaction / Prototype / Presentation",
+      "tech": [
+        "UE5",
+        "Material",
+        "Sequencer",
+        "Blueprint",
+        "UMG",
+        "Prototype"
+      ],
+      "color": "#59c8ff",
+      "links": [
+        {
+          "label": "3D HMI 概念设计",
+          "href": "https://www.autoxyz.cn/information/detail/32714"
+        },
+        {
+          "label": "福特烈马3D_HMI设计&汽车渲染",
+          "href": "https://www.autoxyz.cn/information/detail/34563"
+        },
+        {
+          "label": "兰博基尼自动驾驶用户体验设计",
+          "href": "https://www.autoxyz.cn/information/detail/30369"
+        },
+        {
+          "label": "Benz EQS680 Maybach的SR与ADAS用户体验设计",
+          "href": "https://www.autoxyz.cn/information/detail/31254"
+        },
+        {
+          "label": "3D仪表HMI创新设计",
+          "href": "https://www.autoxyz.cn/information/detail/25064"
+        }
+      ],
+      "subProjects": [
+        {
+          "title": "广汽丰田 POC 台架",
+          "period": "2024.7 - 2024.11",
+          "description": "3D HMI 概念设计与台架验证，推进移动端天气系统与材质表现测试。",
+          "details": [
+            "推进 POC 台架中的交互验证。",
+            "验证移动端天气系统与视差冰材质表现。",
+            "完成 3D HMI 概念设计与整体视觉呈现。"
+          ],
+          "images": [
+            {
+              "src": "images/projects/guangfeng-poc/1.jpg",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图1"
+            },
+            {
+              "src": "images/projects/guangfeng-poc/2.png",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图2"
+            },
+            {
+              "src": "images/projects/guangfeng-poc/3.jpg",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图3"
+            },
+            {
+              "src": "images/projects/guangfeng-poc/4.jpg",
+              "alt": "广汽丰田 POC 3D HMI 概念设计图4"
+            }
+          ],
+          "links": [
+            {
+              "label": "3D HMI 概念设计",
+              "href": "https://www.autoxyz.cn/information/detail/32714"
+            }
+          ]
+        },
+        {
+          "title": "福特烈马3D_HMI设计&汽车渲染",
+          "period": "未单独标注",
+          "description": "负责福特烈马项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "实现高质量汽车渲染材质与特效。",
+            "设计并实现不同界面间的动效过渡逻辑。",
+            "优化HMI界面的视觉表现与交互体验。"
+          ],
+          "images": [
+            {
+              "src": "images/projects/ford/1.jpg",
+              "alt": "福特烈马3D_HMI设计图1"
+            },
+            {
+              "src": "images/projects/ford/2.jpg",
+              "alt": "福特烈马3D_HMI设计图2"
+            },
+            {
+              "src": "images/projects/ford/3.jpg",
+              "alt": "福特烈马3D_HMI设计图3"
+            },
+            {
+              "src": "images/projects/ford/4.png",
+              "alt": "福特烈马3D_HMI设计图4"
+            }
+          ],
+          "links": [
+            {
+              "label": "福特烈马项目",
+              "href": "https://www.autoxyz.cn/information/detail/34563"
+            }
+          ]
+        },
+        {
+          "title": "兰博基尼自动驾驶用户体验设计",
+          "period": "未单独标注",
+          "description": "负责兰博基尼项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "打造高端汽车品牌的材质与视觉效果。",
+            "实现自动驾驶场景下的特效与动效。",
+            "设计流畅的用户体验界面过渡效果。"
+          ],
+          "images": [
+            {
+              "src": "images/projects/lamborghini/1.jpg",
+              "alt": "兰博基尼自动驾驶用户体验设计图"
+            }
+          ],
+          "links": [
+            {
+              "label": "兰博基尼项目",
+              "href": "https://www.autoxyz.cn/information/detail/30369"
+            }
+          ]
+        },
+        {
+          "title": "Benz EQS680 Maybach的SR与ADAS用户体验设计",
+          "period": "未单独标注",
+          "description": "负责SR与ADAS项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "实现超级分辨率(SR)与高级驾驶辅助系统(ADAS)界面特效。",
+            "设计安全、直观的用户体验动效。",
+            "优化高端车型的材质表现与视觉层次。"
+          ],
+          "images": [
+            {
+              "src": "images/projects/sr-adas/1.png",
+              "alt": "Benz EQS680 Maybach SR与ADAS设计图1"
+            },
+            {
+              "src": "images/projects/sr-adas/2.png",
+              "alt": "Benz EQS680 Maybach SR与ADAS设计图2"
+            },
+            {
+              "src": "images/projects/sr-adas/3.png",
+              "alt": "Benz EQS680 Maybach SR与ADAS设计图3"
+            },
+            {
+              "src": "images/projects/sr-adas/4.png",
+              "alt": "Benz EQS680 Maybach SR与ADAS设计图4"
+            },
+            {
+              "src": "images/projects/sr-adas/5.png",
+              "alt": "Benz EQS680 Maybach SR与ADAS设计图5"
+            },
+            {
+              "src": "images/projects/sr-adas/6.png",
+              "alt": "Benz EQS680 Maybach SR与ADAS设计图6"
+            },
+            {
+              "src": "images/projects/sr-adas/7.png",
+              "alt": "Benz EQS680 Maybach SR与ADAS设计图7"
+            }
+          ],
+          "links": [
+            {
+              "label": "SR与ADAS项目",
+              "href": "https://www.autoxyz.cn/information/detail/31254"
+            }
+          ]
+        },
+        {
+          "title": "极星3D仪表HMI创新设计",
+          "period": "未单独标注",
+          "description": "负责极星3D仪表项目的材质和特效实现，以及不同界面的动效过渡逻辑实现。",
+          "details": [
+            "打造创新的3D仪表HMI界面。",
+            "实现仪表界面的材质与动态特效。",
+            "设计多场景下的流畅动效过渡。"
+          ],
+          "images": [
+            {
+              "src": "images/projects/polestar-3d/1.png",
+              "alt": "极星3D仪表HMI设计图1"
+            },
+            {
+              "src": "images/projects/polestar-3d/2.png",
+              "alt": "极星3D仪表HMI设计图2"
+            },
+            {
+              "src": "images/projects/polestar-3d/3.png",
+              "alt": "极星3D仪表HMI设计图3"
+            },
+            {
+              "src": "images/projects/polestar-3d/4.png",
+              "alt": "极星3D仪表HMI设计图4"
+            }
+          ],
+          "links": [
+            {
+              "label": "极星3D仪表项目",
+              "href": "https://www.autoxyz.cn/information/detail/25064"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "icon": "Trophy",
+      "title": "郑州日产Z9皮卡HMI设计",
+      "period": "2023.06 - 2025.04",
+      "category": "HMI Design / Award-Winning / Automotive UX",
+      "description": "为郑州日产Z9皮卡车型进行HMI设计，以城市极简主义和空间建构主义为灵感，打造简洁直观的3D虚拟场景。",
+      "details": [
+        "引入无缝3D场景过渡模式替代复杂的树状菜单",
+        "使用全天候数字孪生技术，界面主题和3D场景根据环境、时间和天气实时变化",
+        "支持多模态交互，包括触摸和手势控制、语音助手和生物识别",
+        "采用半透明磨砂玻璃质感增加现代感和透明度",
+        "通过模块化HMI系统确保多屏幕和设备的一致性",
+        "获得A' Design Award 2025-2026界面、交互和用户体验设计类别奖项"
+      ],
+      "tech": [
+        "UE5",
+        "UMG",
+        "Digital Twin",
+        "HMI Design",
+        "3D Scene"
+      ],
+      "color": "#e6b800",
+      "links": [
+        {
+          "label": "郑州日产项目介绍",
+          "href": "https://www.autoxyz.cn/information/detail/34604"
+        },
+        {
+          "label": "A' Design Award获奖作品",
+          "href": "https://competition.adesignaward.com/design.php?ID=181663"
+        }
+      ],
+      "images": [
+        {
+          "src": "gifs/zhengzhou_nissan_z9/png_1.png",
+          "alt": "郑州日产Z9皮卡HMI设计图1"
+        },
+        {
+          "src": "gifs/zhengzhou_nissan_z9/png_2.png",
+          "alt": "郑州日产Z9皮卡HMI设计图2"
+        },
+        {
+          "src": "gifs/zhengzhou_nissan_z9/png_3.png",
+          "alt": "郑州日产Z9皮卡HMI设计图3"
+        },
+        {
+          "src": "gifs/zhengzhou_nissan_z9/gif_1.mp4",
+          "alt": "郑州日产Z9皮卡HMI动效1"
+        },
+        {
+          "src": "gifs/zhengzhou_nissan_z9/gif_2.mp4",
+          "alt": "郑州日产Z9皮卡HMI动效2"
+        },
+        {
+          "src": "gifs/zhengzhou_nissan_z9/gif_3.gif",
+          "alt": "郑州日产Z9皮卡HMI动效3"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "icon": "User",
+      "title": "MetaHuman数字人",
+      "period": "未单独标注",
+      "category": "Digital Human / MetaHuman / Real-time Character",
+      "tech": [
+        "UE5",
+        "MetaHuman",
+        "Control Rig",
+        "Sequencer",
+        "Real-time Animation"
+      ],
+      "color": "#c084fc",
+      "images": [
+        {
+          "src": "gifs/Zznissan/metahuman-dog-pet.gif",
+          "alt": "日产车机数字宠物"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "icon": "Gamepad2",
+      "title": "局域网 FPS 对战原型",
+      "period": "2022.09 - 2022.12",
+      "category": "Gameplay Prototype / Networking / Blueprint",
+      "tech": [
+        "UE4",
+        "Blueprint",
+        "Networking",
+        "Gameplay"
+      ],
+      "color": "#f0b562",
+      "images": [
+        {
+          "src": "gifs/FPS_RPC/FPS.high.mp4",
+          "alt": "局域网 FPS 原型的实机对战画面"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "icon": "Radio",
+      "title": "轻量联调接口MVP",
+      "period": "2026.05.11",
+      "category": "Integration Tool / Stage Control / Real-time Communication",
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "MCP Protocol",
+        "UDP Broadcast",
+        "UE5",
+        "Framer Motion"
+      ],
+      "color": "#f472b6",
+      "subProjects": [
+        {
+          "title": "Broadcast Control 舞台控制台",
+          "period": "2025.05 - 至今",
+          "description": "基于 MCP（Model Context Protocol）的 UE5 舞台广播控制系统，前端提供功能看板与参数调节面板，通过 UDP 向 UE5 渲染端发送控制指令，支持灯光、全息投影、环境氛围等参数的实时调控。",
+          "details": [
+            "MCP Server 实现 UE5 参数上报与指令下发",
+            "前端功能看板动态编排与布局管理",
+            "自然语言语义映射 → 精确参数控制",
+            "UDP 广播通信保障低延迟实时性"
+          ],
+          "tech": [
+            "MCP",
+            "Chrome DevTools Protocol",
+            "UDP",
+            "UE5 Blueprint"
+          ],
+          "embedUrl": "https://anshunanson.github.io/Broadcast_control/",
+          "links": [
+            {
+              "label": "打开独立页面",
+              "href": "https://anshunanson.github.io/Broadcast_control/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+export const skillsContent: SkillsContent = {
+  "categories": [
+    {
+      "title": "引擎与整合",
+      "skills": [
+        {
+          "name": "Unreal Engine 4/5"
+        },
+        {
+          "name": "蓝图开发"
+        },
+        {
+          "name": "C++ 开发"
+        },
+        {
+          "name": "Sequencer 集成"
+        }
+      ]
+    },
+    {
+      "title": "材质与实时视觉",
+      "skills": [
+        {
+          "name": "UI材质制作"
+        },
+        {
+          "name": "Substrate材质"
+        },
+        {
+          "name": "Niagara粒子"
+        },
+        {
+          "name": "实时渲染表现"
+        }
+      ]
+    },
+    {
+      "title": "工具与资产流程",
+      "skills": [
+        {
+          "name": "编辑器工具"
+        },
+        {
+          "name": "资产流程搭建"
+        },
+        {
+          "name": "Python自动化"
+        },
+        {
+          "name": "移动端适配"
+        }
+      ]
+    },
+    {
+      "title": "界面技术",
+      "skills": [
+        {
+          "name": "UMG界面开发"
+        },
+        {
+          "name": "UI架构设计"
+        },
+        {
+          "name": "UI动效实现"
+        },
+        {
+          "name": "蓝图模板开发"
+        }
+      ]
+    },
+    {
+      "title": "AI",
+      "skills": [
+        {
+          "name": "工程治理"
+        },
+        {
+          "name": "VibeCoding"
+        }
+      ]
+    }
+  ],
+  "techStack": [
+    "UE4",
+    "UE5",
+    "Niagara",
+    "Material",
+    "UI Material",
+    "Substrate",
+    "Sequencer",
+    "Blueprint",
+    "C++",
+    "Editor Tools",
+    "OpenUSD",
+    "Python",
+    "Performance Profiling",
+    "Automation Harness"
+  ]
+};
+
+export const contactContent: ContactContent = {
+  "description": "如果你需要一个能把实时视觉、材质特效、渲染工具链和项目落地串起来的人，我愿意直接参与问题推进与交付。",
+  "email": "an15073025868@163.com",
+  "phone": "15073025868"
+};
+
+export const footerContent: FooterContent = {
+  "logo": "Tech",
+  "logoHighlight": "Art",
+  "tagline": "Technical art work across visuals, materials and workflow",
+  "navLinks": [
+    {
+      "label": "首页",
+      "href": "#hero"
+    },
+    {
+      "label": "技术项目",
+      "href": "#projects"
+    },
+    {
+      "label": "关于",
+      "href": "#about"
+    },
+    {
+      "label": "能力",
+      "href": "#skills"
+    },
+    {
+      "label": "联系",
+      "href": "#contact"
+    }
+  ],
+  "socialLinks": [
+    {
+      "icon": "github",
+      "href": "https://github.com",
+      "label": "GitHub"
+    },
+    {
+      "icon": "linkedin",
+      "href": "https://linkedin.com",
+      "label": "LinkedIn"
+    },
+    {
+      "icon": "email",
+      "href": "mailto:an15073025868@163.com",
+      "label": "Email"
+    }
+  ],
+  "copyright": "© 2026 Technical Art Homepage. All rights reserved."
+};
