@@ -125,7 +125,7 @@ export const projectsContent: ProjectsContent = {
       "icon": "ScanSearch",
       "title": "特效作品",
       "period": "未单独标注",
-      "category": "Technical Art FX / Niagara / SDF / Sequencer",
+      "category": "Niagara / Technical Art FX / SDF / Sequencer",
       "tech": [
         "UE",
         "Niagara",
