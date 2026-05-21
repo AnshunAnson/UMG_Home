@@ -20,6 +20,7 @@ function MediaAsset({ src, alt, className }: { src: string; alt: string; classNa
         loop
         muted
         playsInline
+        preload="none"
         className={className || "w-full h-full object-cover"}
       />
     );
@@ -29,6 +30,7 @@ function MediaAsset({ src, alt, className }: { src: string; alt: string; classNa
     <img
       src={src}
       alt={alt}
+      loading="lazy"
       className={className || "w-full h-full object-cover"}
     />
   );
