@@ -27,7 +27,7 @@ export const projectsContent: ProjectsContent = {
     {
       "id": 0,
       "icon": "Radio",
-      "title": "轻量联调接口MVP",
+      "title": "AI实战",
       "period": "2026.05.11",
       "category": "Integration Tool / Stage Control / Real-time Communication",
       "tech": [
