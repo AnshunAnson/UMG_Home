@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 const sections = [
   { id: 'hero', label: '首页' },
   { id: 'projects', label: '作品' },
-  { id: 'about', label: '关于' },
   { id: 'skills', label: '技能' },
 ];
 

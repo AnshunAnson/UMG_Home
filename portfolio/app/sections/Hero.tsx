@@ -5,7 +5,7 @@ import { ArrowDown } from 'lucide-react';
 import { useContent } from '../ContentProvider';
 
 export default function Hero() {
-  const { hero } = useContent();
+  const { hero, about } = useContent();
   const { name, nameHighlightLength, subtitle } = hero;
   const leadingName = name.slice(0, nameHighlightLength);
   const trailingName = name.slice(nameHighlightLength);
@@ -52,6 +52,26 @@ export default function Hero() {
             >
               {subtitle}
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="flex flex-wrap gap-4"
+            >
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10">
+                <span className="text-white/40 text-sm uppercase tracking-wider">Role</span>
+                <span className="text-white/80 text-sm">{about.jobTitle}</span>
+              </div>
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10">
+                <span className="text-white/40 text-sm uppercase tracking-wider">经验</span>
+                <span className="text-white/80 text-sm">{about.experience} 年</span>
+              </div>
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10">
+                <span className="text-white/40 text-sm uppercase tracking-wider">年龄</span>
+                <span className="text-white/80 text-sm">{about.age}</span>
+              </div>
+            </motion.div>
           </div>
 
           <motion.div
