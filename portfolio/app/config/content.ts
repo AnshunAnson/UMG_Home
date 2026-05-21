@@ -29,7 +29,8 @@ export const projectsContent: ProjectsContent = {
       "icon": "Radio",
       "title": "AI实战",
       "period": "2026.05.11",
-      "category": "Integration Tool / Stage Control / Real-time Communication",
+      "category": "人机协同 / Integration Tool / Stage Control / Real-time Communication",
+      "description": "以人机协同为核心理念，将 AI 融入实时渲染管线、舞台控制与工程治理，让工具链与创作流程在人与机器的深度协作中持续演进。",
       "tech": [
         "Next.js",
         "React",
@@ -846,6 +847,11 @@ export const footerContent: FooterContent = {
       "icon": "email",
       "href": "mailto:an15073025868@163.com",
       "label": "Email"
+    },
+    {
+      "icon": "Play",
+      "href": "https://space.bilibili.com/386463410?spm_id_from=333.1007.0.0",
+      "label": "Bilibili"
     }
   ],
   "copyright": "© 2026 Technical Art Homepage. All rights reserved."
