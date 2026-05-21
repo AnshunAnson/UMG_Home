@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 
 const sections = [
   { id: 'hero', label: '首页' },
-  { id: 'projects', label: '作品' },
   { id: 'skills', label: '技能' },
+  { id: 'projects', label: '作品' },
 ];
 
 export default function Navigation() {

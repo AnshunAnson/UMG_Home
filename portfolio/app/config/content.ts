@@ -816,12 +816,12 @@ export const footerContent: FooterContent = {
       "href": "#hero"
     },
     {
-      "label": "技术项目",
-      "href": "#projects"
-    },
-    {
       "label": "能力",
       "href": "#skills"
+    },
+    {
+      "label": "技术项目",
+      "href": "#projects"
     },
 
   ],

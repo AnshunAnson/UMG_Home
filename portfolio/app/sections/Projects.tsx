@@ -11,7 +11,7 @@ function isVideo(src: string) {
   return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
 }
 
-function MediaAsset({ src, alt, className }: { src: string; alt: string; className?: string }) {
+function MediaAsset({ src, alt, className, lazy = true }: { src: string; alt: string; className?: string; lazy?: boolean }) {
   if (isVideo(src)) {
     return (
       <video
@@ -20,7 +20,7 @@ function MediaAsset({ src, alt, className }: { src: string; alt: string; classNa
         loop
         muted
         playsInline
-        preload="none"
+        preload={lazy ? "none" : "auto"}
         className={className || "w-full h-full object-cover"}
       />
     );
@@ -30,7 +30,7 @@ function MediaAsset({ src, alt, className }: { src: string; alt: string; classNa
     <img
       src={src}
       alt={alt}
-      loading="lazy"
+      loading={lazy ? "lazy" : "eager"}
       className={className || "w-full h-full object-cover"}
     />
   );
@@ -57,6 +57,7 @@ function ProjectItem({ project }: { project: Project }) {
             <MediaAsset
               src={firstImage.src}
               alt={firstImage.alt || project.title}
+              lazy={false}
               className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-700 group-hover:scale-105"
             />
           ) : (

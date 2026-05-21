@@ -23,8 +23,8 @@ export default function Home() {
         className="relative overflow-x-hidden bg-transparent text-white pt-16"
       >
         <Hero />
-        <Projects />
         <Skills />
+        <Projects />
         <Footer />
       </main>
     </>
